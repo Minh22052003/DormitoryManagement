@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Project1\Manager\DormitoryManager\DormitoryManager
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -28,6 +32,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Shared/footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXGZvb3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Shared/footer_home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXGZvb3Rlcl9ob21lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Shared/header_home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXGhlYWRlcl9ob21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Shared/_ValidationScriptsPartial.cshtml]

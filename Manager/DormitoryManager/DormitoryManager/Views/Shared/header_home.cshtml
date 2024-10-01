@@ -1,0 +1,71 @@
+﻿<nav class="navbar navbar-expand-lg main-navbar">
+    <form class="form-inline mr-auto">
+        <ul class="navbar-nav mr-3">
+            <li>
+                <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
+            </li>
+            <li>
+                <a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a>
+            </li>
+        </ul>
+        <div class="search-element"></div>
+    </form>
+    <ul class="navbar-nav navbar-right">
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1" />
+                <div class="d-sm-none d-lg-inline-block">
+                    Chào, <span id="student-name">Admin</span>
+                </div>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="dropdown-title">Hành động</div>
+                    <a href="#" id="logout" class="dropdown-item has-icon text-danger">
+                        <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                    </a>
+                </div>
+        </li>
+    </ul>
+</nav>
+<div class="main-sidebar">
+    <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+            <a href="index0.html">Ký túc xá</a>
+        </div>
+        <div class="sidebar-brand sidebar-brand-sm">
+            <a href="index0.html">KTX</a>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="nav-item dropdown active">
+                <a href="/app/frontend/pages/index0.html" class="nav-link"><i class="fas fa-info"></i><span>Tổng quan</span></a>
+            </li>
+            <li class="menu-header">Quản lý</li>
+            <li class="nav-item dropdown">
+                <a href="/app/frontend/pages/quan-ly-sinh-vien.html" class="nav-link">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Quản lý sinh viên</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="/app/frontend/pages/quan-ly-phong.html" class="nav-link"><i class="fas fa-couch"></i> <span>Quản lý phòng</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="/app/frontend/pages/quan-ly-gui-xe.html" class="nav-link">
+                    <i class="fas fa-bicycle"></i>
+                    <span>Quản lý gửi xe</span>
+                </a>
+            </li>
+            <li class="menu-header">Hỗ trợ</li>
+            <li class="nav-item dropdown">
+                <a href="/app/frontend/pages/xu-ly-cac-yeu-cau.html" class="nav-link">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Xử lý các yêu cầu</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="/app/frontend/pages/quan-ly-thong-bao.html" class="nav-link">
+                    <i class="far fa-file-alt"></i>
+                    <span>Quản lý thông báo</span>
+                </a>
+            </li>
+    </aside>
+</div>
