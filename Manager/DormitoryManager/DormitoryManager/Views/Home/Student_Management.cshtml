@@ -1,0 +1,100 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Quản lý sinh viên</h1>
+        </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-lg-12 col-xl-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Sinh viên</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card card-statistic-2">
+                                <div class="card-stats">
+                                    <div class="card-stats-items">
+                                        <div class="card-stats-item card-stats-2">
+                                            <div class="card-stats-item-count" id="paid-student"></div>
+                                            <div class="card-stats-item-label">Đã thanh toán</div>
+                                        </div>
+                                        <div class="card-stats-item card-stats-2">
+                                            <div class="card-stats-item-count" id="unpaid-student"></div>
+                                            <div class="card-stats-item-label">Chưa thanh toán</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-icon shadow-primary bg-primary">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Tổng số sinh viên</h4>
+                                    </div>
+                                    <div class="card-body" id="total-student">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Lịch</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="fc-overflow">
+                                <div id="calendar" class="fc-overflow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-xl-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Danh sách sinh viên ở KTX</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-8">
+                                    <span><h6>Tìm kiếm dữ liệu theo cột</h6></span>
+                                    <select id="filter-field">
+                                        <option></option>
+                                        <option value="studentid">MSSV</option>
+                                        <option value="name">Họ và tên</option>
+                                        <option value="room">Phòng</option>
+                                        <option value="status">Tình trạng nộp phí</option>
+                                    </select>
+
+                                    <select id="filter-type">
+                                        <option value="like">like</option>
+                                        <option value="=">=</option>
+                                        <option value="<"><</option>
+                                        <option value="<="><=</option>
+                                        <option value=">">></option>
+                                        <option value=">=">>=</option>
+                                        <option value="!=">!=</option>
+                                    </select>
+
+                                    <input id="filter-value" type="text" placeholder="điền dữ liệu cần tìm">
+                                </div>
+                                <div class="col-4">
+                                    <a href="#" id="download-xlsx" style="float: right" class="btn btn-lg btn-success">Xuất Excel</a>
+                                </div>
+
+                            </div>
+                            <br>
+                            <div id="student-table"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+      </section>
+    </div>
