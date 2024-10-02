@@ -18,6 +18,41 @@ namespace DormitoryUser.Controllers
             return View();
         }
 
+        public IActionResult Notification()
+        {
+            return View();
+        }
+
+        public IActionResult Room()
+        {
+            return View();
+        }
+
+        public IActionResult Facilities()
+        {
+            return View();
+        }
+
+        public IActionResult Track_Rent()
+        {
+            return View();
+        }
+
+        public IActionResult Sent_Request()
+        {
+            return View();
+        }
+
+        public IActionResult Request_Sent()
+        {
+            return View();
+        }
+
+        public IActionResult Officer_Information()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
