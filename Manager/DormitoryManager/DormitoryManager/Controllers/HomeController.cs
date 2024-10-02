@@ -17,7 +17,30 @@ namespace DormitoryManager.Controllers
         {
             return View();
         }
+        public IActionResult Student_Management()
+        {
+            return View();
+        }
 
+        public IActionResult Room_Management()
+        {
+            return View();
+        }
+
+        public IActionResult Parking_Management()
+        {
+            return View();
+        }
+
+        public IActionResult Handle_Requests()
+        {
+            return View();
+        }
+
+        public IActionResult Notification_Management()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

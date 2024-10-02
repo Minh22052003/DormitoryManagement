@@ -1,0 +1,115 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+            <!-- Main Content -->
+            <div class="main-content">
+                <section class="section">
+                    <div class="section-header">
+                        <h1>Theo dõi tiền trọ</h1>
+                    </div>
+                    <div class="section-body">
+                        <div class="row">
+                            <div class="col-12 col-lg-12 col-xl-5">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Phòng trọ</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="author-box-details" id="info-description">
+                                                    <div class="author-box-name">
+                                                        <p><strong>Phòng trọ: </strong><span id="student-room"></span></p>
+                                                        <p><strong>Tiền trọ: </strong><span id="room-fee"></span>đ</p>
+                                                        <p><strong>Hạn đóng tiền: </strong><span id="due-date">Mùng 6 hàng tháng</span></p>
+                                                        <p><strong>Trạng thái: </strong><span id="fee-status"></span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Lịch</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="fc-overflow">
+                                            <div id="calendar" class="fc-overflow"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-12 col-xl-7">
+                                <!-- <div class="card">
+                                  <div class="card-header">
+                                    <h4>Các khoản phí trong tháng</h4>
+                                  </div>
+                                  <div class="card-body">
+                                    <div class="card">
+                                      <div class="card-body">
+                                        <div class="author-box-details" id="info-description">
+                                          <div class="author-box-name">
+                                            <h5>1. Phí lưu trú</h5>
+                                            <p><strong>- Phí lưu trú theo quy định Hà Nội: </strong><span
+                                                id="phi-luu-tru-qd">85,000</span>đ</p>
+                                            <p><strong>- Phí tiền nước: </strong><span id="phi-tien-nuoc">25,000</span>đ</p>
+                                            <p><strong>- Phí tiền điện: </strong><span id="phi-tien-dien">100,000</span>đ</p>
+                                            <p><strong>- Phí tiền internet: </strong><span id="phi-internet">50,000</span>đ</p>
+                                            <br>
+                                            <h5>2. Phí giữ xe</h5>
+                                            <p><strong>- Xe máy: </strong><span id="phi-giu-xe-may">30,000</span>đ</p>
+                                            <p><strong>- Xe đạp: </strong><span id="phi-giu-xe-dap">30,000</span>đ</p>
+                                            <br>
+                                            <hr>
+                                            <h5>TỔNG: <span id="tong-phi-luu-tru">290,000</span>đ</h5>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div> -->
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Lịch sử thanh toán tiền trọ</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <span>
+                                                    <h6>Tìm kiếm dữ liệu theo cột</h6>
+                                                </span>
+                                                <select id="filter-field">
+                                                    <option></option>
+                                                    <option value="month">Tháng</option>
+                                                    <option value="year">Năm</option>
+                                                    <option value="status">Tình trạng nộp phí</option>
+                                                </select>
+
+                                                <select id="filter-type">
+                                                    <option value="like">like</option>>
+                                                    <option value="=">=</option>
+                                                    <option value="<"><</option>
+                                                    <option value="<="><=</option>
+                                                    <option value=">">></option>
+                                                    <option value=">=">>=</option>
+                                                    <option value="!=">!=</option>
+                                                </select>
+
+                                                <input id="filter-value" type="text" placeholder="điền dữ liệu cần tìm">
+                                            </div>
+                                            <div class="col-4">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div id="table"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+            </section>
+        </div>

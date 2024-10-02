@@ -1,0 +1,122 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Quản lý thông báo</h1>
+        </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Thêm thông báo</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Tiêu đề</label>
+                                <input id="header" type="text" class="form-control">
+                            </div>
+                            <div class="form-group mb-0">
+                                <label>Nội dung</label>
+                                <textarea id="noi-dung-thong-bao" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer text-right">
+                            <button id="submit-button" class="btn btn-primary">Gửi</button>
+                            <button type="reset" class="btn btn-secondary">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Danh sách thông báo</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <span>
+                                        <h6>Tìm kiếm dữ liệu theo cột</h6>
+                                    </span>
+                                    <select id="filter-field">
+                                        <option></option>
+                                        <option value="ID">Mã thông báo</option>
+                                        <option value="CreatedAt">Ngày đăng</option>
+                                        <option value="title">Tiêu đề</option>
+                                    </select>
+
+                                    <select id="filter-type">
+                                        <option value="like">like</option>
+                                        <option value="=">=</option>
+                                        <option value="<"><</option>
+                                        <option value="<="><=</option>
+                                        <option value=">">></option>
+                                        <option value=">=">>=</option>
+                                        <option value="!=">!=</option>
+                                    </select>
+
+                                    <input id="filter-value" type="text" placeholder="điền dữ liệu cần tìm">
+                                </div>
+                            </div>
+                            <br>
+                            <div id="noti-table"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+      </section>
+    </div>
+<div class="modal fade" id="noti-modal" tabindex="-1" role="dialog" aria-labelledby="studentModal"
+     aria-hidden="true">
+    <div class="modal-dialog  modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="studentModal">Thông tin chi tiết</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card card-primary">
+                        <div class="card-body">
+                            <div class="author-box-details">
+                                <div class="author-box-name">
+                                    <form action="">
+                                        <div>
+                                            <p><strong>Mã thông báo: <span id="ID"></span></strong></p>
+                                        </div>
+                                        <div>
+                                            <p><strong>Ngày đăng: </strong><span id="CreatedAt"></span></p>
+                                        </div>
+                                        <div>
+                                            <p><strong>Ngày cập nhật: </strong><span id="UpdatedAt"></span></p>
+                                        </div>
+                                        <div>
+                                            <p><strong>Tiêu đề: </strong><span id="title"></span></p>
+                                        </div>
+                                        <div>
+                                            <p><strong>Nội dung: </strong><span id="content"></span></p>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
