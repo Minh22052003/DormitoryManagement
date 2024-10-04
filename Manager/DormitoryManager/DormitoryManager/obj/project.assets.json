@@ -8749,19 +8749,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tddnh\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\DormitoryManager.csproj",
+      "projectUniqueName": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\DormitoryManager.csproj",
       "projectName": "DormitoryManager",
-      "projectPath": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\DormitoryManager.csproj",
-      "packagesPath": "C:\\Users\\tddnh\\.nuget\\packages\\",
-      "outputPath": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\obj\\",
+      "projectPath": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\DormitoryManager.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\tddnh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

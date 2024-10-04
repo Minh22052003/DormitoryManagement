@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DormitoryManagement\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj": {}
+    "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj": {}
   },
   "projects": {
-    "D:\\DormitoryManagement\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj": {
+    "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DormitoryManagement\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
+        "projectUniqueName": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
         "projectName": "DormitoryUser",
-        "projectPath": "D:\\DormitoryManagement\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
-        "packagesPath": "C:\\Users\\tddnh\\.nuget\\packages\\",
-        "outputPath": "D:\\DormitoryManagement\\User\\DormitoryUser\\DormitoryUser\\obj\\",
+        "projectPath": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\tddnh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

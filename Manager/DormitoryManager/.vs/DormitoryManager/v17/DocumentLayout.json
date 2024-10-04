@@ -1,38 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\",
+  "WorkspaceRootPath": "D:\\Project1\\Manager\\DormitoryManager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\dormitorymanagement\\manager\\dormitorymanager\\dormitorymanager\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|solutionrelative:dormitorymanager\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\project1\\manager\\dormitorymanager\\dormitorymanager\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|solutionrelative:dormitorymanager\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\dormitorymanagement\\manager\\dormitorymanager\\dormitorymanager\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|solutionrelative:dormitorymanager\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\project1\\manager\\dormitorymanager\\dormitorymanager\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|solutionrelative:dormitorymanager\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\dormitorymanagement\\manager\\dormitorymanager\\dormitorymanager\\views\\home\\notification_management.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|solutionrelative:dormitorymanager\\views\\home\\notification_management.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\dormitorymanagement\\manager\\dormitorymanager\\dormitorymanager\\views\\home\\handle_requests.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\project1\\manager\\dormitorymanager\\dormitorymanager\\views\\home\\handle_requests.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|solutionrelative:dormitorymanager\\views\\home\\handle_requests.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\dormitorymanagement\\manager\\dormitorymanager\\dormitorymanager\\views\\home\\parking_management.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\project1\\manager\\dormitorymanager\\dormitorymanager\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|solutionrelative:dormitorymanager\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\project1\\manager\\dormitorymanager\\dormitorymanager\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|solutionrelative:dormitorymanager\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\project1\\manager\\dormitorymanager\\dormitorymanager\\views\\home\\notification_management.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|solutionrelative:dormitorymanager\\views\\home\\notification_management.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\project1\\manager\\dormitorymanager\\dormitorymanager\\views\\home\\parking_management.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|solutionrelative:dormitorymanager\\views\\home\\parking_management.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\dormitorymanagement\\manager\\dormitorymanager\\dormitorymanager\\views\\home\\room_management.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\project1\\manager\\dormitorymanager\\dormitorymanager\\views\\home\\room_management.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|solutionrelative:dormitorymanager\\views\\home\\room_management.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\dormitorymanagement\\manager\\dormitorymanager\\dormitorymanager\\views\\home\\student_management.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\project1\\manager\\dormitorymanager\\dormitorymanager\\views\\home\\student_management.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|solutionrelative:dormitorymanager\\views\\home\\student_management.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|d:\\dormitorymanagement\\manager\\dormitorymanager\\dormitorymanager\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{958AA3B9-85C3-4C49-9C3A-A3A9D7BE6C0C}|DormitoryManager\\DormitoryManager.csproj|solutionrelative:dormitorymanager\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,12 +58,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "DormitoryManager\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "DormitoryManager\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T04:03:15.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Shared\\_Layout.cshtml",
+              "DocumentMoniker": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "DormitoryManager\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Shared\\_Layout.cshtml*",
-              "RelativeToolTip": "DormitoryManager\\Views\\Shared\\_Layout.cshtml*",
+              "ToolTip": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "DormitoryManager\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-02T10:12:31.804Z",
@@ -67,94 +84,89 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "DormitoryManager\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "DormitoryManager\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAEIAAAAAAAAAAADwv0cAAAAeAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "Notification_Management.cshtml",
+              "DocumentMoniker": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Notification_Management.cshtml",
+              "RelativeDocumentMoniker": "DormitoryManager\\Views\\Home\\Notification_Management.cshtml",
+              "ToolTip": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Notification_Management.cshtml",
+              "RelativeToolTip": "DormitoryManager\\Views\\Home\\Notification_Management.cshtml",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAAAHkAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-02T10:10:23.893Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-02T10:10:19.424Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Notification_Management.cshtml",
-              "DocumentMoniker": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Notification_Management.cshtml",
-              "RelativeDocumentMoniker": "DormitoryManager\\Views\\Home\\Notification_Management.cshtml",
-              "ToolTip": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Notification_Management.cshtml",
-              "RelativeToolTip": "DormitoryManager\\Views\\Home\\Notification_Management.cshtml",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAAAHkAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-02T10:10:19.424Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Handle_Requests.cshtml",
-              "DocumentMoniker": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Handle_Requests.cshtml",
+              "DocumentMoniker": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Handle_Requests.cshtml",
               "RelativeDocumentMoniker": "DormitoryManager\\Views\\Home\\Handle_Requests.cshtml",
-              "ToolTip": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Handle_Requests.cshtml",
+              "ToolTip": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Handle_Requests.cshtml",
               "RelativeToolTip": "DormitoryManager\\Views\\Home\\Handle_Requests.cshtml",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAAAH0AAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-02T10:10:13.154Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Parking_Management.cshtml",
-              "DocumentMoniker": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Parking_Management.cshtml",
+              "DocumentMoniker": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Parking_Management.cshtml",
               "RelativeDocumentMoniker": "DormitoryManager\\Views\\Home\\Parking_Management.cshtml",
-              "ToolTip": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Parking_Management.cshtml",
+              "ToolTip": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Parking_Management.cshtml",
               "RelativeToolTip": "DormitoryManager\\Views\\Home\\Parking_Management.cshtml",
               "ViewState": "AgIAAIQAAAAAAAAAAAAAAKgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-02T10:10:05.954Z",
+              "WhenOpened": "2024-10-02T10:10:05.954Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "DormitoryManager\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "DormitoryManager\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAswCcAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-01T13:34:35.068Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Room_Management.cshtml",
-              "DocumentMoniker": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Room_Management.cshtml",
-              "RelativeDocumentMoniker": "DormitoryManager\\Views\\Home\\Room_Management.cshtml",
-              "ToolTip": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Room_Management.cshtml",
-              "RelativeToolTip": "DormitoryManager\\Views\\Home\\Room_Management.cshtml",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAAAGkAAAAKAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "DormitoryManager\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "DormitoryManager\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAEIAAAAAAAAAAADwv0cAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-02T10:09:50.49Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Student_Management.cshtml",
-              "DocumentMoniker": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Student_Management.cshtml",
-              "RelativeDocumentMoniker": "DormitoryManager\\Views\\Home\\Student_Management.cshtml",
-              "ToolTip": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Student_Management.cshtml",
-              "RelativeToolTip": "DormitoryManager\\Views\\Home\\Student_Management.cshtml",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAAAGMAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-02T10:09:36.086Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-02T10:10:23.893Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "DormitoryManager\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\DormitoryManagement\\Manager\\DormitoryManager\\DormitoryManager\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "DormitoryManager\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAADwvycAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-01T13:34:35.068Z",
-              "EditorCaption": ""
+              "Title": "Room_Management.cshtml",
+              "DocumentMoniker": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Room_Management.cshtml",
+              "RelativeDocumentMoniker": "DormitoryManager\\Views\\Home\\Room_Management.cshtml",
+              "ToolTip": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Room_Management.cshtml",
+              "RelativeToolTip": "DormitoryManager\\Views\\Home\\Room_Management.cshtml",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAGkAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-02T10:09:50.49Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Student_Management.cshtml",
+              "DocumentMoniker": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Student_Management.cshtml",
+              "RelativeDocumentMoniker": "DormitoryManager\\Views\\Home\\Student_Management.cshtml",
+              "ToolTip": "D:\\Project1\\Manager\\DormitoryManager\\DormitoryManager\\Views\\Home\\Student_Management.cshtml",
+              "RelativeToolTip": "DormitoryManager\\Views\\Home\\Student_Management.cshtml",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAGMAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-02T10:09:36.086Z"
             }
           ]
         }

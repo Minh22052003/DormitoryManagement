@@ -9,75 +9,79 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DormitoryManager
 build_property.RootNamespace = DormitoryManager
-build_property.ProjectDir = D:\DormitoryManagement\Manager\DormitoryManager\DormitoryManager\
+build_property.ProjectDir = D:\Project1\Manager\DormitoryManager\DormitoryManager\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\DormitoryManagement\Manager\DormitoryManager\DormitoryManager
+build_property.MSBuildProjectDirectory = D:\Project1\Manager\DormitoryManager\DormitoryManager
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/Account/Login.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/Home/Handle_Requests.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Home/Handle_Requests.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIYW5kbGVfUmVxdWVzdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/Home/Index.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/Home/Notification_Management.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Home/Notification_Management.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOb3RpZmljYXRpb25fTWFuYWdlbWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/Home/Parking_Management.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Home/Parking_Management.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQYXJraW5nX01hbmFnZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/Home/Privacy.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/Home/Room_Management.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Home/Room_Management.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSb29tX01hbmFnZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/Home/Student_Management.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Home/Student_Management.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTdHVkZW50X01hbmFnZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/Shared/Error.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/Shared/footer.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Shared/footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXGZvb3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/Shared/footer_home.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Shared/footer_home.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXGZvb3Rlcl9ob21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/Shared/header_home.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Shared/header_home.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXGhlYWRlcl9ob21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Shared/_Layout_Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/_ViewImports.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/_ViewStart.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DormitoryManagement/Manager/DormitoryManager/DormitoryManager/Views/Shared/_Layout.cshtml]
+[D:/Project1/Manager/DormitoryManager/DormitoryManager/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-utv9zfzt7i
