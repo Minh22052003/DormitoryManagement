@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\Project1\\Server\\DormitoryServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|d:\\project1\\server\\dormitoryserver\\dormitoryserver\\controllers\\facultycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|solutionrelative:dormitoryserver\\controllers\\facultycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|d:\\project1\\server\\dormitoryserver\\dormitoryserver\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|solutionrelative:dormitoryserver\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|d:\\project1\\server\\dormitoryserver\\dormitoryserver\\dtos\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|solutionrelative:dormitoryserver\\dtos\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|d:\\project1\\server\\dormitoryserver\\dormitoryserver\\controllers\\facultycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|solutionrelative:dormitoryserver\\controllers\\facultycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,12 +35,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "DormitoryServer\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "DormitoryServer\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T15:55:25.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "FacultyController.cs",
               "DocumentMoniker": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\FacultyController.cs",
               "RelativeDocumentMoniker": "DormitoryServer\\Controllers\\FacultyController.cs",
               "ToolTip": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\FacultyController.cs",
               "RelativeToolTip": "DormitoryServer\\Controllers\\FacultyController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAqwCMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-07T15:15:33.969Z",
               "EditorCaption": ""
@@ -51,7 +68,8 @@
               "RelativeToolTip": "DormitoryServer\\DTOs\\LoginRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T08:58:43.998Z"
+              "WhenOpened": "2024-10-06T08:58:43.998Z",
+              "EditorCaption": ""
             }
           ]
         }
