@@ -10,7 +10,7 @@ namespace DormitoryServer.Models
             ParkingHistories = new HashSet<ParkingHistory>();
         }
 
-        public string TicketId { get; set; } = null!;
+        public int TicketId { get; set; }
         public string? StudentId { get; set; }
         public DateTime? StartTime { get; set; }
         public DateTime? EndTime { get; set; }

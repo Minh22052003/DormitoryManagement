@@ -21,9 +21,9 @@ namespace DormitoryServer.Models
         public virtual DbSet<Announcement> Announcements { get; set; } = null!;
         public virtual DbSet<Building> Buildings { get; set; } = null!;
         public virtual DbSet<Class> Classes { get; set; } = null!;
-        public virtual DbSet<Department> Departments { get; set; } = null!;
         public virtual DbSet<DormInvoice> DormInvoices { get; set; } = null!;
         public virtual DbSet<Equipment> Equipment { get; set; } = null!;
+        public virtual DbSet<Faculty> Faculties { get; set; } = null!;
         public virtual DbSet<Invoice> Invoices { get; set; } = null!;
         public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; } = null!;
         public virtual DbSet<News> News { get; set; } = null!;
@@ -55,7 +55,7 @@ namespace DormitoryServer.Models
             modelBuilder.Entity<AccountStaff>(entity =>
             {
                 entity.HasKey(e => e.AccountStaff1)
-                    .HasName("PK__AccountS__F669B8107E1097A6");
+                    .HasName("PK__AccountS__F669B8103A1904C8");
 
                 entity.ToTable("AccountStaff");
 
@@ -63,10 +63,7 @@ namespace DormitoryServer.Models
 
                 entity.Property(e => e.Password).HasMaxLength(255);
 
-                entity.Property(e => e.RoleId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("RoleID");
+                entity.Property(e => e.RoleId).HasColumnName("RoleID");
 
                 entity.Property(e => e.StaffId)
                     .HasMaxLength(10)
@@ -80,18 +77,18 @@ namespace DormitoryServer.Models
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.AccountStaffs)
                     .HasForeignKey(d => d.RoleId)
-                    .HasConstraintName("FK__AccountSt__RoleI__72C60C4A");
+                    .HasConstraintName("FK__AccountSt__RoleI__467D75B8");
 
                 entity.HasOne(d => d.Staff)
                     .WithMany(p => p.AccountStaffs)
                     .HasForeignKey(d => d.StaffId)
-                    .HasConstraintName("FK__AccountSt__Staff__73BA3083");
+                    .HasConstraintName("FK__AccountSt__Staff__477199F1");
             });
 
             modelBuilder.Entity<AccountStudent>(entity =>
             {
                 entity.HasKey(e => e.AccountStudent1)
-                    .HasName("PK__AccountS__C6A8EE53C562BE1C");
+                    .HasName("PK__AccountS__C6A8EE53E799B1ED");
 
                 entity.ToTable("AccountStudent");
 
@@ -107,19 +104,18 @@ namespace DormitoryServer.Models
                 entity.HasOne(d => d.Student)
                     .WithMany(p => p.AccountStudents)
                     .HasForeignKey(d => d.StudentId)
-                    .HasConstraintName("FK__AccountSt__Stude__5FB337D6");
+                    .HasConstraintName("FK__AccountSt__Stude__40C49C62");
             });
 
             modelBuilder.Entity<Announcement>(entity =>
             {
                 entity.ToTable("Announcement");
 
-                entity.Property(e => e.AnnouncementId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("AnnouncementID");
+                entity.Property(e => e.AnnouncementId).HasColumnName("AnnouncementID");
 
-                entity.Property(e => e.CreationDate).HasColumnType("datetime");
+                entity.Property(e => e.CreationDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.StaffId)
                     .HasMaxLength(10)
@@ -135,7 +131,7 @@ namespace DormitoryServer.Models
                 entity.HasOne(d => d.Staff)
                     .WithMany(p => p.Announcements)
                     .HasForeignKey(d => d.StaffId)
-                    .HasConstraintName("FK__Announcem__Staff__76969D2E");
+                    .HasConstraintName("FK__Announcem__Staff__4865BE2A");
             });
 
             modelBuilder.Entity<Building>(entity =>
@@ -161,44 +157,31 @@ namespace DormitoryServer.Models
 
                 entity.Property(e => e.ClassName).HasMaxLength(255);
 
-                entity.Property(e => e.DepartmentId)
+                entity.Property(e => e.FacultyId)
                     .HasMaxLength(10)
                     .IsUnicode(false)
-                    .HasColumnName("DepartmentID");
+                    .HasColumnName("FacultyID");
 
-                entity.HasOne(d => d.Department)
+                entity.HasOne(d => d.Faculty)
                     .WithMany(p => p.Classes)
-                    .HasForeignKey(d => d.DepartmentId)
-                    .HasConstraintName("FK__Class__Departmen__4BAC3F29");
-            });
-
-            modelBuilder.Entity<Department>(entity =>
-            {
-                entity.ToTable("Department");
-
-                entity.Property(e => e.DepartmentId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("DepartmentID");
-
-                entity.Property(e => e.DepartmentName).HasMaxLength(255);
+                    .HasForeignKey(d => d.FacultyId)
+                    .HasConstraintName("FK__Class__FacultyID__3A179ED3");
             });
 
             modelBuilder.Entity<DormInvoice>(entity =>
             {
                 entity.HasKey(e => e.InvoiceId)
-                    .HasName("PK__DormInvo__D796AAD5590CAD52");
+                    .HasName("PK__DormInvo__D796AAD57DD97099");
 
                 entity.ToTable("DormInvoice");
 
-                entity.Property(e => e.InvoiceId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("InvoiceID");
+                entity.Property(e => e.InvoiceId).HasColumnName("InvoiceID");
 
                 entity.Property(e => e.InvoiceType).HasMaxLength(255);
 
-                entity.Property(e => e.IssueDate).HasColumnType("datetime");
+                entity.Property(e => e.IssueDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.StaffId)
                     .HasMaxLength(10)
@@ -212,7 +195,7 @@ namespace DormitoryServer.Models
                 entity.HasOne(d => d.Staff)
                     .WithMany(p => p.DormInvoices)
                     .HasForeignKey(d => d.StaffId)
-                    .HasConstraintName("FK__DormInvoi__Staff__0A9D95DB");
+                    .HasConstraintName("FK__DormInvoi__Staff__50FB042B");
             });
 
             modelBuilder.Entity<Equipment>(entity =>
@@ -224,16 +207,27 @@ namespace DormitoryServer.Models
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
             });
 
+            modelBuilder.Entity<Faculty>(entity =>
+            {
+                entity.ToTable("Faculty");
+
+                entity.Property(e => e.FacultyId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FacultyID");
+
+                entity.Property(e => e.FacultyName).HasMaxLength(255);
+            });
+
             modelBuilder.Entity<Invoice>(entity =>
             {
                 entity.ToTable("Invoice");
 
-                entity.Property(e => e.InvoiceId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("InvoiceID");
+                entity.Property(e => e.InvoiceId).HasColumnName("InvoiceID");
 
-                entity.Property(e => e.IssueDate).HasColumnType("datetime");
+                entity.Property(e => e.IssueDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.PaymentDate).HasColumnType("datetime");
 
@@ -252,12 +246,12 @@ namespace DormitoryServer.Models
                 entity.HasOne(d => d.Room)
                     .WithMany(p => p.Invoices)
                     .HasForeignKey(d => d.RoomId)
-                    .HasConstraintName("FK__Invoice__RoomID__00200768");
+                    .HasConstraintName("FK__Invoice__RoomID__4C364F0E");
 
                 entity.HasOne(d => d.Staff)
                     .WithMany(p => p.Invoices)
                     .HasForeignKey(d => d.StaffId)
-                    .HasConstraintName("FK__Invoice__StaffID__7F2BE32F");
+                    .HasConstraintName("FK__Invoice__StaffID__4B422AD5");
             });
 
             modelBuilder.Entity<InvoiceDetail>(entity =>
@@ -266,35 +260,28 @@ namespace DormitoryServer.Models
 
                 entity.Property(e => e.InvoiceDetailId).HasColumnName("InvoiceDetailID");
 
-                entity.Property(e => e.InvoiceId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("InvoiceID");
+                entity.Property(e => e.InvoiceId).HasColumnName("InvoiceID");
 
-                entity.Property(e => e.ServiceId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("ServiceID");
+                entity.Property(e => e.ServiceId).HasColumnName("ServiceID");
 
                 entity.HasOne(d => d.Invoice)
                     .WithMany(p => p.InvoiceDetails)
                     .HasForeignKey(d => d.InvoiceId)
-                    .HasConstraintName("FK__InvoiceDe__Invoi__02FC7413");
+                    .HasConstraintName("FK__InvoiceDe__Invoi__4D2A7347");
 
                 entity.HasOne(d => d.Service)
                     .WithMany(p => p.InvoiceDetails)
                     .HasForeignKey(d => d.ServiceId)
-                    .HasConstraintName("FK__InvoiceDe__Servi__03F0984C");
+                    .HasConstraintName("FK__InvoiceDe__Servi__4E1E9780");
             });
 
             modelBuilder.Entity<News>(entity =>
             {
-                entity.Property(e => e.NewsId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("NewsID");
+                entity.Property(e => e.NewsId).HasColumnName("NewsID");
 
-                entity.Property(e => e.CreationDate).HasColumnType("datetime");
+                entity.Property(e => e.CreationDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.StaffId)
                     .HasMaxLength(10)
@@ -308,7 +295,7 @@ namespace DormitoryServer.Models
                 entity.HasOne(d => d.Staff)
                     .WithMany(p => p.News)
                     .HasForeignKey(d => d.StaffId)
-                    .HasConstraintName("FK__News__StaffID__0D7A0286");
+                    .HasConstraintName("FK__News__StaffID__51EF2864");
             });
 
             modelBuilder.Entity<ParkingHistory>(entity =>
@@ -321,30 +308,26 @@ namespace DormitoryServer.Models
 
                 entity.Property(e => e.Image).HasMaxLength(255);
 
-                entity.Property(e => e.TicketId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("TicketID");
+                entity.Property(e => e.TicketId).HasColumnName("TicketID");
 
-                entity.Property(e => e.Time).HasColumnType("datetime");
+                entity.Property(e => e.Time)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.Ticket)
                     .WithMany(p => p.ParkingHistories)
                     .HasForeignKey(d => d.TicketId)
-                    .HasConstraintName("FK__ParkingHi__Ticke__6C190EBB");
+                    .HasConstraintName("FK__ParkingHi__Ticke__4589517F");
             });
 
             modelBuilder.Entity<ParkingTicket>(entity =>
             {
                 entity.HasKey(e => e.TicketId)
-                    .HasName("PK__ParkingT__712CC6274DEB848E");
+                    .HasName("PK__ParkingT__712CC627ECA5B444");
 
                 entity.ToTable("ParkingTicket");
 
-                entity.Property(e => e.TicketId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("TicketID");
+                entity.Property(e => e.TicketId).HasColumnName("TicketID");
 
                 entity.Property(e => e.EndTime).HasColumnType("date");
 
@@ -362,7 +345,7 @@ namespace DormitoryServer.Models
                 entity.HasOne(d => d.Student)
                     .WithMany(p => p.ParkingTickets)
                     .HasForeignKey(d => d.StudentId)
-                    .HasConstraintName("FK__ParkingTi__Stude__693CA210");
+                    .HasConstraintName("FK__ParkingTi__Stude__44952D46");
             });
 
             modelBuilder.Entity<Registration>(entity =>
@@ -388,22 +371,19 @@ namespace DormitoryServer.Models
                 entity.HasOne(d => d.Room)
                     .WithMany(p => p.Registrations)
                     .HasForeignKey(d => d.RoomId)
-                    .HasConstraintName("FK__Registrat__RoomI__628FA481");
+                    .HasConstraintName("FK__Registrat__RoomI__41B8C09B");
 
                 entity.HasOne(d => d.Student)
                     .WithMany(p => p.Registrations)
                     .HasForeignKey(d => d.StudentId)
-                    .HasConstraintName("FK__Registrat__Stude__6383C8BA");
+                    .HasConstraintName("FK__Registrat__Stude__42ACE4D4");
             });
 
             modelBuilder.Entity<Relative>(entity =>
             {
                 entity.ToTable("Relative");
 
-                entity.Property(e => e.RelativeId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("RelativeID");
+                entity.Property(e => e.RelativeId).HasColumnName("RelativeID");
 
                 entity.Property(e => e.Address).HasMaxLength(255);
 
@@ -421,17 +401,14 @@ namespace DormitoryServer.Models
                 entity.HasOne(d => d.Student)
                     .WithMany(p => p.Relatives)
                     .HasForeignKey(d => d.StudentId)
-                    .HasConstraintName("FK__Relative__Studen__66603565");
+                    .HasConstraintName("FK__Relative__Studen__43A1090D");
             });
 
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.ToTable("Role");
 
-                entity.Property(e => e.RoleId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("RoleID");
+                entity.Property(e => e.RoleId).HasColumnName("RoleID");
 
                 entity.Property(e => e.RoleName).HasMaxLength(255);
             });
@@ -455,41 +432,38 @@ namespace DormitoryServer.Models
                 entity.HasOne(d => d.Building)
                     .WithMany(p => p.Rooms)
                     .HasForeignKey(d => d.BuildingId)
-                    .HasConstraintName("FK__Room__BuildingID__534D60F1");
+                    .HasConstraintName("FK__Room__BuildingID__3BFFE745");
 
                 entity.HasOne(d => d.RoomType)
                     .WithMany(p => p.Rooms)
                     .HasForeignKey(d => d.RoomTypeId)
-                    .HasConstraintName("FK__Room__RoomTypeID__52593CB8");
+                    .HasConstraintName("FK__Room__RoomTypeID__3B0BC30C");
             });
 
             modelBuilder.Entity<RoomEquipment>(entity =>
             {
-                entity.HasKey(e => new { e.RoomId, e.EquipmentId })
-                    .HasName("PK__Room_Equ__B1C24D40FB56405C");
-
                 entity.ToTable("Room_Equipment");
+
+                entity.Property(e => e.RoomEquipmentId).HasColumnName("Room_EquipmentID");
+
+                entity.Property(e => e.Condition).HasMaxLength(255);
+
+                entity.Property(e => e.EquipmentId).HasColumnName("EquipmentID");
 
                 entity.Property(e => e.RoomId)
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasColumnName("RoomID");
 
-                entity.Property(e => e.EquipmentId).HasColumnName("EquipmentID");
-
-                entity.Property(e => e.Condition).HasMaxLength(255);
-
                 entity.HasOne(d => d.Equipment)
                     .WithMany(p => p.RoomEquipments)
                     .HasForeignKey(d => d.EquipmentId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Room_Equi__Equip__59063A47");
+                    .HasConstraintName("FK__Room_Equi__Equip__3DE82FB7");
 
                 entity.HasOne(d => d.Room)
                     .WithMany(p => p.RoomEquipments)
                     .HasForeignKey(d => d.RoomId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Room_Equi__RoomI__5812160E");
+                    .HasConstraintName("FK__Room_Equi__RoomI__3CF40B7E");
             });
 
             modelBuilder.Entity<RoomType>(entity =>
@@ -507,10 +481,7 @@ namespace DormitoryServer.Models
             {
                 entity.ToTable("Service");
 
-                entity.Property(e => e.ServiceId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("ServiceID");
+                entity.Property(e => e.ServiceId).HasColumnName("ServiceID");
 
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
 
@@ -564,25 +535,22 @@ namespace DormitoryServer.Models
                 entity.HasOne(d => d.Class)
                     .WithMany(p => p.Students)
                     .HasForeignKey(d => d.ClassId)
-                    .HasConstraintName("FK__Student__ClassID__5BE2A6F2");
+                    .HasConstraintName("FK__Student__ClassID__3EDC53F0");
 
                 entity.HasOne(d => d.Room)
                     .WithMany(p => p.Students)
                     .HasForeignKey(d => d.RoomId)
-                    .HasConstraintName("FK__Student__RoomID__5CD6CB2B");
+                    .HasConstraintName("FK__Student__RoomID__3FD07829");
             });
 
             modelBuilder.Entity<SupportRequest>(entity =>
             {
                 entity.HasKey(e => e.RequestId)
-                    .HasName("PK__SupportR__33A8519A7FCE6B3C");
+                    .HasName("PK__SupportR__33A8519A38CB3E03");
 
                 entity.ToTable("SupportRequest");
 
-                entity.Property(e => e.RequestId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("RequestID");
+                entity.Property(e => e.RequestId).HasColumnName("RequestID");
 
                 entity.Property(e => e.RequestDate).HasColumnType("datetime");
 
@@ -603,12 +571,12 @@ namespace DormitoryServer.Models
                 entity.HasOne(d => d.Staff)
                     .WithMany(p => p.SupportRequests)
                     .HasForeignKey(d => d.StaffId)
-                    .HasConstraintName("FK__SupportRe__Staff__7A672E12");
+                    .HasConstraintName("FK__SupportRe__Staff__4A4E069C");
 
                 entity.HasOne(d => d.Student)
                     .WithMany(p => p.SupportRequests)
                     .HasForeignKey(d => d.StudentId)
-                    .HasConstraintName("FK__SupportRe__Stude__797309D9");
+                    .HasConstraintName("FK__SupportRe__Stude__4959E263");
             });
 
             modelBuilder.Entity<UtilityMeter>(entity =>
@@ -617,7 +585,9 @@ namespace DormitoryServer.Models
 
                 entity.Property(e => e.UtilityMeterId).HasColumnName("UtilityMeterID");
 
-                entity.Property(e => e.RecordingDate).HasColumnType("datetime");
+                entity.Property(e => e.RecordingDate)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.RoomId)
                     .HasMaxLength(10)
@@ -632,12 +602,12 @@ namespace DormitoryServer.Models
                 entity.HasOne(d => d.Room)
                     .WithMany(p => p.UtilityMeters)
                     .HasForeignKey(d => d.RoomId)
-                    .HasConstraintName("FK__UtilityMe__RoomI__06CD04F7");
+                    .HasConstraintName("FK__UtilityMe__RoomI__4F12BBB9");
 
                 entity.HasOne(d => d.Staff)
                     .WithMany(p => p.UtilityMeters)
                     .HasForeignKey(d => d.StaffId)
-                    .HasConstraintName("FK__UtilityMe__Staff__07C12930");
+                    .HasConstraintName("FK__UtilityMe__Staff__5006DFF2");
             });
 
             modelBuilder.Entity<staff>(entity =>
