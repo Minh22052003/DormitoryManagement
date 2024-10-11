@@ -10,7 +10,7 @@ namespace DormitoryServer.Models
             InvoiceDetails = new HashSet<InvoiceDetail>();
         }
 
-        public string ServiceId { get; set; } = null!;
+        public int ServiceId { get; set; }
         public string? ServiceName { get; set; }
         public string? Unit { get; set; }
         public decimal? Price { get; set; }

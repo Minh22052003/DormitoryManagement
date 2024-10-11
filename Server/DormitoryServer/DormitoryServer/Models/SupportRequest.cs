@@ -5,7 +5,7 @@ namespace DormitoryServer.Models
 {
     public partial class SupportRequest
     {
-        public string RequestId { get; set; } = null!;
+        public int RequestId { get; set; }
         public string? StudentId { get; set; }
         public string? StaffId { get; set; }
         public string? RequestType { get; set; }

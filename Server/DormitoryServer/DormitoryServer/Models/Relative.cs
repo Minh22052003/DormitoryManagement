@@ -5,7 +5,7 @@ namespace DormitoryServer.Models
 {
     public partial class Relative
     {
-        public string RelativeId { get; set; } = null!;
+        public int RelativeId { get; set; }
         public string? StudentId { get; set; }
         public string? FullName { get; set; }
         public string? PhoneNumber { get; set; }

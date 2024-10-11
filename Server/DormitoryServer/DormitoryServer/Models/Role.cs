@@ -10,7 +10,7 @@ namespace DormitoryServer.Models
             AccountStaffs = new HashSet<AccountStaff>();
         }
 
-        public string RoleId { get; set; } = null!;
+        public int RoleId { get; set; }
         public string? RoleName { get; set; }
 
         public virtual ICollection<AccountStaff> AccountStaffs { get; set; }

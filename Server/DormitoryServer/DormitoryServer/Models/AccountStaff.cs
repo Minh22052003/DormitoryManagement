@@ -7,7 +7,7 @@ namespace DormitoryServer.Models
     {
         public int AccountStaff1 { get; set; }
         public string? Username { get; set; }
-        public string? RoleId { get; set; }
+        public int? RoleId { get; set; }
         public string? StaffId { get; set; }
         public string? Password { get; set; }
         public bool? Status { get; set; }

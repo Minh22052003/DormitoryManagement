@@ -11,10 +11,10 @@ namespace DormitoryServer.Models
         }
 
         public string ClassId { get; set; } = null!;
-        public string? DepartmentId { get; set; }
+        public string? FacultyId { get; set; }
         public string? ClassName { get; set; }
 
-        public virtual Department? Department { get; set; }
+        public virtual Faculty? Faculty { get; set; }
         public virtual ICollection<Student> Students { get; set; }
     }
 }

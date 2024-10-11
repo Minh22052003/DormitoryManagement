@@ -5,7 +5,7 @@ namespace DormitoryServer.Models
 {
     public partial class News
     {
-        public string NewsId { get; set; } = null!;
+        public int NewsId { get; set; }
         public string? StaffId { get; set; }
         public string? Title { get; set; }
         public string? Content { get; set; }

@@ -5,7 +5,7 @@ namespace DormitoryServer.Models
 {
     public partial class DormInvoice
     {
-        public string InvoiceId { get; set; } = null!;
+        public int InvoiceId { get; set; }
         public string? StaffId { get; set; }
         public string? InvoiceType { get; set; }
         public string? Description { get; set; }
