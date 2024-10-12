@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-body">
+            <!-- Sử dụng container-fluid để sát lề -->
+            <div class="row">
+                <!-- Chi tiết thông báo bên trái -->
+                <div class="col-12 col-lg-12 col-xl-9">
+                    <!-- Padding right để tạo khoảng cách -->
+                    <div class="card" style="border: none;">
+                        <div class="card-header" style="border: none;">
+                            <h4>Chi tiết thông báo</h4>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Tiêu đề thông báo</h5>
+                            <p class="card-text">Nội dung chi tiết của thông báo sẽ được hiển thị ở đây. Phần này có thể bao gồm thông tin chi tiết về thông báo đã chọn, ví dụ như lý do, thời gian, và các thông tin quan trọng khác.</p>
+                            <p class="text-muted">Ngày đăng: 11/10/2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Danh sách thông báo còn lại bên phải -->
+                <div class="col-12 col-lg-12 col-xl-3">
+                    <!-- Tạo khoảng cách giữa hai phần -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Các thông báo khác</h4>
+                        </div>
+                        <div class="list-group">
+                            <!-- Các thông báo khác hiển thị theo chiều dọc -->
+                            <a href="~/Notification/Index" class="list-group-item list-group-item-action">
+                                <h6 class="mb-1">Thông báo 1</h6>
+                                <small class="text-muted">10/10/2024</small>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <h6 class="mb-1">Thông báo 2</h6>
+                                <small class="text-muted">09/10/2024</small>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <h6 class="mb-1">Thông báo 3</h6>
+                                <small class="text-muted">08/10/2024</small>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <h6 class="mb-1">Thông báo 4</h6>
+                                <small class="text-muted">07/10/2024</small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

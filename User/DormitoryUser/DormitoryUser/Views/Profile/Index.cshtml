@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Thông tin</h1>
+        </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-7">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Thông tin sinh viên</h4>
+                            <div class="card-header-action">
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-12 col-md-12 col-lg-7">
+                                   
+                                        <div class="card-body">
+                                            <p><strong>Họ và tên: </strong><span class="student-name">Trần Nho Tỉnh</span></p>
+                                            <p><strong>Mã số sinh viên: </strong><span id="student-id">211211456</span></p>
+                                            <p><strong>Ngày sinh: </strong><span id="student-birth">02/11/2003</span></p>
+                                            <p><strong>Giới tính: </strong><span id="gender">Nam</span></p>
+                                            <p>
+                                                <strong>Địa chỉ: </strong>
+                                                <span id="student-address" style="margin-right: 10px;">Số 15, Lê Thái Tông, Hoàn Kiếm, Hà Nội</span>
+                                                <i class="fa fa-edit edit-icon" style="cursor: pointer;" onclick="editField('student-address')"></i>
+                                            </p>
+                                            <p>
+                                                <strong>Thông tin liên lạc: </strong>
+                                                <span id="student-contact" style="margin-right: 10px;">0965482458</span>
+                                                <i class="fa fa-edit edit-icon d-inline" style="cursor: pointer;" onclick="editField('student-contact')"></i>
+                                            </p>
+                                            <p>
+                                                <strong>Email: </strong>
+                                                <span id="student-email" style="margin-right: 10px;">tran.nho.tinh@domain.com</span>
+                                                <i class="fa fa-edit edit-icon d-inline" style="cursor: pointer;" onclick="editField('student-email')"></i>
+                                            </p>
+                                            <p><strong>Khoa: </strong><span id="student-faculty">Công nghệ thông tin</span></p>
+                                            <p><strong>Ngày đăng ký: </strong><span id="student-register-date">08/04/2023</span></p>
+                                            <p><strong>Ngày cập nhật: </strong><span id="student-update-date">05/12/2023</span></p>
+                                        </div>
+                                    
+                                </div>
+                                <div class="col-12 col-md-12 col-lg-5 d-flex flex-column align-items-start" style="height: 150px;">
+                                    <span style="margin-bottom: 10px;">Ảnh thẻ</span>
+                                    <img alt="image" src="~/img/avatar-profile.jpg" class="img-fluid" style="border-radius: 5px; width: 120px; height: 150px;">
+                                </div>
+
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-12 col-md-12 col-lg-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Phòng</h4>
+                            <div class="card-header-action">
+                                <a href="/app/frontend/pages/phong-tro.html" class="btn btn-primary btn-round">Chi tiết...</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card author-box">
+                                <div class="card-body">
+                                    <div class="" id="info-description">
+                                        <div class="">
+                                            <p><strong>Phòng: </strong><span id="student-room"></span>M02</p>
+                                            <p><strong>Tiền trọ: </strong><span id="room-fee"></span>300.000đ</p>
+                                            <p><strong>Hạn đóng tiền: </strong><span id="due-date">Mùng 6 hàng tháng</span></p>
+                                            <p><strong>Trạng thái: </strong><span id="fee-status"></span>Còn</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>

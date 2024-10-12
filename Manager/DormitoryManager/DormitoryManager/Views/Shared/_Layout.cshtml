@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<<<<<<< HEAD
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DormitoryManager</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DormitoryManager.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DormitoryManager</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - DormitoryManager - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+=======
+
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport" />
+    <title>Tổng quan &mdash; KTX</title>
+
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+
+    <!-- CSS Libraries -->
+
+    <link href='~/assets/js/page/fullcalendar/core/main.css' rel='stylesheet' />
+    <link href='~/assets/js/page/fullcalendar/daygrid/main.css' rel='stylesheet' />
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+    <link rel="stylesheet" href="~/assets/css/components.css" />
+    <link rel="stylesheet" href="~/assets/css/custom.css" />
+    <link rel="stylesheet" href="~/assets/css/customCalendar.css" />
+
+    <script src='~/assets/js/page/fullcalendar/core/main.js'></script>
+    <script src='~/assets/js/page/fullcalendar/daygrid/main.js'></script>
+
+
+</head>
+
+<body class="sidebar-mini">
+    <div id="app">
+        <div class="main-wrapper">
+            <div class="navbar-bg"></div>
+            <nav class="navbar navbar-expand-lg main-navbar">
+                <form class="form-inline mr-auto">
+                    <ul class="navbar-nav mr-3">
+                        <li>
+                            <a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a>
+                        </li>
+                    </ul>
+                    <div class="search-element"></div>
+                </form>
+                <ul class="navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                            <img alt="image" src="~/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1" />
+                            <div class="d-sm-none d-lg-inline-block">
+                                Chào, <span id="student-name">Admin</span>
+                            </div>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <div class="dropdown-title">Hành động</div>
+                                <a href="#" id="logout" class="dropdown-item has-icon text-danger">
+                                    <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                                </a>
+                            </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="main-sidebar">
+                <aside id="sidebar-wrapper">
+                    <div class="sidebar-brand">
+                        <a asp-controller="Home" asp-action="Index">Ký túc xá</a>
+                    </div>
+                    <div class="sidebar-brand sidebar-brand-sm">
+                        <a asp-controller="Home" asp-action="Index">KTX</a>
+                    </div>
+                    <ul class="sidebar-menu">
+                        <li class="nav-item dropdown active">
+                            <a asp-controller="Home" asp-action="Index" class="nav-link"><i class="fas fa-info"></i><span>Tổng quan</span></a>
+                        </li>
+                        <li class="menu-header">Quản lý</li>
+                        <li class="nav-item dropdown">
+                            <a asp-controller="Home" asp-action="Student_Management" class="nav-link">
+                                <i class="fas fa-user-friends"></i>
+                                <span>Quản lý sinh viên</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a asp-controller="Home" asp-action="Room_Management" class="nav-link"><i class="fas fa-couch"></i> <span>Quản lý phòng</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a asp-controller="Home" asp-action="Parking_Management" class="nav-link">
+                                <i class="fas fa-bicycle"></i>
+                                <span>Quản lý gửi xe</span>
+                            </a>
+                        </li>
+                        <li class="menu-header">Hỗ trợ</li>
+                        <li class="nav-item dropdown">
+                            <a asp-controller="Home" asp-action="Handle_Requests" class="nav-link">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Xử lý các yêu cầu</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a asp-controller="Home" asp-action="Notification_Management" class="nav-link">
+                                <i class="far fa-file-alt"></i>
+                                <span>Quản lý thông báo</span>
+                            </a>
+                        </li>
+                </aside>
+            </div>
+            @RenderBody()
+        <partial name="footer_home" />
+    </div>
+    </div>
+
+    <!-- General JS Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="~/assets/js/stisla.js"></script>
+
+    <!-- JS Libraies -->
+    <!-- Template JS File -->
+    <script src="~/assets/js/scripts.js"></script>
+    <script src="~/assets/js/calendar.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+    @* <script src="~/js/role-quan-ly-validation.js"></script> *@
+    @* <script src="~/js/index0.js"></script> *@
+
+    <!-- Page Specific JS File -->
+</body>
+</html>
+>>>>>>> c9c66a1 (update1210)

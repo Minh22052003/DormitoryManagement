@@ -1,0 +1,128 @@
+﻿@{
+<<<<<<< HEAD
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+=======
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Tổng quan</h1>
+        </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 col-sm-12">
+                    <div class="card card-hero">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="far fa-question-circle"></i>
+                            </div>
+                            <h4 id="request"></h4>
+                            <div class="card-description">Đơn yêu cầu hỗ trợ chưa xử lý</div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="tickets-list">
+                                <a href="xu-ly-cac-yeu-cau.html" class="ticket-item ticket-more">
+                                    Tới trang xử lý yêu cầu <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Số lượng giường</h4>
+                            <div class="card-header-action">
+                                <a href="quan-ly-phong.html" class="btn btn-primary btn-round">Xem thêm...</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card card-statistic-2">
+                                <div class="card-stats">
+                                    <div class="card-stats-items">
+                                        <div class="card-stats-item card-stats-2">
+                                            <div class="card-stats-item-count" id="used-beds"></div>
+                                            <div class="card-stats-item-label">Đang sử dụng</div>
+                                        </div>
+                                        <div class="card-stats-item card-stats-2">
+                                            <div class="card-stats-item-count" id="empty-beds"></div>
+                                            <div class="card-stats-item-label">Còn trống</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-icon shadow-primary bg-primary">
+                                    <i class="fas fa-bed"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Tổng số giường</h4>
+                                    </div>
+                                    <div class="card-body" id="total-beds">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Sinh viên</h4>
+                            <div class="card-header-action">
+                                <a href="quan-ly-sinh-vien.html" class="btn btn-primary btn-round">Xem thêm...</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card card-statistic-2">
+                                <div class="card-stats">
+                                    <div class="card-stats-items">
+                                        <div class="card-stats-item card-stats-2">
+                                            <div class="card-stats-item-count" id="paid-student"></div>
+                                            <div class="card-stats-item-label">Đã thanh toán</div>
+                                        </div>
+                                        <div class="card-stats-item card-stats-2">
+                                            <div class="card-stats-item-count" id="unpaid-student"></div>
+                                            <div class="card-stats-item-label">Chưa thanh toán</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-icon shadow-primary bg-primary">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Tổng số sinh viên</h4>
+                                    </div>
+                                    <div class="card-body" id="total-student">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Lịch</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="fc-overflow">
+                                <div id="calendar" class="fc-overflow"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</div>
+            </section>
+        </div>
+>>>>>>> c9c66a1 (update1210)
