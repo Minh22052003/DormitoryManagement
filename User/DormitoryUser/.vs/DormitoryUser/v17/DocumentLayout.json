@@ -1,7 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Project1\\User\\DormitoryUser\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\HK7\\Project1\\DormitoryManagement\\DormitoryManagement\\User\\DormitoryUser\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\hk7\\project1\\dormitorymanagement\\dormitorymanagement\\user\\dormitoryuser\\dormitoryuser\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,15 +14,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\HK7\\Project1\\DormitoryManagement\\DormitoryManagement\\User\\DormitoryUser\\DormitoryUser\\appsettings.json",
+              "RelativeDocumentMoniker": "DormitoryUser\\appsettings.json",
+              "ToolTip": "D:\\HK7\\Project1\\DormitoryManagement\\DormitoryManagement\\User\\DormitoryUser\\DormitoryUser\\appsettings.json",
+              "RelativeToolTip": "DormitoryUser\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-07T06:23:41.151Z",
+              "EditorCaption": ""
             }
           ]
         }

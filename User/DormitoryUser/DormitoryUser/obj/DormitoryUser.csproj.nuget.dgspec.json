@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj": {}
+    "D:\\HK7\\Project1\\DormitoryManagement\\DormitoryManagement\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj": {}
   },
   "projects": {
-    "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj": {
+    "D:\\HK7\\Project1\\DormitoryManagement\\DormitoryManagement\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
+        "projectUniqueName": "D:\\HK7\\Project1\\DormitoryManagement\\DormitoryManagement\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
         "projectName": "DormitoryUser",
-        "projectPath": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
-        "packagesPath": "C:\\Users\\alanp\\.nuget\\packages\\",
-        "outputPath": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\obj\\",
+        "projectPath": "D:\\HK7\\Project1\\DormitoryManagement\\DormitoryManagement\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
+        "packagesPath": "C:\\Users\\mtmin\\.nuget\\packages\\",
+        "outputPath": "D:\\HK7\\Project1\\DormitoryManagement\\DormitoryManagement\\User\\DormitoryUser\\DormitoryUser\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\alanp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mtmin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -63,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
