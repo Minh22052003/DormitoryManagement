@@ -1,0 +1,103 @@
+﻿
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="row">
+            <div class="col-8">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Tìm kiếm</h6>
+                        <form class="d-none d-md-flex ms-4">
+                            <div class="col-4"><input class="form-control bg-white border-0 mt-2 me-3" type="search" placeholder="Search"></div>
+                            <button type="button" class="btn btn-secondary m-2">Tìm theo Email</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Sắp xếp</h6>
+                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                            <option selected>Sắp xếp theo tên người đăng ký theo thứ tự A đến Z</option>
+                            <option value="2">Sắp xếp theo tên người đăng ký theo thứ tự Z đến A</option>
+                            <option value="2">Sắp xếp ngày đăng ký theo thứ tự tăng dần</option>
+                            <option value="3">Sắp xếp ngày đăng ký theo thứ tự giảm dần</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card border-0">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Các tài khoản đăng ký</h6>
+                    <table class="table table-striped">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">#</th>
+                                <th scope="col">#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>abc@gmail.com</td>
+                                <td><button type="button" class="btn btn-secondary m-2" data-bs-toggle="modal" data-bs-target="#addAccount">Chấp nhận</button></td>
+                                <td><button type="button" class="btn btn-secondary m-2">Từ chối</button></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>abc@gmail.com</td>
+                                <td><button type="button" class="btn btn-secondary m-2">Chấp nhận</button></td>
+                                <td><button type="button" class="btn btn-secondary m-2">Từ chối</button></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>abc@gmail.com</td>
+                                <td><button type="button" class="btn btn-secondary m-2">Chấp nhận</button></td>
+                                <td><button type="button" class="btn btn-secondary m-2">Từ chối</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="addAccount">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Thêm tài khoản</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="" value="abc@@gmail.com">
+                    <label for="floatingInput">Email</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="floatingSelect"
+                            aria-label="Floating label select example">
+                        <option selected>Hỗ trợ sv</option>
+                        <option value="1">Chỉ nhân viên</option>
+                        <option value="2">Chỉ sinh viên</option>
+                    </select>
+                    <label for="floatingSelect">Chức vụ</label>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success">Chấp nhận tài khoản</button>
+            </div>
+
+        </div>
+    </div>
+</div>

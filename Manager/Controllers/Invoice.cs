@@ -12,6 +12,10 @@ namespace Manager.Controllers
         {
             return View();
         }
+        public IActionResult AddDormInvoice()
+        {
+            return View();
+        }
         public IActionResult RoomInvoice()
         {
             return View();

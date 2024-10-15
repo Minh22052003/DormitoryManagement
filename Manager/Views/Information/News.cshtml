@@ -1,29 +1,42 @@
 ﻿
 @{
-    ViewData["Title"] = "News";
+    ViewData["Title"] = "Tin tức";
 }
-
-<h1>News</h1>
 
 
 <div class="container-fluid position-relative d-flex p-0">
-    <!-- Content Start -->
     <div class="col m-5">
         <div class="row">
-            <div class="card bg-dark p-3" style="width: 80%">
-                <form class="d-none d-md-flex ms-4">
-                    <input class="form-control bg-dark border-0" type="search" placeholder="Search">
-                    <button type="button" class="btn btn-light m-2">Tìm theo nội dung</button>
-                    <button type="button" class="btn btn-light m-2">Tìm theo nhân viên</button>
-                    <button type="button" class="btn btn-light m-2">Sắp xếp theo thứ tự gần nhất</button>
-                    <button type="button" class="btn btn-light m-2" asp-controller="Information" asp-action="Create_Announcement">Tạo mới thông báo</button>
-                </form>
+            <div class="col-8">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Tìm kiếm</h6>
+                        <form class="d-none d-md-flex ms-4">
+                            <div class="col-4"><input class="form-control bg-white border-0 mt-2 me-3" type="search" placeholder="Search"></div>
+                            <button type="button" class="btn btn-secondary m-2">Tìm theo nội dung</button>
+                            <button type="button" class="btn btn-secondary m-2">Tìm theo người đăng</button>
+                            <button type="button" class="btn btn-secondary m-2">Tìm theo ngày đăng</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Sắp xếp</h6>
+                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                            <option selected>Sắp xếp tên theo người đăng</option>
+                            <option value="2">Sắp xếp ngày đăng theo thứ tự tăng dần</option>
+                            <option value="3">Sắp xếp ngày đăng theo thứ tự giảm dần</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="card bg-dark" style="width: 80%;">
-                <div class="bg-secondary rounded h-100 p-4">
-                    <h6 class="mb-4">Lịch sử thông báo</h6>
+            <div class="card border-0">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Lịch sử tin tức</h6>
                     <table class="table table-striped">
                         <thead class="fw-bold">
                             <tr>
@@ -33,39 +46,38 @@
                                 <th scope="col">Ngày đăng</th>
                                 <th scope="col">Trạng thái</th>
                                 <th scope="col">#</th>
-                                <th scope="col">#</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <a asp-action="Create_Announcement" asp-controller="Information" class="stretched-link">
-                                <td>Thông báo nghỉ lễ Quốc khánh</td></a>
+                                <td>Thông báo nghỉ lễ Quốc Khánh</td>
                                 <td>Mao Minh</td>
-                                <td>10/09/2024</td>
-                                <td>Hoạt động</td>
-                                <td><button type="button" class="btn btn-light m-2">Xóa</button></td>
-                                <td><button type="button" class="btn btn-light m-2">Khôi phục</button></td>
+                                <td>01-01-0202</td>
+                                <td>Inactive</td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary m-2">Active</button>
+                                </td>
                             </tr>
                             <tr>
                                 <td>2</td>
-                                <a asp-action="Create_Announcement" asp-controller="Information" class="stretched-link">
-                                <td>Thông báo nghỉ học</td></a>
+                                <td>Thông báo tuyển dụng</td></a>
+                                <td>Cán bộ, công chức, viên chức và người lao động được nghỉ Lễ Quốc khánh năm 2024 từ thứ Bảy ngày 31/8 đến hết thứ Ba ngày 3/9 Dương lịch</td>
                                 <td>Hong Minh</td>
-                                <td>15/09/2024</td>
-                                <td>Hoạt động</td>
-                                <td><button type="button" class="btn btn-light m-2">Xóa</button></td>
-                                <td><button type="button" class="btn btn-light m-2">Khôi phục</button></td>
+                                <td>10/09/2024</td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary m-2">Xóa</button>
+                                </td>
                             </tr>
                             <tr>
                                 <td>3</td>
-                                <a asp-action="Create_Announcement" asp-controller="Information" class="stretched-link">
-                                <td>Thông báo nghỉ lễ Quốc khánh</td></a>
+                                <td>Thông báo khai giảng</td></a>
+                                <td>all</td>
                                 <td>Mao Minh</td>
                                 <td>10/09/2024</td>
-                                <td>Hoạt động</td>
-                                <td><button type="button" class="btn btn-light m-2">Xóa</button></td>
-                                <td><button type="button" class="btn btn-light m-2">Khôi phục</button></td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary m-2">Xóa</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -73,7 +85,10 @@
             </div>
         </div>
     </div>
-    <!-- Content End -->
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
+<a asp-controller="Information" asp-action="Create_News" class="btn btn-success position-fixed" style="bottom: 40px; right: 40px;">
+    <i class="fa fa-solid fa-plus me-1"></i> Tạo tin tức mới
+</a>
+
+
+

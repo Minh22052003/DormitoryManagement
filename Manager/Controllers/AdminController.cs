@@ -48,5 +48,10 @@ namespace Manager.Controllers
         {
             return View();
         }
+        public IActionResult StaffRegistration()
+        {
+            return View();
+        }
+
     }
 }

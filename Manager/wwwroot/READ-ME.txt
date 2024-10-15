@@ -1,6 +1,6 @@
-  =>  Template Name    : DarkPan - Bootstrap 5 Admin Template
+  =>  Template Name    : DASHMIN - Bootstrap Admin Template Free
 
-  =>  Template Link    : https://htmlcodex.com/bootstrap-5-admin-template
+  =>  Template Link    : https://htmlcodex.com/bootstrap-admin-template-free
 
   =>  Template License : https://htmlcodex.com/license (or read the LICENSE.txt file)
 
