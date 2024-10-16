@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Manager.Models.DormInvoice
+
+@{
     ViewData["Title"] = "Create_Announcement";
 }
 
@@ -19,15 +21,15 @@
                             <label for="floatingSelect">Loại hóa đơn</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="">
+                            <input asp-for="@Model.Description" type="text" class="form-control" id="floatingInput" placeholder="">
                             <label for="floatingInput">Mô tả</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="">
+                            <input asp-for="@Model.Note" type="text" class="form-control" id="floatingInput" placeholder="">
                             <label for="floatingInput">Ghi chú</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="">
+                            <input asp-for="@Model.TotalAmount" type="text" class="form-control" id="floatingInput" placeholder="">
                             <label for="floatingInput">Tổng tiền</label>
                         </div>
                         <button type="submit" class="btn btn-success m-2" asp-controller="Information" asp-action="Create_Announcement">Tạo mới biên lai</button>

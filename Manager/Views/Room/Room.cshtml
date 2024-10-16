@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<Manager.Models.Room>
+
 <div class="container-fluid position-relative d-flex p-0">
     <!-- Content Start -->
     <div class="col m-5">
@@ -54,26 +55,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    <a asp-action="RoomDetail" asp-controller="Room" asp-route-id="211212355">
-                                        305
-                                    </a>
-                                </td>
-                                <td>A3</td>
-                                <td>6/8</td>
-                                <td>Mao Minh</td>
-                                <td>Đang sử dụng</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>306</td>
-                                <td>A3</td>
-                                <td>8/8</td>
-                                <td>Hong Minh Minh</td>
-                                <td>Sửa chữa</td>
-                            </tr>
+                            @{var i = 1;}
+                            @foreach(var r in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>
+                                        <a asp-action="RoomDetail" asp-controller="Room" asp-route-id="211212355">
+                                            @r.RoomName
+                                        </a>
+                                    </td>
+                                    <td>@r.BuildingName</td>
+                                    <td>@r.NumberOfStudent/@r.Capacity</td>
+                                    <td>@r.LeaderName</td>
+                                    <td>@r.RoomStatusName</td>
+                                </tr>
+                                i = i + 1;
+                            }
                         </tbody>
                     </table>
                 </div>

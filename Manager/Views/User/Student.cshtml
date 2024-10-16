@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<Manager.Models.Student>
+
 <div class="container-fluid position-relative d-flex p-0">
     <!-- Content Start -->
     <div class="col m-5">
@@ -45,31 +46,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    <a asp-action="Student_Detail" asp-controller="User" asp-route-id="211212355">
-                                        211212355
-                                    </a>
-                                </td>
-                                <td>Mao Minh</td>
-                                <td>305</td>
-                                <td>A3</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>2112341255</td>
-                                <td>Hong Minh</td>
-                                <td>205</td>
-                                <td>A3</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>21112355</td>
-                                <td>Nho Tinh</td>
-                                <td>205</td>
-                                <td>A3</td>
-                            </tr>
+                            @foreach(var s in Model)
+                            {
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <a asp-action="Student_Detail" asp-controller="User" asp-route-id="@s.StudentID">
+                                            @s.StudentID
+                                        </a>
+                                    </td>
+                                    <td>@s.FullName</td>
+                                    <td>@s.RoomName</td>
+                                    <td>@s.BuildingName</td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>

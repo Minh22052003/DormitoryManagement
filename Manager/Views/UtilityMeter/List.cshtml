@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Manager.Models.UtilityMeter>
 <div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
         <div class="row">
@@ -46,42 +46,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>303</td>
-                                <td>A2</td>
-                                <td>50</td>
-                                <td>70</td>
-                                <td>Mao Minh</td>
-                                <td>10/09/2024</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger m-2">Xóa bản ghi</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>303</td>
-                                <td>A2</td>
-                                <td>50</td>
-                                <td>70</td>
-                                <td>Hong Minh</td>
-                                <td>10/09/2024</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger m-2">Xóa bản ghi</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>303</td>
-                                <td>A2</td>
-                                <td>50</td>
-                                <td>70</td>
-                                <td>Mao Minh</td>
-                                <td>10/09/2024</td>
-                                <td>
-                                    <button type="button" class="btn btn-danger m-2">Xóa bản ghi</button>
-                                </td>
-                            </tr>
+                            @{var i = 1;}
+                            @foreach(var u in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@u.RoomName</td>
+                                    <td>@u.BuildingName</td>
+                                    <td>@u.Electricity</td>
+                                    <td>@u.Water</td>
+                                    <td>@u.StaffName</td>
+                                    <td>@u.RecordingDate</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger m-2">Xóa bản ghi</button>
+                                    </td>
+                                </tr>
+                                i = i + 1;
+                            }
                         </tbody>
                     </table>
                 </div>

@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Manager.Models.Staff>
 <div class="container-fluid position-relative d-flex p-0">
     <!-- Content Start -->
     <div class="col m-5">
@@ -45,31 +45,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    <a asp-action="Staff_Detail" asp-controller="User" asp-route-id="211212355">
-                                        211212355
-                                    </a>
-                                </td>
-                                <td>Mao Minh</td>
-                                <td>Quản lý</td>
-                                <td>0988335327</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>211241255</td>
-                                <td>Hong Minh</td>
-                                <td>Hỗ trợ sinh viên</td>
-                                <td>0982132132</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>21112355</td>
-                                <td>Nho Tinh</td>
-                                <td>205</td>
-                                <td>A3</td>
-                            </tr>
+                            @foreach(var s in Model)
+                            {
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <a asp-action="Staff_Detail" asp-controller="User" asp-route-id="@s.StaffID">
+                                            @s.StaffID
+                                        </a>
+                                    </td>
+                                    <td>@s.FullName</td>
+                                    <td>@s.RoleName</td>
+                                    <td>@s.PhoneNumber</td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>

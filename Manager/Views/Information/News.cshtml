@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<Manager.Models.New>
+
 @{
     ViewData["Title"] = "Tin tức";
 }
@@ -49,36 +50,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Thông báo nghỉ lễ Quốc Khánh</td>
-                                <td>Mao Minh</td>
-                                <td>01-01-0202</td>
-                                <td>Inactive</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary m-2">Active</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Thông báo tuyển dụng</td></a>
-                                <td>Cán bộ, công chức, viên chức và người lao động được nghỉ Lễ Quốc khánh năm 2024 từ thứ Bảy ngày 31/8 đến hết thứ Ba ngày 3/9 Dương lịch</td>
-                                <td>Hong Minh</td>
-                                <td>10/09/2024</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary m-2">Xóa</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Thông báo khai giảng</td></a>
-                                <td>all</td>
-                                <td>Mao Minh</td>
-                                <td>10/09/2024</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary m-2">Xóa</button>
-                                </td>
-                            </tr>
+                            @{var i = 1;}
+                            @foreach(var n in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@n.Title</td>
+                                    <td>@n.StaffName</td>
+                                    <td>@n.CreationDate</td>
+                                    <td>@n.Status</td>
+                                    @{
+                                        if(n.Status == "Active")
+                                        {
+                                            <td><a class="btn btn-danger m-2">Ẩn tin tức</a></td>
+                                        }
+                                        else{
+                                            <td><a class="btn btn-success m-2">Hiện tin tức</a></td>
+                                        }
+                                    }
+                                </tr>
+                                i = i + 1;
+                            }
                         </tbody>
                     </table>
                 </div>

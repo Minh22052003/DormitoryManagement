@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<Manager.Models.Announcement>
+
 <div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
         <div class="row">
@@ -45,39 +46,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Thông báo nghỉ lễ Quốc Khánh</td>
-                                <td>Cán bộ, công chức, viên chức và người lao động được nghỉ Lễ Quốc khánh năm 2024 từ thứ Bảy ngày 31/8 đến hết thứ Ba ngày 3/9 Dương lịch</td>
-                                <td>all</td>
-                                <td>Mao Minh</td>
-                                <td>10/09/2024</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary m-2">Xóa</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Thông báo tuyển dụng</td></a>
-                                <td>Cán bộ, công chức, viên chức và người lao động được nghỉ Lễ Quốc khánh năm 2024 từ thứ Bảy ngày 31/8 đến hết thứ Ba ngày 3/9 Dương lịch</td>
-                                <td>all</td>
-                                <td>Hong Minh</td>
-                                <td>10/09/2024</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary m-2">Xóa</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Thông báo khai giảng</td></a>
-                                <td>Cán bộ, công chức, viên chức và người lao động được nghỉ Lễ Quốc khánh năm 2024 từ thứ Bảy ngày 31/8 đến hết thứ Ba ngày 3/9 Dương lịch</td>
-                                <td>all</td>
-                                <td>Mao Minh</td>
-                                <td>10/09/2024</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary m-2">Xóa</button>
-                                </td>
-                            </tr>
+                            @{var i = 1;}
+                            @foreach(var a in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@a.Title</td>
+                                    <td>@a.Content</td>
+                                    <td>@a.Target</td>
+                                    <td>@a.StaffName</td>
+                                    <td>@a.CreationDate?.ToString("yyyy-MM-dd")</td>
+                                    <td>
+                                        <a asp-controller="Information" asp-action="DeleteAnnouncement" class="btn btn-danger m-1">Xóa</a>
+                                    </td>
+                                </tr>
+                                i = i + 1;
+                            }
                         </tbody>
                     </table>
                 </div>

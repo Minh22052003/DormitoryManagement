@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Manager.Models.Request>
 <div class="container-fluid position-relative d-flex p-0">
     <!-- Content Start -->
     <div class="col m-5">
@@ -55,34 +55,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    <a asp-action="Detail" asp-controller="SupportRequest" asp-route-id="211212355">
-                                        YCHT211212355
-                                    </a>
-                                </td>
-                                <td>Mao Minh</td>
-                                <td>Mong muốn chuyển phòng</td>
-                                <td>10-10-2024</td>
-                                <td>Chưa xử lý</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>2112341255</td>
-                                <td>Hong Minh</td>
-                                <td>205</td>
-                                <td>10-10-2024</td>
-                                <td>A3</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>21112355</td>
-                                <td>Nho Tinh</td>
-                                <td>205</td>
-                                <td>10-10-2024</td>
-                                <td>A3</td>
-                            </tr>
+                            @{var i = 1;}
+                            @foreach(var r in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>
+                                        <a asp-action="Detail" asp-controller="SupportRequest" asp-route-id="211212355">
+                                            @r.RequestID
+                                        </a>
+                                    </td>
+                                    <td>@r.StudentName</td>
+                                    <td>@r.RequestTypeName</td>
+                                    <td>@r.RequestSentDate</td>
+                                    <td>@r.Status</td>
+                                </tr>
+                                i = i + 1;
+                            }
                         </tbody>
                     </table>
                 </div>

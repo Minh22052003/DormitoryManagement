@@ -1,19 +1,23 @@
 ﻿namespace Manager.Models
 {
-    public class Student
+    public class RegistrationVM
     {
-        public string? StudentID { get; set; }
-        public string? ClassID { get; set; }
-        public string? ClassName { get; set; }
-        public string? CourseID { get; set; } 
-        public string? CourseName { get; set; }
-        public string? FacultyID { get; set; } 
-        public string? FacultyName { get; set; }
+        public int? RegistrationID { get; set; } 
         public string? RoomID { get; set; }
         public string? RoomName { get; set; }
-        public string? BuildingID { get; set; }
+        public string? BuildingID { get; set; } 
         public string? BuildingName { get; set; }
-        public string? FullName { get; set; }
+        public string? StudentID { get; set; }
+        public string? StudentName { get; set; }
+        public string? Semester { get; set; }
+        public int? AcademicYear { get; set; }
+        public string? ApplicationStatus { get; set; }
+        public string? ClassID { get; set; }
+        public string? ClassName { get; set; }
+        public string? CourseID { get; set; }
+        public string? CourseName { get; set; }
+        public string? FacultyID { get; set; }
+        public string? FacultyName { get; set; }
         public DateTime? BirthDate { get; set; }
         public bool? Gender { get; set; }
         public string? PhoneNumber { get; set; }
@@ -43,7 +47,7 @@
         public string? AnhCMNDMatTruoc { get; set; }
         public string? AnhCMNDMatSau { get; set; }
         public string? AnhBHYTMatTruoc { get; set; }
-        public int? RelativeID { get; set; } 
+        public int? RelativeID { get; set; }
         public string? RelativeName { get; set; }
         public string? RelativePhoneNumber { get; set; }
         public string? RelativeAddress { get; set; }

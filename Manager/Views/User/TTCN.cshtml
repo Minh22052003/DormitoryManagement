@@ -1,4 +1,6 @@
-﻿<div class="container-fluid position-relative d-flex p-0">
+﻿@model Manager.Models.Staff
+
+<div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
         <div class="card bg-light rounded h-100 p-4">
             <form asp-action="StudentDetail" asp-controller="User">
@@ -6,19 +8,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Mã nhân viên</label>
-                            <input class="form-control bg-light" value="NV7839" readonly>
+                            <input class="form-control bg-light" value="@Model.StaffID" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Họ và tên</label>
-                            <input class="form-control bg-light" value="Mao Tuan Minh" readonly>
+                            <input class="form-control bg-light" value="@Model.FullName" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Chức vụ</label>
-                            <input class="form-control bg-light" value="Quản lý" readonly>
+                            <input class="form-control bg-light" value="@Model.RoleName" readonly>
                         </div>
                     </div>
                 </div>
@@ -26,19 +28,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Dân tộc</label>
-                            <input class="form-control bg-light" value="Kinh" readonly>
+                            <input class="form-control bg-light" value="@Model.Ethnicity" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Tôn giáo</label>
-                            <input class="form-control bg-light" value="Không" readonly>
+                            <input class="form-control bg-light" value="@Model.Religion" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Quốc tịch</label>
-                            <input class="form-control bg-light" value="Việt Nam" readonly>
+                            <input class="form-control bg-light" value="@Model.Nationality" readonly>
                         </div>
                     </div>
                 </div>
@@ -46,34 +48,58 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Ngày sinh</label>
-                            <input type="date" class="form-control bg-light" id="dateInput" value="2003-01-01" readonly>
+                            <input type="date" class="form-control bg-light" id="dateInput" value="@Model.BirthDate?.ToString("yyyy-MM-dd")" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-check">
                             <label class="form-label my-3 fw-bold">Giới tính</label>
-                            <div class="row">
-                                <div class="col-2">
-                                    <input class="form-check-input" type="radio" name="gridRadios"
-                                           id="gridRadios1" value="option1" checked>
-                                    <label class="form-check-label" for="gridRadios1">
-                                        Nam
-                                    </label>
-                                </div>
-                                <div class="col-2">
-                                    <input class="form-check-input" type="radio" name="gridRadios"
-                                           id="gridRadios2" value="option2">
-                                    <label class="form-check-label" for="gridRadios2">
-                                        Nữ
-                                    </label>
-                                </div>
-                            </div>
+                            @{
+                                if (Model.Gender == true)
+                                {
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                   id="male" value="option1" checked readonly>
+                                            <label class="form-check-label" for="male">
+                                                Nam
+                                            </label>
+                                        </div>
+                                        <div class="col-2">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                   id="female" value="option2" readonly>
+                                            <label class="form-check-label" for="female">
+                                                Nữ
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                   id="male" value="option1" readonly>
+                                            <label class="form-check-label" for="male">
+                                                Nam
+                                            </label>
+                                        </div>
+                                        <div class="col-2">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                   id="female" value="option2" checked readonly>
+                                            <label class="form-check-label" for="female">
+                                                Nữ
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+                            }
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Số điện thoại</label>
-                            <input class="form-control bg-light" value="0988335327">
+                            <input class="form-control bg-light" value="@Model.PhoneNumber">
                         </div>
                     </div>
                 </div>
@@ -81,19 +107,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Email</label>
-                            <input class="form-control bg-light" value="abc@@gmail.com">
+                            <input class="form-control bg-light" value="@Model.Email" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Quê quán</label>
-                            <input class="form-control bg-light" value="Chí Linh - Hải Dương" readonly>
+                            <input class="form-control bg-light" value="@Model.Hometown" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Số CMND/Thẻ căn cước</label>
-                            <input class="form-control bg-light" value="030203006666" readonly>
+                            <input class="form-control bg-light" value="@Model.IDCard" readonly>
                         </div>
                     </div>
                 </div>
@@ -101,19 +127,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Mã số BHXH</label>
-                            <input class="form-control bg-light" value="2341523623" readonly>
+                            <input class="form-control bg-light" value="@Model.InsuranceNumber" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Phòng làm việc</label>
-                            <input class="form-control" value="102-N1">
+                            <input class="form-control" value="@Model.Office">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Giờ làm việc</label>
-                            <input class="form-control" value="8:00 - 17:00 Thứ Hai - Thứ Sáu">
+                            <input class="form-control" value="@Model.WorkSchedule">
                         </div>
                     </div>
                 </div>

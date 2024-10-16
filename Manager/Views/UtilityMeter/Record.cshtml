@@ -1,4 +1,6 @@
-﻿<div class="container-fluid">
+﻿@model Manager.Models.UtilityMeter
+
+<div class="container-fluid">
     <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
         <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
             <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
@@ -10,7 +12,7 @@
                 <div class="form-floating mb-3">
                     <select class="form-select" id="floatingSelect"
                             aria-label="Floating label select example">
-                        <option selected>A1</option>
+                        <option >A1</option>
                         <option value="1">A2</option>
                         <option value="2">A3</option>
                     </select>
@@ -26,11 +28,11 @@
                     <label for="floatingSelect">Phòng</label>
                 </div>
                 <div class="form-floating mb-4">
-                    <input type="text" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input asp-for="@Model.Electricity" type="text" class="form-control" id="floatingPassword" placeholder="Password">
                     <label for="floatingPassword">Số điện sử dụng</label>
                 </div>
                 <div class="form-floating mb-4">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input asp-for="@Model.Water" type="password" class="form-control" id="floatingPassword" placeholder="Password">
                     <label for="floatingPassword">Số nước sử dụng</label>
                 </div>
                 <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Thêm</button>

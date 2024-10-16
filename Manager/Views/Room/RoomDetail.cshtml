@@ -1,4 +1,4 @@
-﻿
+﻿@model Manager.Models.Room
 
 <div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
@@ -8,19 +8,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Mã phòng</label>
-                            <input class="form-control" value="PH001">
+                            <input class="form-control" value="@Model.RoomID">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Tên phòng</label>
-                            <input class="form-control" value="303">
+                            <input class="form-control" value="@Model.RoomName">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Tòa nhà</label>
-                            <input class="form-control" value="A3">
+                            <input class="form-control" value="@Model.BuildingName">
                         </div>
                     </div>
                 </div>
@@ -28,19 +28,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Số sinh viên</label>
-                            <input class="form-control" value="6/8">
+                            <input class="form-control" value="@Model.NumberOfStudent/@Model.Capacity">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Tình trạng</label>
-                            <input class="form-control" value="Đang sử dụng">
+                            <input class="form-control" value="@Model.RoomStatusName">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Ghi chú</label>
-                            <input class="form-control" value="NULL">
+                            <input class="form-control" value="@Model.RoomNote">
                         </div>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Thêm sinh viên vào phòng 301</h4>
+                <h4 class="modal-title">Thêm sinh viên vào phòng @Model.RoomName</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
@@ -160,7 +160,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Thêm thiết bị vào phòng 301</h4>
+                <h4 class="modal-title">Thêm thiết bị vào phòng @Model.RoomName</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 

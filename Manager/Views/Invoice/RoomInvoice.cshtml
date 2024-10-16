@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Manager.Models.RoomInvoice>
 <div class="container-fluid position-relative d-flex p-0">
     <!-- Content Start -->
     <div class="col m-5">
@@ -58,46 +58,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    <a asp-action="RoomInvoiceDetail" asp-controller="Invoice" asp-route-id="211212355">
-                                        HD004
-                                    </a>
-                                </td>
-                                <td>Hóa đơn tiền điện tháng 10</td>
-                                <td>11/10/2024</td>
-                                <td>202</td>
-                                <td>A3</td>
-                                <td>Mao Minh</td>
-                                <td>
-                                    <button type="button" class="btn btn-success m-2">Thanh toán</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>HD005</td>
-                                <td>Hóa đơn tiền điện tháng 10</td>
-                                <td>11/10/2024</td>
-                                <td>205</td>
-                                <td>A3</td>
-                                <td>Hong Minh</td>
-                                <td>
-                                    <button type="button" class="btn btn-success m-2">Thanh toán</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>HD005</td>
-                                <td>Hóa đơn tiền điện tháng 10</td>
-                                <td>11/10/2024</td>
-                                <td>205</td>
-                                <td>A3</td>
-                                <td>Nho Tinh</td>
-                                <td>
-                                    <button type="button" class="btn btn-success m-2">Thanh toán</button>
-                                </td>
-                            </tr>
+                            @{var i = 1;}
+                            @foreach(var h in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>
+                                        <a asp-action="RoomInvoiceDetail" asp-controller="Invoice" asp-route-id="211212355">
+                                            @h.InvoiceID
+                                        </a>
+                                    </td>
+                                    <td>@h.Description</td>
+                                    <td>@h.IssueDate</td>
+                                    <td>@h.RoomName</td>
+                                    <td>@h.BuildingName</td>
+                                    <td>@h.PayerName</td>
+                                    <td>
+                                        <a asp-controller="Invoice" asp-action="QR" asp-for="@h.InvoiceID" class="btn btn-success m-2">Thanh toán </a>
+                                    </td>
+                                </tr>
+                                i = i + 1;
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -105,6 +86,4 @@
         </div>
     </div>
     <!-- Content End -->
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>

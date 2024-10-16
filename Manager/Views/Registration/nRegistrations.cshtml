@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Manager.Models.RegistrationVM>
 
 <div class="container-fluid position-relative d-flex p-0">
     <!-- Content Start -->
@@ -50,41 +50,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    <a asp-action="RegistrationDetail" asp-controller="Registration" asp-route-id="211212355">
-                                        PDK211
-                                    </a>
-                                </td>
-                                <td>Mao Minh</td>
-                                <td>305</td>
-                                <td>A3</td>
-                                <td>2</td>
-                                <td>2024-2025</td>
-                                <td><a asp-controller="Registration" asp-action="AcceptRegistrations" class="btn btn-success">Đồng ý</a></td>
-                                <td><a asp-controller="Registration" asp-action="RejectRegistrations" class="btn btn-danger">Từ chối</a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>2112341255</td>
-                                <td>Mao Minh</td>
-                                <td>305</td>
-                                <td>A3</td>
-                                <td>2</td>
-                                <td><a asp-controller="Registration" asp-action="AcceptRegistrations" class="btn btn-success">Đồng ý</a></td>
-                                <td><a asp-controller="Registration" asp-action="RejectRegistrations" class="btn btn-danger">Từ chối</a></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>21112355</td>
-                                <td>Mao Minh</td>
-                                <td>305</td>
-                                <td>A3</td>
-                                <td>2</td>
-                                <td><a asp-controller="Registration" asp-action="AcceptRegistrations" class="btn btn-success">Đồng ý</a></td>
-                                <td><a asp-controller="Registration" asp-action="RejectRegistrations" class="btn btn-danger">Từ chối</a></td>
-                            </tr>
+                            @{
+                                var i = 1;
+                            }
+                            @foreach (var r in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>
+                                        <a asp-action="RegistrationDetail" asp-controller="Registration" asp-route-id="211212355">
+                                            @r.StudentID
+                                        </a>
+                                    </td>
+                                    <td>@r.StudentName</td>
+                                    <td>@r.RoomName</td>
+                                    <td>@r.BuildingName</td>
+                                    <td>@r.Semester</td>
+                                    <td>@r.AcademicYear</td>
+                                    <td><a asp-controller="Registration" asp-action="AcceptRegistrations" class="btn btn-success">Đồng ý</a></td>
+                                    <td><a asp-controller="Registration" asp-action="RejectRegistrations" class="btn btn-danger">Từ chối</a></td>
+                                </tr>
+                                i = i + 1;
+                            }
                         </tbody>
                     </table>
                 </div>
