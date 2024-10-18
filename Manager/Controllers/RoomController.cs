@@ -71,11 +71,109 @@ namespace Manager.Controllers
                 RoomName = "Physics Lab",
                 NumberOfStudent = 3,
                 Capacity = 5,
-                RoomStatusID = 3,
+                RoomStatusID = 1,
                 RoomStatusName = "Maintenance",
                 RoomNote = "Under maintenance for equipment upgrades."
             };
+            ViewBag.listStudent = new List<Student>
+            {
+                new Student
+                {
+                    StudentID = "211212355",
+                    FullName = "Mao Minh",
+                    Gender = true,
+                    PhoneNumber = "0988335327"
+                },
+                new Student
+                {
+                    StudentID = "211434355",
+                    FullName = "Hong Minh",
+                    Gender = true,
+                    PhoneNumber = "0999335327"
+                },
+                new Student
+                {
+                    StudentID = "211678455",
+                    FullName = "Nho Tinh",
+                    Gender = false,
+                    PhoneNumber = "0123854327"
+                }
+            };
+            ViewBag.listEquipment = new List<Equipment>
+            {
+                new Equipment
+                {
+                    EquipmentID = 1,
+                    EquipmentName = "Projector",
+                    Price = 1500000m,
+                    Quantity = 5,
+                    Condition = "New"
+                },
+                new Equipment
+                {
+                    EquipmentID = 2,
+                    EquipmentName = "Air Conditioner",
+                    Price = 7000000m,
+                    Quantity = 3,
+                    Condition = "Good"
+                },
+                new Equipment
+                {
+                    EquipmentID = 3,
+                    EquipmentName = "Desk",
+                    Price = 500000m,
+                    Quantity = 20,
+                    Condition = "Used"
+                }
+            };
+            ViewBag.listEquipment_Add = new List<Equipment>
+            {
+                new Equipment
+                {
+                    EquipmentID = 1,
+                    EquipmentName = "Projector",
+                    Price = 1500000m,
+                    Quantity = 5,
+                    Condition = "New"
+                },
+                new Equipment
+                {
+                    EquipmentID = 2,
+                    EquipmentName = "Air Conditioner",
+                    Price = 7000000m,
+                    Quantity = 3,
+                    Condition = "Good"
+                },
+                new Equipment
+                {
+                    EquipmentID = 3,
+                    EquipmentName = "Desk",
+                    Price = 500000m,
+                    Quantity = 20,
+                    Condition = "Used"
+                }
+            };
             return View(room);
+        }
+        [HttpPut]
+        public IActionResult RemoveStudent(int studentID)
+        {
+            return View(RoomDetail);
+        }
+        public IActionResult RemoveEquipment(int equipmentID)
+        {
+            return View();
+        }
+        [HttpPut("{id}")]
+        public IActionResult AddStudentToRoom(int studentID)
+        { return View(); }
+        [HttpPost]
+        public IActionResult AddEquipmentToRoom(int studentID)
+        { return View(); }
+        [HttpPut]
+        public IActionResult ChangeRoomInformation(Room r)
+        {
+            return View();
         }
     }
 }

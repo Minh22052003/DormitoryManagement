@@ -157,7 +157,7 @@ namespace Manager.Controllers
             return View(students);
         }
         [HttpGet("{id}")]
-        public IActionResult Student_Detail(string msv)
+        public IActionResult StudentDetail(string msv)
         {
             Student student = new Student
             {
@@ -271,7 +271,7 @@ namespace Manager.Controllers
 
             return View(staffList);
         }
-        public IActionResult Staff_Detail()
+        public IActionResult StaffDetail()
         {
             Staff staff = new Staff
             {

@@ -1,0 +1,11 @@
+﻿@model Manager.Models.SelectList.RoomStatusSelectListVM
+
+<div class="form-item mb-3">
+    <label class="form-label my-3 fw-bold">Tình trạng</label>
+    <select class="form-select" id="floatingSelect" aria-label="">
+        @foreach (var s in Model.RoomStatuses)
+        {
+            <option value="@s.RoomStatusName" selected="@(Model.Room.RoomStatusID == s.RoomStatusID ? "selected" : null)">@s.RoomStatusName</option>
+        }
+    </select>
+</div>
