@@ -7,6 +7,42 @@ namespace Manager.Controllers
     {
         public IActionResult Record()
         {
+            ViewBag.rooms = new List<Room>
+            {
+                new Room
+                {
+                    RoomID = "R101",
+                    RoomName = "Single Room"
+                },
+                new Room
+                {
+                    RoomID = "R102",
+                    RoomName = "Double Room"
+                },
+                new Room
+                {
+                    RoomID = "R103",
+                    RoomName = "Shared Room"
+                }
+            };
+            ViewBag.buildings = new List<Building>
+            {
+                new Building
+                {
+                    BuildingID = "B001",
+                    BuildingName = "Main Hall"
+                },
+                new Building
+                {
+                    BuildingID = "B002",
+                    BuildingName = "Science Building"
+                },
+                new Building
+                {
+                    BuildingID = "B003",
+                    BuildingName = "Library"
+                }
+            };
             return View();
         }
         public IActionResult List()

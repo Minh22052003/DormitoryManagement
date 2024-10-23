@@ -1,6 +1,6 @@
-﻿
+﻿@model IEnumerable<Manager.Models.Building>
+
 <div class="container-fluid position-relative d-flex p-0">
-    <!-- Content Start -->
     <div class="col m-5">
         <div class="row">
             <div class="col-6">
@@ -8,7 +8,7 @@
                     <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
                         <h6 class="mb-4">Tìm kiếm</h6>
                         <form class="d-none d-md-flex ms-4">
-                            <div class="col-4"><input class="form-control bg-light border-0 mt-2 me-3" type="search" placeholder="Search"></div>
+                            <div class="col-4"><input class="form-control bg-light mt-2 me-3" type="search" placeholder="Search"></div>
                             <button type="button" class="btn btn-secondary m-2">Tìm theo mã tòa nhà</button>
                             <button type="button" class="btn btn-secondary m-2">Tìm theo tên tòa nhà</button>
                         </form>
@@ -19,8 +19,9 @@
                 <div class="card border-0">
                     <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
                         <h6 class="mb-4">Sắp xếp</h6>
-                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                            <option selected>Sắp xếp tên tòa nhà theo thứ tự từ A đến Z</option>
+                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">\
+                            <option disabled selected>--Chọn phương thức sắp xếp--</option>
+                            <option >Sắp xếp tên tòa nhà theo thứ tự từ A đến Z</option>
                             <option value="1">Sắp xếp tên tòa nhà theo thứ tự từ Z đến A</option>
                         </select>
                     </div>
@@ -41,31 +42,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>TnA01</td>
-                                <td>A1</td>
-                                <td>20</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>211241255</td>
-                                <td>Hong Minh</td>
-                                <td>20</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>21112355</td>
-                                <td>Nho Tinh</td>
-                                <td>20</td>
-                            </tr>
+                            @{var i = 1;}
+                            @foreach(var b in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@b.BuildingID</td>
+                                    <td>@b.BuildingName</td>
+                                    <td>@b.RoomCount</td>
+                                </tr>
+                                i = i + 1;
+                            }
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Content End -->
 </div>
 <a asp-controller="Admin" asp-action="AddBuilding" class="btn btn-success position-fixed" style="bottom: 40px; right: 40px;">
     <i class="fa fa-solid fa-plus me-1"></i> Tạo tòa nhà

@@ -137,6 +137,7 @@ namespace Manager.Controllers
 
             return View(roomInvoices);
         }
+        [HttpGet]
         public IActionResult RoomInvoiceDetail()
         {
             RoomInvoice roomInvoices = new RoomInvoice
@@ -153,7 +154,35 @@ namespace Manager.Controllers
                 Description = "Monthly room rent for October",
                 PaymentDate = new DateTime(2024, 10, 12),
                 Status = "Paid",
-                Note = "Late payment, extra fee applied."
+                Note = "Late payment, extra fee applied.",
+                TotalAmount = 500000
+            };
+            ViewBag.listService = new List<Service>
+            {
+                new Service
+                {
+                    ServiceID = 1,
+                    ServiceName = "Laundry",
+                    Unit = "Per kg",
+                    Price = 20000m,
+                    Quantity = 30 // Example usage: 30 kg
+                },
+                new Service
+                {
+                    ServiceID = 2,
+                    ServiceName = "Internet",
+                    Unit = "Per month",
+                    Price = 100000m,
+                    Quantity = 1 // Example usage: 1 month
+                },
+                new Service
+                {
+                    ServiceID = 3,
+                    ServiceName = "Electricity",
+                    Unit = "Per kWh",
+                    Price = 3500m,
+                    Quantity = 100 // Example usage: 100 kWh
+                }
             };
             return View(roomInvoices);
         }
