@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Manager.Models.UtilityMeter>
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="row">
+            <div class="col-8">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Tìm kiếm</h6>
+                        <form class="d-none d-md-flex ms-4">
+                            <div class="col-4"><input class="form-control bg-light mt-2 me-3" type="search" placeholder="Search"></div>
+                            <button type="button" class="btn btn-secondary m-2">Tìm theo phòng</button>
+                            <button type="button" class="btn btn-secondary m-2">Tìm theo người ghi</button>
+                            <button type="button" class="btn btn-secondary m-2">Tìm theo ngày ghi</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Sắp xếp</h6>
+                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                            <option disabled selected>--Chọn phương thức sắp xếp--</option>
+                            <option value="1" >Sắp xếp tên theo người ghi</option>
+                            <option value="2">Sắp xếp ngày ghi theo thứ tự giảm dần</option>
+                            <option value="3">Sắp xếp ngày ghi theo thứ tự tăng dần</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card border-0">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Các bản ghi số điện, nước các phòng</h6>
+                    <table class="table table-striped">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Phòng</th>
+                                <th scope="col">Tòa</th>
+                                <th scope="col">Số điện(kWh)</th>
+                                <th scope="col">Số nước(m3)</th>
+                                <th scope="col">Người ghi</th>
+                                <th scope="col">Ngày ghi</th>
+                                <th scope="col">#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{var i = 1;}
+                            @foreach(var u in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@u.RoomName</td>
+                                    <td>@u.BuildingName</td>
+                                    <td>@u.Electricity</td>
+                                    <td>@u.Water</td>
+                                    <td>@u.StaffName</td>
+                                    <td>@u.RecordingDate</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger m-2">Xóa bản ghi</button>
+                                    </td>
+                                </tr>
+                                i = i + 1;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a asp-controller="UtilityMeter" asp-action="Record" class="btn btn-success position-fixed" style="bottom: 40px; right: 40px;">
+    <i class="fa fa-solid fa-plus me-1"></i> Ghi số điện/ nước
+</a>
+
