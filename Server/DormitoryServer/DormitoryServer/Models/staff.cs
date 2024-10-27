@@ -9,7 +9,8 @@ namespace DormitoryServer.Models
         {
             AccountStaffs = new HashSet<AccountStaff>();
             Announcements = new HashSet<Announcement>();
-            DormInvoices = new HashSet<DormInvoice>();
+            DormInvoiceStaffIdCreateNavigations = new HashSet<DormInvoice>();
+            DormInvoiceStaffIdPayNavigations = new HashSet<DormInvoice>();
             Invoices = new HashSet<Invoice>();
             News = new HashSet<News>();
             SupportRequests = new HashSet<SupportRequest>();
@@ -25,10 +26,16 @@ namespace DormitoryServer.Models
         public string? Hometown { get; set; }
         public string? Idcard { get; set; }
         public string? InsuranceNumber { get; set; }
+        public string? Ethnicity { get; set; }
+        public string? Religion { get; set; }
+        public string? Nationality { get; set; }
+        public string? Office { get; set; }
+        public string? WorkSchedule { get; set; }
 
         public virtual ICollection<AccountStaff> AccountStaffs { get; set; }
         public virtual ICollection<Announcement> Announcements { get; set; }
-        public virtual ICollection<DormInvoice> DormInvoices { get; set; }
+        public virtual ICollection<DormInvoice> DormInvoiceStaffIdCreateNavigations { get; set; }
+        public virtual ICollection<DormInvoice> DormInvoiceStaffIdPayNavigations { get; set; }
         public virtual ICollection<Invoice> Invoices { get; set; }
         public virtual ICollection<News> News { get; set; }
         public virtual ICollection<SupportRequest> SupportRequests { get; set; }

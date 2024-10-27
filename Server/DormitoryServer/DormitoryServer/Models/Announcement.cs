@@ -10,6 +10,7 @@ namespace DormitoryServer.Models
         public string? Title { get; set; }
         public string? Content { get; set; }
         public string? Target { get; set; }
+        public string? Image { get; set; }
         public DateTime? CreationDate { get; set; }
         public string? Status { get; set; }
 

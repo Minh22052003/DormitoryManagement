@@ -11,6 +11,7 @@ namespace DormitoryServer.Models
         public string? Content { get; set; }
         public string? Tag { get; set; }
         public DateTime? CreationDate { get; set; }
+        public string? Status { get; set; }
 
         public virtual staff? Staff { get; set; }
     }
