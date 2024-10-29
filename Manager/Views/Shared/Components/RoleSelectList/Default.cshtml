@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Manager.Models.Role> 
+
+<div class="form-item mb-3">
+    <label class="form-label my-3 fw-bold">Chức vụ</label>
+    <select class="form-select" id="floatingSelect" aria-label="">
+        <option disabled selected>--Chọn chức vụ--</option>
+        @foreach (var r in Model)
+        {
+            <option value="@r.RoleId">@r.RoleName</option>
+        }
+    </select>
+</div>

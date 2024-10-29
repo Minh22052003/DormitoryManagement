@@ -1,0 +1,103 @@
+﻿@model Manager.Models.Request
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="card bg-light rounded h-100 p-4">
+            <form asp-action="StudentDetail" asp-controller="User">
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Họ và tên</label>
+                            <input class="form-control" value="@Model.StudentName" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Phòng ở hiện tại</label>
+                            <input class="form-control" value="@Model.RoomName" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Tòa nhà</label>
+                            <input class="form-control" value="@Model.BuildingName" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Loại yêu cầu</label>
+                            <input class="form-control" value="@Model.RequestTypeName" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Ngày gửi đơn</label>
+                            <input type="date" class="form-control" id="dateInput" value="@Model.RequestSentDate?.ToString("yyyy-MM-dd")" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Ngày xử lí yêu cầu</label>
+                            <input type="date" class="form-control" id="dateInput" value="@Model.RequestProcessDate?.ToString("yyyy-MM-dd")">
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label for="floatingTextarea" class="form-label my-3 fw-bold">Chi tiết yêu cầu</label>
+                            <textarea class="form-control" id="floatingTextarea" style="height: 150px;" disabled>@Model.Description</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Ảnh</label>
+                            <div class="row"><img class="w-75" src="~/img/request/@Model.Image"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Trạng thái yêu cầu</label>
+                            <input class="form-control bg-light" value="@Model.Status" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Người xử lí yêu cầu</label>
+                            <input class="form-control bg-light" value="@Model.StaffName" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label for="floatingTextarea" class="form-label my-3 fw-bold">Phản hồi</label>
+                            <textarea asp-for="@Model.Reply" class="form-control" id="floatingTextarea" placeholder="Ghi phản hồi ở đây" style="height: 150px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-5">
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-success m-2 w-75">Gửi phản hồi</button>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-outline-info m-2 w-75">Đang xử lý</button>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-danger m-2 w-75">Đã xử lý</button>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-danger m-2 w-75">Xử lý sau</button>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-danger m-2 w-75">Yêu cầu gửi sai bộ phận ?</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

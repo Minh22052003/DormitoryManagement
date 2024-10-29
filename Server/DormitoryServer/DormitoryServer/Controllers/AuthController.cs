@@ -95,7 +95,7 @@ namespace DormitoryServer.Controllers
             .Where(a => a.Username == request.User_Name && a.Password == request.Password)
             .Select(a => a.StaffId)
             .FirstOrDefaultAsync();
-            if (iduser == "")
+            if (iduser == null)
             {
                 return NotFound("Sai tài khoản");
             }
@@ -138,6 +138,24 @@ namespace DormitoryServer.Controllers
                 Response.Cookies.Append("AuthToken", jwtToken, cookieOptions);
                 return Ok("Đăng nhập thành công");
             }
+        }
+
+
+        //Xuất danh sách chức vụ của nhân viên
+        [HttpGet("getallrole")]
+        public async Task<ActionResult<List<RoleDTO>>> GetRoles()
+        {
+            var roles = await _context.Roles.ToListAsync();
+            List<RoleDTO> roleDTOs = new List<RoleDTO>();
+            foreach (var role in roles)
+            {
+                roleDTOs.Add(new RoleDTO
+                {
+                    RoleId = role.RoleId,
+                    RoleName = role.RoleName
+                });
+            }
+            return roleDTOs;
         }
     }
 }

@@ -33,6 +33,7 @@ namespace DormitoryServer.Controllers
             await _context.SaveChangesAsync();
             return Ok();
         }
+
         [HttpPut("updatefaculty")]
         public async Task<IActionResult> UpdateFaculty([FromBody] Faculty faculty)
         {
@@ -40,6 +41,7 @@ namespace DormitoryServer.Controllers
             await _context.SaveChangesAsync();
             return Ok();
         }
+
         [HttpDelete("deletefaculty/{id}")]
         public async Task<IActionResult> DeleteFaculty(int id)
         {

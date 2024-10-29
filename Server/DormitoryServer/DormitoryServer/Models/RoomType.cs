@@ -7,6 +7,7 @@ namespace DormitoryServer.Models
     {
         public RoomType()
         {
+            Registrations = new HashSet<Registration>();
             Rooms = new HashSet<Room>();
         }
 
@@ -15,6 +16,7 @@ namespace DormitoryServer.Models
         public int? Capacity { get; set; }
         public decimal? RoomPrice { get; set; }
 
+        public virtual ICollection<Registration> Registrations { get; set; }
         public virtual ICollection<Room> Rooms { get; set; }
     }
 }

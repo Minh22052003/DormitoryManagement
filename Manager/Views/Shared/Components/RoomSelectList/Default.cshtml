@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Manager.Models.Room>
+
+<div class="form-floating mb-3">
+    <select class="form-select" id="floatingSelect" aria-label="">
+        <option disabled selected>--Chọn phòng--</option>
+        @foreach (var r in Model)
+        {
+            <option value="@r.RoomID">@r.RoomName</option>
+        }
+    </select>
+    <label for="floatingSelect">Phòng</label>
+</div>
+
+

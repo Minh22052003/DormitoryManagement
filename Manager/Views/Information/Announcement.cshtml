@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Manager.Models.Announcement>
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="row">
+            <div class="col-8">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Tìm kiếm</h6>
+                        <form class="d-none d-md-flex ms-4">
+                            <div class="col-4"><input class="form-control bg-white border-0 mt-2 me-3" type="search" placeholder="Search"></div>
+                            <button type="button" class="btn btn-secondary m-2">Tìm theo nội dung</button>
+                            <button type="button" class="btn btn-secondary m-2">Tìm theo người đăng</button>
+                            <button type="button" class="btn btn-secondary m-2">Tìm theo ngày đăng</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Sắp xếp</h6>
+                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                            <option selected>Sắp xếp tên theo người đăng</option>
+                            <option value="2">Sắp xếp ngày đăng theo thứ tự tăng dần</option>
+                            <option value="3">Sắp xếp ngày đăng theo thứ tự giảm dần</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card border-0">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Lịch sử thông báo</h6>
+                    <table class="table table-striped">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tiêu đề</th>
+                                <th class="w-50" scope="col">Nội dung</th>
+                                <th scope="col">Mục tiêu</th>
+                                <th scope="col">Người đăng</th>
+                                <th scope="col">Ngày đăng</th>
+                                <th scope="col">#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{var i = 1;}
+                            @foreach(var a in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@a.Title</td>
+                                    <td>@a.Content</td>
+                                    <td>@a.Target</td>
+                                    <td>@a.StaffName</td>
+                                    <td>@a.CreationDate?.ToString("yyyy-MM-dd")</td>
+                                    <td>
+                                        <a asp-controller="Information" asp-action="DeleteAnnouncement" class="btn btn-danger m-1">Xóa</a>
+                                    </td>
+                                </tr>
+                                i = i + 1;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a asp-controller="Information" asp-action="Create_Announcement" class="btn btn-success position-fixed" style="bottom: 40px; right: 40px;">
+    <i class="fa fa-solid fa-plus me-1"></i> Tạo thông báo mới
+</a>
+

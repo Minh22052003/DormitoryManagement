@@ -1,0 +1,41 @@
+﻿@model Manager.Models.Room
+
+<div class="container-fluid">
+    <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+            <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <a href="index.html" class="">
+                        <h3 class="text-primary"><i class="bi bi-house-fill me-2"></i>Thêm phòng</h3>
+                    </a>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="floatingSelect"
+                            aria-label="Floating label select example">
+                        @foreach (var b in ViewBag.buildings)
+                        {
+                            <option value="@b.BuildingID">@b.BuildingName</option>
+                        }
+                    </select>
+                    <label for="floatingSelect">Tòa nhà</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="floatingSelect"
+                            aria-label="Floating label select example">
+                        @foreach (var r in ViewBag.roomtype)
+
+                        {
+                            <option value="@r.RoomTypeID">@r.RoomTypeName</option>
+                        }
+                    </select>
+                    <label for="floatingSelect">Loại phòng</label>
+                </div>
+                <div class="form-floating mb-4">
+                    <input type="text" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Tên phòng</label>
+                </div>
+                <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Thêm phòng</button>
+            </div>
+        </div>
+    </div>
+</div>

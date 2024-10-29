@@ -12,7 +12,6 @@ namespace DormitoryServer.Models
 
         public string BuildingId { get; set; } = null!;
         public string? BuildingName { get; set; }
-        public int? RoomCount { get; set; }
 
         public virtual ICollection<Room> Rooms { get; set; }
     }

@@ -22,12 +22,32 @@ namespace DormitoryServer.Models
         public bool? Gender { get; set; }
         public string? PhoneNumber { get; set; }
         public string? Email { get; set; }
-        public string? Hometown { get; set; }
+        public int? ProvinceId { get; set; }
+        public string? District { get; set; }
+        public string? Ward { get; set; }
+        public string? Street { get; set; }
         public string? Idcard { get; set; }
-        public string? InsuranceNumber { get; set; }
         public bool? IsLeader { get; set; }
+        public string? Ethnicity { get; set; }
+        public string? Religion { get; set; }
+        public string? Nationality { get; set; }
+        public DateTime? DateOfIssueOfIdcard { get; set; }
+        public string? PlaceOfIssueOfIdcard { get; set; }
+        public string? PolicyCoverage { get; set; }
+        public string? InsuranceNumber { get; set; }
+        public DateTime? NgayCapBhxh { get; set; }
+        public DateTime? GiaTriSuDungTuNgay { get; set; }
+        public DateTime? ThoiDiem5NamLienTuc { get; set; }
+        public int? IdtinhCapBhxh { get; set; }
+        public string? KhamBenhBanDau { get; set; }
+        public string? AnhThe4x6 { get; set; }
+        public string? AnhCmndmatTruoc { get; set; }
+        public string? AnhCmndmatSau { get; set; }
+        public string? AnhBhytmatTruoc { get; set; }
 
         public virtual Class? Class { get; set; }
+        public virtual Province? IdtinhCapBhxhNavigation { get; set; }
+        public virtual Province? Province { get; set; }
         public virtual Room? Room { get; set; }
         public virtual ICollection<AccountStudent> AccountStudents { get; set; }
         public virtual ICollection<ParkingTicket> ParkingTickets { get; set; }

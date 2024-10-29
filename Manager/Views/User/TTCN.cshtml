@@ -1,0 +1,156 @@
+﻿@model Manager.Models.Staff
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="card bg-light rounded h-100 p-4">
+            <form asp-action="StudentDetail" asp-controller="User">
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Mã nhân viên</label>
+                            <input class="form-control bg-light" value="@Model.StaffID" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Họ và tên</label>
+                            <input class="form-control bg-light" value="@Model.FullName" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Chức vụ</label>
+                            <input class="form-control bg-light" value="@Model.RoleName" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Dân tộc</label>
+                            <input class="form-control bg-light" value="@Model.Ethnicity" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Tôn giáo</label>
+                            <input class="form-control bg-light" value="@Model.Religion" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Quốc tịch</label>
+                            <input class="form-control bg-light" value="@Model.Nationality" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Ngày sinh</label>
+                            <input type="date" class="form-control bg-light" id="dateInput" value="@Model.BirthDate?.ToString("yyyy-MM-dd")" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-check">
+                            <label class="form-label my-3 fw-bold">Giới tính</label>
+                            @{
+                                if (Model.Gender == true)
+                                {
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                   id="male" value="option1" checked readonly>
+                                            <label class="form-check-label" for="male">
+                                                Nam
+                                            </label>
+                                        </div>
+                                        <div class="col-2">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                   id="female" value="option2" readonly>
+                                            <label class="form-check-label" for="female">
+                                                Nữ
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                   id="male" value="option1" readonly>
+                                            <label class="form-check-label" for="male">
+                                                Nam
+                                            </label>
+                                        </div>
+                                        <div class="col-2">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                   id="female" value="option2" checked readonly>
+                                            <label class="form-check-label" for="female">
+                                                Nữ
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Số điện thoại</label>
+                            <input class="form-control bg-light" value="@Model.PhoneNumber">
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Email</label>
+                            <input class="form-control bg-light" value="@Model.Email" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Quê quán</label>
+                            <input class="form-control bg-light" value="@Model.Hometown" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Số CMND/Thẻ căn cước</label>
+                            <input class="form-control bg-light" value="@Model.IDCard" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Mã số BHXH</label>
+                            <input class="form-control bg-light" value="@Model.InsuranceNumber" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Phòng làm việc</label>
+                            <input class="form-control" value="@Model.Office">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Giờ làm việc</label>
+                            <input class="form-control" value="@Model.WorkSchedule">
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-5">
+                    <div class="col-5"></div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-success m-2 w-75">Cập nhật</button>
+                    </div>
+                    <div class="col-5"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
