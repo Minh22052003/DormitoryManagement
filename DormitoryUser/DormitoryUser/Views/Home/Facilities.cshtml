@@ -1,0 +1,72 @@
+﻿@model IEnumerable<DormitoryUser.Models.Facility>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Thông tin cơ sở vật chất phòng</h1>
+        </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Danh sách cơ sở vật chất</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <span><h6>Tìm kiếm dữ liệu theo cột</h6></span>
+                                    <select id="filter-field">
+                                        <option></option>
+                                        <option value="facility_name">Tên CSVC</option>
+                                    </select>
+
+                                    <select id="filter-type">
+                                        <option value="like">like</option>
+                                        <option value="=">=</option>
+                                        <option value="<"><</option>
+                                        <option value="<="><=</option>
+                                        <option value=">">></option>
+                                        <option value=">=">>=</option>
+                                        <option value="!=">!=</option>
+                                    </select>
+
+                                    <input id="filter-value" type="text" placeholder="điền dữ liệu cần tìm">
+                                </div>
+                            </div>
+                            <br>
+                            <div id="facility-table">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên CSVC</th>
+                                            <th>Mô tả</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.Count(); i++)
+
+                                        {
+                                            <tr>
+                                                <td>@(i + 1)</td>
+                                                <td>@Model.ElementAt(i).FacilityName</td>
+                                                <td>@Model.ElementAt(i).Description</td>
+                                                <td>@(Model.ElementAt(i).IsAvailable ? "Có" : "Không")</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

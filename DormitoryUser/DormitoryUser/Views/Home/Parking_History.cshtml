@@ -1,0 +1,90 @@
+﻿@model DormitoryUser.Models.VehicleInfo
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Danh Sách lịch sử gửi xe</h1>
+        </div>
+        <div class="section-body">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Thông tin xe -->
+                    <h6 class="fw-bold text-primary">Thông tin xe</h6>
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-md-4">
+                            <strong>Loại xe:</strong> 
+                            <span style="margin-left:20px;"> @Model.VehicleType</span>
+                        </div>
+                        <div class="col-md-4">
+                            <strong>Biển số:</strong> 
+                            <span style="margin-left:20px;"> @Model.LicensePlate</span>
+                        </div>
+                        <div class="col-md-4">
+                            <strong>Ảnh xe:</strong>
+                            <img src="@Model.VehicleImageUrl" alt="Car Image" class="img-fluid" style="margin-left: 20px; max-width: 140px; max-height: 130px">
+                        </div>
+                    </div>
+
+                    <!-- Search Form -->
+                    <form method="get" action="~/Request/Search">
+                        <div class="row mb-3">
+                            <!-- Search by Date -->
+                            <div class="col-md-4">
+                                <label for="searchDate" class="form-label">Thời gian</label>
+                                <input type="date" id="searchDate" name="searchDate" class="form-control" />
+                            </div>
+
+                            <!-- Search by Request Type -->
+                            <div class="col-md-4">
+                                <label for="requestType" class="form-label">Trạng thái</label>
+                                <select id="requestType" name="requestType" class="form-select" style="margin-left:20px;">
+                                    <option value="">Chọn trạng thái</option>
+                                    <option value="mang">Ra</option>
+                                    <option value="sua">Vào</option>
+                                </select>
+                            </div>
+
+                            <!-- Search Button -->
+                            <div class="col-md-4 align-self-end">
+                                <a href="#" class="btn btn-primary">Tìm kiếm</a>
+                            </div>
+                        </div>
+                    </form>
+
+                    <hr>
+
+                    <!-- Danh sách lịch sử gửi xe -->
+                    <h6 class="fw-bold text-primary">Danh Sách lịch sử gửi xe</h6>
+                    <hr>
+
+                    <table class="table table-bordered table-striped mt-3">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã vé</th>
+                                <th>Trạng thái</th>
+                                <th>Thời gian</th>
+                                <th>Hình ảnh</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.ParkingHistories.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i + 1)</td>
+                                    <td>@Model.ParkingHistories[i].TicketId</td>
+                                    <td>@Model.ParkingHistories[i].TransactionType</td>
+                                    <td>@Model.ParkingHistories[i].TransactionTime</td>
+                                    <td><img src="@Model.ParkingHistories[i].ImageUrl" alt="Transaction Image" class="img-fluid" style="max-width: 100px;" /></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

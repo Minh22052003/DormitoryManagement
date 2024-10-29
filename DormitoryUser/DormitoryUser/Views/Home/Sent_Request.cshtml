@@ -1,0 +1,71 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Gửi yêu cầu hỗ trợ</h1>
+        </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <form id="form-gui-yeu-cau" action="" method="" class="needs-validation" novalidate="true">
+                            <div class="card-header">
+                                <h4>Form gửi phản hồi</h4>
+                            </div>
+                            <div class="card-body">
+                                <!-- Tiêu đề -->
+                                <div class="form-group">
+                                    <label>Tiêu đề</label>
+                                    <input id="title_yeu_cau" type="text" class="form-control" required="">
+                                    <div class="invalid-feedback">
+                                        Vui lòng điền tiêu đề của bạn.
+                                    </div>
+                                </div>
+
+                                <!-- Nội dung yêu cầu -->
+                                <div class="form-group mb-0">
+                                    <label>Nội dung</label>
+                                    <textarea id="content_yeu_cau" class="form-control" required=""></textarea>
+                                    <div class="invalid-feedback">
+                                        Vui lòng điền nội dung yêu cầu của bạn.
+                                    </div>
+                                </div>
+
+                                <!-- Loại yêu cầu hỗ trợ -->
+                                <div class="form-group mt-3">
+                                    <label>Loại yêu cầu hỗ trợ</label>
+                                    <select class="form-control" id="loai_yeu_cau" required="">
+                                        <option value="">Chọn loại yêu cầu</option>
+                                        <option value="thiet_bi">Sự cố thiết bị</option>
+                                        <option value="phong_o">Vấn đề phòng ở</option>
+                                        <option value="dich_vu">Dịch vụ hỗ trợ khác</option>
+                                        <option value="thanh_toan">Vấn đề thanh toán</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Vui lòng chọn loại yêu cầu hỗ trợ.
+                                    </div>
+                                </div>
+
+                                <!-- Ảnh đính kèm (nếu có) -->
+                                <div class="form-group">
+                                    <label>Ảnh đính kèm (tùy chọn)</label>
+                                    <input type="file" class="form-control" id="file_upload">
+                                </div>
+
+                            </div>
+                            <div class="card-footer text-right">
+                                <div class="button">
+                                    <a id="submit-yeu-cau" href="#" class="btn btn-primary btn-md btn-icon icon-right" tabindex="4">Gửi yêu cầu</a>
+                                    <button type="reset" class="btn btn-secondary">Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

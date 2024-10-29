@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<!-- divinectorweb.com -->
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap 5 Responsibe Website Layout design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="~/assets/css/color.css" />
+
+    <script src='~/assets/js/page/fullcalendar/core/main.js'></script>
+    <script src='~/assets/js/page/fullcalendar/daygrid/main.js'></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-bg bg-primary text-center pt-4 pb-4 px-5">
+        <div class="container">
+            <img src="~/img/LogoUTC.png" alt="Logo Trường" class="img-fluid" style="max-width: 100px; border:none; border-radius: 50%; background: transparent; margin-right: 30px;">
+            <a class="navbar-brand text-white" href="#" style="font-size:35px;">KTX GTVT</a>
+            <button class="navbar-toggler btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="nav-icon navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="~/Introduce/Index">Giới thiệu</a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-white" href="~/News/Index">Tin tức</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="~/Accommodation/Index">Phòng ở</a>
+                    </li>
+                    <li class="nav-item me-4">
+                        <a class="nav-link text-white" href="~/Instruct/Index">Hướng dẫn đăng kí</a>
+                    </li>
+                    <li class="nav-item me-4">
+                        <a id="submit-yeu-cau" href="~/Login/Index" class="btn btn-light text-primary" tabindex="4">Đăng nhập</a>
+                    </li>
+                    <li>
+                        <a id="submit-yeu-cau" href="~/Registration/Index" class="btn btn-light text-primary" tabindex="4">Đăng ký</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    @RenderBody()
+
+    <!-- Phần footer -->
+    <footer class="bg-primary text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Địa chỉ</h5>
+                    <p>Số 123, Đường ABC, Quận X, Thành phố Y</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Liên hệ</h5>
+                    <p>Điện thoại: <a href="tel:+84123456789" class="text-white">0123 456 789</a></p>
+                    <p>Email: <a href="mailto:contact@kytucxa.com" class="text-white">contact@kytucxa.com</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Giờ làm việc</h5>
+                    <p>Thứ 2 - Thứ 6: 8h00 - 17h00</p>
+                    <p>Thứ 7 - Chủ nhật: 9h00 - 15h00</p>
+                </div>
+            </div>
+           
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
