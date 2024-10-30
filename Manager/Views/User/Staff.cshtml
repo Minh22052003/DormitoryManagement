@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<Manager.Models.Staff>
+@{
+    var i = 1;
+}
 <div class="container-fluid position-relative d-flex p-0">
     <!-- Content Start -->
     <div class="col m-5">
@@ -48,7 +51,7 @@
                             @foreach(var s in Model)
                             {
                                 <tr>
-                                    <td>1</td>
+                                    <td>@i</td>
                                     <td>
                                         <a asp-action="StaffDetail" asp-controller="User" asp-route-id="@s.StaffID">
                                             @s.StaffID
@@ -58,6 +61,7 @@
                                     <td>@s.RoleName</td>
                                     <td>@s.PhoneNumber</td>
                                 </tr>
+                                i = i + 1;
                             }
                         </tbody>
                     </table>
