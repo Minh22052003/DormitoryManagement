@@ -1,7 +1,9 @@
 ﻿@{
     ViewData["Title"] = "SignIn";
+
     Layout = "_LayoutSignIn";
 }
+
 <div class="container-fluid">
     <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
         <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
@@ -12,22 +14,25 @@
                     </a>
                     <h3>Đăng nhập</h3>
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email</label>
-                </div>
-                <div class="form-floating mb-4">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Mật khẩu</label>
-                </div>
-                <div class="d-flex align-items-center justify-content-between mb-4">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Ghi nhớ đăng nhập</label>
+                <!-- Thêm form với phương thức POST -->
+                <form asp-action="SignIn" asp-controller="Account" method="post">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
+                        <label for="floatingInput">Taì khoản</label>
                     </div>
-                    <a asp-action="ForgotPassword" asp-controller="Account">Quên mật khẩu</a>
-                </div>
-                <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Đăng nhập</button>
+                    <div class="form-floating mb-4">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                        <label for="floatingPassword">Mật khẩu</label>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="rememberMe">
+                            <label class="form-check-label" for="exampleCheck1">Ghi nhớ đăng nhập</label>
+                        </div>
+                        <a asp-action="ForgotPassword" asp-controller="Account">Quên mật khẩu</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Đăng nhập</button>
+                </form>
                 <p class="text-center mb-0">Chưa có tài khoản? <a asp-controller="Account" asp-action="SignUp">Đăng ký</a></p>
             </div>
         </div>

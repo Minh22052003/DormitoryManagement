@@ -1,4 +1,4 @@
-using DormitoryServer.Models;
+﻿using DormitoryServer.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -27,9 +27,12 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
 .AddJwtBearer(options =>
 {
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
@@ -40,19 +43,19 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = builder.Configuration["Jwt:Issuer"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
-    options.Events = new JwtBearerEvents
-    {
-        OnMessageReceived = context =>
-        {
-            var token = context.Request.Cookies["AuthToken"];
-            if (token != null)
-            {
-                context.Token = token;
-            }
-            return Task.CompletedTask;
-        }
-    };
 });
+
+var roleService = builder.Services.BuildServiceProvider().GetRequiredService<RoleService>();
+var roles = await roleService.GetRolesFromDatabaseAsync();
+
+builder.Services.AddAuthorization(options =>
+{
+    foreach (var role in roles)
+    {
+        options.AddPolicy(role, policy => policy.RequireClaim("Roles", role));
+    }
+});
+
 
 var app = builder.Build();
 
@@ -68,17 +71,17 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-using (var scope = app.Services.CreateScope())
-{
-    var roleService = scope.ServiceProvider.GetRequiredService<RoleService>();
-    var roles = await roleService.GetRolesFromDatabaseAsync();
+//using (var scope = app.Services.CreateScope())
+//{
+//    var roleService = scope.ServiceProvider.GetRequiredService<RoleService>();
+//    var roles = await roleService.GetRolesFromDatabaseAsync();
 
-    var authorizationOptions = app.Services.GetRequiredService<IOptions<AuthorizationOptions>>().Value;
-    foreach (var role in roles)
-    {
-        authorizationOptions.AddPolicy(role, policy => policy.RequireRole(role));
-    }
-}
+//    var authorizationOptions = app.Services.GetRequiredService<IOptions<AuthorizationOptions>>().Value;
+//    foreach (var role in roles)
+//    {
+//        authorizationOptions.AddPolicy(role, policy => policy.RequireRole(role));
+//    }
+//}
 
 
 app.MapControllers();

@@ -1,30 +1,45 @@
 ﻿using Manager.Data;
 using Manager.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace Manager.Controllers
 {
     public class UserController : Controller
     {
         private StudentData _studentData = new StudentData();
-        private StaffData _staffData = new StaffData();
+        private StaffData _staffData;
         private EquipmentData _equipmentData = new EquipmentData();
-        List<Student> students = new List<Student>();
-        List<Staff> staffs = new List<Staff>();
-        public UserController()
+        public UserController(IHttpContextAccessor httpContextAccessor)
         {
-            students = _studentData.GetAllStudentAsyn().Result;
-            staffs = _staffData.GetAllStaffAsync().Result;
+            _staffData = new StaffData(httpContextAccessor);
         }
 
         [HttpGet]
         public IActionResult Student()
         {
-            return View(students);
+            try
+            {
+                List<Student> students = _studentData.GetAllStudentAsyn().Result;
+                return View(students);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
+                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách sinh viên." });
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các lỗi khác
+                return RedirectToAction("Error", new { message = "Có lỗi xảy ra, vui lòng thử lại sau." });
+            }
         }
         [HttpGet]
         public IActionResult StudentDetail(string id)
         {
+
+            List<Student> students = _studentData.GetAllStudentAsyn().Result;
             var student = students.Find(s => s.StudentID == id);
             return View(student);
         }
@@ -34,36 +49,61 @@ namespace Manager.Controllers
         [HttpGet]
         public IActionResult Staff()
         {
-            return View(staffs);
+            try
+            {
+                List<Staff> staffs = _staffData.GetAllStaffAsync().Result;
+                return View(staffs);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
+                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách nhân viên." });
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các lỗi khác
+                return RedirectToAction("Error", new { message = "Có lỗi xảy ra, vui lòng thử lại sau." });
+            }
+            
         }
         [HttpGet]
         public IActionResult StaffDetail(string id)
         {
-            var staff = staffs.Find(s => s.StaffID == id);
-            return View(staff);
+            try
+            {
+                List<Staff> staffs = _staffData.GetAllStaffAsync().Result;
+                var staff = staffs.Find(s => s.StaffID == id);
+                return View(staff);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
+                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách nhân viên." });
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các lỗi khác
+                return RedirectToAction("Error", new { message = "Có lỗi xảy ra, vui lòng thử lại sau." });
+            }
+            
         }
         public IActionResult TTCN()
         {
-            Staff staff = new Staff
+            var token = HttpContext.Session.GetString("jwt");
+            if (string.IsNullOrEmpty(token))
             {
-                StaffID = "ST003",
-                FullName = "Le Quoc C",
-                BirthDate = new DateTime(1982, 12, 20),
-                Gender = true,
-                PhoneNumber = "0934567890",
-                Email = "lequocc@example.com",
-                Hometown = "Da Nang",
-                IDCard = "456789123",
-                InsuranceNumber = "INS456789",
-                Ethnicity = "Kinh",
-                Religion = "None",
-                Nationality = "Vietnamese",
-                Office = "IT Department",
-                WorkSchedule = "Full-time",
-                RoleName = "Bao ve"
-            };
+                return RedirectToAction("SignIn", "Account");
+            }
+            var staff = _staffData.GetStaffAsync().Result;
             return View(staff);
         }
+
+        public IActionResult Error(string message)
+        {
+            ViewData["Message"] = message; // Truyền thông điệp lỗi vào ViewData
+            return View("Error"); // Trả về View lỗi
+        }
+
 
     }
 }

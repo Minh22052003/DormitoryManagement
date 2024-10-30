@@ -21,14 +21,16 @@ namespace DormitoryServer.Controllers
         {
             var invoices = _context.DormInvoices.ToList();
             List<DormInvoiceDTO> result = new List<DormInvoiceDTO>();
-            foreach (var invoice in invoices) {
+            foreach (var invoice in invoices)
+            {
+                var nv = _context.staff.Where(r=>r.StaffId == invoice.StaffIdPay).SingleOrDefault();
                 result.Add(new DormInvoiceDTO
                 {
                     InvoiceID = invoice.InvoiceId,
                     StaffID_Create = invoice.StaffIdCreate,
                     StaffName_Create = invoice.StaffIdCreate,
                     StaffID_Pay = invoice.StaffIdPay,
-                    StaffName_Pay = invoice.StaffIdPay,
+                    StaffName_Pay = nv?.FullName,
                     InvoiceTypeName = invoice.InvoiceType,
                     Description = invoice.Description,
                     Note = invoice.Note,

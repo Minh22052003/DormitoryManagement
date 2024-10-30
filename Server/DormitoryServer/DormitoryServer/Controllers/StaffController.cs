@@ -20,7 +20,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
-        //[Authorize(Roles = "Quản lý")]
+        [Authorize(Policy = "Manager")]
         [HttpGet("getallstaff")]
         public IActionResult GetAllStaff()
         {
@@ -64,18 +64,41 @@ namespace DormitoryServer.Controllers
             var staffId = User.FindFirst("UserId")?.Value;
             if (staffId == null)
             {
-                return NotFound("Không tìm thấy thông tin người dùng");
+                return NotFound("Khong tim thay thong tin nguoi dung");
             }
             else
             {
-                var staff = _context.staff.FirstOrDefault(s => s.StaffId == staffId);
+                var staff = _context.staff
+                    .Include(s => s.AccountStaffs)
+                        .ThenInclude(a => a.Role)
+                    .FirstOrDefault(s => s.StaffId == staffId);
                 if (staff == null)
                 {
                     return NotFound("Không tìm thấy thông tin người dùng");
                 }
                 else
                 {
-                    return Ok(staff);
+                    var firstAccountStaff = staff.AccountStaffs.FirstOrDefault();
+                    var staffDTO = new StaffDTO
+                    {
+                        StaffID = staff.StaffId,
+                        FullName = staff.FullName,
+                        BirthDate = staff.BirthDate,
+                        Gender = staff.Gender,
+                        PhoneNumber = staff.PhoneNumber,
+                        Email = staff.Email,
+                        Hometown = staff.Hometown,
+                        IDCard = staff.Idcard,
+                        InsuranceNumber = staff.InsuranceNumber,
+                        Ethnicity = staff.Ethnicity,
+                        Religion = staff.Religion,
+                        Nationality = staff.Nationality,
+                        Office = staff.Office,
+                        WorkSchedule = staff.WorkSchedule,
+                        RoleID = firstAccountStaff?.RoleId,
+                        RoleName = firstAccountStaff?.Role?.RoleName
+                    };
+                    return Ok(staffDTO);
                 }
             }
         }

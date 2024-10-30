@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
@@ -102,17 +103,16 @@ namespace DormitoryServer.Controllers
             else
             {
                 var roles = await _context.AccountStaffs
+                    .Include(a => a.Role)
                     .Where(a => a.StaffId == iduser)
-                    .Select(a => a.Role.RoleName)
                     .ToListAsync();
 
                 var claims = new List<Claim>
                 {
-                    new Claim(JwtRegisteredClaimNames.Sub, request.User_Name),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim("UserId", iduser.ToString())
+                    new Claim("UserId", iduser.ToString()),
+                    new Claim("Roles", string.Join(",", roles.Select(r => r.Role?.RoleName)))
                 };
-                claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -126,17 +126,7 @@ namespace DormitoryServer.Controllers
 
                 var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-                // Tạo cookie chứa JWT
-                var cookieOptions = new CookieOptions
-                {
-                    HttpOnly = true,
-                    Secure = true,
-                    SameSite = SameSiteMode.Strict,
-                    Expires = DateTime.Now.AddMinutes(30)
-                };
-
-                Response.Cookies.Append("AuthToken", jwtToken, cookieOptions);
-                return Ok("Đăng nhập thành công");
+                return Ok(jwtToken);
             }
         }
 
