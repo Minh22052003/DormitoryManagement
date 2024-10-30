@@ -1,157 +1,72 @@
-﻿@{
+﻿@model IEnumerable<DormitoryUser.Models.Facility>
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-            <!-- Main Content -->
-            <div class="main-content">
-                <section class="section">
-                    <div class="section-header">
-                        <h1>Thông tin CSVC phòng</h1>
-                    </div>
-                    <div class="section-body">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-12 col-xl-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Danh sách cơ sở vật chất</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <span><h6>Tìm kiếm dữ liệu theo cột</h6></span>
-                                                <select id="filter-field">
-                                                    <option></option>
-                                                    <option value="facility_name">Tên CSVC</option>
-                                                </select>
-
-                                                <select id="filter-type">
-                                                    <option value="like">like</option>
-                                                    <option value="=">=</option>
-                                                    <option value="<"><</option>
-                                                    <option value="<="><=</option>
-                                                    <option value=">">></option>
-                                                    <option value=">=">>=</option>
-                                                    <option value="!=">!=</option>
-                                                </select>
-
-                                                <input id="filter-value" type="text" placeholder="điền dữ liệu cần tìm">
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div id="facility-table"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            </section>
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Thông tin cơ sở vật chất phòng</h1>
         </div>
-        <div class="modal fade" id="student-table-modal" tabindex="-1" role="dialog" aria-labelledby="studentModal" aria-hidden="true">
-            <div class="modal-dialog  modal-md modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="studentModal">Thông tin chi tiết</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="card">
-                            <div class="card author-box card-primary">
-                                <div class="card-body">
-                                    <div class="author-box-left">
-                                        <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle author-box-picture">
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="author-box-details">
-                                        <div class="author-box-name">
-                                            <form action="">
-                                                <div class="form-group">
-                                                    <p><strong>Họ và tên: </strong></p>
-                                                    <input type="text" class="form-control" value="" id="student-name">
-                                                </div>
-                                                <div class="form-group">
-                                                    <p><strong>Phòng: </strong></p>
-                                                    <input type="text" class="form-control" value="" id="student-room">
-                                                </div>
-                                                <div class="form-group">
-                                                    <p><strong>Mã số sinh viên: </strong></p>
-                                                    <input type="text" class="form-control" value="" id="student-id">
-                                                </div>
-                                                <div class="form-group">
-                                                    <p><strong>Loại xe: </strong></p>
-                                                    <input type="text" class="form-control" value="" id="type_of_vehicle">
-                                                </div>
-                                                <div class="form-group">
-                                                    <p><strong>Biển xe: </strong></p>
-                                                    <input type="text" class="form-control" value="" id="plate">
-                                                </div>
-                                                <div class="form-group">
-                                                    <p><strong>Ngày đăng ký: </strong> </strong><span id="register_date"></span></p>
-                                                    <p><strong>Ngày cập nhật: </strong><span id="update_date"></span></p>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Danh sách cơ sở vật chất</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <span><h6>Tìm kiếm dữ liệu theo cột</h6></span>
+                                    <select id="filter-field">
+                                        <option></option>
+                                        <option value="facility_name">Tên CSVC</option>
+                                    </select>
+
+                                    <select id="filter-type">
+                                        <option value="like">like</option>
+                                        <option value="=">=</option>
+                                        <option value="<"><</option>
+                                        <option value="<="><=</option>
+                                        <option value=">">></option>
+                                        <option value=">=">>=</option>
+                                        <option value="!=">!=</option>
+                                    </select>
+
+                                    <input id="filter-value" type="text" placeholder="điền dữ liệu cần tìm">
                                 </div>
                             </div>
+                            <br>
+                            <div id="facility-table">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên CSVC</th>
+                                            <th>Mô tả</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.Count(); i++)
+
+                                        {
+                                            <tr>
+                                                <td>@(i + 1)</td>
+                                                <td>@Model.ElementAt(i).FacilityName</td>
+                                                <td>@Model.ElementAt(i).Description</td>
+                                                <td>@(Model.ElementAt(i).IsAvailable ? "Có" : "Không")</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-primary" id="change-student-button">Lưu lại</button>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="modal fade" id="add-student-table-modal" tabindex="-1" role="dialog" aria-labelledby="addStudentModal" aria-hidden="true">
-            <div class="modal-dialog  modal-md modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addStudentModal">Thêm sinh viên gửi xe</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="card">
-                            <div class="card card-primary">
-                                <div class="card-body">
-                                    <div class="">
-                                        <div class="e">
-                                            <form action="">
-                                                <div class="form-group">
-                                                    <p><strong>Họ và tên: </strong></p>
-                                                    <input type="text" class="form-control" value="" id="add-student-name">
-                                                </div>
-                                                <div class="form-group">
-                                                    <p><strong>Phòng: </strong></p>
-                                                    <input type="text" class="form-control" value="" id="add-student-room">
-                                                </div>
-                                                <div class="form-group">
-                                                    <p><strong>Mã số sinh viên: </strong></p>
-                                                    <input type="text" class="form-control" value="" id="add-student-id">
-                                                </div>
-                                                <div class="form-group">
-                                                    <p><strong>Loại xe: </strong></p>
-                                                    <input type="text" class="form-control" value="" id="add-type_of_vehicle">
-                                                </div>
-                                                <div class="form-group">
-                                                    <p><strong>Biển xe: </strong></p>
-                                                    <input type="text" class="form-control" value="" id="add-plate">
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-primary" id="add-student-button">Thêm sinh viên</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </section>
+</div>

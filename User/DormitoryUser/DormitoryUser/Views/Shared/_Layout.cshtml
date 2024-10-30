@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -45,7 +46,7 @@
                                 <i class="fas fa-bars"></i>
                             </a>
                         </li>
-                        <li>
+                        <li> 
                             <a href="#"
                                data-toggle="search"
                                class="nav-link nav-link-lg d-sm-none">
@@ -55,42 +56,56 @@
                     </ul>
                     <div class="search-element"></div>
                 </form>
-                <ul class="navbar-nav navbar-right">
+                <ul class="navbar-nav navbar-right align-items-center">
+                    <!-- Thông báo -->
+                    <li class="dropdown">
+                        <a href="#"
+                           id="notificationDropdown"
+                           data-toggle="dropdown"
+                           class="nav-link nav-link-lg">
+                            <!-- Thêm class position-relative -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);"><path d="M12 22a2.98 2.98 0 0 0 2.818-2H9.182A2.98 2.98 0 0 0 12 22zm7-7.414V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v4.586l-1.707 1.707A.996.996 0 0 0 3 17v1a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-1a.996.996 0 0 0-.293-.707L19 14.586z"></path></svg>
+                            <div style="position: absolute; background-color: rgb(255,43,43); color: #ffffff; top:-10px; right: 3px; font-size:0.9rem; padding: 0rem 8px; border-radius:20px;">1</div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-header">Thông báo</div>
+                            <a href="~/RequestDetail/Index" class="dropdown-item text-truncate">
+                                <i class="fas fa-envelope mr-2"></i> Yêu cầu của bạn đã được xử lý
+                                <span class="float-right text-muted text-sm">3 mins ago</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a asp-controller="Home" asp-action="Notification" class="nav-link text-primary" class="dropdown-item dropdown-footer text-primary">Xem tất cả thông báo</a>
+                        </div>
+                    </li>
+                    <!-- Existing User Dropdown -->
                     <li class="dropdown">
                         <a href="#"
                            data-toggle="dropdown"
                            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                            <img alt="image"
-                                 src="~/assets/img/avatar/avatar-1.png"
-                                 class="rounded-circle mr-1" />
-                            <div class="d-sm-none d-lg-inline-block">
-                                Chào, <span class="student-name"></span>
-                            </div>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <div class="dropdown-title">Hành động</div>
-                                <a href="#" id="logout" class="dropdown-item has-icon text-danger">
-                                    <i class="fas fa-sign-out-alt"></i> Đăng xuất
-                                </a>
-                            </div>
+                            <img alt="image" src="~/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1" />
+                            <div class="d-sm-none d-lg-inline-block">Chào, <span class="student-name"></span></div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="~/Profile/Index"><div class="dropdown-title">Thông tin cá nhân</div></a>
+                            <a href="~/ChangePassword/Index"><div class="dropdown-title">Thay đổi mật khẩu</div></a>
+                            <a href="~/News/Index" id="logout" class="dropdown-item has-icon text-danger">
+                                <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                            </a>
+                        </div>
                     </li>
                 </ul>
+
             </nav>
             <div class="main-sidebar">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a asp-controller="Home" asp-action="Index">Ký túc xá</a>
+                        <a asp-controller="Notification" asp-action="Index">Ký túc xá</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a asp-controller="Home" asp-action="Index">KTX</a>
+                        <a asp-controller="Notification" asp-action="Index">KTX</a>
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Tổng quan</li>
-                        <li class="nav-item dropdown active">
-                            <a asp-controller="Home" asp-action="Index" class="nav-link"><i class="fas fa-info"></i><span>Thông tin</span></a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a asp-controller="Home" asp-action="Notification" class="nav-link"><i class="fas fa-file-alt"></i><span>Thông báo</span></a>
-                        </li>
                         <li class="menu-header">Thông tin phòng trọ</li>
                         <li class="nav-item dropdown">
                             <a asp-controller="Home" asp-action="Room" class="nav-link"><i class="fas fa-user-friends"></i> <span>Phòng trọ</span></a>
@@ -106,19 +121,23 @@
                             <a asp-controller="Home" asp-action="Sent_Request" class="nav-link"><i class="fas fa-paper-plane"></i> <span>Gửi yêu cầu</span></a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a asp-controller="Home" asp-action="Request_Sent" class="nav-link"><i class="far fa-file-alt"></i> <span>Yêu cầu đã gửi</span></a>
+                            <a asp-controller="Home" asp-action="Request_Sent" class="nav-link"><i class="fas fa-file-alt"></i> <span>Yêu cầu đã gửi</span></a>
                         </li>
                         <li class="menu-header">Khác</li>
                         <li class="nav-item dropdown">
-                            <a asp-controller="Home" asp-action="Officer_Information" class="nav-link"><i class="far fa-user"></i> <span>Thông tin cán vụ</span></a>
+                            <a asp-controller="Home" asp-action="Officer_Information" class="nav-link"><i class="fas fa-user"></i> <span>Thông tin cán vụ</span></a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a asp-controller="Home" asp-action="Parking_History" class="nav-link"><i class="fas fa-parking"></i> <span>Lịch sử gửi xe</span></a>
+                        </li>
+                    </ul>
                 </aside>
             </div>
 
             <!-- Main Content -->
             @RenderBody()
-        
-    </div>
+
+        </div>
     </div>
 
     <!-- General JS Scripts -->
@@ -145,5 +164,51 @@
     @* <script src="~/js/index.js"></script> *@
 
     <!-- Page Specific JS File -->
+
+    <!-- Add class Active-->
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            const currentLocation = location.href; // Lấy URL hiện tại
+            const menuItems = document.querySelectorAll('.sidebar-menu li a'); // Chọn các thẻ <a> trong <li>
+
+            menuItems.forEach(item => {
+                // Lấy đường dẫn cơ bản của item
+                const itemHref = item.href;
+                // Kiểm tra nếu URL hiện tại khớp với item hoặc nếu là trang con
+                if (
+                    currentLocation.includes(itemHref) || // Kiểm tra nếu URL hiện tại khớp với item
+                    (itemHref.includes('/Notification') && currentLocation.includes('/Notification')) || // Thông báo
+                    (itemHref.includes('/Room') && currentLocation.includes('/Room')) || // Phòng trọ
+                    (itemHref.includes('/Facilities') && currentLocation.includes('/Facilities')) || // Cơ sở vật chất
+                    (itemHref.includes('/Track_Rent') && currentLocation.includes('/Track_Rent')) ||
+                    (itemHref.includes('/Track_Rent') && currentLocation.includes('/QRCode')) ||// Theo dõi tiền trọ
+                    (itemHref.includes('/Sent_Request') && currentLocation.includes('/Sent_Request')) || // Gửi yêu cầu
+                    (itemHref.includes('/Request_Sent') && currentLocation.includes('/Request_Sent')) || // Yêu cầu đã gửi
+                    (itemHref.includes('/Officer_Information') && currentLocation.includes('/Officer_Information')) // Thông tin cán bộ
+
+                ) {
+                    item.parentElement.classList.add('active'); // Thêm lớp 'active' cho <li> cha
+                } else {
+                    item.parentElement.classList.remove('active'); // Xóa lớp 'active' nếu không khớp
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Giả lập thêm chức năng đếm số thông báo
+            var notificationCount = $('.notification-count').text();
+            if (notificationCount > 0) {
+                $('.notification-count').show();
+            } else {
+                $('.notification-count').hide();
+            }
+        });
+
+    </script>
+
+
+
 </body>
 </html>

@@ -9,71 +9,131 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DormitoryUser
 build_property.RootNamespace = DormitoryUser
-build_property.ProjectDir = D:\Project1\User\DormitoryUser\DormitoryUser\
+build_property.ProjectDir = C:\Users\Admin\Downloads\DormitoryManagement-devTinh\DormitoryManagement-devTinh\DormitoryUser\DormitoryUser\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Project1\User\DormitoryUser\DormitoryUser
+build_property.MSBuildProjectDirectory = C:\Users\Admin\Downloads\DormitoryManagement-devTinh\DormitoryManagement-devTinh\DormitoryUser\DormitoryUser
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/Home/Facilities.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Accommodation/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb21tb2RhdGlvblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/ChangePassword/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbmdlUGFzc3dvcmRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/ForgotPassword/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9yZ290UGFzc3dvcmRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Home/Facilities.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGYWNpbGl0aWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/Home/Index.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/Home/Notification.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Home/Notification.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOb3RpZmljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/Home/Officer_Information.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Home/Officer_Information.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxPZmZpY2VyX0luZm9ybWF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/Home/Privacy.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Home/Parking_History.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQYXJraW5nX0hpc3RvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/Home/Request_Sent.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Home/Request_Sent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXF1ZXN0X1NlbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/Home/Room.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Home/Room.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSb29tLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/Home/Sent_Request.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Home/Sent_Request.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZW50X1JlcXVlc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/Home/Track_Rent.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Home/Track_Rent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUcmFja19SZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/Shared/Error.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Instruct/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5zdHJ1Y3RcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Introduce/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50cm9kdWNlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/News/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Notification/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Profile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/QRCode/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUVJDb2RlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Registration/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cmF0aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/RequestDetail/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdERldGFpbFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/Shared/Footer.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Shared/Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEZvb3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Shared/IntroLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEludHJvTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/_ViewImports.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Track_Rent/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhY2tfUmVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/_ViewStart.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/Shared/_Layout.cshtml]
+[C:/Users/Admin/Downloads/DormitoryManagement-devTinh/DormitoryManagement-devTinh/DormitoryUser/DormitoryUser/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-kbai771jmh

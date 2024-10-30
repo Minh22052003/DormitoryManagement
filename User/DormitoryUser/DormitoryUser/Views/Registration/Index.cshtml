@@ -1,0 +1,267 @@
+﻿@{
+    Layout = "~/Views/Shared/IntroLayout.cshtml";
+}
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="card border-0">
+            <div class="card-header bg-white d-block border-0">
+                <h3 class="text-primary">Đơn đăng kí ở tại kí túc xá</h3>
+                <h5 class="mt-2">Lưu ý : <span>- Sinh viên chú ý điền đầy đủ tất cả các thông tin có đánh dấu</span><span class="text-danger">(*)</span>.</h5>
+                <div class="d-flex d-inline">
+                    <span>- Sau khi điền đầy đủ thông tin, click vào nút <span class="fw-bold">"Đăng ký"</span> ở cuối trang để đăng ký.</span>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="card bg-light rounded h-auto w-100 p-4 border-0">
+                        <div class="col">
+                            <form class="p-5 bg-light" id="registrationForm" asp-action="StudentDetail" asp-controller="User">
+                                <div class="row g-5">
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Số CMND/Thẻ căn cước<span class="text-danger"> (*)</span></label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Ngày cấp CMND<span class="text-danger"> (*)</span></label>
+                                            <input type="date" class="form-control border-0" id="dateInput">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Nơi cấp CMND<span class="text-danger"> (*)</span></label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-5">
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Họ & Tên đệm<span class="text-danger"> (*)</span></label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Tên<span class="text-danger"> (*)</span></label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-check">
+                                            <label class="form-label my-3 fw-bold">Giới tính<span class="text-danger"> (*)</span></label>
+                                            <div class="d-flex ml-5">
+                                                <div class="me-3">
+                                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked readonly>
+                                                    <label class="form-check-label" for="gridRadios1">Nam</label>
+                                                </div>
+                                                <div class="ml-5" style="margin-left:20px;">
+                                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" readonly>
+                                                    <label class="form-check-label" for="gridRadios2">Nữ</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-5">
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Dân tộc<span class="text-danger"> (*)</span></label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Tôn giáo</label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Quốc tịch<span class="text-danger"> (*)</span></label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-5">
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Ngày sinh<span class="text-danger"> (*)</span></label>
+                                            <input type="date" class="form-control border-0" id="dateInput">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Email<span class="text-danger"> (*)</span></label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Số điện thoại<span class="text-danger"> (*)</span></label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-5">
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Tỉnh/Thành phố<span class="text-danger"> (*)</span></label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Quận/Huyện<span class="text-danger"> (*)</span></label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Phường/Xã<span class="text-danger"> (*)</span></label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-5">
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Số nhà, tên đường<span class="text-danger"> (*)</span></label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Diện chính sách</label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Mã số BHYT<span class="text-danger"> (*)</span></label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-5">
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Ảnh BHYT mặt trước<span class="text-danger"> (*)</span></label>
+                                            <div class="d-flex align-items-center">
+                                                <input type="file" class="form-control border-0" accept="image/*" onchange="previewImage(event, 'img4')" />
+                                                <img id="img4" class="w-75 ms-2" src="" alt="Preview" style="display: none;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Ngày cấp BHYT<span class="text-danger"> (*)</span></label>
+                                            <input type="date" class="form-control border-0" id="dateInput">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Giá trị sử dụng từ ngày<span class="text-danger"> (*)</span></label>
+                                            <input type="date" class="form-control border-0" id="dateInput">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-5">
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Thời điểm đủ 05 năm liên tục từ<span class="text-danger"> (*)</span></label>
+                                            <input type="date" class="form-control border-0" id="dateInput">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Tỉnh</label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Khám bệnh ban đầu</label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-5">
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Tên người thân</label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Số điện thoại người thân<span class="text-danger"> (*)</span></label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Địa chỉ người thân</label>
+                                            <input class="form-control border-0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-5">
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Ảnh thẻ 4x6<span class="text-danger"> (*)</span></label>
+                                            <div class="d-flex align-items-center">
+                                                <input type="file" class="form-control border-0" accept="image/*" onchange="previewImage(event, 'img1')" />
+                                                <img id="img1" class="w-75 ms-2" src="" alt="Preview" style="display: none;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Ảnh CMND mặt trước<span class="text-danger"> (*)</span></label>
+                                            <div class="d-flex align-items-center">
+                                                <input type="file" class="form-control border-0" accept="image/*" onchange="previewImage(event, 'img2')" />
+                                                <img id="img2" class="w-75 ms-2" src="" alt="Preview" style="display: none;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Ảnh CMND mặt sau<span class="text-danger"> (*)</span></label>
+                                            <div class="d-flex align-items-center">
+                                                <input type="file" class="form-control border-0" accept="image/*" onchange="previewImage(event, 'img3')" />
+                                                <img id="img3" class="w-75 ms-2" src="" alt="Preview" style="display: none;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="d-flex mt-5 justify-content-end">
+                                    <a asp-controller="Registration" asp-action="AcceptRegistrations" class="btn btn-success" style="margin-right: 30px;">Đăng kí</a>
+                                    <a class="btn btn-primary text-light" onclick="resetForm()">Reset</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Hàm để xử lý submit form
+    function submitForm() {
+        document.getElementById("registrationForm").submit();
+    }
+
+    // Hàm để reset tất cả các ô trong form
+    function resetForm() {
+        document.getElementById("registrationForm").reset();
+    }
+</script>

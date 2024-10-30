@@ -1,0 +1,156 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Thanh toán online</h1>
+        </div>
+        <section class="section-body">
+            <div class="row">
+                <div class="col-12 ">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Thông tin cá nhân</h4>
+                        </div>
+                        <div class="card-body flex-column">
+                            <div class="row g-3">
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4 mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <div class="author-box-left">
+                                            <div class="author-box-name">
+                                                <span class="fs-5 text-dark">Họ và tên:</span>
+                                            </div>
+                                        </div>
+                                        <div class="author-box-details ml-3">
+                                            <div class="author-box-name">
+                                                <span class="fs-5 text-dark">Nguyễn Văn A</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4 mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <div class="author-box-left">
+                                            <div class="author-box-name">
+                                                <span class="fs-5 text-dark">Mã sinh viên:</span>
+                                            </div>
+                                        </div>
+                                        <div class="author-box-details ml-3">
+                                            <div class="author-box-name">
+                                                <span class="fs-5 text-dark">211211845</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4 mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <div class="author-box-left">
+                                            <div class="author-box-name">
+                                                <span class="fs-5 text-dark">Ngày sinh:</span>
+                                            </div>
+                                        </div>
+                                        <div class="author-box-details ml-3">
+                                            <div class="author-box-name">
+                                                <span class="fs-5 text-dark">02/11/2003</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4 mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <div class="author-box-left">
+                                            <div class="author-box-name">
+                                                <span class="fs-5 text-dark">Lớp:</span>
+                                            </div>
+                                        </div>
+                                        <div class="author-box-details ml-3">
+                                            <div class="author-box-name">
+                                                <span class="fs-5 text-dark">Cử nhân công nghệ thông tin 2 62</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4 mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <div class="author-box-left">
+                                            <div class="author-box-name">
+                                                <span class="fs-5 text-dark">Ngành:</span>
+                                            </div>
+                                        </div>
+                                        <div class="author-box-details ml-3">
+                                            <div class="author-box-name">
+                                                <span class="fs-5 text-dark">Cử nhân công nghệ thông tin</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4 mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <div class="author-box-left">
+                                            <div class="author-box-name">
+                                                <span class="fs-5 text-dark">Khóa:</span>
+                                            </div>
+                                        </div>
+                                        <div class="author-box-details ml-3">
+                                            <div class="author-box-name">
+                                                <span class="fs-5 text-dark">K62</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex ml-3 mb-3 justify-content-end align-items-center">
+                            <div class="select-with-icon mr-3">
+                                <select class="form-select p-2" aria-label="Chọn phương thức thanh toán">
+                                    <option selected>Chọn phương thức thanh toán...</option>
+                                    <option value="1">SHB QR Code</option>
+                                    <option value="2">Vietcombank QR Code</option>
+                                    <option value="3">Techcombank QR Code</option>
+                                </select>
+                            </div>
+                            <a id="submit-yeu-cau" href="~/QRCode/Index" class="btn btn-primary btn-md mr-5 btn-icon icon-right" tabindex="4">Tiến hành thanh toán</a>
+                        </div>
+
+                        <div class="card-header">
+                            <h4>Thông tin thanh toán</h4>
+                        </div>
+                        <div class="card-body flex-column">
+                            <table class="table table-bordered">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Nội dung</th>
+                                        <th scope="col">Số tiền</th>
+                                        <th scope="col">Ghi chú</th>
+                                        <th scope="col">Chọn</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Thanh toán điện</td>
+                                        <td>1,000,000 VND</td>
+                                        <td></td>
+                                        <td>
+                                            <input class="align-items-center" type="checkbox" class="form-check-input" id="payment1">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr>
+                        </div>
+                        <div class="d-flex ml-3 mb-3">
+                            <p class="ml-3"><h5>Tổng:</h5></p>
+                            <p class="ml-5"><h5>600,000</h5></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>

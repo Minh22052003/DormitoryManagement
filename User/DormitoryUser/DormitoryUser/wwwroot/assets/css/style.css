@@ -40,6 +40,8 @@
  * 	  3.21 Progressbar
  * 	  3.22 Jumbotron
  * 	  3.23 Carousel
+ *    3.24 Profile
+ *    3.25 Img-fluid
  * 4. Theme Style
  * 	  4.1 Misc
  * 	  4.2 Section
@@ -47,6 +49,8 @@
  * 	  4.4 Layout
  * 	  4.5 Animation
  * 5. Responsive
+ * 6. style new
+      6.1 Notification
  *
  */
 /* 1. Variable */
@@ -1926,6 +1930,26 @@ a.dropdown-item {
   font-size: 13px;
   line-height: 24px; }
 
+/* 3.24 Profile */
+.profile {
+    text-decoration: none; /* Remove underline by default */
+}
+
+.profile:hover {
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+.profile .dropdown-title {
+    text-decoration: none; /* Remove underline for the div as well */
+}
+
+.profile:hover .dropdown-title {
+    text-decoration: none; /* Remove underline when hovering over the div */
+}
+/* 3.25 Img-fluid*/
+.img
+
+
 /* 4. Theme Style */
 /* 4.1 Misc */
 :root {
@@ -2968,3 +2992,5 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
   100% {
     -webkit-transform: scale(1.2, 1.2);
     opacity: 0.0; } }
+/* 6.0 Style new*/
+/* 6.1 Notification*/
