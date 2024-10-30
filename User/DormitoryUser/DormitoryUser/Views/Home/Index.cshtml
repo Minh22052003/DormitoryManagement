@@ -1,81 +1,45 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<DormitoryUser.Models.Notification>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="main-content">
     <section class="section">
-        <div class="section-header">
-            <h1>Thông tin</h1>
-        </div>
         <div class="section-body">
             <div class="row">
-                <div class="col-12 col-md-12 col-lg-7">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Thông tin sinh viên</h4>
-                            <div class="card-header-action">
-                            </div>
+                <!-- Chi tiết thông báo bên trái -->
+                <div class="col-12 col-lg-12 col-xl-9">
+                    <div class="card" style="border: none;">
+                        <div class="card-header" style="border: none;">
+                            <h4>Chi tiết thông báo</h4>
                         </div>
+                        
                         <div class="card-body">
-                            <div class="card author-box card-primary">
-                                <div class="card-body">
-                                    <div class="author-box-left">
-                                        <img alt="image" src="~/img/avatar/avatar-1.png" class="rounded-circle author-box-picture">
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="author-box-details">
-                                        <div class="">
-                                            <p><strong>Họ và tên: </strong><span class="student-name"></span></p>
-                                            <p><strong>Mã số sinh viên: </strong><span id="student-id"></span></p>
-                                            <p><strong>Ngày sinh: </strong><span id="student-birth"></span></p>
-                                            <p><strong>Địa chỉ: </strong><span id="student-address"></span></p>
-                                            <p><strong>Thông tin liên lạc: </strong><span id="student-contact"></span></p>
-                                            <p><strong>Ngày đăng ký: </strong> </strong><span id="student-register-date"></span></p>
-                                            <p><strong>Ngày cập nhật: </strong> </strong><span id="student-update-date"></span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Phòng trọ</h4>
-                            <div class="card-header-action">
-                                <a href="/app/frontend/pages/phong-tro.html" class="btn btn-primary btn-round">Chi tiết...</a>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="card author-box">
-                                <div class="card-body">
-                                    <div class="" id="info-description">
-                                        <div class="">
-                                            <p><strong>Phòng trọ: </strong><span id="student-room"></span></p>
-                                            <p><strong>Tiền trọ: </strong><span id="room-fee"></span>đ</p>
-                                            <p><strong>Hạn đóng tiền: </strong><span id="due-date">Mùng 6 hàng tháng</span></p>
-                                            <p><strong>Trạng thái: </strong><span id="fee-status"></span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <h5 class="card-title">title</h5>
+                            <p class="card-text">content</p>
+                            <p class="text-muted">Ngày đăng:date</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-12 col-lg-5">
+
+                <!-- Danh sách thông báo còn lại bên phải -->
+                <div class="col-12 col-lg-12 col-xl-3">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Lịch</h4>
+                            <h4>Các thông báo khác</h4>
                         </div>
-                        <div class="card-body">
-                            <div class="fc-overflow">
-                                <div id="calendar" class="fc-overflow"></div>
-                            </div>
+                        <div class="list-group">
+                            @foreach(var i in Model)
+                            {
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <h6 class="mb-1">@i.title</h6>
+                                    <small class="text-muted">@i.date</small>
+                                </a>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
+    </section>
 </div>
-            </section>
-        </div>

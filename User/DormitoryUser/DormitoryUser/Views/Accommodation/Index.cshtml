@@ -1,0 +1,51 @@
+﻿@model List<DormitoryUser.Models.Accommodation>
+
+@{
+    Layout = "~/Views/Shared/IntroLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Phòng ở tại Ký túc xá</h1>
+    <p>Ký túc xá cung cấp nhiều loại phòng ở phù hợp với nhu cầu của sinh viên.</p>
+
+    <!-- Danh sách loại phòng -->
+    <div class="row">
+        @foreach (var accommodation in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@accommodation.ImageUrl" class="card-img-top" alt="@accommodation.Title">
+                    <div class="card-body">
+                        <h5 class="card-title">@accommodation.Title</h5>
+                        <p class="card-text">@accommodation.Description</p>
+                        <p class="card-text"><strong>Giá: @accommodation.Price VNĐ/tháng</strong></p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Khuôn viên ký túc xá -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h3>Khuôn viên Ký túc xá</h3>
+            <p>@Model.FirstOrDefault()?.CampusDescription</p>
+        </div>
+    </div>
+
+    <!-- Hình ảnh khuôn viên -->
+    <div class="row mt-3">
+        @foreach (var imageUrl in Model.FirstOrDefault()?.CampusImageUrls)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <img src="@imageUrl" class="card-img-top" alt="Hình ảnh khuôn viên">
+                    <div class="card-body">
+                        <h5 class="card-title">Hình ảnh khuôn viên</h5>
+                        <p class="card-text">Khuôn viên xanh mát, lý tưởng cho các hoạt động ngoài trời.</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

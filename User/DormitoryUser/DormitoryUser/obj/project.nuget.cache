@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iorZWMxCejo=",
+  "dgSpecHash": "7OjyecOPxTk=",
   "success": true,
-  "projectFilePath": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

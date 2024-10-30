@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj": {}
+    "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj": {}
   },
   "projects": {
-    "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj": {
+    "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
         "projectName": "DormitoryUser",
-        "projectPath": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
+        "projectPath": "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

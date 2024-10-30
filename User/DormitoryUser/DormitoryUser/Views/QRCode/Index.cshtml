@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Thanh toán online</h1>
+        </div>
+        <section class="section-body d-flex justify-content-center">
+            <div class="card bg-white rounded shadow w-auto p-5 mt-3 mb-3 d-inline-block">
+                <div class="d-flex flex-column align-items-center">
+                    <!-- ID giao dịch và số tiền -->
+                    <h5 class="text-primary">IC1471432 - 600,000</h5>
+
+                    <!-- Thông tin sinh viên -->
+                    <h5 class="mt-2 text-primary">211211879 - Trần Nho Tỉnh</h5>
+
+                    <!-- QR Code -->
+                    <div class="mt-3" id="qrcode"></div>
+                </div>
+            </div>
+        </section>
+
+    </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+    // Tạo mã QR từ ID giao dịch
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: "IC1471432", // Nội dung của mã QR, có thể thay đổi theo yêu cầu
+        width: 150, // Kích thước mã QR
+        height: 150,
+        colorDark : "#000000", // Màu mã QR
+        colorLight : "#ffffff", // Màu nền mã QR
+        correctLevel : QRCode.CorrectLevel.H // Độ chính xác của mã QR
+    });
+</script>
+

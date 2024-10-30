@@ -1,48 +1,73 @@
-﻿@{
+﻿@model DormitoryUser.Models.RoomIsActive
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-            <!-- Main Content -->
-            <div class="main-content">
-                <section class="section">
-                    <div class="section-header">
-                        <h1>Phòng trọ</h1>
-                    </div>
-                    <div class="section-body">
-                        <div class="row">
-                            <div class="col-12 col-lg-12 col-xl-5">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Phòng trọ</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="author-box-details" id="info-description">
-                                                    <div class="author-box-name">
-                                                        <p><strong>Phòng trọ: </strong><span id="student-room"></span></p>
-                                                        <p><strong>Số người hiện tại: </strong><span id="current-number"></span></p>
-                                                        <p><strong>Số người tối đa: </strong><span id="max-number"></span></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-12 col-xl-7">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Danh sách bạn cùng phòng</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div id="roomate-table"></div>
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Phòng trọ</h1>
+        </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-lg-12 col-xl-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Phòng trọ</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="author-box-details" id="info-description">
+                                        <div class="author-box-name">
+                                            <p><strong>Phòng trọ: </strong><span id="student-room">@Model.RoomName</span></p>
+                                            <p><strong>Số người hiện tại: </strong><span id="current-number">@Model.CurrentNumber</span></p>
+                                            <p><strong>Số người tối đa: </strong><span id="max-number"></span>@Model.MaxNumber</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-12 col-lg-12 col-xl-7">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Danh sách bạn cùng phòng</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Họ và tên</th>
+                                            <th>Ngày sinh</th>
+                                            <th>Giới tính</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Quê quán</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.Roommates.Count; i++)
+
+                                        {
+                                            <tr>
+                                                <td>@(i + 1)</td>
+                                                <td>@Model.Roommates[i].FullName</td>
+                                                <td>@Model.Roommates[i].BirthDate.ToString("yyyy-MM-dd")</td>
+                                                <td>@Model.Roommates[i].Gender</td>
+                                                <td>@Model.Roommates[i].PhoneNumber</td>
+                                                <td>@Model.Roommates[i].Hometown</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            </section>
         </div>
+    </section>
+</div>
