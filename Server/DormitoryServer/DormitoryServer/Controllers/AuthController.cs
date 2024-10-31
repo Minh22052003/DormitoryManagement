@@ -31,9 +31,8 @@ namespace DormitoryServer.Controllers
         {
             var account = await _context.AccountStudents
             .Where(a => a.StudentId == request.User_Name && a.Password == request.Password)
-            .Select(a => a.AccountStudent1)
             .FirstOrDefaultAsync();
-            if (account == 0)
+            if (account == null)
             {
                 return NotFound("Sai tài khoản");
             }
@@ -43,7 +42,8 @@ namespace DormitoryServer.Controllers
                 {
                     new Claim(JwtRegisteredClaimNames.Sub, request.User_Name),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim("UserId", account.ToString())
+                    new Claim("UserId", account.StudentId),
+                    new Claim("Roles", "Student")
                 };
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -58,17 +58,7 @@ namespace DormitoryServer.Controllers
 
                 var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-                // Tạo cookie chứa JWT
-                var cookieOptions = new CookieOptions
-                {
-                    HttpOnly = true,
-                    Secure = true,
-                    SameSite = SameSiteMode.Strict,
-                    Expires = DateTime.Now.AddMinutes(30)
-                };
-
-                Response.Cookies.Append("AuthToken", jwtToken, cookieOptions);
-                return Ok("Đăng nhập thành công");
+                return Ok(jwtToken);
             }
         }
 

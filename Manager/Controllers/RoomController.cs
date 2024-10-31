@@ -7,12 +7,13 @@ namespace Manager.Controllers
     public class RoomController : Controller
     {
         private RoomData _roomData = new RoomData();
-        private StudentData _studentData = new StudentData();
+        private StudentData _studentData;
         private EquipmentData _equipmentData = new EquipmentData();
         List<Room> rooms = new List<Room>();
-        public RoomController()
+        public RoomController(IHttpContextAccessor httpContextAccessor)
         {
             rooms = _roomData.GetAllRoom().Result;
+            _studentData = new StudentData(httpContextAccessor);
         }
         public IActionResult Room()
         {

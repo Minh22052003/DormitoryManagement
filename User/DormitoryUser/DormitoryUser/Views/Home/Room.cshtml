@@ -56,7 +56,7 @@
                                                 <td>@(i + 1)</td>
                                                 <td>@Model.Roommates[i].FullName</td>
                                                 <td>@Model.Roommates[i].BirthDate.ToString("yyyy-MM-dd")</td>
-                                                <td>@Model.Roommates[i].Gender</td>
+                                                <td>@(Model.Roommates[i].Gender.HasValue ? (Model.Roommates[i].Gender.Value ? "Nam" : "Nữ") : "Không xác định")</td>
                                                 <td>@Model.Roommates[i].PhoneNumber</td>
                                                 <td>@Model.Roommates[i].Hometown</td>
                                             </tr>

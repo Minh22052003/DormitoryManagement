@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -50,6 +51,7 @@ var roles = await roleService.GetRolesFromDatabaseAsync();
 
 builder.Services.AddAuthorization(options =>
 {
+    options.AddPolicy("Student", policy => policy.RequireClaim("Roles", "Student"));
     foreach (var role in roles)
     {
         options.AddPolicy(role, policy => policy.RequireClaim("Roles", role));

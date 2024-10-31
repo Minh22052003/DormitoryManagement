@@ -33,13 +33,13 @@
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3">Mã sinh viên<span class="text-danger"> (*)</span></label>
-                                                <input class="form-control" value="@Model.StudentId" readonly>
+                                                <input class="form-control" value="@Model.StudentID" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3">Phòng ở hiện tại<span class="text-danger"> (*)</span></label>
-                                                <input class="form-control" value="@Model.CurrentRoom" readonly>
+                                                <input class="form-control" value="@Model.RoomName" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -47,7 +47,7 @@
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3 fw-bold">Ngày sinh<span class="text-danger"> (*)</span></label>
-                                                <input type="date" class="form-control" value="@Model.DateOfBirth.ToString("yyyy-MM-dd")">
+                                                <input type="date" class="form-control" value="@Model.BirthDate">
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-lg-6 col-xl-4">
@@ -55,11 +55,11 @@
                                                 <label class="form-label my-3 fw-bold">Giới tính</label>
                                                 <div class="d-flex ml-5">
                                                     <div class="me-3">
-                                                        <input class="form-check-input" type="radio" name="Gender" value="Nam" @(Model.Gender == "Nam" ? "checked" : "") readonly>
+                                                        <input class="form-check-input" type="radio" name="Gender" value="Nam" @(Model.Gender == true ? "checked" : "") readonly>
                                                         <label class="form-check-label">Nam</label>
                                                     </div>
                                                     <div class="ml-5">
-                                                        <input class="form-check-input" type="radio" name="Gender" value="Nữ" @(Model.Gender == "Nữ" ? "checked" : "") readonly>
+                                                        <input class="form-check-input" type="radio" name="Gender" value="Nữ" @(Model.Gender == false ? "checked" : "") readonly>
                                                         <label class="form-check-label">Nữ</label>
                                                     </div>
                                                 </div>
@@ -82,13 +82,13 @@
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3">Quê quán</label>
-                                                <input class="form-control" value="@Model.Hometown" readonly>
+                                                <input class="form-control" value="@Model.ProvinceName" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3">Số CMND/Thẻ căn cước</label>
-                                                <input class="form-control" value="@Model.IdentityCard">
+                                                <input class="form-control" value="@Model.InsuranceNumber">
                                             </div>
                                         </div>
                                     </div>
@@ -96,19 +96,19 @@
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3 fw-bold">Số BHXH</label>
-                                                <input class="form-control" value="@Model.SocialInsuranceNumber">
+                                                <input class="form-control" value="@Model.InsuranceNumber">
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3">Số điện thoại gia đình<span class="text-danger"> (*)</span></label>
-                                                <input class="form-control" value="@Model.FamilyPhoneNumber">
+                                                <input class="form-control" value="@Model.RelativePhoneNumber">
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3">Địa chỉ báo tin<span class="text-danger"> (*)</span></label>
-                                                <input class="form-control" value="@Model.NotificationAddress">
+                                                <input class="form-control" value="@Model.RelativeAddress">
                                             </div>
                                         </div>
                                     </div>
