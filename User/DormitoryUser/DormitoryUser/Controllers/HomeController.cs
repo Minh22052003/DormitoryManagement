@@ -1,4 +1,5 @@
-﻿using DormitoryUser.Models;
+﻿using DormitoryUser.Data;
+using DormitoryUser.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,11 +7,15 @@ namespace DormitoryUser.Controllers
 {
     public class HomeController : Controller
     {
+        private StudentData studentData;
+        private RoomData roomData;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
+            studentData = new StudentData(httpContextAccessor);
+            roomData = new RoomData(httpContextAccessor);
         }
 
         public IActionResult Index()
@@ -23,39 +28,33 @@ namespace DormitoryUser.Controllers
             return View();
         }
 
-        public IActionResult Room()
+        public async Task<IActionResult> Room()
         {
-            // Tạo dữ liệu mẫu cho phòng trọ
-            var room = new RoomIsActive
+            var roommates = studentData.GetStudentByRoomAsyn().Result;
+            var room = roomData.GetRoomIn().Result;
+            List<RoomMate> roomMates = new List<RoomMate>();
+            foreach (var item in roommates)
             {
-                RoomId = 1,
-                RoomName = "Phòng A1",
-                CurrentNumber = 2,
-                MaxNumber = 4,
-                Roommates = new List<RoomMate>
+                RoomMate roomMate = new RoomMate
                 {
-                    new RoomMate
-                    {
-                        Id = 1,
-                        FullName = "Nguyễn Văn A",
-                        BirthDate = new DateTime(1999, 1, 1),
-                        Gender = "Nam",
-                        PhoneNumber = "0123456789",
-                        Hometown = "Hà Nội"
-                    },
-                    new RoomMate
-                    {
-                        Id = 2,
-                        FullName = "Trần Thị B",
-                        BirthDate = new DateTime(2000, 5, 12),
-                        Gender = "Nữ",
-                        PhoneNumber = "0987654321",
-                        Hometown = "Hồ Chí Minh"
-                    }
-                }
+                    Id = item.StudentID,
+                    FullName = item.FullName,
+                    BirthDate = (DateTime)item.BirthDate,
+                    Gender = item.Gender,
+                    PhoneNumber = item.PhoneNumber,
+                    Hometown = item.ProvinceName
+                };
+                roomMates.Add(roomMate);
             };
-
-            return View(room);
+            var roominactive = new RoomIsActive
+            {
+                RoomId = room.RoomID,
+                RoomName = room.RoomName,
+                CurrentNumber = room.NumberOfStudent,
+                MaxNumber = room.Capacity,
+                Roommates = roomMates
+            };
+            return View(roominactive);
         }
 
         public IActionResult Facilities()

@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "D:\\Project1\\Server\\DormitoryServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|d:\\project1\\server\\dormitoryserver\\dormitoryserver\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|solutionrelative:dormitoryserver\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|d:\\project1\\server\\dormitoryserver\\dormitoryserver\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|solutionrelative:dormitoryserver\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|d:\\project1\\server\\dormitoryserver\\dormitoryserver\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|solutionrelative:dormitoryserver\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|d:\\project1\\server\\dormitoryserver\\dormitoryserver\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,12 +19,16 @@
       "RelativeMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|solutionrelative:dormitoryserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|d:\\project1\\server\\dormitoryserver\\dormitoryserver\\controllers\\invoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|solutionrelative:dormitoryserver\\controllers\\invoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|d:\\project1\\server\\dormitoryserver\\dormitoryserver\\dtos\\studentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|solutionrelative:dormitoryserver\\dtos\\studentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|d:\\project1\\server\\dormitoryserver\\dormitoryserver\\dtos\\dorminvoicedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|solutionrelative:dormitoryserver\\dtos\\dorminvoicedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|d:\\project1\\server\\dormitoryserver\\dormitoryserver\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|solutionrelative:dormitoryserver\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|d:\\project1\\server\\dormitoryserver\\dormitoryserver\\dtos\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA4D35AE-D28D-4F17-9ACD-9412848D2889}|DormitoryServer\\DormitoryServer.csproj|solutionrelative:dormitoryserver\\dtos\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,67 +51,88 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "StaffController.cs",
-              "DocumentMoniker": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\StaffController.cs",
-              "RelativeDocumentMoniker": "DormitoryServer\\Controllers\\StaffController.cs",
-              "ToolTip": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\StaffController.cs",
-              "RelativeToolTip": "DormitoryServer\\Controllers\\StaffController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwBUAAAAAAAAAAAAAAA==",
+              "Title": "RoomController.cs",
+              "DocumentMoniker": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\RoomController.cs",
+              "RelativeDocumentMoniker": "DormitoryServer\\Controllers\\RoomController.cs",
+              "ToolTip": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\RoomController.cs",
+              "RelativeToolTip": "DormitoryServer\\Controllers\\RoomController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T13:55:34.845Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "DormitoryServer\\Controllers\\AuthController.cs",
-              "ToolTip": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "DormitoryServer\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIAAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T13:47:29.85Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Program.cs",
-              "RelativeDocumentMoniker": "DormitoryServer\\Program.cs",
-              "ToolTip": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Program.cs",
-              "RelativeToolTip": "DormitoryServer\\Program.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAYwDcAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T13:46:01.074Z",
+              "WhenOpened": "2024-10-31T09:56:08.615Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "InvoiceController.cs",
-              "DocumentMoniker": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\InvoiceController.cs",
-              "RelativeDocumentMoniker": "DormitoryServer\\Controllers\\InvoiceController.cs",
-              "ToolTip": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\InvoiceController.cs",
-              "RelativeToolTip": "DormitoryServer\\Controllers\\InvoiceController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAARAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Program.cs",
+              "RelativeDocumentMoniker": "DormitoryServer\\Program.cs",
+              "ToolTip": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Program.cs",
+              "RelativeToolTip": "DormitoryServer\\Program.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAADEAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T12:06:43.108Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-31T09:01:11.347Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "DormInvoiceDTO.cs",
-              "DocumentMoniker": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\DTOs\\DormInvoiceDTO.cs",
-              "RelativeDocumentMoniker": "DormitoryServer\\DTOs\\DormInvoiceDTO.cs",
-              "ToolTip": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\DTOs\\DormInvoiceDTO.cs",
-              "RelativeToolTip": "DormitoryServer\\DTOs\\DormInvoiceDTO.cs",
+              "Title": "StudentDTO.cs",
+              "DocumentMoniker": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\DTOs\\StudentDTO.cs",
+              "RelativeDocumentMoniker": "DormitoryServer\\DTOs\\StudentDTO.cs",
+              "ToolTip": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\DTOs\\StudentDTO.cs",
+              "RelativeToolTip": "DormitoryServer\\DTOs\\StudentDTO.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAAADAAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-31T02:02:10.208Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StudentController.cs",
+              "DocumentMoniker": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\StudentController.cs",
+              "RelativeDocumentMoniker": "DormitoryServer\\Controllers\\StudentController.cs",
+              "ToolTip": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\StudentController.cs",
+              "RelativeToolTip": "DormitoryServer\\Controllers\\StudentController.cs",
+              "ViewState": "AgIAAN4AAAAAAAAAAAAowOgAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-31T01:58:18.724Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "DormitoryServer\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Properties\\launchSettings.json",
+              "RelativeToolTip": "DormitoryServer\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-31T00:51:55.125Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginRequest.cs",
+              "DocumentMoniker": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\DTOs\\LoginRequest.cs",
+              "RelativeDocumentMoniker": "DormitoryServer\\DTOs\\LoginRequest.cs",
+              "ToolTip": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\DTOs\\LoginRequest.cs",
+              "RelativeToolTip": "DormitoryServer\\DTOs\\LoginRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T12:06:36.389Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-31T00:50:02.392Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "DormitoryServer\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "DormitoryServer\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAQwCwAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T13:47:29.85Z"
             }
           ]
         }

@@ -8754,11 +8754,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
+      "projectUniqueName": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
       "projectName": "DormitoryUser",
-      "projectPath": "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
+      "projectPath": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\DormitoryUser.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\obj\\",
+      "outputPath": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

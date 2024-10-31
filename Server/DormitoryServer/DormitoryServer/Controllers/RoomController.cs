@@ -1,5 +1,6 @@
 ﻿using DormitoryServer.DTOs;
 using DormitoryServer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,8 @@ namespace DormitoryServer.Controllers
         {
             _context = context;
         }
+
+        [Authorize(Policy = "Manager")]
         [HttpGet("getallroom")]
         public async Task<ActionResult<List<RoomDTO>>> GetRooms()
         {
@@ -41,6 +44,7 @@ namespace DormitoryServer.Controllers
             return roomDTOs;
         }
 
+        [Authorize(Policy = "Manager")]
         [HttpGet("getallroomtype")]
         public async Task<ActionResult<List<RoomTypeDTO>>> GetRoomTypes()
         {
@@ -57,6 +61,40 @@ namespace DormitoryServer.Controllers
                 });
             }
             return roomTypeDTOs;
+        }
+
+
+        [Authorize(Policy = "Student")]
+        [HttpGet("getroombysytudent")]
+        public async Task<ActionResult<RoomDTO>> GetRoomByStudent()
+        {
+            var studentId = User.FindFirst("UserId")?.Value;
+            var student = await _context.Students.FindAsync(studentId);
+            if (student == null)
+            {
+                return NotFound("Không tìm thấy sinh viên");
+            }
+            var room = await _context.Rooms.FindAsync(student.RoomId);
+            if (room == null)
+            {
+                return NotFound("Không tìm thấy phòng");
+            }
+            var roomDTO = new RoomDTO
+            {
+                RoomID = room.RoomId,
+                RoomTypeID = room.RoomTypeId,
+                BuildingID = room.BuildingId,
+                BuildingName = room.Building?.BuildingName,
+                LeaderID = getLeader(room.RoomId)?.StudentId ?? "Unknown",
+                LeaderName = getLeader(room.RoomId)?.FullName ?? "Unknown",
+                RoomName = room.RoomName,
+                NumberOfStudent = room.NumberOfStudent,
+                Capacity = room.RoomType?.Capacity,
+                RoomStatusID = room.RoomStatusId,
+                RoomStatusName = room.RoomStatus?.RoomStatusName,
+                RoomNote = room.RoomNote
+            };
+            return roomDTO;
         }
 
 

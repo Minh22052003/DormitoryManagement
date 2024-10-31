@@ -1,18 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\",
+  "WorkspaceRootPath": "D:\\Project1\\User\\DormitoryUser\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|c:\\users\\admin\\downloads\\dormitorymanagement-devtinh\\dormitorymanagement-devtinh\\dormitoryuser\\dormitoryuser\\views\\changepassword\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\views\\changepassword\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|c:\\users\\admin\\downloads\\dormitorymanagement-devtinh\\dormitorymanagement-devtinh\\dormitoryuser\\dormitoryuser\\views\\qrcode\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\views\\qrcode\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|c:\\users\\admin\\downloads\\dormitorymanagement-devtinh\\dormitorymanagement-devtinh\\dormitoryuser\\dormitoryuser\\views\\track_rent\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\views\\track_rent\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,39 +27,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\Views\\ChangePassword\\Index.cshtml",
-              "RelativeDocumentMoniker": "DormitoryUser\\Views\\ChangePassword\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\Views\\ChangePassword\\Index.cshtml",
-              "RelativeToolTip": "DormitoryUser\\Views\\ChangePassword\\Index.cshtml",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAADEAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-13T10:24:43.184Z",
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "DormitoryUser\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-31T10:16:41.421Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\Views\\QRCode\\Index.cshtml",
-              "RelativeDocumentMoniker": "DormitoryUser\\Views\\QRCode\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\Views\\QRCode\\Index.cshtml",
-              "RelativeToolTip": "DormitoryUser\\Views\\QRCode\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-14T05:21:47.834Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\Views\\Track_Rent\\Index.cshtml",
-              "RelativeDocumentMoniker": "DormitoryUser\\Views\\Track_Rent\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Admin\\Downloads\\DormitoryManagement-devTinh\\DormitoryManagement-devTinh\\DormitoryUser\\DormitoryUser\\Views\\Track_Rent\\Index.cshtml",
-              "RelativeToolTip": "DormitoryUser\\Views\\Track_Rent\\Index.cshtml",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAAAGkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-13T11:26:06.964Z"
             }
           ]
         }

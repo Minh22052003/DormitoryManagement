@@ -8,12 +8,13 @@ namespace Manager.Controllers
 {
     public class UserController : Controller
     {
-        private StudentData _studentData = new StudentData();
+        private StudentData _studentData;
         private StaffData _staffData;
         private EquipmentData _equipmentData = new EquipmentData();
         public UserController(IHttpContextAccessor httpContextAccessor)
         {
             _staffData = new StaffData(httpContextAccessor);
+            _studentData = new StudentData(httpContextAccessor);
         }
 
         [HttpGet]
@@ -32,16 +33,29 @@ namespace Manager.Controllers
             catch (Exception ex)
             {
                 // Xử lý các lỗi khác
-                return RedirectToAction("Error", new { message = "Có lỗi xảy ra, vui lòng thử lại sau." });
+                return RedirectToAction("Error", new { message = ex });
             }
         }
         [HttpGet]
         public IActionResult StudentDetail(string id)
         {
-
-            List<Student> students = _studentData.GetAllStudentAsyn().Result;
-            var student = students.Find(s => s.StudentID == id);
-            return View(student);
+            try
+            {
+                List<Student> students = _studentData.GetAllStudentAsyn().Result;
+                var student = students.Find(s => s.StudentID == id);
+                return View(student);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
+                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào thông tin sinh viên." });
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các lỗi khác
+                return RedirectToAction("Error", new { message = "Có lỗi xảy ra, vui lòng thử lại sau." });
+            }
+            
         }
 
 
@@ -102,7 +116,7 @@ namespace Manager.Controllers
         {
             ViewData["Message"] = message; // Truyền thông điệp lỗi vào ViewData
             return View("Error"); // Trả về View lỗi
-        }
+        }  
 
 
     }
