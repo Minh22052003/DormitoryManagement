@@ -6,11 +6,11 @@ namespace Manager.Controllers
 {
     public class SupportRequestController : Controller
     {
-        private readonly RequestData _requestData = new RequestData();
+        private readonly RequestData _requestData;
         List<Request> requests = new List<Request>();
-        public SupportRequestController()
+        public SupportRequestController(IHttpContextAccessor httpContextAccessor)
         {
-            requests = _requestData.GetAllUtilityMeter().Result;
+            _requestData = new RequestData(httpContextAccessor);
         }
         public IActionResult List()
         {

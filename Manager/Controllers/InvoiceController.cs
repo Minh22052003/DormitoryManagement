@@ -6,13 +6,12 @@ namespace Manager.Controllers
 {
     public class InvoiceController : Controller
     {
-        private readonly InvoiceData _invoiceData = new InvoiceData();
+        private readonly InvoiceData _invoiceData;
         List<DormInvoice> dormInvoices = new List<DormInvoice>();
         List<RoomInvoice> roomInvoices = new List<RoomInvoice>();
-        public InvoiceController()
+        public InvoiceController(IHttpContextAccessor httpContextAccessor)
         {
-            dormInvoices = _invoiceData.GetAllDormInvoice().Result;
-            roomInvoices = _invoiceData.GetAllRoomInvoice().Result;
+            _invoiceData = new InvoiceData(httpContextAccessor);
         }
         public IActionResult DormInvoice()
         {

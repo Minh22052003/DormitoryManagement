@@ -10,7 +10,7 @@ namespace Manager.Controllers
     {
         private StudentData _studentData;
         private StaffData _staffData;
-        private EquipmentData _equipmentData = new EquipmentData();
+        private EquipmentData _equipmentData;
         public UserController(IHttpContextAccessor httpContextAccessor)
         {
             _staffData = new StaffData(httpContextAccessor);

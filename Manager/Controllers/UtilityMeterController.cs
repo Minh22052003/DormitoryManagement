@@ -6,17 +6,17 @@ namespace Manager.Controllers
 {
     public class UtilityMeterController : Controller
     {
-        private readonly UtilityMeterData _utilityMeterData = new UtilityMeterData();
-        private readonly RoomData roomData = new RoomData();
-        private readonly BuildingData buildingData = new BuildingData();
+        private readonly UtilityMeterData _utilityMeterData;
+        private readonly RoomData _roomData;
+        private readonly BuildingData _buildingData;
         List<UtilityMeter> utilityMeters = new List<UtilityMeter>();
         List<Room> rooms = new List<Room>();
         List<Building> buildings = new List<Building>();
-        public UtilityMeterController()
+        public UtilityMeterController(IHttpContextAccessor httpContextAccessor)
         {
-            utilityMeters = _utilityMeterData.GetAllUtilityMeter().Result;
-            rooms = roomData.GetAllRoom().Result;
-            buildings = buildingData.GetAllBuilding().Result;
+            _utilityMeterData = new UtilityMeterData(httpContextAccessor);
+            _roomData = new RoomData(httpContextAccessor);
+            _buildingData = new BuildingData(httpContextAccessor);
         }
         public IActionResult Record()
         {

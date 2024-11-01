@@ -6,14 +6,15 @@ namespace Manager.Controllers
 {
     public class RoomController : Controller
     {
-        private RoomData _roomData = new RoomData();
+        private RoomData _roomData;
         private StudentData _studentData;
-        private EquipmentData _equipmentData = new EquipmentData();
+        private EquipmentData _equipmentData;
         List<Room> rooms = new List<Room>();
         public RoomController(IHttpContextAccessor httpContextAccessor)
         {
-            rooms = _roomData.GetAllRoom().Result;
+            _roomData = new RoomData(httpContextAccessor);
             _studentData = new StudentData(httpContextAccessor);
+            _equipmentData = new EquipmentData(httpContextAccessor);
         }
         public IActionResult Room()
         {

@@ -6,23 +6,23 @@ namespace Manager.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly BuildingData buildingData = new BuildingData();
-        private readonly RoomTypeData roomTypeData = new RoomTypeData();
-        private readonly RoleData roleData = new RoleData();
-        private readonly EquipmentData equipmentData = new EquipmentData();
-        private readonly ServiceData serviceData = new ServiceData();
+        private readonly BuildingData _buildingData;
+        private readonly RoomTypeData _roomTypeData;
+        private readonly RoleData _roleData;
+        private readonly EquipmentData _equipmentData;
+        private readonly ServiceData _serviceData;
         List<Building> buildings = new List<Building>();
         List<RoomType> roomTypes = new List<RoomType>();
         List<Role> roles = new List<Role>();
         List<Equipment> equipments = new List<Equipment>();
         List<Service> services = new List<Service>();
-        public AdminController()
+        public AdminController(IHttpContextAccessor httpContextAccessor)
         {
-            buildings = buildingData.GetAllBuilding().Result;
-            roomTypes = roomTypeData.GetAllRoomType().Result;
-            roles = roleData.GetAllRole().Result;
-            equipments = equipmentData.GetAllEquipment().Result;
-            services = serviceData.GetAllService().Result;
+            _buildingData = new BuildingData(httpContextAccessor);
+            _equipmentData = new EquipmentData(httpContextAccessor);
+            _roomTypeData = new RoomTypeData(httpContextAccessor);
+            _roleData = new RoleData(httpContextAccessor);
+            _serviceData = new ServiceData(httpContextAccessor);
         }
         public IActionResult ListBuilding()
         {

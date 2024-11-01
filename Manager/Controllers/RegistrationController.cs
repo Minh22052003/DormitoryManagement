@@ -6,11 +6,11 @@ namespace Manager.Controllers
 {
     public class RegistrationController : Controller
     {
-        private RegistrationData _registrationData = new RegistrationData();
+        private RegistrationData _registrationData;
         List<RegistrationVM> registrations = new List<RegistrationVM>();
-        public RegistrationController()
+        public RegistrationController(IHttpContextAccessor httpContextAccessor)
         {
-            registrations = _registrationData.GetAllRegistration().Result;
+            _registrationData = new RegistrationData(httpContextAccessor);
         }
         public IActionResult Registrations()
         {
