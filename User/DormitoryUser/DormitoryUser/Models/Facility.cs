@@ -2,9 +2,10 @@
 {
     public class Facility
     {
-        public int Id { get; set; }               // ID cơ sở vật chất
-        public string FacilityName { get; set; }  // Tên cơ sở vật chất
-        public string Description { get; set; }    // Mô tả
-        public bool IsAvailable { get; set; }      // Trạng thái có sẵn
+        public int? EquipmentID { get; set; }
+        public string? EquipmentName { get; set; }
+        public decimal? Price { get; set; }
+        public int? Quantity { get; set; }
+        public string? Condition { get; set; }
     }
 }

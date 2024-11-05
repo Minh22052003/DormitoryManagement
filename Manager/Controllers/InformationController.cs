@@ -6,18 +6,30 @@ namespace Manager.Controllers
 {
     public class InformationController : Controller
     {
-        private AnnouncementData _announcementData = new AnnouncementData();
-        private NewsData _newData = new NewsData();
-        List<Announcement> announcements = new List<Announcement>();
-        List<New> newsList = new List<New>();
-        public InformationController()
+        private AnnouncementData _announcementData;
+        private NewsData _newData;
+        public InformationController(IHttpContextAccessor httpContextAccessor)
         {
-            announcements = _announcementData.GetAllAnnouncement().Result;
-            newsList = _newData.GetAllNews().Result;
+            _newData = new NewsData(httpContextAccessor);
+            _announcementData = new AnnouncementData(httpContextAccessor);
         }
         public IActionResult Announcement()
         {
-            return View(announcements);
+            try
+            {
+                List<Announcement> announcements = _announcementData.GetAllAnnouncement().Result;
+                return View(announcements);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
+                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách sinh viên." });
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các lỗi khác
+                return RedirectToAction("Error", new { message = ex });
+            }
         }
         public IActionResult Create_Announcement()
         {
@@ -25,7 +37,21 @@ namespace Manager.Controllers
         }
         public IActionResult News()
         {
-            return View(newsList);
+            try
+            {
+                List<New> newsList = _newData.GetAllNews().Result;
+                return View(newsList);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
+                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách sinh viên." });
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các lỗi khác
+                return RedirectToAction("Error", new { message = ex });
+            }
         }
         public IActionResult Create_News()
         {

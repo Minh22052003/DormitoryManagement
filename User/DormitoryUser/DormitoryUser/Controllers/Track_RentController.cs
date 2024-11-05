@@ -2,7 +2,7 @@
 
 namespace DormitoryUser.Controllers
 {
-    public class Track_Rent : Controller
+    public class Track_RentController : Controller
     {
         public IActionResult Index()
         {

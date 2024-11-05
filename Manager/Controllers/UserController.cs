@@ -10,7 +10,7 @@ namespace Manager.Controllers
     {
         private StudentData _studentData;
         private StaffData _staffData;
-        private EquipmentData _equipmentData = new EquipmentData();
+        private EquipmentData _equipmentData;
         public UserController(IHttpContextAccessor httpContextAccessor)
         {
             _staffData = new StaffData(httpContextAccessor);
@@ -111,6 +111,30 @@ namespace Manager.Controllers
             var staff = _staffData.GetStaffAsync().Result;
             return View(staff);
         }
+
+        [HttpPost]
+        public IActionResult UpdateProfile(Staff updatedStaff)
+        {
+            if (ModelState.IsValid)
+            {
+                // Lưu các thay đổi vào database
+                // Ví dụ: _context.Staffs.Update(updatedStaff);
+                // _context.SaveChanges();
+
+                return RedirectToAction("StudentDetail", new { id = updatedStaff.StaffID });
+            }
+
+            // Nếu có lỗi, trả lại view cùng với dữ liệu hiện có
+            return View(updatedStaff);
+        }
+
+
+
+
+
+
+
+
 
         public IActionResult Error(string message)
         {

@@ -1,40 +1,39 @@
-﻿using Manager.Models;
-using Microsoft.AspNetCore.Http;
+﻿using DormitoryUser.Models;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 
-namespace Manager.Data
+namespace DormitoryUser.Data
 {
-    public class RegistrationData
+    public class AnnouncementData
     {
         private readonly HttpClient _httpClient;
         private readonly Hosting _hosting = new Hosting();
         private readonly IHttpContextAccessor _httpContextAccessor;
         private string nameURL;
-        string keygetallregistration = "/api/Registration/getallregistration";
+        string keygetallannouncement = "/api/announcement/getallannouncement";
 
-        public RegistrationData(IHttpContextAccessor httpContextAccessor)
+        public AnnouncementData(IHttpContextAccessor httpContextAccessor)
         {
             _httpClient = new HttpClient();
             _httpContextAccessor = httpContextAccessor;
             nameURL = _hosting.nameurl;
         }
 
-        public async Task<List<RegistrationVM>> GetAllRegistration()
+        public async Task<List<Announcement>> GetAllAnnouncement()
         {
-            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt1");
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var url = nameURL + keygetallregistration;
-            List<RegistrationVM> roomInvoices;
+            var url = nameURL + keygetallannouncement;
+            List<Announcement> announcements;
             HttpResponseMessage response = await _httpClient.GetAsync(url);
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception(response.StatusCode.ToString());
             }
             string reponseData = await response.Content.ReadAsStringAsync();
-            roomInvoices = JsonConvert.DeserializeObject<List<RegistrationVM>>(reponseData);
-            return roomInvoices;
+            announcements = JsonConvert.DeserializeObject<List<Announcement>>(reponseData);
+            return announcements;
         }
     }
 }

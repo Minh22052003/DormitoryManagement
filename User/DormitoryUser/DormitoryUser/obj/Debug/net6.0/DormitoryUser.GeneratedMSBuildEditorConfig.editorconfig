@@ -62,10 +62,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project1/User/DormitoryUser/DormitoryUser/Views/Home/Request_Sent.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXF1ZXN0X1NlbnQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Project1/User/DormitoryUser/DormitoryUser/Views/Home/Room.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSb29tLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -104,6 +100,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Project1/User/DormitoryUser/DormitoryUser/Views/RequestDetail/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdERldGFpbFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project1/User/DormitoryUser/DormitoryUser/Views/RequestDetail/Request_Sent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdERldGFpbFxSZXF1ZXN0X1NlbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project1/User/DormitoryUser/DormitoryUser/Views/Shared/Error.cshtml]

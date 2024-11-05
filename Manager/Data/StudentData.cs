@@ -9,24 +9,25 @@ namespace Manager.Data
     {
         private readonly HttpClient _httpClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        string GetAllStudent = "https://localhost:7249/api/Student/getallstudent";
-        string GetAllStudentbyRoom = "https://localhost:7249/api/Student/getallstudentbyroom";
+        private readonly Hosting _hosting = new Hosting();
+        private string nameURL;
+        string keygetAllStudent = "/api/Student/getallstudent";
+        string keygetAllStudentbyRoom = "/api/Student/getallstudentbyroom";
 
         public StudentData(IHttpContextAccessor httpContextAccessor)
         {
             _httpClient = new HttpClient();
             _httpContextAccessor = httpContextAccessor;
+            nameURL = _hosting.nameurl;
         }
-
-
 
         public async Task<List<Student>> GetAllStudentAsyn()
         {
             List<Student> students;
             string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-            HttpResponseMessage response = await _httpClient.GetAsync(GetAllStudent);
+            var url = nameURL + keygetAllStudent;
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
                 string responsData = await response.Content.ReadAsStringAsync();
@@ -49,8 +50,8 @@ namespace Manager.Data
             Student student;
             string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-            HttpResponseMessage response = await _httpClient.GetAsync(GetAllStudent);
+            var url = nameURL + keygetAllStudentbyRoom;
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
                 string responsData = await response.Content.ReadAsStringAsync();
@@ -64,8 +65,9 @@ namespace Manager.Data
         }
         public async Task<List<Student>> GetStudentByRoomAsyn(string id)
         {
+            var urll = nameURL + keygetAllStudentbyRoom;
             List<Student> student;
-            string url = $"{GetAllStudentbyRoom}?idRoom={id}";
+            string url = $"{urll}?idRoom={id}";
 
             string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);

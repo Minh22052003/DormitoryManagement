@@ -6,24 +6,38 @@ namespace Manager.Controllers
 {
     public class RoomController : Controller
     {
-        private RoomData _roomData = new RoomData();
+        private RoomData _roomData;
         private StudentData _studentData;
-        private EquipmentData _equipmentData = new EquipmentData();
-        List<Room> rooms = new List<Room>();
+        private EquipmentData _equipmentData;
         public RoomController(IHttpContextAccessor httpContextAccessor)
         {
-            rooms = _roomData.GetAllRoom().Result;
+            _roomData = new RoomData(httpContextAccessor);
             _studentData = new StudentData(httpContextAccessor);
+            _equipmentData = new EquipmentData(httpContextAccessor);
         }
         public IActionResult Room()
         {
-            return View(rooms);
+            try
+            {
+                List<Room> rooms = _roomData.GetAllRoom().Result;
+                return View(rooms);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
+                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách sinh viên." });
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các lỗi khác
+                return RedirectToAction("Error", new { message = ex });
+            }
         }
 
         [HttpGet]
         public IActionResult RoomDetail(string id)
         {
-            Room room = rooms.Find(r => r.RoomID == id);
+            Room room = new Room();
 
             List<Student> students = _studentData.GetStudentByRoomAsyn(id).Result;
             ViewBag.listStudent = students;

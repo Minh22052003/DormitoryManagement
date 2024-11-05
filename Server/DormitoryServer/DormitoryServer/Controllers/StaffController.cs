@@ -20,7 +20,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
-        [Authorize(Policy = "Manager")]
+        [Authorize(Policy = "ManagerOrStudent")]
         [HttpGet("getallstaff")]
         public IActionResult GetAllStaff()
         {
@@ -102,6 +102,26 @@ namespace DormitoryServer.Controllers
                 }
             }
         }
+
+
+        //cho nhân viên cập nhật thông tin cá nhân thường xuyên
+        [HttpPut("updateprofilestaff")]
+        public IActionResult UpdateStaff([FromBody] StaffDTO staffDTO)
+        {
+            if (staffDTO == null)
+            {
+                return NotFound("Không tìm thấy dữ liệu gửi lên");
+            }
+            var staff = _context.staff.Find(staffDTO.StaffID);
+            if (staff == null)
+            {
+                return NotFound("Không tìm thấy thông tin người dùng");
+            }
+            staff.Office = staffDTO.Office;
+            staff.WorkSchedule = staffDTO.WorkSchedule;
+        }
+
+
 
         //[HttpPost("addstaff")]
         //public IActionResult AddStaff([FromBody] Staff staff)

@@ -6,41 +6,40 @@ namespace Manager.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly BuildingData buildingData = new BuildingData();
-        private readonly RoomTypeData roomTypeData = new RoomTypeData();
-        private readonly RoleData roleData = new RoleData();
-        private readonly EquipmentData equipmentData = new EquipmentData();
-        private readonly ServiceData serviceData = new ServiceData();
-        List<Building> buildings = new List<Building>();
-        List<RoomType> roomTypes = new List<RoomType>();
-        List<Role> roles = new List<Role>();
-        List<Equipment> equipments = new List<Equipment>();
-        List<Service> services = new List<Service>();
-        public AdminController()
+        private readonly BuildingData _buildingData;
+        private readonly RoomTypeData _roomTypeData;
+        private readonly RoleData _roleData;
+        private readonly EquipmentData _equipmentData;
+        private readonly ServiceData _serviceData;
+        public AdminController(IHttpContextAccessor httpContextAccessor)
         {
-            buildings = buildingData.GetAllBuilding().Result;
-            roomTypes = roomTypeData.GetAllRoomType().Result;
-            roles = roleData.GetAllRole().Result;
-            equipments = equipmentData.GetAllEquipment().Result;
-            services = serviceData.GetAllService().Result;
+            _buildingData = new BuildingData(httpContextAccessor);
+            _equipmentData = new EquipmentData(httpContextAccessor);
+            _roomTypeData = new RoomTypeData(httpContextAccessor);
+            _roleData = new RoleData(httpContextAccessor);
+            _serviceData = new ServiceData(httpContextAccessor);
         }
         public IActionResult ListBuilding()
         {
+            List<Building> buildings = _buildingData.GetAllBuilding().Result;
             return View(buildings);
         }
         [HttpGet]
         public IActionResult ListRoomType()
         {
+            List<RoomType> roomTypes = _roomTypeData.GetAllRoomType().Result;
             return View(roomTypes);
         }
         [HttpGet]
         public IActionResult ListRole()
         {
+            List<Role> roles = _roleData.GetAllRole().Result;
             return View(roles);
         }
         [HttpGet]
         public IActionResult ListEquipment()
         {
+            List<Equipment> equipments = _equipmentData.GetAllEquipment().Result;
             return View(equipments);
         }
         [HttpGet]
@@ -51,6 +50,7 @@ namespace Manager.Controllers
         [HttpGet]
         public IActionResult ListService()
         {
+            List<Service> services = _serviceData.GetAllService().Result;
             return View(services);
         }
         [HttpGet]
@@ -61,6 +61,8 @@ namespace Manager.Controllers
         [HttpGet]
         public IActionResult AddRoom()
         {
+            List<Building> buildings = _buildingData.GetAllBuilding().Result;
+            List<RoomType> roomTypes = _roomTypeData.GetAllRoomType().Result;
             ViewBag.buildings = buildings;
             ViewBag.roomtype = roomTypes;
             return View();

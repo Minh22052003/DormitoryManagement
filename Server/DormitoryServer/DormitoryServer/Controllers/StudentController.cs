@@ -95,7 +95,6 @@ namespace DormitoryServer.Controllers
         }
 
         [Authorize(Policy = "Student")]
-        // GET: api/student/5
         [HttpGet("getprofilestudent")]
         public async Task<ActionResult<Student>> GetStudent()
         {

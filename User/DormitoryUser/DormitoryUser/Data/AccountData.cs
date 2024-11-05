@@ -8,14 +8,14 @@ namespace DormitoryUser.Data
     public class AccountData
     {
         private readonly HttpClient _httpClient;
-        private readonly ServerURL _serverURL = new ServerURL();
+        private readonly Hosting _serverURL = new Hosting();
         private string NameUrl;
         string keylogin = $"/api/Auth/loginsv";
 
         public AccountData()
         {
             _httpClient = new HttpClient();
-            NameUrl = _serverURL.URL;
+            NameUrl = _serverURL.nameurl;
         }
 
         public async Task<HttpResponseMessage> Post_LoginUserAsync(Login loginuser)
