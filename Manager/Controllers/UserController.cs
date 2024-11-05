@@ -113,19 +113,15 @@ namespace Manager.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateProfile(Staff updatedStaff)
+        public async Task<IActionResult> UpdateProfileAsync(Staff updatedStaff)
         {
-            if (ModelState.IsValid)
+            if (updatedStaff != null)
             {
-                // Lưu các thay đổi vào database
-                // Ví dụ: _context.Staffs.Update(updatedStaff);
-                // _context.SaveChanges();
-
-                return RedirectToAction("StudentDetail", new { id = updatedStaff.StaffID });
+                await _staffData.UpdateProfile(updatedStaff);
+                return RedirectToAction("TTCN", "User");
             }
 
-            // Nếu có lỗi, trả lại view cùng với dữ liệu hiện có
-            return View(updatedStaff);
+            return RedirectToAction("TTCN", "User");
         }
 
 
