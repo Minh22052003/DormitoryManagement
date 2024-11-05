@@ -45,19 +45,18 @@
                                         <tr>
                                             <th>STT</th>
                                             <th>Tên CSVC</th>
-                                            <th>Mô tả</th>
+                                            <th>Số lượng</th>
                                             <th>Trạng thái</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @for (int i = 0; i < Model.Count(); i++)
-
+                                        @foreach(var item in Model)
                                         {
                                             <tr>
-                                                <td>@(i + 1)</td>
-                                                <td>@Model.ElementAt(i).FacilityName</td>
-                                                <td>@Model.ElementAt(i).Description</td>
-                                                <td>@(Model.ElementAt(i).IsAvailable ? "Có" : "Không")</td>
+                                                <td>1</td>
+                                                <td>@item.EquipmentName</td>
+                                                <td>@item.Quantity</td>
+                                                <td>@item.Condition</td>
                                             </tr>
                                         }
                                     </tbody>

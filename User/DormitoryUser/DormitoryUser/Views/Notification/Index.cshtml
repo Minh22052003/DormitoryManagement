@@ -1,4 +1,4 @@
-﻿@model List<DormitoryUser.Models.Notification>
+﻿@model IEnumerable<DormitoryUser.Models.Announcement>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,9 +15,9 @@
                             <h4>Chi tiết thông báo</h4>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">@Model[0].title</h5>
-                            <p class="card-text">@Model[0].content</p>
-                            <p class="text-muted">Ngày đăng: @Model[0].date</p>
+                            <h5 class="card-title">@ViewBag.notifications.Title</h5>
+                            <p class="card-text">@ViewBag.notifications.Content</p>
+                            <p class="text-muted">Ngày đăng: @ViewBag.notifications.</p>
                         </div>
                     </div>
                 </div>
@@ -29,12 +29,11 @@
                             <h4>Các thông báo khác</h4>
                         </div>
                         <div class="list-group">
-                            @for (int i = 1; i < Model.Count; i++)
-
+                            @foreach (var item in Model)
                             {
-                                <a href="#" class="list-group-item list-group-item-action">
-                                    <h6 class="mb-1">@Model[i].title</h6>
-                                    <small class="text-muted">@Model[i].date</small>
+                                <a asp-action="Index" asp-controller="Notification" asp-route-id="@item.AnnouncementID" class="list-group-item list-group-item-action">
+                                    <h6 class="mb-1">@item.Title</h6>
+                                    <small class="text-muted">@item.CreationDate</small>
                                 </a>
                             }
                         </div>

@@ -27,15 +27,15 @@ namespace Manager.Data
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var url = nameURL + keygetallroom;
-            List<Room> utilityMeters;
+            List<Room> rooms;
             HttpResponseMessage response = await _httpClient.GetAsync(url);
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception(response.StatusCode.ToString());
             }
             string reponseData = await response.Content.ReadAsStringAsync();
-            utilityMeters = JsonConvert.DeserializeObject<List<Room>>(reponseData);
-            return utilityMeters;
+            rooms = JsonConvert.DeserializeObject<List<Room>>(reponseData);
+            return rooms;
         }
 
         public async Task<HttpResponseMessage> UpdateRoomAsync(Room room)

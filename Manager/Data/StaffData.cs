@@ -1,10 +1,9 @@
 ﻿using Manager.Models;
-using Microsoft.AspNetCore.Mvc;
-using Manager.Data;
 using Newtonsoft.Json;
 using System.Net;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Http;
+using System.Text;
 
 namespace Manager.Data
 {
@@ -16,6 +15,7 @@ namespace Manager.Data
         private string nameURL;
         string keygetallstaff = "/api/Staff/getallstaff";
         string keygetstaff = "/api/Staff/getprofilestaff";
+        string keyupdatestaff = "/api/Staff/updateprofilestaff";
 
         public StaffData(IHttpContextAccessor httpContextAccessor) 
         {
@@ -66,6 +66,28 @@ namespace Manager.Data
             }
 
             return staff;
+        }
+
+
+
+        public async Task UpdateProfile(Staff staff)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameURL + keyupdatestaff;
+            string json = JsonConvert.SerializeObject(staff);
+            StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PutAsync(url, data);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseData = await response.Content.ReadAsStringAsync();
+                
+            }
+            else
+            {
+                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+            }
         }
 
     }

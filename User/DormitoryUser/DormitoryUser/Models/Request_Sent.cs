@@ -2,11 +2,22 @@
 {
     public class Request_Sent
     {
-        public int Id { get; set; }                  // ID yêu cầu
-        public string RequestId { get; set; }        // ID yêu cầu
-        public DateTime SentDate { get; set; }       // Ngày gửi yêu cầu
-        public string Summary { get; set; }           // Nội dung tóm tắt
-        public string Status { get; set; }            // Trạng thái yêu cầu
-        public string Type { get; set; }              // Loại yêu cầu (mạng, sửa, khác)
+        public int RequestID { get; set; }
+        public string? StudentID { get; set; }
+        public string? StudentName { get; set; }
+        public string? RoomID { get; set; }
+        public string? RoomName { get; set; }
+        public string? BuildingID { get; set; }
+        public string? BuildingName { get; set; }
+        public string? StaffID { get; set; }
+        public string? StaffName { get; set; }
+        public int? RequestTypeID { get; set; }
+        public string? RequestTypeName { get; set; }
+        public string? Description { get; set; }
+        public DateTime? RequestSentDate { get; set; }
+        public DateTime? RequestProcessDate { get; set; }
+        public string? Image { get; set; }
+        public string? Reply { get; set; }
+        public string? Status { get; set; }
     }
 }

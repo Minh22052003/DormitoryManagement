@@ -45,7 +45,7 @@ namespace DormitoryServer.Controllers
         public IActionResult GetEquipmentbyRoom(string idroom)
         {
 
-            var equipments = _context.RoomEquipments.Include("Equipment").Where(re=>re.RoomId==idroom).ToList();
+            var equipments = _context.RoomEquipments.Include(re=>re.Equipment).Where(re=>re.RoomId==idroom).ToList();
             List<EquipmentDTO> equipment = new List<EquipmentDTO>() { };
             foreach (var item in equipments)
             {

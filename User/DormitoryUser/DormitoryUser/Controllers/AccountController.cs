@@ -34,7 +34,7 @@ namespace DormitoryUser.Controllers
             {
                 var token = await response.Content.ReadAsStringAsync();
                 HttpContext.Session.SetString("jwt1", token);
-                return RedirectToAction("Index", "Notification");
+                return RedirectToAction("Index", "Home");
 
             }
             else

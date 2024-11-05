@@ -7,18 +7,19 @@ namespace Manager.Controllers
     public class SupportRequestController : Controller
     {
         private readonly RequestData _requestData;
-        List<Request> requests = new List<Request>();
         public SupportRequestController(IHttpContextAccessor httpContextAccessor)
         {
             _requestData = new RequestData(httpContextAccessor);
         }
         public IActionResult List()
         {
+            List<Request> requests = _requestData.GetAllRequest().Result;
             return View(requests);
         }
         [HttpGet]
         public IActionResult Detail(int id)
         {
+            List<Request> requests = _requestData.GetAllRequest().Result;
             var rq = requests.Find(r => r.RequestID == id);
             return View(rq);
         }

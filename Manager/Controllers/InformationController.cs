@@ -8,8 +8,6 @@ namespace Manager.Controllers
     {
         private AnnouncementData _announcementData;
         private NewsData _newData;
-        List<Announcement> announcements = new List<Announcement>();
-        List<New> newsList = new List<New>();
         public InformationController(IHttpContextAccessor httpContextAccessor)
         {
             _newData = new NewsData(httpContextAccessor);
@@ -39,7 +37,21 @@ namespace Manager.Controllers
         }
         public IActionResult News()
         {
-            return View(newsList);
+            try
+            {
+                List<New> newsList = _newData.GetAllNews().Result;
+                return View(newsList);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
+                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách sinh viên." });
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các lỗi khác
+                return RedirectToAction("Error", new { message = ex });
+            }
         }
         public IActionResult Create_News()
         {

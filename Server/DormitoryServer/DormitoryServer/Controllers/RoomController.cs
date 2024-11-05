@@ -74,7 +74,7 @@ namespace DormitoryServer.Controllers
             {
                 return NotFound("Không tìm thấy sinh viên");
             }
-            var room = await _context.Rooms.FindAsync(student.RoomId);
+            var room = _context.Rooms.Include("Building").Include("RoomType").Include("RoomStatus").Where(r=>r.RoomId==student.RoomId).FirstOrDefault();
             if (room == null)
             {
                 return NotFound("Không tìm thấy phòng");

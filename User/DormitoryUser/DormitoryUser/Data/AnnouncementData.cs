@@ -4,39 +4,36 @@ using System.Net.Http.Headers;
 
 namespace DormitoryUser.Data
 {
-    public class RoomData
+    public class AnnouncementData
     {
         private readonly HttpClient _httpClient;
-        private readonly Hosting _serverURL = new Hosting();
-        private string NameUrl;
+        private readonly Hosting _hosting = new Hosting();
         private readonly IHttpContextAccessor _httpContextAccessor;
-        string GetRoom = "/api/Room/getroombysytudent";
+        private string nameURL;
+        string keygetallannouncement = "/api/announcement/getallannouncement";
 
-        public RoomData(IHttpContextAccessor httpContextAccessor)
+        public AnnouncementData(IHttpContextAccessor httpContextAccessor)
         {
             _httpClient = new HttpClient();
             _httpContextAccessor = httpContextAccessor;
-            NameUrl = _serverURL.nameurl;
+            nameURL = _hosting.nameurl;
         }
 
-        public async Task<Room> GetRoomIn()
+        public async Task<List<Announcement>> GetAllAnnouncement()
         {
-            Room room;
             string token = _httpContextAccessor.HttpContext.Session.GetString("jwt1");
-            string url = NameUrl + GetRoom;
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
+            var url = nameURL + keygetallannouncement;
+            List<Announcement> announcements;
             HttpResponseMessage response = await _httpClient.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                string responsData = await response.Content.ReadAsStringAsync();
-                room = JsonConvert.DeserializeObject<Room>(responsData);
-            }
-            else
+            if (!response.IsSuccessStatusCode)
             {
                 throw new Exception(response.StatusCode.ToString());
             }
-            return room;
+            string reponseData = await response.Content.ReadAsStringAsync();
+            announcements = JsonConvert.DeserializeObject<List<Announcement>>(reponseData);
+            return announcements;
         }
     }
 }

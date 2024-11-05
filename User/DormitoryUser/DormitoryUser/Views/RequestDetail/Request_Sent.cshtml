@@ -53,23 +53,22 @@
                                 <th>STT</th>
                                 <th>ID Yêu Cầu</th>
                                 <th>Ngày Gửi</th>
-                                <th>Nội Dung Tóm Tắt</th>
+                                <th>Loại yêu cầu</th>
                                 <th>Trạng Thái</th>
                                 <th>Chi tiết</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @for (int i = 0; i < Model.Count(); i++)
-
+                            @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>@(i + 1)</td>
-                                    <td>@Model.ElementAt(i).RequestId</td>
-                                    <td>@Model.ElementAt(i).SentDate.ToString("yyyy-MM-dd")</td>
-                                    <td>@Model.ElementAt(i).Summary</td>
-                                    <td><span class="badge @(Model.ElementAt(i).Status == "Đã Xử Lý" ? "bg-success" : "bg-warning")">@Model.ElementAt(i).Status</span></td>
+                                    <td>1</td>
+                                    <td>@item.RequestID</td>
+                                    <td>@item.RequestSentDate</td>
+                                    <td>@item.RequestTypeName</td>
+                                    <td><span class="badge @(item.Status == "Completed" ? "bg-success" : "bg-warning")">@item.Status</span></td>
                                     <td>
-                                        <a href="~/RequestDetail/Index" class="btn btn-primary">Chi tiết</a>
+                                        <a asp-action="Index" asp-controller="RequestDetail" asp-route-id="@item.RequestID" class="btn btn-primary">Chi tiết</a>
                                     </td>
                                 </tr>
                             }

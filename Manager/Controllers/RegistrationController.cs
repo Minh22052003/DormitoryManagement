@@ -7,30 +7,33 @@ namespace Manager.Controllers
     public class RegistrationController : Controller
     {
         private RegistrationData _registrationData;
-        List<RegistrationVM> registrations = new List<RegistrationVM>();
         public RegistrationController(IHttpContextAccessor httpContextAccessor)
         {
             _registrationData = new RegistrationData(httpContextAccessor);
         }
         public IActionResult Registrations()
         {
+            List<RegistrationVM> registrations = _registrationData.GetAllRegistration().Result;
             var registrationT = registrations.Where(r => r.ApplicationStatus == "Approved");
             return View(registrationT);
         }
         public IActionResult nRegistrations()
         {
+            List<RegistrationVM> registrations = _registrationData.GetAllRegistration().Result;
             var registrationF = registrations.Where(r => r.ApplicationStatus == "Pending");
             return View(registrationF);
         }
         [HttpGet]
         public IActionResult RegistrationDetail(string id)
         {
+            List<RegistrationVM> registrations = _registrationData.GetAllRegistration().Result;
             RegistrationVM registrationVM = registrations.Find(x => x.StudentID == id);
             return View(registrationVM);
         }
         [HttpGet]
         public IActionResult RegistrationTDetail(string id)
         {
+            List<RegistrationVM> registrations = _registrationData.GetAllRegistration().Result;
             RegistrationVM registrationVM = registrations.Find(x => x.StudentID == id);
             return View(registrationVM);
         }

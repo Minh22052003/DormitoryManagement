@@ -9,9 +9,6 @@ namespace Manager.Controllers
         private readonly UtilityMeterData _utilityMeterData;
         private readonly RoomData _roomData;
         private readonly BuildingData _buildingData;
-        List<UtilityMeter> utilityMeters = new List<UtilityMeter>();
-        List<Room> rooms = new List<Room>();
-        List<Building> buildings = new List<Building>();
         public UtilityMeterController(IHttpContextAccessor httpContextAccessor)
         {
             _utilityMeterData = new UtilityMeterData(httpContextAccessor);
@@ -20,7 +17,7 @@ namespace Manager.Controllers
         }
         public IActionResult Record()
         {
-
+            List<Building> buildings = _buildingData.GetAllBuilding().Result;
             ViewBag.buildings = buildings;
             return View();
         }
@@ -29,6 +26,7 @@ namespace Manager.Controllers
         [HttpGet]
         public JsonResult GetRoomsByBuilding(string buildingId)
         {
+            List<Room> rooms = _roomData.GetAllRoom().Result;
             var room = rooms.Where(r => r.BuildingID == buildingId)
                                 .Select(r => new {
                                     roomID = r.RoomID,
@@ -42,6 +40,7 @@ namespace Manager.Controllers
 
         public IActionResult List()
         {
+            List<UtilityMeter> utilityMeters = _utilityMeterData.GetAllUtilityMeter().Result;
             return View(utilityMeters);
         }
     }

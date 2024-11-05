@@ -9,6 +9,11 @@ namespace DormitoryUser.Controllers
     {
         private StudentData studentData;
         private RoomData roomData;
+        private EquipmentData equipmentData;
+        private RequestData requestData;
+        private StaffData staffData;
+        private RoomInvoiceData roomInvoiceData;
+        private AnnouncementData announcementData;
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor)
@@ -16,6 +21,11 @@ namespace DormitoryUser.Controllers
             _logger = logger;
             studentData = new StudentData(httpContextAccessor);
             roomData = new RoomData(httpContextAccessor);
+            equipmentData = new EquipmentData(httpContextAccessor);
+            requestData = new RequestData(httpContextAccessor);
+            staffData = new StaffData(httpContextAccessor);
+            roomInvoiceData = new RoomInvoiceData(httpContextAccessor);
+            announcementData = new AnnouncementData(httpContextAccessor);
         }
 
         public IActionResult Index()
@@ -25,7 +35,8 @@ namespace DormitoryUser.Controllers
 
         public IActionResult Notification()
         {
-            return View();
+            List<Announcement> announcements = announcementData.GetAllAnnouncement().Result;
+            return View(announcements);
         }
 
         public async Task<IActionResult> Room()
@@ -59,19 +70,30 @@ namespace DormitoryUser.Controllers
 
         public IActionResult Facilities()
         {
-            var facilities = new List<Facility>
+            try
             {
-                new Facility { Id = 1, FacilityName = "Wi-Fi", Description = "Kết nối Internet không dây", IsAvailable = true },
-                new Facility { Id = 2, FacilityName = "Máy giặt", Description = "Dịch vụ giặt ủi", IsAvailable = false },
-                new Facility { Id = 3, FacilityName = "Nhà bếp", Description = "Khu vực nấu ăn chung", IsAvailable = true },
-                new Facility { Id = 4, FacilityName = "Thang máy", Description = "Thang máy phục vụ các tầng", IsAvailable = true },
-            };
+                var room = roomData.GetRoomIn().Result;
+                List<Facility> facilitiess = equipmentData.GetEquipmentInRoom(room.RoomID).Result;
 
-            return View(facilities);
+                return View(facilitiess);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
+                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách nhân viên." });
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các lỗi khác
+                return RedirectToAction("Error", new { message = "Có lỗi xảy ra, vui lòng thử lại sau." });
+            }
+
         }
 
         public IActionResult Track_Rent()
         {
+            List<RoomInvoice> roomInvoices = roomInvoiceData.GetAllRoomInvoice().Result;
+            ViewBag.RoomInvoiceF = roomInvoices.Where(r => r.Status == "Not Paid").FirstOrDefault();
             return View();
         }
 
@@ -80,82 +102,43 @@ namespace DormitoryUser.Controllers
             return View();
         }
 
-        private List<Request_Sent> requests = new List<Request_Sent>
-        {
-            new Request_Sent { Id = 1, RequestId = "REQ12345", SentDate = new DateTime(2024, 10, 14), Summary = "Xin hỗ trợ vấn đề mạng", Status = "Đã Xử Lý", Type = "mang" },
-            new Request_Sent { Id = 2, RequestId = "REQ12346", SentDate = new DateTime(2024, 10, 10), Summary = "Yêu cầu sửa phòng", Status = "Đang Chờ", Type = "sua" }
-        };
-
-        public IActionResult Request_Sent()
-        {
-            return View(requests);
-        }
+        
         // Action tìm kiếm yêu cầu
-        public IActionResult Search(DateTime? searchDate, string requestType)
-        {
-            var filteredRequests = requests.AsQueryable();
+        //public IActionResult Search(DateTime? searchDate, string requestType)
+        //{
+        //    //var filteredRequests = requests.AsQueryable();
 
-            if (searchDate.HasValue)
-            {
-                filteredRequests = filteredRequests.Where(r => r.SentDate.Date == searchDate.Value.Date);
-            }
+        //    //if (searchDate.HasValue)
+        //    //{
+        //    //    filteredRequests = filteredRequests.Where(r => r.SentDate.Date == searchDate.Value.Date);
+        //    //}
 
-            if (!string.IsNullOrEmpty(requestType))
-            {
-                filteredRequests = filteredRequests.Where(r => r.Type.Equals(requestType, StringComparison.OrdinalIgnoreCase));
-            }
+        //    //if (!string.IsNullOrEmpty(requestType))
+        //    //{
+        //    //    filteredRequests = filteredRequests.Where(r => r.Type.Equals(requestType, StringComparison.OrdinalIgnoreCase));
+        //    //}
 
-            return View("Index", filteredRequests.ToList());
-        }
+        //    //return View("Index", filteredRequests.ToList());
+        //}
 
         public IActionResult Officer_Information()
         {
-            var officers = new List<Officer_Information>
+            try
             {
-                new Officer_Information
-                {
-                    Id = 1,
-                    Name = "Nguyễn Văn A",
-                    Position = "Trưởng Ban",
-                    Room = "203 - B3",
-                    Email = "daylamotcaimail@hust.edu.vn",
-                    Phone = "0382212381",
-                    AvatarUrl = "~/img/avatar/avatar-1.png"
-                },
-                new Officer_Information
-                {
-                    Id = 2,
-                    Name = "Nguyễn Văn B",
-                    Position = "Phó Ban",
-                    Room = "201 - B3",
-                    Email = "daylamotcaimail5@hust.edu.vn",
-                    Phone = "0382214432",
-                    AvatarUrl = "~/img/avatar/avatar-1.png"
-                },
-                new Officer_Information
-                {
-                    Id = 3,
-                    Name = "Nguyễn Văn C",
-                    Position = "Phó Ban",
-                    Room = "201 - B3",
-                    Email = "daylamotcaimail1@hust.edu.vn",
-                    Phone = "038222233333",
-                    AvatarUrl = "~/img/avatar/avatar-1.png"
-                },
-                new Officer_Information
-                {
-                    Id = 4,
-                    Name = "Trần Quang A",
-                    Position = "Trưởng Ban",
-                    Room = "202 - B3",
-                    Email = "daylamotcaimail@hust.edu.vn",
-                    Phone = "0333221234",
-                    AvatarUrl = "~/img/avatar/avatar-1.png"
-                },
-                // Bạn có thể thêm nhiều cán bộ khác ở đây
-            };
+                List<InfoStaff> staffs = staffData.GetAllStaffAsync().Result;
 
-            return View(officers);
+                return View(staffs);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
+                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách nhân viên." });
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các lỗi khác
+                return RedirectToAction("Error", new { message = "Có lỗi xảy ra, vui lòng thử lại sau." });
+            }
         }
 
         public IActionResult Parking_History()

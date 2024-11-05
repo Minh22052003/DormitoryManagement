@@ -16,5 +16,6 @@
         public string? Status { get; set; }
         public string? Note { get; set; }
         public decimal? TotalAmount { get; set; }
+        public List<ServiceDTO>? Services { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<DormitoryUser.Models.RoomInvoice>
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
             <!-- Main Content -->
@@ -8,9 +10,9 @@
                 <div class="section-header">
                     <h1>Theo dõi tiền trọ</h1>
                     <div>
-                        <h1 class="ml-5">Nguyen Van A</h1>
+                        <h1 class="ml-5">aaaa</h1>
                         <span class="ml-5">Mã sinh viên: 211211845</span>
-                        <h1 class="ml-5 bg-danger text-white p-2 rounded">Tổng nợ: -600,000 đ</h1>
+                        <h1 class="ml-5 bg-danger text-white p-2 rounded">Tổng nợ: @ViewBag.RoomInvoiceF.TotalAmount đ</h1>
                     </div>
                 </div>
                 
@@ -28,10 +30,10 @@
                                             <div class="card-body">
                                                 <div class="author-box-details" id="info-description">
                                                     <div class="author-box-name">
-                                                        <p><strong>Phòng trọ: </strong><span id="student-room"></span></p>
-                                                        <p><strong>Tiền trọ: </strong><span id="room-fee"></span>đ</p>
+                                                        <p><strong>Phòng trọ: </strong><span id="student-room">@ViewBag.RoomInvoiceF.RoomName</span></p>
+                                                        <p><strong>Tiền trọ: </strong><span id="room-fee">@ViewBag.RoomInvoiceF.TotalAmount</span>đ</p>
                                                         <p><strong>Hạn đóng tiền: </strong><span id="due-date">Mùng 6 hàng tháng</span></p>
-                                                        <p><strong>Trạng thái: </strong><span id="fee-status"></span></p>
+                                                        <p><strong>Trạng thái: </strong><span id="fee-status">@ViewBag.RoomInvoiceF.Status</span></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -60,18 +62,13 @@
                                       <div class="card-body">
                                         <div class="author-box-details" id="info-description">
                                           <div class="author-box-name">
-                                            <h5>1. Phí lưu trú</h5>
-                                            <p><strong>- Phí lưu trú theo quy định Hà Nội: </strong><span
-                                                id="phi-luu-tru-qd">85,000</span>đ</p>
-                                            <p><strong>- Phí tiền nước: </strong><span id="phi-tien-nuoc">25,000</span>đ</p>
-                                            <p><strong>- Phí tiền điện: </strong><span id="phi-tien-dien">100,000</span>đ</p>
-                                            <p><strong>- Phí tiền internet: </strong><span id="phi-internet">50,000</span>đ</p>
+                                            <h5>Phí </h5>
+                                            @foreach (var t in ViewBag.RoomInvoiceF.Services)
+                                            {
+                                                <p><strong>- @t.ServiceName </strong><span>@t.Price</span>đ</p>
+                                            }
                                             <br>
-                                            <h5>2. Phí giữ xe</h5>
-                                            <p><strong>- Xe máy: </strong><span id="phi-giu-xe-may">30,000</span>đ</p>
-                                            <p><strong>- Xe đạp: </strong><span id="phi-giu-xe-dap">30,000</span>đ</p>
-                                            <hr>
-                                            <h5>Tổng: <span id="tong-phi-luu-tru">290,000</span>đ</h5>
+                                                <h5>Tổng: <span id="tong-phi">@ViewBag.RoomInvoiceF.TotalAmount</span>đ</h5>
                                             <br>
                                             <a id="submit-yeu-cau" href="~/Track_Rent/Index" class="btn btn-primary btn-md btn-icon icon-right" tabindex="4">Thanh toán</a>
                                           </div>

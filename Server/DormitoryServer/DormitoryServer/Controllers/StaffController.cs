@@ -20,7 +20,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
-        [Authorize(Policy = "Manager")]
+        [Authorize(Policy = "ManagerOrStudent")]
         [HttpGet("getallstaff")]
         public IActionResult GetAllStaff()
         {
@@ -102,6 +102,66 @@ namespace DormitoryServer.Controllers
                 }
             }
         }
+
+
+        //cho nhân viên cập nhật thông tin cá nhân thường xuyên
+        
+        [HttpPut("updateprofilestaff")]
+        public IActionResult UpdateProfileStaff([FromBody] StaffDTO staffDTO)
+        {
+            if (staffDTO == null)
+            {
+                return NotFound("Không tìm thấy dữ liệu gửi lên");
+            }
+            var staff = _context.staff.Find(staffDTO.StaffID);
+            if (staff == null)
+            {
+                return NotFound("Không tìm thấy thông tin người dùng");
+            }
+            staff.Office = staffDTO.Office;
+            staff.WorkSchedule = staffDTO.WorkSchedule;
+            _context.SaveChanges();
+            return Ok();
+        }
+
+
+        //cho nhân viên cập nhật thông tin cá nhân thường xuyên
+
+        [HttpPut("updatestaffbymanager")]
+        public IActionResult UpdateStaff([FromBody] StaffDTO staffDTO)
+        {
+            if (staffDTO == null)
+            {
+                return NotFound("Không tìm thấy dữ liệu gửi lên");
+            }
+            var staff = _context.staff.Find(staffDTO.StaffID);
+            if (staff == null)
+            {
+                return NotFound("Không tìm thấy thông tin người dùng");
+            }
+            staff.FullName = staffDTO.FullName;
+            staff.BirthDate = staffDTO.BirthDate;
+            staff.Gender = staffDTO.Gender;
+            staff.PhoneNumber = staffDTO.PhoneNumber;
+            staff.Email = staffDTO.Email;
+            staff.Hometown = staffDTO.Hometown;
+            staff.Idcard = staffDTO.IDCard;
+            staff.InsuranceNumber = staffDTO.InsuranceNumber;
+            staff.Ethnicity = staffDTO.Ethnicity;
+            staff.Religion = staffDTO.Religion;
+            staff.Nationality = staffDTO.Nationality;
+            staff.Office = staffDTO.Office;
+            staff.WorkSchedule = staffDTO.WorkSchedule;
+
+            var accountStaff = _context.AccountStaffs.FirstOrDefault(a => a.StaffId == staff.StaffId);
+            if (accountStaff != null)
+            {
+                accountStaff.RoleId = staffDTO.RoleID;
+            }
+            _context.SaveChanges();
+            return Ok();
+        }
+
 
         //[HttpPost("addstaff")]
         //public IActionResult AddStaff([FromBody] Staff staff)

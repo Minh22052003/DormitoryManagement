@@ -8,7 +8,7 @@ namespace DormitoryUser.Data
     public class StudentData
     {
         private readonly HttpClient _httpClient;
-        private readonly ServerURL _serverURL = new ServerURL();
+        private readonly Hosting _serverURL = new Hosting();
         private string NameUrl;
         private readonly IHttpContextAccessor _httpContextAccessor;
         string GetRoomMate = "/api/Student/getroommate";
@@ -18,7 +18,7 @@ namespace DormitoryUser.Data
         {
             _httpClient = new HttpClient();
             _httpContextAccessor = httpContextAccessor;
-            NameUrl = _serverURL.URL;
+            NameUrl = _serverURL.nameurl;
         }
         public async Task<Profile> GetProfileStudentAsyn()
         {

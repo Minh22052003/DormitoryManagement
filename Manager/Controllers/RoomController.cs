@@ -9,7 +9,6 @@ namespace Manager.Controllers
         private RoomData _roomData;
         private StudentData _studentData;
         private EquipmentData _equipmentData;
-        List<Room> rooms = new List<Room>();
         public RoomController(IHttpContextAccessor httpContextAccessor)
         {
             _roomData = new RoomData(httpContextAccessor);
@@ -18,13 +17,27 @@ namespace Manager.Controllers
         }
         public IActionResult Room()
         {
-            return View(rooms);
+            try
+            {
+                List<Room> rooms = _roomData.GetAllRoom().Result;
+                return View(rooms);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
+                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách sinh viên." });
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các lỗi khác
+                return RedirectToAction("Error", new { message = ex });
+            }
         }
 
         [HttpGet]
         public IActionResult RoomDetail(string id)
         {
-            Room room = rooms.Find(r => r.RoomID == id);
+            Room room = new Room();
 
             List<Student> students = _studentData.GetStudentByRoomAsyn(id).Result;
             ViewBag.listStudent = students;

@@ -19,7 +19,7 @@ namespace Manager.Data
             nameURL = _hosting.nameurl;
         }
 
-        public async Task<List<Request>> GetAllUtilityMeter()
+        public async Task<List<Request>> GetAllRequest()
         {
             string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);

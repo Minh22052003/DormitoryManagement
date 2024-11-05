@@ -3,24 +3,24 @@
 <div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
         <div class="card bg-light rounded h-100 p-4">
-            <form asp-action="StudentDetail" asp-controller="User">
+            <form asp-action="UpdateProfile" asp-controller="User" method="post">
                 <div class="row g-5">
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Mã nhân viên</label>
-                            <input class="form-control bg-light" value="@Model.StaffID" readonly>
+                            <input class="form-control bg-light" name="StaffID" value="@Model.StaffID" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Họ và tên</label>
-                            <input class="form-control bg-light" value="@Model.FullName" readonly>
+                            <input class="form-control bg-light" name="FullName" value="@Model.FullName" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Chức vụ</label>
-                            <input class="form-control bg-light" value="@Model.RoleName" readonly>
+                            <input class="form-control bg-light" name="RoleName" value="@Model.RoleName" readonly>
                         </div>
                     </div>
                 </div>
@@ -28,19 +28,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Dân tộc</label>
-                            <input class="form-control bg-light" value="@Model.Ethnicity" readonly>
+                            <input class="form-control bg-light" name="Ethnicity" value="@Model.Ethnicity" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Tôn giáo</label>
-                            <input class="form-control bg-light" value="@Model.Religion" readonly>
+                            <input class="form-control bg-light" name="Religion" value="@Model.Religion" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Quốc tịch</label>
-                            <input class="form-control bg-light" value="@Model.Nationality" readonly>
+                            <input class="form-control bg-light" name="Nationality" value="@Model.Nationality" readonly>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Ngày sinh</label>
-                            <input type="date" class="form-control bg-light" id="dateInput" value="@Model.BirthDate?.ToString("yyyy-MM-dd")" readonly>
+                            <input type="date" class="form-control bg-light" name="BirthDate" value="@Model.BirthDate?.ToString("yyyy-MM-dd")" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
@@ -99,7 +99,7 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Số điện thoại</label>
-                            <input class="form-control bg-light" value="@Model.PhoneNumber">
+                            <input class="form-control bg-light" name="PhoneNumber" value="@Model.PhoneNumber">
                         </div>
                     </div>
                 </div>
@@ -107,19 +107,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Email</label>
-                            <input class="form-control bg-light" value="@Model.Email" readonly>
+                            <input class="form-control bg-light" name="Email" value="@Model.Email" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Quê quán</label>
-                            <input class="form-control bg-light" value="@Model.Hometown" readonly>
+                            <input class="form-control bg-light" name="Hometown" value="@Model.Hometown" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Số CMND/Thẻ căn cước</label>
-                            <input class="form-control bg-light" value="@Model.IDCard" readonly>
+                            <input class="form-control bg-light" name="IDCard" value="@Model.IDCard" readonly>
                         </div>
                     </div>
                 </div>
@@ -127,26 +127,26 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Mã số BHXH</label>
-                            <input class="form-control bg-light" value="@Model.InsuranceNumber" readonly>
+                            <input class="form-control bg-light" name="InsuranceNumber" value="@Model.InsuranceNumber" readonly>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Phòng làm việc</label>
-                            <input class="form-control" value="@Model.Office">
+                            <input class="form-control" name="Office" value="@Model.Office">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Giờ làm việc</label>
-                            <input class="form-control" value="@Model.WorkSchedule">
+                            <input class="form-control" name="WorkSchedule" value="@Model.WorkSchedule">
                         </div>
                     </div>
                 </div>
                 <div class="row m-5">
                     <div class="col-5"></div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-success m-2 w-75">Cập nhật</button>
+                        <button type="submit" class="btn btn-success m-2 w-75">Cập nhật</button>
                     </div>
                     <div class="col-5"></div>
                 </div>

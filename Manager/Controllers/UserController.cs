@@ -112,6 +112,26 @@ namespace Manager.Controllers
             return View(staff);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfileAsync(Staff updatedStaff)
+        {
+            if (updatedStaff != null)
+            {
+                await _staffData.UpdateProfile(updatedStaff);
+                return RedirectToAction("TTCN", "User");
+            }
+
+            return RedirectToAction("TTCN", "User");
+        }
+
+
+
+
+
+
+
+
+
         public IActionResult Error(string message)
         {
             ViewData["Message"] = message; // Truyền thông điệp lỗi vào ViewData

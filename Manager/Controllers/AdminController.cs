@@ -11,11 +11,6 @@ namespace Manager.Controllers
         private readonly RoleData _roleData;
         private readonly EquipmentData _equipmentData;
         private readonly ServiceData _serviceData;
-        List<Building> buildings = new List<Building>();
-        List<RoomType> roomTypes = new List<RoomType>();
-        List<Role> roles = new List<Role>();
-        List<Equipment> equipments = new List<Equipment>();
-        List<Service> services = new List<Service>();
         public AdminController(IHttpContextAccessor httpContextAccessor)
         {
             _buildingData = new BuildingData(httpContextAccessor);
@@ -26,21 +21,25 @@ namespace Manager.Controllers
         }
         public IActionResult ListBuilding()
         {
+            List<Building> buildings = _buildingData.GetAllBuilding().Result;
             return View(buildings);
         }
         [HttpGet]
         public IActionResult ListRoomType()
         {
+            List<RoomType> roomTypes = _roomTypeData.GetAllRoomType().Result;
             return View(roomTypes);
         }
         [HttpGet]
         public IActionResult ListRole()
         {
+            List<Role> roles = _roleData.GetAllRole().Result;
             return View(roles);
         }
         [HttpGet]
         public IActionResult ListEquipment()
         {
+            List<Equipment> equipments = _equipmentData.GetAllEquipment().Result;
             return View(equipments);
         }
         [HttpGet]
@@ -51,6 +50,7 @@ namespace Manager.Controllers
         [HttpGet]
         public IActionResult ListService()
         {
+            List<Service> services = _serviceData.GetAllService().Result;
             return View(services);
         }
         [HttpGet]
@@ -61,6 +61,8 @@ namespace Manager.Controllers
         [HttpGet]
         public IActionResult AddRoom()
         {
+            List<Building> buildings = _buildingData.GetAllBuilding().Result;
+            List<RoomType> roomTypes = _roomTypeData.GetAllRoomType().Result;
             ViewBag.buildings = buildings;
             ViewBag.roomtype = roomTypes;
             return View();

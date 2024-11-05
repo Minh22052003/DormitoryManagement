@@ -1,8 +1,9 @@
-﻿namespace Manager.Models
+﻿
+namespace DormitoryUser.Models
 {
     public class RoomInvoice
     {
-        public int InvoiceID { get; set; } 
+        public int InvoiceID { get; set; }
         public string? StaffID { get; set; }
         public string? RoomID { get; set; }
         public string? RoomName { get; set; }

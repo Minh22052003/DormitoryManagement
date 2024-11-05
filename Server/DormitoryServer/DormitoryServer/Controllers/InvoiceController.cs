@@ -1,4 +1,4 @@
-﻿using DormitoryServer.DTOs;
+﻿    using DormitoryServer.DTOs;
 using DormitoryServer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -54,11 +54,24 @@ namespace DormitoryServer.Controllers
             List<RoomInvoiceDTO> result = new List<RoomInvoiceDTO>();
             foreach (var invoice in invoices)
             {
+                
                 var dsdv = _context.InvoiceDetails.Include(i=>i.Service).Where(i => i.InvoiceId == invoice.InvoiceId).ToList();
+                List<ServiceDTO> service = new List<ServiceDTO>();
+                
+                
+                
                 decimal totalAmount = 0;
                 foreach (var dv in dsdv)
                 {
                     totalAmount += dv.Quantity.Value * dv.Service.Price.Value;
+                    service.Add(new ServiceDTO
+                    {
+                        ServiceID = dv.ServiceId,
+                        ServiceName = dv.Service.ServiceName,
+                        Price = dv.Service.Price,
+                        Unit = dv.Service.Unit,
+                        Quantity = dv.Quantity,
+                    });
                 }
                 result.Add(new RoomInvoiceDTO
                 {
@@ -75,7 +88,8 @@ namespace DormitoryServer.Controllers
                     PaymentDate = invoice.PaymentDate,
                     Status = invoice.Status,
                     Note = invoice.Note,
-                    TotalAmount = totalAmount
+                    TotalAmount = totalAmount,
+                    Services = service
                 });
             }
 
