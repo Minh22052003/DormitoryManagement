@@ -1,9 +1,23 @@
 ﻿
+using Microsoft.AspNetCore.DataProtection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession();
+
+
+builder.Services.AddDistributedMemoryCache();  // Thêm bộ nhớ cache phân tán
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Đặt thời gian hết hạn cho session
+    options.Cookie.HttpOnly = true;  // Đảm bảo cookie không thể truy cập từ JavaScript
+    options.Cookie.Name = ".Manager.Session";
+    options.Cookie.IsEssential = true;  // Đảm bảo session hoạt động ngay cả khi cookie không được chấp nhận
+});
+
+
+
 
 
 builder.Services.AddHttpContextAccessor();

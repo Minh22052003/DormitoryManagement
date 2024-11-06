@@ -11,11 +11,11 @@
                 </div>
                 <form asp-controller="Admin" asp-action="addEquipment" method="post">
                     <div class="form-floating mb-4">
-                        <input asp-for="EquipmentName" type="text" class="form-control" id="equipmentName" placeholder="">
+                        <input asp-for="EquipmentName" name="EquipmentName" type="text" class="form-control" id="equipmentName" placeholder="">
                         <label for="equipmentName">Tên thiết bị</label>
                     </div>
                     <div class="form-floating mb-4">
-                        <input asp-for="Price" type="text" class="form-control" id="equipmentPrice" placeholder="">
+                        <input asp-for="Price" name="Price" type="text" class="form-control" id="equipmentPrice" placeholder="">
                         <label for="equipmentPrice">Giá thiết bị</label>
                     </div>
                     <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Thêm thiết bị</button>

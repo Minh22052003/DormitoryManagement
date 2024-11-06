@@ -8,19 +8,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Họ và tên</label>
-                            <input class="form-control" value="@Model.StudentName" disabled>
+                            <input name="StudentName" class="form-control" value="@Model.StudentName" disabled>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Phòng ở hiện tại</label>
-                            <input class="form-control" value="@Model.RoomName" disabled>
+                            <input name="RoomName" class="form-control" value="@Model.RoomName" disabled>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Tòa nhà</label>
-                            <input class="form-control" value="@Model.BuildingName" disabled>
+                            <input name="BuildingName" class="form-control" value="@Model.BuildingName" disabled>
                         </div>
                     </div>
                 </div>
@@ -28,19 +28,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Loại yêu cầu</label>
-                            <input class="form-control" value="@Model.RequestTypeName" disabled>
+                            <input name="RequestTypeName" class="form-control" value="@Model.RequestTypeName" disabled>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Ngày gửi đơn</label>
-                            <input type="date" class="form-control" id="dateInput" value="@Model.RequestSentDate?.ToString("yyyy-MM-dd")" disabled>
+                            <input name="RequestSentDate" type="date" class="form-control" id="dateInput" value="@Model.RequestSentDate?.ToString("yyyy-MM-dd")" disabled>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Ngày xử lí yêu cầu</label>
-                            <input type="date" class="form-control" id="dateInput" value="@Model.RequestProcessDate?.ToString("yyyy-MM-dd")">
+                            <input name="RequestProcessDate" type="date" class="form-control" id="dateInput" value="@Model.RequestProcessDate?.ToString("yyyy-MM-dd")">
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label for="floatingTextarea" class="form-label my-3 fw-bold">Chi tiết yêu cầu</label>
-                            <textarea class="form-control" id="floatingTextarea" style="height: 150px;" disabled>@Model.Description</textarea>
+                            <textarea name="Description" class="form-control" id="floatingTextarea" style="height: 150px;" disabled>@Model.Description</textarea>
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
@@ -60,7 +60,7 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Trạng thái yêu cầu</label>
-                            <input class="form-control bg-light" value="@Model.Status" readonly>
+                            <input name="Status" class="form-control bg-light" value="@Model.Status" readonly>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Người xử lí yêu cầu</label>
-                            <input class="form-control bg-light" value="@Model.StaffName" readonly>
+                            <input name="StaffName" class="form-control bg-light" value="@Model.StaffName" readonly>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label for="floatingTextarea" class="form-label my-3 fw-bold">Phản hồi</label>
-                            <textarea asp-for="@Model.Reply" class="form-control" id="floatingTextarea" placeholder="Ghi phản hồi ở đây" style="height: 150px;"></textarea>
+                            <textarea name="Reply" asp-for="@Model.Reply" class="form-control" id="floatingTextarea" placeholder="Ghi phản hồi ở đây" style="height: 150px;"></textarea>
                         </div>
                     </div>
                 </div>

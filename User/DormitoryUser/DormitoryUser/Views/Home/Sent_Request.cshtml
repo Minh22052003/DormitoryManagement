@@ -16,26 +16,8 @@
                                 <h4>Form gửi phản hồi</h4>
                             </div>
                             <div class="card-body">
-                                <!-- Tiêu đề -->
-                                <div class="form-group">
-                                    <label>Tiêu đề</label>
-                                    <input id="title_yeu_cau" type="text" class="form-control" required="">
-                                    <div class="invalid-feedback">
-                                        Vui lòng điền tiêu đề của bạn.
-                                    </div>
-                                </div>
-
-                                <!-- Nội dung yêu cầu -->
-                                <div class="form-group mb-0">
-                                    <label>Nội dung</label>
-                                    <textarea id="content_yeu_cau" class="form-control" required=""></textarea>
-                                    <div class="invalid-feedback">
-                                        Vui lòng điền nội dung yêu cầu của bạn.
-                                    </div>
-                                </div>
-
                                 <!-- Loại yêu cầu hỗ trợ -->
-                                <div class="form-group mt-3">
+                                <div class="form-group">
                                     <label>Loại yêu cầu hỗ trợ</label>
                                     <select class="form-control" id="loai_yeu_cau" required="">
                                         <option value="">Chọn loại yêu cầu</option>
@@ -49,8 +31,17 @@
                                     </div>
                                 </div>
 
-                                <!-- Ảnh đính kèm (nếu có) -->
+                                <!-- Nội dung yêu cầu -->
                                 <div class="form-group">
+                                    <label>Nội dung</label>
+                                    <textarea id="content_yeu_cau" class="form-control" required=""></textarea>
+                                    <div class="invalid-feedback">
+                                        Vui lòng điền nội dung yêu cầu của bạn.
+                                    </div>
+                                </div>
+
+                                <!-- Ảnh đính kèm (nếu có) -->
+                                <div class="form-group mt2">
                                     <label>Ảnh đính kèm (tùy chọn)</label>
                                     <input type="file" class="form-control" id="file_upload">
                                 </div>

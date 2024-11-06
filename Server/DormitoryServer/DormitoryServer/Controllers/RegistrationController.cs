@@ -82,18 +82,19 @@ namespace DormitoryServer.Controllers
                     AnhCMNDMatTruoc = registration.Student?.AnhCmndmatTruoc,
                     AnhCMNDMatSau = registration.Student?.AnhCmndmatSau,
                     AnhBHYTMatTruoc = registration.Student?.AnhBhytmatTruoc,
-                    Relatives = registration.Student?.Relatives?
-                                .Select(r => new RelativeDTO
-                                {
-                                    RelativeId = r.RelativeId,
-                                    RelativeName = r.FullName,
-                                    RalativePhoneNumber = r.PhoneNumber,
-                                    RalativeAddress = r.Address
-                                }).ToList() ?? new List<RelativeDTO>()
+                    RelativeID = GetRelative(registration.Student.StudentId).RelativeId,
+                    RelativeName = GetRelative(registration.Student.StudentId).FullName,
+                    RelativePhoneNumber = GetRelative(registration.Student.StudentId).PhoneNumber,
+                    RelativeAddress = GetRelative(registration.Student.StudentId).Address,
 
                 });
             }
             return result;
+        }
+
+        private Relative GetRelative(string studentId)
+        {
+            return _context.Relatives.Where(r => r.StudentId == studentId).FirstOrDefault();
         }
     }
 }

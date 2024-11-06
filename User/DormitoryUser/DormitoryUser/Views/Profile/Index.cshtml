@@ -12,10 +12,7 @@
         <div class="section-body">
             <div class="card">
                 <div class="card-header d-block">
-                    <h4>Lưu ý : <span>- Sinh viên chú ý điền đầy đủ tất cả các thông tin có đánh dấu</span><span class="text-danger">(*)</span>.</h4>
-                    <div class="d-flex d-inline">
-                        <span>- Sau khi điền đầy đủ thông tin, click vào nút <span class="fw-bold">"Cập nhật"</span> ở cuối trang để lưu dữ liệu.</span>
-                    </div>
+                    <h4>Lưu ý : <span>- Sinh viên chú ý thông tin chính xác, phát hiện sai vui lòng liên hệ bộ phận hỗ trợ</span><span class="text-danger">(*)</span>.</h4>
                 </div>
 
                 <div class="card-body">
@@ -24,10 +21,10 @@
                             <div class="col">
                                 <form asp-action="StudentDetail">
                                     <div class="row g-5">
-                                        <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="col-md-12 col-lg-6 col-xl-4">   
                                             <div class="form-item">
                                                 <label class="form-label my-3 fw-bold">Họ và tên<span class="text-danger"> (*)</span></label>
-                                                <input class="form-control" value="@Model.FullName" readonly>
+                                                <input class="form-control" name="FullName" value="@Model.FullName" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-lg-6 col-xl-4">
@@ -47,7 +44,7 @@
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3 fw-bold">Ngày sinh<span class="text-danger"> (*)</span></label>
-                                                <input type="date" class="form-control" value="@Model.BirthDate">
+                                                <input type="date" class="form-control" value="@Model.BirthDate" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-lg-6 col-xl-4">
@@ -68,7 +65,7 @@
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3">Số điện thoại<span class="text-danger"> (*)</span></label>
-                                                <input class="form-control" value="@Model.PhoneNumber">
+                                                <input class="form-control" value="@Model.PhoneNumber" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -76,7 +73,7 @@
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3 fw-bold">Email<span class="text-danger"> (*)</span></label>
-                                                <input class="form-control" value="@Model.Email">
+                                                <input class="form-control" value="@Model.Email" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-lg-6 col-xl-4">
@@ -88,7 +85,7 @@
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3">Số CMND/Thẻ căn cước</label>
-                                                <input class="form-control" value="@Model.InsuranceNumber">
+                                                <input class="form-control" value="@Model.InsuranceNumber" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -96,19 +93,19 @@
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3 fw-bold">Số BHXH</label>
-                                                <input class="form-control" value="@Model.InsuranceNumber">
+                                                <input class="form-control" value="@Model.InsuranceNumber" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3">Số điện thoại gia đình<span class="text-danger"> (*)</span></label>
-                                                <input class="form-control" value="@Model.RelativePhoneNumber">
+                                                <input class="form-control" value="@Model.RelativePhoneNumber" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-12 col-lg-6 col-xl-4">
                                             <div class="form-item">
                                                 <label class="form-label my-3">Địa chỉ báo tin<span class="text-danger"> (*)</span></label>
-                                                <input class="form-control" value="@Model.RelativeAddress">
+                                                <input class="form-control" value="@Model.RelativeAddress" readonly>
                                             </div>
                                         </div>
                                     </div>

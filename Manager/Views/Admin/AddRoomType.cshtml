@@ -11,15 +11,15 @@
                 </div>
                 <form asp-controller="Admin" asp-action="AddRoomType" method="post">
                     <div class="form-floating mb-4">
-                        <input asp-for="RoomTypeName" type="text" class="form-control" id="floatingPassword" placeholder="">
+                        <input asp-for="RoomTypeName" name="RoomTypeName" type="text" class="form-control" id="floatingPassword" placeholder="">
                         <label for="floatingPassword">Tên loại phòng</label>
                     </div>
                     <div class="form-floating mb-4">
-                        <input asp-for="Capacity" type="text" class="form-control" id="floatingPassword" placeholder="">
+                        <input asp-for="Capacity" name="Capacity" type="text" class="form-control" id="floatingPassword" placeholder="">
                         <label for="floatingPassword">Sức chứa</label>
                     </div>
                     <div class="form-floating mb-4">
-                        <input asp-for="RoomPrice" type="text" class="form-control" id="floatingPassword" placeholder="">
+                        <input asp-for="RoomPrice" name="RoomPrice" type="text" class="form-control" id="floatingPassword" placeholder="">
                         <label for="floatingPassword">Giá phòng</label>
                     </div>
                     <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Thêm loại phòng</button>

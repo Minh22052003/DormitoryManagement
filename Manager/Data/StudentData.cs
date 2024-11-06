@@ -1,6 +1,7 @@
 ﻿using Manager.Models;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace Manager.Data
@@ -13,6 +14,7 @@ namespace Manager.Data
         private string nameURL;
         string keygetAllStudent = "/api/Student/getallstudent";
         string keygetAllStudentbyRoom = "/api/Student/getallstudentbyroom";
+        string keyEditStudent = "/api/Student/editstudent";
 
         public StudentData(IHttpContextAccessor httpContextAccessor)
         {
@@ -85,5 +87,24 @@ namespace Manager.Data
             return student;
         }
 
+        public async Task UpdateStudent(Student student)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameURL + keyEditStudent;
+            string json = JsonConvert.SerializeObject(student);
+            StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PutAsync(url, data);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseData = await response.Content.ReadAsStringAsync();
+
+            }
+            else
+            {
+                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+            }
+        }
     }
 }

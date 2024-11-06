@@ -60,6 +60,7 @@ namespace Manager.Controllers
 
 
 
+
         [HttpGet]
         public IActionResult Staff()
         {
@@ -101,15 +102,32 @@ namespace Manager.Controllers
             }
             
         }
-        public IActionResult TTCN()
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateStudentAsync(Student updatedStudent)
         {
-            var token = HttpContext.Session.GetString("jwt");
-            if (string.IsNullOrEmpty(token))
+            if (updatedStudent != null)
             {
-                return RedirectToAction("SignIn", "Account");
+                await _studentData.UpdateStudent(updatedStudent);
+                return RedirectToAction("Student", "User");
             }
-            var staff = _staffData.GetStaffAsync().Result;
-            return View(staff);
+
+            return RedirectToAction("TTCN", "User");
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateStaffAsync(Staff updatedStaff)
+        {
+            if (updatedStaff != null)
+            {
+                await _staffData.UpdateStaff(updatedStaff);
+                return RedirectToAction("Staff", "User");
+            }
+
+            return RedirectToAction("TTCN", "User");
         }
 
         [HttpPost]
@@ -125,6 +143,19 @@ namespace Manager.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult TTCN()
+        {
+            var token = HttpContext.Session.GetString("jwt");
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("SignIn", "Account");
+            }
+            var staff = _staffData.GetStaffAsync().Result;
+            return View(staff);
+        }
+
+        
 
 
 

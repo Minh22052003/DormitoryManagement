@@ -1,6 +1,7 @@
 ﻿using DormitoryServer.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -8,6 +9,24 @@ using System.Data;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+var dataProtectionConfig = builder.Configuration.GetSection("DataProtection");
+
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(dataProtectionConfig["KeyDirectory"]))
+    .SetApplicationName(dataProtectionConfig["ApplicationName"]);
+
+
+
+
+
+
+
+
+
+
+
 
 // Add services to the container.
 
@@ -75,18 +94,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-//using (var scope = app.Services.CreateScope())
-//{
-//    var roleService = scope.ServiceProvider.GetRequiredService<RoleService>();
-//    var roles = await roleService.GetRolesFromDatabaseAsync();
-
-//    var authorizationOptions = app.Services.GetRequiredService<IOptions<AuthorizationOptions>>().Value;
-//    foreach (var role in roles)
-//    {
-//        authorizationOptions.AddPolicy(role, policy => policy.RequireRole(role));
-//    }
-//}
 
 
 app.MapControllers();

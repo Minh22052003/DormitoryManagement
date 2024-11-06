@@ -15,7 +15,8 @@ namespace Manager.Data
         private string nameURL;
         string keygetallstaff = "/api/Staff/getallstaff";
         string keygetstaff = "/api/Staff/getprofilestaff";
-        string keyupdatestaff = "/api/Staff/updateprofilestaff";
+        string keyupdateprofile = "/api/Staff/updateprofilestaff";
+        string keyupdatestaff = "/api/Staff/updatestaffbymanager";
 
         public StaffData(IHttpContextAccessor httpContextAccessor) 
         {
@@ -74,7 +75,7 @@ namespace Manager.Data
         {
             string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var url = nameURL + keyupdatestaff;
+            var url = nameURL + keyupdateprofile;
             string json = JsonConvert.SerializeObject(staff);
             StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await _httpClient.PutAsync(url, data);
@@ -83,6 +84,27 @@ namespace Manager.Data
             {
                 string responseData = await response.Content.ReadAsStringAsync();
                 
+            }
+            else
+            {
+                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+            }
+        }
+
+
+        public async Task UpdateStaff(Staff staff)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameURL + keyupdatestaff;
+            string json = JsonConvert.SerializeObject(staff);
+            StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PutAsync(url, data);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseData = await response.Content.ReadAsStringAsync();
+
             }
             else
             {

@@ -10,9 +10,10 @@
                     </a>
                 </div>
                 <div class="form-floating mb-3">
-                    <select class="form-select" id="floatingSelect"
+                    <select name="BuildingName" class="form-select" id="floatingSelect"
                             aria-label="Floating label select example">
                         @foreach (var b in ViewBag.buildings)
+
                         {
                             <option value="@b.BuildingID">@b.BuildingName</option>
                         }
@@ -20,9 +21,11 @@
                     <label for="floatingSelect">Tòa nhà</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <select class="form-select" id="floatingSelect"
+                    <select name="RoomTypeName" class="form-select" id="floatingSelect"
                             aria-label="Floating label select example">
                         @foreach (var r in ViewBag.roomtype)
+
+
 
                         {
                             <option value="@r.RoomTypeID">@r.RoomTypeName</option>
@@ -31,7 +34,7 @@
                     <label for="floatingSelect">Loại phòng</label>
                 </div>
                 <div class="form-floating mb-4">
-                    <input type="text" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input name="RoomName" type="text" class="form-control" id="floatingPassword" placeholder="Password">
                     <label for="floatingPassword">Tên phòng</label>
                 </div>
                 <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Thêm phòng</button>

@@ -11,15 +11,15 @@
                 </div>
                 <form asp-controller="Admin" asp-action="AddService" method="post">
                     <div class="form-floating mb-4">
-                        <input asp-for="ServiceName" type="text" class="form-control" id="serviceName" placeholder="">
+                        <input asp-for="ServiceName" name="serviceName" type="text" class="form-control" id="serviceName" placeholder="">
                         <label for="serviceName">Tên dịch vụ</label>
                     </div>
                     <div class="form-floating mb-4">
-                        <input asp-for="Unit" type="text" class="form-control" id="unit" placeholder="">
+                        <input asp-for="Unit" name="unit" type="text" class="form-control" id="unit" placeholder="">
                         <label for="unit">Đơn vị tính</label>
                     </div>
                     <div class="form-floating mb-4">
-                        <input asp-for="Price" type="text" class="form-control" id="price" placeholder="">
+                        <input asp-for="Price" name="price" type="text" class="form-control" id="price" placeholder="">
                         <label for="price">Giá</label>
                     </div>
                     <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Thêm dịch vụ</button>

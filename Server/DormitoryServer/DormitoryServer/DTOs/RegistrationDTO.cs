@@ -44,6 +44,9 @@
         public string? AnhCMNDMatTruoc { get; set; }
         public string? AnhCMNDMatSau { get; set; }
         public string? AnhBHYTMatTruoc { get; set; }
-        public List<RelativeDTO>? Relatives { get; set; }
+        public int? RelativeID { get; set; }
+        public string? RelativeName { get; set; }
+        public string? RelativePhoneNumber { get; set; }
+        public string? RelativeAddress { get; set; }
     }
 }

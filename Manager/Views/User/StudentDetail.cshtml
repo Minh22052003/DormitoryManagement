@@ -1,34 +1,27 @@
 ﻿@model Manager.Models.Student
 
-@{
-    var fullName = Model.FullName ?? ""; // Lấy giá trị từ Model và đảm bảo không bị null
-    var nameParts = fullName.Split(' '); // Tách chuỗi theo khoảng trắng
-    var firstName = nameParts.Length > 0 ? nameParts[nameParts.Length - 1] : ""; // Lấy từ cuối cùng làm FirstName
-    var lastName = nameParts.Length > 1 ? string.Join(" ", nameParts.Take(nameParts.Length - 1)) : ""; // Ghép các từ còn lại thành LastName
-}
-
 <div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
         <div class="card bg-light rounded h-100 p-4">
-            <form asp-action="StudentDetail" asp-controller="User">
+             <form asp-action="UpdateStudent" asp-controller="User" method="post">
                 <div class="row g-5">
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Số CMND/Thẻ căn cước</label>
-                            <input asp-for="@Model.IDCard" class="form-control" value="@Model.IDCard">
+                            <input asp-for="@Model.IDCard" class="form-control" name="IDCard" value="@Model.IDCard">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Ngày cấp CMND</label>
-                            <input asp-for="@Model.NgayCapBHXH" type="date" class="form-control" id="dateInput"
+                            <input asp-for="@Model.NgayCapBHXH" type="date" class="form-control" name="DateOfIssueOfIDCard" id="dateInput"
                                    value="@Model.DateOfIssueOfIDCard?.ToString("yyyy-MM-dd")">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Nơi cấp CMND</label>
-                            <input asp-for="@Model.PlaceOfIssueOfIDCard" class="form-control" value="Công an tỉnh @Model.PlaceOfIssueOfIDCard">
+                            <input asp-for="@Model.PlaceOfIssueOfIDCard" name="PlaceOfIssueOfIDCard" class="form-control" value="Công an tỉnh @Model.PlaceOfIssueOfIDCard">
                         </div>
                     </div>
                 </div>
@@ -36,19 +29,13 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Họ & Tên lót</label>
-                            <input class="form-control" value="@lastName">
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-lg-6 col-xl-4">
-                        <div class="form-item">
-                            <label class="form-label my-3 fw-bold">Tên </label>
-                            <input class="form-control" value="@firstName">
+                            <input asp-for="@Model.FullName" name="FullName" class="form-control" value="@Model.FullName">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Mã sinh viên</label>
-                            <input asp-for="@Model.StudentID" class="form-control" value="@Model.StudentID">
+                            <input asp-for="@Model.StudentID" name="StudentID" class="form-control" value="@Model.StudentID">
                         </div>
                     </div>
                 </div>
@@ -56,19 +43,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Dân tộc</label>
-                            <input asp-for="@Model.Ethnicity" class="form-control" value="@Model.Ethnicity">
+                            <input asp-for="@Model.Ethnicity" name="Ethnicity" class="form-control" value="@Model.Ethnicity">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Tôn giáo</label>
-                            <input asp-for="@Model.Religion" class="form-control" value="@Model.Religion">
+                            <input asp-for="@Model.Religion" name="Religion" class="form-control" value="@Model.Religion">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Quốc tịch</label>
-                            <input asp-for="@Model.Nationality" class="form-control" value="@Model.Nationality">
+                            <input asp-for="@Model.Nationality" name="Nationality" class="form-control" value="@Model.Nationality">
                         </div>
                     </div>
                 </div>
@@ -77,19 +64,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Ngày sinh</label>
-                            <input asp-for="@Model.BirthDate" type="date" class="form-control" id="dateInput" value="@Model.BirthDate?.ToString("yyyy-MM-dd")">
+                            <input asp-for="@Model.BirthDate" name="BirthDate" type="date" class="form-control" id="dateInput" value="@Model.BirthDate?.ToString("yyyy-MM-dd")">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Email</label>
-                            <input asp-for="@Model.Email" class="form-control" value="@Model.Email">
+                            <input asp-for="@Model.Email" name="Email" class="form-control" value="@Model.Email">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Số điện thoại</label>
-                            <input asp-for="@Model.PhoneNumber" class="form-control" value="@Model.PhoneNumber">
+                            <input asp-for="@Model.PhoneNumber" name="PhoneNumber" class="form-control" value="@Model.PhoneNumber">
                         </div>
                     </div>
                 </div>
@@ -97,19 +84,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Tỉnh/Thành phố</label>
-                            <input asp-for="@Model.ProvinceName" class="form-control" value="@Model.ProvinceName">
+                            <input asp-for="@Model.ProvinceName" name="ProvinceName" class="form-control" value="@Model.ProvinceName">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Quận/Huyện</label>
-                            <input asp-for="@Model.District" class="form-control" value="@Model.District">
+                            <input asp-for="@Model.District" name="District" class="form-control" value="@Model.District">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Phường/Xã</label>
-                            <input asp-for="@Model.Ward" class="form-control" value="@Model.Ward">
+                            <input asp-for="@Model.Ward" name="Ward" class="form-control" value="@Model.Ward">
                         </div>
                     </div>
                 </div>
@@ -117,13 +104,13 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Số nhà, tên đường</label>
-                            <input asp-for="@Model.Street" class="form-control" value="@Model.Street">
+                            <input asp-for="@Model.Street" name="Street" class="form-control" value="@Model.Street">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Diện chính sách</label>
-                            <input asp-for="@Model.PolicyCoverage" class="form-control" value="@Model.PolicyCoverage">
+                            <input asp-for="@Model.PolicyCoverage" name="PolicyCoverage" class="form-control" value="@Model.PolicyCoverage">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
@@ -131,6 +118,7 @@
                             <label class="form-label my-3 fw-bold">Giới tính</label>
                             @{
                                 if (Model.Gender == true)
+
                                 {
                                     <div class="row">
                                         <div class="col-2">
@@ -149,7 +137,9 @@
                                         </div>
                                     </div>
                                 }
+
                                 else
+
                                 {
                                     <div class="row">
                                         <div class="col-2">
@@ -176,19 +166,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Mã số BHYT</label>
-                            <input asp-for="@Model.InsuranceNumber" class="form-control" value="@Model.InsuranceNumber">
+                            <input asp-for="@Model.InsuranceNumber" name="InsuranceNumber" class="form-control" value="@Model.InsuranceNumber">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Ngày cấp BHYT</label>
-                            <input asp-for="@Model.NgayCapBHXH" type="date" class="form-control" id="dateInput" value="@Model.NgayCapBHXH?.ToString("yyyy-MM-dd")">
+                            <input asp-for="@Model.NgayCapBHXH" name="NgayCapBHXH" type="date" class="form-control" id="dateInput" value="@Model.NgayCapBHXH?.ToString("yyyy-MM-dd")">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Giá trị sử dụng từ ngày</label>
-                            <input asp-for="@Model.GiaTriSuDungTuNgay" type="date" class="form-control" id="dateInput" value="@Model.GiaTriSuDungTuNgay?.ToString("yyyy-MM-dd")">
+                            <input asp-for="@Model.GiaTriSuDungTuNgay" name="GiaTriSuDungTuNgay" type="date" class="form-control" id="dateInput" value="@Model.GiaTriSuDungTuNgay?.ToString("yyyy-MM-dd")">
                         </div>
                     </div>
                 </div>
@@ -196,19 +186,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Thời điểm đủ 05 năm liên tục từ</label>
-                            <input asp-for="@Model.ThoiDiem5NamLienTuc" type="date" class="form-control" id="dateInput" value="@Model.ThoiDiem5NamLienTuc?.ToString("yyyy-MM-dd")">
+                            <input asp-for="@Model.ThoiDiem5NamLienTuc" name="ThoiDiem5NamLienTuc" type="date" class="form-control" id="dateInput" value="@Model.ThoiDiem5NamLienTuc?.ToString("yyyy-MM-dd")">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Tỉnh</label>
-                            <input asp-for="@Model.TenTinhCapBHXH" class="form-control" value="@Model.TenTinhCapBHXH">
+                            <input asp-for="@Model.TenTinhCapBHXH" name="TenTinhCapBHXH" class="form-control" value="@Model.TenTinhCapBHXH">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Khám bệnh ban đầu</label>
-                            <input asp-for="@Model.KhamBenhBanDau" class="form-control" value="@Model.KhamBenhBanDau">
+                            <input asp-for="@Model.KhamBenhBanDau" name="KhamBenhBanDau" class="form-control" value="@Model.KhamBenhBanDau">
                         </div>
                     </div>
                 </div>
@@ -216,19 +206,19 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Tên người thân</label>
-                            <input asp-for="@Model.RelativeName" class="form-control" value="@Model.RelativeName">
+                            <input asp-for="@Model.RelativeName" name="RelativeName" class="form-control" value="@Model.RelativeName">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Số điện thoại người thân</label>
-                            <input asp-for="@Model.RelativePhoneNumber" class="form-control" value="@Model.RelativePhoneNumber">
+                            <input asp-for="@Model.RelativePhoneNumber" name="RelativePhoneNumber" class="form-control" value="@Model.RelativePhoneNumber">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Địa chỉ người thân</label>
-                            <input asp-for="@Model.RelativeAddress" class="form-control" value="@Model.RelativeAddress">
+                            <input asp-for="@Model.RelativeAddress" name="RelativeAddress" class="form-control" value="@Model.RelativeAddress">
                         </div>
                     </div>
                 </div>
@@ -263,7 +253,7 @@
                 <div class="row m-5">
                     <div class="col-4"></div>
                     <div class="col-2">
-                        <a asp-controller="Registration" asp-action="AcceptRegistrations" class="btn btn-success">Cập nhật</a>
+                        <button type="submit" class="btn btn-success m-2 w-75">Cập nhật</button>
                     </div>
                     <div class="col-4"></div>
                 </div>

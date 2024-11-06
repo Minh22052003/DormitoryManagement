@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DormitoryServer.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using System.IO;
 
 namespace DormitoryServer.Controllers
 {
@@ -313,35 +314,50 @@ namespace DormitoryServer.Controllers
         }
 
 
-        //// PUT: api/Student
-        //[HttpPut("editstudent")]
-        //public async Task<IActionResult> EditStudent(Student student)
-        //{
-        //    if (id != student.StudentId)
-        //    {
-        //        return BadRequest();
-        //    }
+        [HttpPut("editstudent")]
+        public async Task<IActionResult> EditStudent(StudentDTO studentdto)
+        {
+            if(studentdto == null)
+            {
+                return BadRequest();
+            }
+            var student = await _context.Students.FindAsync(studentdto.StudentID);
+            if (student == null) {
+                return NotFound();
+            }
+            student.FullName = studentdto.FullName;
+            student.BirthDate = studentdto.BirthDate;
+            student.Gender = studentdto.Gender;
+            student.PhoneNumber = studentdto.PhoneNumber;
+            student.Email = studentdto.Email;
+            student.ProvinceId = studentdto.ProvinceID;
+            student.District = studentdto.District;
+            student.Ward = studentdto.Ward;
+            student.Street = studentdto.Street;
+            student.Idcard = studentdto.IDCard;
+            student.IsLeader = studentdto.IsLeader;
+            student.Ethnicity = studentdto.Ethnicity;
+            student.Religion  = studentdto.Religion;
+            student.Nationality = studentdto.Nationality;
+            student.DateOfIssueOfIdcard = studentdto.DateOfIssueOfIDCard;
+            student.PlaceOfIssueOfIdcard = studentdto.PlaceOfIssueOfIDCard;
+            student.PolicyCoverage = studentdto.PolicyCoverage;
+            student.InsuranceNumber = studentdto.InsuranceNumber;
+            student.NgayCapBhxh = studentdto.NgayCapBHXH;
+            student.GiaTriSuDungTuNgay = studentdto.GiaTriSuDungTuNgay;
+            student.ThoiDiem5NamLienTuc = studentdto.ThoiDiem5NamLienTuc;
+            student.IdtinhCapBhxh  = studentdto.IDTinhCapBHXH;
+            student.KhamBenhBanDau = studentdto.KhamBenhBanDau;
+            student.AnhThe4x6 = studentdto.AnhThe4x6;
+            student.AnhCmndmatTruoc = studentdto.AnhCMNDMatTruoc;
+            student.AnhCmndmatSau = studentdto.AnhCMNDMatSau;
+            student.AnhBhytmatTruoc = studentdto.AnhBHYTMatTruoc;
 
-        //    _context.Entry(student).State = EntityState.Modified;
 
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!StudentExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+            _context.SaveChanges();
 
-        //    return NoContent();
-        //}
+            return NoContent();
+        }
 
         //// POST: api/Student
         //[HttpPost]

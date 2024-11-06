@@ -125,7 +125,7 @@ namespace DormitoryServer.Controllers
         }
 
 
-        //cho nhân viên cập nhật thông tin cá nhân thường xuyên
+        //cho nhân viên quản lý cập nhật thông tin nhân viên
 
         [HttpPut("updatestaffbymanager")]
         public IActionResult UpdateStaff([FromBody] StaffDTO staffDTO)
