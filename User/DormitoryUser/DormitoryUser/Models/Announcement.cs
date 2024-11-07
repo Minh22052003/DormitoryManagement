@@ -1,4 +1,5 @@
-﻿namespace DormitoryUser.Models
+﻿
+namespace DormitoryUser.Models
 {
     public class Announcement
     {

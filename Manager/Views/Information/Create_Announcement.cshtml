@@ -20,19 +20,21 @@
                             <label for="floatingInput">Nội dung</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select class="form-select" id="floatingSelect"
+                            <select asp-for="Target" asp-items="@(new List<SelectListItem> {
+                                new SelectListItem { Text = "Tất cả", Value = "" },
+                                new SelectListItem { Text = "Chỉ nhân viên", Value = "NhanVien" },
+                                new SelectListItem { Text = "Chỉ sinh viên", Value = "SinhVien" }
+                            })" class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
-                                <option selected>Tất cả</option>
-                                <option value="1">Chỉ nhân viên</option>
-                                <option value="2">Chỉ sinh viên</option>
                             </select>
                             <label for="floatingSelect">Đối tượng</label>
                         </div>
+
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Chọn ảnh</label>
                             <input asp-for="@Model.Image" class="form-control bg-white" type="file" id="formFile">
                         </div>
-                        <button type="submit" class="btn btn-success m-2" asp-controller="Information" asp-action="Create_Announcement">Tạo mới</button>
+                        <button type="submit" class="btn btn-success m-2" asp-controller="Information" asp-action="Create_Announcement" formmethod="post">Tạo mới</button>
                         <a asp-controller="Information" asp-action="Announcement" class="btn btn-secondary m-2">Trở về</a>
                     </form>
                 </div>

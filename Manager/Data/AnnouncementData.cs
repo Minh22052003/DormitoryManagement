@@ -1,7 +1,9 @@
-﻿using Manager.Models;
+﻿using Manager.ModelRequest;
+using Manager.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace Manager.Data
 {
@@ -12,6 +14,7 @@ namespace Manager.Data
         private readonly IHttpContextAccessor _httpContextAccessor;
         private string nameURL;
         string keygetallannouncement = "/api/announcement/getallannouncement";
+        string keyaddannouncement = "/api/announcement/getallannouncement";
 
         public AnnouncementData(IHttpContextAccessor httpContextAccessor)
         {
@@ -20,21 +23,36 @@ namespace Manager.Data
             nameURL = _hosting.nameurl;
         }
 
-        public async Task<List<Announcement>> GetAllAnnouncement()
+        public async Task<List<AnnouncementRQ>> GetAllAnnouncement()
         {
             string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var url = nameURL + keygetallannouncement;
-            List<Announcement> announcements;
+            List<AnnouncementRQ> announcements;
             HttpResponseMessage response = await _httpClient.GetAsync(url);
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception(response.StatusCode.ToString());
             }
             string reponseData = await response.Content.ReadAsStringAsync();
-            announcements = JsonConvert.DeserializeObject<List<Announcement>>(reponseData);
+            announcements = JsonConvert.DeserializeObject<List<AnnouncementRQ>>(reponseData);
             return announcements;
+        }
+
+        public async Task CreateAnnouncement(AnnouncementRQ announcementrq)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var url = nameURL + keygetallannouncement;
+            string json = JsonConvert.SerializeObject(announcementrq);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PostAsync(url, content);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.StatusCode.ToString());
+            }
         }
 
     }

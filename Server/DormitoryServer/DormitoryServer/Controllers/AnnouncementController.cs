@@ -1,4 +1,5 @@
 ﻿using DormitoryServer.DTOs;
+using DormitoryServer.Helpers;
 using DormitoryServer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ namespace DormitoryServer.Controllers
     public class AnnouncementController : ControllerBase
     {
         private readonly DataDormitoryContext _context;
+        private FormFileHelper _formFileHelper = new FormFileHelper();
 
         public AnnouncementController(DataDormitoryContext context)
         {
@@ -31,10 +33,32 @@ namespace DormitoryServer.Controllers
                 announcementDTO.Title = item.Title;
                 announcementDTO.Content = item.Content;
                 announcementDTO.Target = item.Target;
-                announcementDTO.Image = item.Image;
+                announcementDTO.Image = _formFileHelper.GetImage(item.Image);
                 announcementDTO.Status = item.Status;
                 announcementDTO.CreationDate = item.CreationDate;
                 announcementDTOs.Add(announcementDTO);
+            }
+            return Ok(announcementDTOs);
+        }
+
+        [HttpPost("createannouncement")]
+        public IActionResult CreateAnnouncement([FromBody] AnnouncementDTO announcementDTO)
+        {
+            var announcement = _context.Announcements.Include("Staff").ToList();
+            List<AnnouncementDTO> announcementDTOs = new List<AnnouncementDTO>();
+            foreach (var item in announcement)
+            {
+                //AnnouncementDTO announcementDTO = new AnnouncementDTO();
+                //announcementDTO.AnnouncementID = item.AnnouncementId;
+                //announcementDTO.StaffID = item.StaffId;
+                //announcementDTO.StaffName = item.Staff?.FullName;
+                //announcementDTO.Title = item.Title;
+                //announcementDTO.Content = item.Content;
+                //announcementDTO.Target = item.Target;
+                //announcementDTO.Image = item.Image;
+                //announcementDTO.Status = item.Status;
+                //announcementDTO.CreationDate = item.CreationDate;
+                //announcementDTOs.Add(announcementDTO);
             }
             return Ok(announcementDTOs);
         }

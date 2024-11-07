@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Display Image";
+}
+
+<h2>Display Image</h2>
+
+<div>
+    @if (ViewBag.ImageData != null)
+    {
+        <img src="@ViewBag.ImageData" alt="Image from API" />
+    }
+    else
+    {
+        <p>Image not available.</p>
+    }
+</div>
