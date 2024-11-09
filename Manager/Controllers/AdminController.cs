@@ -11,6 +11,8 @@ namespace Manager.Controllers
         private readonly RoleData _roleData;
         private readonly EquipmentData _equipmentData;
         private readonly ServiceData _serviceData;
+        private readonly RoomData _roomData;
+        private readonly AccountData _accountData;
         public AdminController(IHttpContextAccessor httpContextAccessor)
         {
             _buildingData = new BuildingData(httpContextAccessor);
@@ -18,6 +20,8 @@ namespace Manager.Controllers
             _roomTypeData = new RoomTypeData(httpContextAccessor);
             _roleData = new RoleData(httpContextAccessor);
             _serviceData = new ServiceData(httpContextAccessor);
+            _roomData = new RoomData(httpContextAccessor);
+            _accountData = new AccountData(httpContextAccessor);
         }
         public IActionResult ListBuilding()
         {
@@ -25,17 +29,73 @@ namespace Manager.Controllers
             return View(buildings);
         }
         [HttpGet]
+        public IActionResult AddBuilding()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddBuilding(Building building)
+        {
+            if (building != null)
+            {
+                await _buildingData.AddBuilding(building);
+                return RedirectToAction("ListBuilding");
+            }
+            return RedirectToAction("ListBuilding");
+        }
+
+
+
+
+        [HttpGet]
         public IActionResult ListRoomType()
         {
             List<RoomType> roomTypes = _roomTypeData.GetAllRoomType().Result;
             return View(roomTypes);
         }
+        public IActionResult AddRoomType()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddRoomType(RoomType roomType)
+        {
+            if(roomType == null)
+            {
+                return RedirectToAction("ListRoomType");
+            }
+            await _roomTypeData.AddRoomtype(roomType);
+            return RedirectToAction("ListRoomType");
+        }
+
+
+
+
         [HttpGet]
         public IActionResult ListRole()
         {
             List<Role> roles = _roleData.GetAllRole().Result;
             return View(roles);
         }
+        public IActionResult AddRole()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddRole(Role role)
+        {
+            if (role == null)
+            {
+                return RedirectToAction("ListRole");
+            }
+            await _roleData.AddRole(role);
+            return RedirectToAction("ListRole");
+        }
+
+
+
+
+
         [HttpGet]
         public IActionResult ListEquipment()
         {
@@ -47,6 +107,21 @@ namespace Manager.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> AddEquipment(Equipment equipment)
+        {
+            if (equipment == null)
+            {
+                return RedirectToAction("ListEquipment");
+            }
+            await _equipmentData.AddEquipment(equipment);
+            return RedirectToAction("ListEquipment");
+        }
+
+
+
+
+
         [HttpGet]
         public IActionResult ListService()
         {
@@ -58,64 +133,50 @@ namespace Manager.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> AddService(Service service)
+        {
+            if (service == null)
+            {
+                return RedirectToAction("ListService");
+            }
+            await _serviceData.AddService(service);
+            return RedirectToAction("ListService");
+        }
+
+
+
+
+
         [HttpGet]
         public IActionResult AddRoom()
         {
             List<Building> buildings = _buildingData.GetAllBuilding().Result;
             List<RoomType> roomTypes = _roomTypeData.GetAllRoomType().Result;
-            ViewBag.buildings = buildings;
-            ViewBag.roomtype = roomTypes;
-            return View();
-        }
-        public IActionResult AddRoomType()
-        {
-            return View();
-        }
-        [HttpGet]
-        public IActionResult AddBuilding()
-        {
+            List<RoomStatus> roomStatuses = _roomData.GetAllRoomStatus().Result;
+            ViewBag.Buildings = buildings;
+            ViewBag.RoomTypes = roomTypes;
+            ViewBag.RoomStatuses = roomStatuses;
             return View();
         }
         [HttpPost]
-        public IActionResult AddBuilding(Building building)
+        public async Task<IActionResult> AddRoom(Room room)
         {
-            if (ModelState.IsValid)
+            if(room == null)
             {
-                return View();
+                return RedirectToAction("ListBuilding");
             }
-            return View();
+            await _roomData.AddRoom(room);
+            return RedirectToAction("ListBuilding");
         }
-        public IActionResult AddRole()
-        {
-            return View();
-        }
+
+
+        
+        
         [HttpGet]
         public IActionResult StaffRegistration()
         {
-            var staffRegistrations = new List<StaffRegistration>
-            {
-                new StaffRegistration
-                {
-                    AccountStaffId = 101,
-                    UserName = "jdoe",
-                    Password = "password123",
-                    Email = "jdoe@example.com"
-                },
-                new StaffRegistration
-                {
-                    AccountStaffId = 102,
-                    UserName = "asmith",
-                    Password = "smithPass456",
-                    Email = "asmith@example.com"
-                },
-                new StaffRegistration
-                {
-                    AccountStaffId = 103,
-                    UserName = "bnguyen",
-                    Password = "nguyenPass789",
-                    Email = "bnguyen@example.com"
-                }
-            };
+            List<StaffRegistration> staffRegistrations = _accountData.GetAllStaffRegistration().Result;
             return View(staffRegistrations);
         }
         [HttpPost]

@@ -1,44 +1,62 @@
-﻿@model Manager.Models.Room
-
-<div class="container-fluid">
-    <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
-        <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
-            <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                    <a href="index.html" class="">
-                        <h3 class="text-primary"><i class="bi bi-house-fill me-2"></i>Thêm phòng</h3>
-                    </a>
-                </div>
-                <div class="form-floating mb-3">
-                    <select name="BuildingName" class="form-select" id="floatingSelect"
-                            aria-label="Floating label select example">
-                        @foreach (var b in ViewBag.buildings)
-
-                        {
-                            <option value="@b.BuildingID">@b.BuildingName</option>
-                        }
-                    </select>
-                    <label for="floatingSelect">Tòa nhà</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <select name="RoomTypeName" class="form-select" id="floatingSelect"
-                            aria-label="Floating label select example">
-                        @foreach (var r in ViewBag.roomtype)
-
-
-
-                        {
-                            <option value="@r.RoomTypeID">@r.RoomTypeName</option>
-                        }
-                    </select>
-                    <label for="floatingSelect">Loại phòng</label>
-                </div>
-                <div class="form-floating mb-4">
-                    <input name="RoomName" type="text" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Tên phòng</label>
-                </div>
-                <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Thêm phòng</button>
-            </div>
+﻿<div class="container mt-4">
+    <form asp-action="AddRoom" asp-controller= "Admin" method="post">
+        <!-- Room Name -->
+        <div class="mb-3">
+            <label for="RoomName" class="form-label">Tên phòng</label>
+            <input type="text" class="form-control" id="RoomName" name="RoomName" required>
         </div>
-    </div>
+
+        <!-- Building Selection -->
+        <div class="mb-3">
+            <label for="BuildingID" class="form-label">Tòa nhà</label>
+            <select class="form-select" id="BuildingID" name="BuildingID" required>
+                <option value="">Chọn tòa nhà</option>
+                @foreach (var building in ViewBag.Buildings)
+
+                {
+                    <option value="@building.BuildingID">
+                        @building.BuildingName
+                    </option>
+                }
+            </select>
+        </div>
+
+        <!-- Room Type Selection -->
+        <div class="mb-3">
+            <label for="RoomTypeID" class="form-label">Loại phòng</label>
+            <select class="form-select" id="RoomTypeID" name="RoomTypeID" required>
+                <option value="">Chọn loại phòng</option>
+                @foreach (var roomType in ViewBag.RoomTypes)
+
+                {
+                    <option value="@roomType.RoomTypeID">
+                        @roomType.RoomTypeName
+                    </option>
+                }
+            </select>
+        </div>
+
+        <!-- Room Status Selection -->
+        <div class="mb-3">
+            <label for="RoomStatusID" class="form-label">Trạng thái phòng</label>
+            <select class="form-select" id="RoomStatusID" name="RoomStatusID" required>
+                <option value="">Chọn trạng thái phòng</option>
+                @foreach (var status in ViewBag.RoomStatuses)
+
+                {
+                    <option value="@status.RoomStatusID">
+                        @status.RoomStatusName
+                    </option>
+                }
+            </select>
+        </div>
+
+        <!-- Room Note -->
+        <div class="mb-3">
+            <label for="RoomNote" class="form-label">Ghi chú phòng</label>
+            <textarea class="form-control" id="RoomNote" name="RoomNote"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Lưu</button>
+    </form>
 </div>

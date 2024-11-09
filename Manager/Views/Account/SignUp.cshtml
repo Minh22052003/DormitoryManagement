@@ -1,6 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Manager.Models.StaffRegistration
+
 @{
     Layout = "_LayoutSignIn";
 }
@@ -15,23 +14,34 @@
                     </a>
                     <h3>Đăng ký</h3>
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingText" placeholder="jhondoe">
-                    <label for="floatingText">Tài khoản</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email</label>
-                </div>
-                <div class="form-floating mb-4">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Mật khẩu</label>
-                </div>
-                <div class="form-floating mb-4">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Nhập lại mật khẩu</label>
-                </div>
-                <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Đăng ký</button>
+                <form method="post" asp-action="SignUp" asp-controller="Account">
+                    <!-- Tài khoản -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingText" placeholder="jhondoe" name="UserName" required>
+                        <label for="floatingText">Tài khoản</label>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="Email" required>
+                        <label for="floatingInput">Email</label>
+                    </div>
+
+                    <!-- Mật khẩu -->
+                    <div class="form-floating mb-4">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="Password" required>
+                        <label for="floatingPassword">Mật khẩu</label>
+                    </div>
+
+                    <!-- Nhập lại mật khẩu -->
+                    <div class="form-floating mb-4">
+                        <input type="password" class="form-control" id="floatingConfirmPassword" placeholder="Nhập lại mật khẩu" name="ConfirmPassword" required>
+                        <label for="floatingConfirmPassword">Nhập lại mật khẩu</label>
+                    </div>
+
+                    <!-- Nút đăng ký -->
+                    <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Đăng ký</button>
+                </form>
                 <p class="text-center mb-0">Đã có tài khoản? <a asp-controller="Account" asp-action="SignIn">Đăng nhập</a></p>
             </div>
         </div>

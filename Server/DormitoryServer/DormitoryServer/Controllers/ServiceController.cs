@@ -33,5 +33,19 @@ namespace DormitoryServer.Controllers
             return Ok(service);
         }
 
+        [HttpPost("addservice")]
+        public IActionResult AddService(ServiceDTO serviceDTO)
+        {
+            var service = new Service
+            {
+                ServiceName = serviceDTO.ServiceName,
+                Unit = serviceDTO.Unit,
+                Price = serviceDTO.Price
+            };
+            _context.Services.Add(service);
+            _context.SaveChanges();
+            return Ok();
+        }
+
     }
 }

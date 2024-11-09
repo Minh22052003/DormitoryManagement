@@ -12,6 +12,7 @@ namespace Manager.Data
         private readonly IHttpContextAccessor _httpContextAccessor;
         private string nameURL;
         string keygetallrole = "/api/Auth/getallrole";
+        string keyaddrole = "/api/Role/addrole";
 
         public RoleData(IHttpContextAccessor httpContextAccessor)
         {
@@ -37,20 +38,24 @@ namespace Manager.Data
             return roles;
         }
 
-        //public async Task<HttpResponseMessage> Post_AddRoleAsync(Role roles)
-        //{
-        //    try
-        //    {
-        //        string json = JsonConvert.SerializeObject(roles);
-        //        StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-        //        HttpResponseMessage response = await _httpClient.PostAsync(apiKey, data);
-        //        return response;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //        return null;
-        //    }
-        //}
+        public async Task AddRole(Role role)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameURL + keyaddrole;
+            string json = JsonConvert.SerializeObject(role);
+            StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PostAsync(url, data);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseData = await response.Content.ReadAsStringAsync();
+
+            }
+            else
+            {
+                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+            }
+        }
     }
 }

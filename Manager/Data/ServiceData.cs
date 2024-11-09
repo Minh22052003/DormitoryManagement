@@ -12,6 +12,7 @@ namespace Manager.Data
         private readonly IHttpContextAccessor _httpContextAccessor;
         private string nameURL;
         string Keygetallservice = "/api/Service/getallservice";
+        string Keyaddservice = "/api/Service/addservice";
 
         public ServiceData(IHttpContextAccessor httpContextAccessor)
         {
@@ -37,20 +38,24 @@ namespace Manager.Data
             return services;
         }
 
-        //public async Task<HttpResponseMessage> Post_AddBuildingAsync(Service services)
-        //{
-        //    try
-        //    {
-        //        string json = JsonConvert.SerializeObject(services);
-        //        StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-        //        HttpResponseMessage response = await _httpClient.PostAsync(apiKey, data);
-        //        return response;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //        return null;
-        //    }
-        //}
+        public async Task AddService(Service service)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameURL + Keyaddservice;
+            string json = JsonConvert.SerializeObject(service);
+            StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PostAsync(url, data);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseData = await response.Content.ReadAsStringAsync();
+
+            }
+            else
+            {
+                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+            }
+        }
     }
 }

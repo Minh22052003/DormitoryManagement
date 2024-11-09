@@ -63,13 +63,18 @@ namespace DormitoryServer.Controllers
             return Ok(equipment);
         }
 
-        //[HttpPost("addequipment")]
-        //public IActionResult AddEquipment([FromBody] Equipment equipment)
-        //{
-        //    _context.Equipments.Add(equipment);
-        //    _context.SaveChanges();
-        //    return Ok();
-        //}
+        [HttpPost("addequipment")]
+        public IActionResult AddEquipment([FromBody] EquipmentDTO equipmentDTO)
+        {
+            var equipment = new Equipment
+            {
+                EquipmentName = equipmentDTO.EquipmentName,
+                Price = equipmentDTO.Price,
+            };
+            _context.Equipment.Add(equipment);
+            _context.SaveChanges();
+            return Ok();
+        }
 
 
         [HttpPut("addequipmenttoroom")]

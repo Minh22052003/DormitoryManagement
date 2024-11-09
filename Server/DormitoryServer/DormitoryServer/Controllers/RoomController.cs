@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace DormitoryServer.Controllers
 {
@@ -125,6 +127,39 @@ namespace DormitoryServer.Controllers
                 });
             }
             return roomStatusDTOs;
+        }
+
+        [HttpPost("addroom")]
+        public async Task<IActionResult> AddRoom(RoomDTO roomDTO)
+        {
+            var room = new Room
+            {
+                RoomId = GenerateUniqueIdMD5(roomDTO.RoomName),
+                RoomTypeId = roomDTO.RoomTypeID,
+                BuildingId = roomDTO.BuildingID,
+                RoomName = roomDTO.RoomName,
+                RoomStatusId = roomDTO.RoomStatusID,
+                NumberOfStudent = 0,
+                RoomNote = roomDTO.RoomNote
+            };
+            _context.Rooms.Add(room);
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+        private string GenerateUniqueIdMD5(string name)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(name);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashBytes)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+                return sb.ToString().Substring(0, 10);
+            }
         }
 
         [HttpPut("editroom")]

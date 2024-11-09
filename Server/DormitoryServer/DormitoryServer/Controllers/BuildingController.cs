@@ -2,6 +2,8 @@
 using DormitoryServer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace DormitoryServer.Controllers
 {
@@ -35,10 +37,27 @@ namespace DormitoryServer.Controllers
         public IActionResult AddBuilding(BuildingDTO buildingDTO)
         {
             Building building = new Building();
+            building.BuildingId = GenerateUniqueIdMD5(buildingDTO.BuildingName);
             building.BuildingName = buildingDTO.BuildingName;
             _context.Buildings.Add(building);
             _context.SaveChanges();
             return Ok();
+        }
+
+        private string GenerateUniqueIdMD5(string name)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(name);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashBytes)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+                return sb.ToString().Substring(0, 10);
+            }
         }
     }
 }

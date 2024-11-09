@@ -17,12 +17,8 @@ namespace Manager.Controllers
         public AccountController(IHttpContextAccessor httpContextAccessor)
         {
             _client = new HttpClient();
-            _accountData = new AccountData();
+            _accountData = new AccountData(httpContextAccessor);
             _staffData = new StaffData(httpContextAccessor);
-        }
-        public IActionResult SignUp()
-        {
-            return View();
         }
         [HttpGet]
         public IActionResult SignIn()
@@ -68,12 +64,18 @@ namespace Manager.Controllers
         {
             return View();
         }
-        public IActionResult SignUp1()
+
+
+        public IActionResult SignUp()
         {
             return View();
         }
-
-
+        [HttpPost]
+        public IActionResult SignUp(StaffRegistration staffRegistration)
+        {
+            _accountData.Post_SignUpUserAsync(staffRegistration);
+            return View();
+        }
 
 
 

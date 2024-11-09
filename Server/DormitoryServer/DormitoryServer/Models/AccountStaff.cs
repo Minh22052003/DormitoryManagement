@@ -11,6 +11,7 @@ namespace DormitoryServer.Models
         public string? StaffId { get; set; }
         public string? Password { get; set; }
         public bool? Status { get; set; }
+        public string? Email { get; set; }
 
         public virtual Role? Role { get; set; }
         public virtual staff? Staff { get; set; }

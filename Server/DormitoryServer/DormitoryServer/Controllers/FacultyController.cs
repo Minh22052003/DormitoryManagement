@@ -1,4 +1,5 @@
-﻿using DormitoryServer.Models;
+﻿using DormitoryServer.DTOs;
+using DormitoryServer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,11 +24,11 @@ namespace DormitoryServer.Controllers
             return Ok(listFaculty);
         }
         [HttpPost("addfaculty")]
-        public async Task<IActionResult> AddFaculty(string facultyName)
+        public async Task<IActionResult> AddFaculty(FacultyDTO facultyDTO)
         {
             var faculty = new Faculty
             {
-                FacultyName = facultyName
+                FacultyName = facultyDTO.FacultyName
             };
             _context.Faculties.Add(faculty);
             await _context.SaveChangesAsync();

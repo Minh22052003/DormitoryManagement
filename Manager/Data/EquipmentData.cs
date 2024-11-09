@@ -12,6 +12,7 @@ namespace Manager.Data
         private readonly IHttpContextAccessor _httpContextAccessor;
         private string nameURL;
         string getallEquipment = "/api/Equipment/getallequipment";
+        string addEquipment = "/api/Equipment/addequipment";
         string getEquipmentbyRoom = "/api/Equipment/getequipmentbyroom";
         string addEquipmenttoRoom = "/api/Equipment/addequipmenttoroom";
 
@@ -72,25 +73,28 @@ namespace Manager.Data
             }
         }
 
+        public async Task AddEquipment(Equipment equipment)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameURL + addEquipment;
+            string json = JsonConvert.SerializeObject(equipment);
+            StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PostAsync(url, data);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseData = await response.Content.ReadAsStringAsync();
+
+            }
+            else
+            {
+                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+            }
+        }
 
 
 
 
-
-        //public async Task<HttpResponseMessage> Post_AddEquipmentAsync(Equipment equipment)
-        //{
-        //    try
-        //    {
-        //        string json = JsonConvert.SerializeObject(equipment);
-        //        StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-        //        HttpResponseMessage response = await _httpClient.PostAsync(apiKey, data);
-        //        return response;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //        return null;
-        //    }
-        //}
     }
 }

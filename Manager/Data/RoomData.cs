@@ -15,6 +15,7 @@ namespace Manager.Data
         string keygetallroom = "/api/Room/getallroom";
         string keygetallroomstatus = "/api/Room/getallroomstatus";
         string keyeditroom = "/api/Room/editroom";
+        string keyaddroom = "/api/Room/addroom";
 
         public RoomData(IHttpContextAccessor httpContextAccessor)
         {
@@ -76,6 +77,27 @@ namespace Manager.Data
                 throw new Exception("Không cập nhật thành công: " + response.StatusCode);
             }
         }
+
+        public async Task AddRoom(Room room)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameURL + keyaddroom;
+            string json = JsonConvert.SerializeObject(room);
+            StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PostAsync(url, data);
+
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    string responseData = await response.Content.ReadAsStringAsync();
+
+            //}
+            //else
+            //{
+            //    throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+            //}
+        }
+
 
 
     }

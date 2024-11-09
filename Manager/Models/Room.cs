@@ -2,8 +2,8 @@
 {
     public class Room
     {
-        public string RoomID { get; set; } = null!;
-        public int RoomTypeID { get; set; }
+        public string? RoomID { get; set; }
+        public int? RoomTypeID { get; set; }
         public string? BuildingID { get; set; }
         public string? BuildingName { get; set; }
         public string? LeaderID { get; set; }

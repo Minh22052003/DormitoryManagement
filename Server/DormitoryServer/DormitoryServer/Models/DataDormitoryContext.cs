@@ -65,6 +65,8 @@ namespace DormitoryServer.Models
 
                 entity.Property(e => e.AccountStaff1).HasColumnName("AccountStaff");
 
+                entity.Property(e => e.Email).HasMaxLength(255);
+
                 entity.Property(e => e.Password).HasMaxLength(255);
 
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");

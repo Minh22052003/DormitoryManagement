@@ -1,4 +1,5 @@
-﻿using DormitoryServer.Models;
+﻿using DormitoryServer.DTOs;
+using DormitoryServer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,11 +24,13 @@ namespace DormitoryServer.Controllers
         }
         //Thêm lớp
         [HttpPost("addclass")]
-        public async Task<IActionResult> AddClass(string className)
+        public async Task<IActionResult> AddClass(ClassDTO classDTO)
         {
             var newClass = new Class()
             {
-                ClassName = className
+                ClassName = classDTO.ClassName,
+                CourseId = classDTO.CourseId,
+                FacultyId = classDTO.FacultyId
             };
             _context.Classes.Add(newClass);
             await _context.SaveChangesAsync();

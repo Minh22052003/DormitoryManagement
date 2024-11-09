@@ -12,6 +12,7 @@ namespace Manager.Data
         private readonly IHttpContextAccessor _httpContextAccessor;
         private string nameURL;
         string Keygetallroomtype = "/api/Room/getallroomtype";
+        string Keyaddroomtype = "/api/Room/addroomtype";
 
         public RoomTypeData(IHttpContextAccessor httpContextAccessor)
         {
@@ -37,20 +38,24 @@ namespace Manager.Data
             return roomTypes;
         }
 
-        //public async Task<HttpResponseMessage> Post_AddRoomTypeAsync(RoomType roomTypes)
-        //{
-        //    try
-        //    {
-        //        string json = JsonConvert.SerializeObject(roomTypes);
-        //        StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-        //        HttpResponseMessage response = await _httpClient.PostAsync(apiKey, data);
-        //        return response;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //        return null;
-        //    }
-        //}
+        public async Task AddRoomtype(RoomType roomType)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameURL + Keyaddroomtype;
+            string json = JsonConvert.SerializeObject(roomType);
+            StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PostAsync(url, data);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseData = await response.Content.ReadAsStringAsync();
+
+            }
+            else
+            {
+                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+            }
+        }
     }
 }
