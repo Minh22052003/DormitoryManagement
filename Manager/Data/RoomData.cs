@@ -13,6 +13,8 @@ namespace Manager.Data
         private readonly IHttpContextAccessor _httpContextAccessor;
         private string nameURL;
         string keygetallroom = "/api/Room/getallroom";
+        string keygetallroomstatus = "/api/Room/getallroomstatus";
+        string keyeditroom = "/api/Room/editroom";
 
         public RoomData(IHttpContextAccessor httpContextAccessor)
         {
@@ -38,13 +40,43 @@ namespace Manager.Data
             return rooms;
         }
 
-        public async Task<HttpResponseMessage> UpdateRoomAsync(Room room)
+        public async Task<List<RoomStatus>> GetAllRoomStatus()
         {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var url = nameURL + keygetallroomstatus;
+            List<RoomStatus> roomStatuses;
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.StatusCode.ToString());
+            }
+            string reponseData = await response.Content.ReadAsStringAsync();
+            roomStatuses = JsonConvert.DeserializeObject<List<RoomStatus>>(reponseData);
+            return roomStatuses;
+        }
+
+        public async Task UpdateRoom(Room room)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameURL + keyeditroom;
             string json = JsonConvert.SerializeObject(room);
             StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PutAsync(url, data);
 
-            HttpResponseMessage response = await _httpClient.PutAsync(keygetallroom, data);
-            return response;
+            if (response.IsSuccessStatusCode)
+            {
+                string responseData = await response.Content.ReadAsStringAsync();
+
+            }
+            else
+            {
+                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+            }
         }
+
+
     }
 }

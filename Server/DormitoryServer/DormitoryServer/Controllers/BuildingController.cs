@@ -31,5 +31,14 @@ namespace DormitoryServer.Controllers
             }
             return Ok(buildingDTOs);
         }
+        [HttpPost("addbuilding")]
+        public IActionResult AddBuilding(BuildingDTO buildingDTO)
+        {
+            Building building = new Building();
+            building.BuildingName = buildingDTO.BuildingName;
+            _context.Buildings.Add(building);
+            _context.SaveChanges();
+            return Ok();
+        }
     }
 }

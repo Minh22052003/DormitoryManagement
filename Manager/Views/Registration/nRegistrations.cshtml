@@ -65,8 +65,16 @@
                                     <td>@r.RoomTypeName</td>
                                     <td>@r.Semester</td>
                                     <td>@r.AcademicYear</td>
-                                    <td><a asp-controller="Registration" asp-action="AcceptRegistrations" class="btn btn-success">Đồng ý</a></td>
-                                    <td><a asp-controller="Registration" asp-action="RejectRegistrations" class="btn btn-danger">Từ chối</a></td>
+                                    <td>
+                                        <form asp-controller="Registration" asp-action="AcceptRegistrations" asp-route-id="@r.RegistrationID" method="post">
+                                            <button type="submit" class="btn btn-success">Đồng ý</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form asp-controller="Registration" asp-action="RejectRegistrations" asp-route-id="@r.RegistrationID" method="post">
+                                            <button type="submit" class="btn btn-danger">Từ chối</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 i = i + 1;
                             }

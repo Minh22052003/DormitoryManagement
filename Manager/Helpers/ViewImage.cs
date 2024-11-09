@@ -6,12 +6,23 @@ namespace Manager.Helpers
 {
     public class ViewImage
     {
-        public async Task<string> DisplayImage(FileContentResult fileContentResult)
+        public async Task<string> ConvertFormFileToBase64Async(IFormFile file)
         {
-            
-            var base64Image = $"data:{fileContentResult.ContentType};base64,{fileContentResult.FileContents}";
+            if (file == null || file.Length == 0)
+            {
+                return null;
+            }
 
-            return base64Image;
+            using (var memoryStream = new MemoryStream())
+            {
+                await file.CopyToAsync(memoryStream);
+
+                byte[] fileBytes = memoryStream.ToArray();
+
+                string base64String = Convert.ToBase64String(fileBytes);
+
+                return base64String;
+            }
         }
     }
 }

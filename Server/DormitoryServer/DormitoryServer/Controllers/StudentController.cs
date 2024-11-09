@@ -97,7 +97,7 @@ namespace DormitoryServer.Controllers
 
         [Authorize(Policy = "Student")]
         [HttpGet("getprofilestudent")]
-        public async Task<ActionResult<Student>> GetStudent()
+        public async Task<ActionResult<StudentDTO>> GetStudent()
         {
             var studenId = User.FindFirst("UserId")?.Value;
             var student = await _context.Students
@@ -313,7 +313,7 @@ namespace DormitoryServer.Controllers
             return studentDTOs;
         }
 
-
+        [Authorize(Policy = "Manager")]
         [HttpPut("editstudent")]
         public async Task<IActionResult> EditStudent(StudentDTO studentdto)
         {
@@ -353,6 +353,101 @@ namespace DormitoryServer.Controllers
             student.AnhCmndmatSau = studentdto.AnhCMNDMatSau;
             student.AnhBhytmatTruoc = studentdto.AnhBHYTMatTruoc;
 
+
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+
+        [Authorize(Policy = "Manager")]
+        [HttpPut("editstudentwithroom")]
+        public async Task<IActionResult> EditStudentWithRoom(StudentDTO studentdto)
+        {
+            if (studentdto == null)
+            {
+                return BadRequest();
+            }
+            var student = await _context.Students.FindAsync(studentdto.StudentID);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            var roomold = await _context.Rooms.FindAsync(student.RoomId);
+            var room = await _context.Rooms.FindAsync(studentdto.RoomID);
+            if (room == null)
+            {
+                return NotFound();
+            }
+            if(student.RoomId == studentdto.RoomID)
+            {
+                return BadRequest("Sinh viên đã ở trong phòng");
+            }
+            if(room.NumberOfStudent == room?.RoomType?.Capacity)
+            {
+                return BadRequest("Phòng đã đầy");
+            }
+            else
+            {
+                room.NumberOfStudent += 1;
+                roomold.NumberOfStudent -= 1;
+                student.RoomId = studentdto.RoomID;
+
+                _context.SaveChanges();
+            }   
+            return NoContent();
+        }
+        [Authorize(Policy = "Manager")]
+        [HttpPut("addstudentwithroom")]
+        public async Task<IActionResult> AddStudentWithRoom(StudentDTO studentdto)
+        {
+            if (studentdto == null)
+            {
+                return BadRequest();
+            }
+            var student = await _context.Students.FindAsync(studentdto.StudentID);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            var room = await _context.Rooms.FindAsync(studentdto.RoomID);
+            if (room == null)
+            {
+                return NotFound();
+            }
+            if (room.NumberOfStudent == room?.RoomType?.Capacity)
+            {
+                return BadRequest("Phòng đã đầy");
+            }
+            else
+            {
+                room.NumberOfStudent += 1;
+                student.RoomId = studentdto.RoomID;
+
+                _context.SaveChanges();
+            }
+            return NoContent();
+        }
+
+        [Authorize(Policy = "Manager")]
+        [HttpPut("deletestudentwithroom")]
+        public async Task<IActionResult> DeleteStudentWithRoom(StudentDTO studentdto)
+        {
+            if (studentdto == null)
+            {
+                return BadRequest();
+            }
+            var student = await _context.Students.FindAsync(studentdto.StudentID);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            var room = await _context.Rooms.FindAsync(studentdto.RoomID);
+            if (room == null)
+            {
+                return NotFound();
+            }
+            room.NumberOfStudent -= 1;
+            student.RoomId = null;
 
             _context.SaveChanges();
 

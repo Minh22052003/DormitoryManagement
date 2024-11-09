@@ -63,6 +63,20 @@ namespace DormitoryServer.Controllers
             return roomTypeDTOs;
         }
 
+        [HttpPost("addroomtype")]
+        public async Task<ActionResult<RoomTypeDTO>> AddRoomType(RoomTypeDTO roomTypeDTO)
+        {
+            var roomType = new RoomType
+            {
+                RoomTypeName = roomTypeDTO.RoomTypeName,
+                Capacity = roomTypeDTO.Capacity,
+                RoomPrice = roomTypeDTO.RoomPrice
+            };
+            _context.RoomTypes.Add(roomType);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetRoomTypes", new { id = roomType.RoomTypeId }, roomTypeDTO);
+        }
+
 
         [Authorize(Policy = "Student")]
         [HttpGet("getroombysytudent")]
@@ -97,6 +111,36 @@ namespace DormitoryServer.Controllers
             return roomDTO;
         }
 
+        [HttpGet("getallroomstatus")]
+        public async Task<ActionResult<List<RoomStatusDTO>>> GetRoomStatus()
+        {
+            var roomStatuses = await _context.RoomStatuses.ToListAsync();
+            List<RoomStatusDTO> roomStatusDTOs = new List<RoomStatusDTO>();
+            foreach (var roomStatus in roomStatuses)
+            {
+                roomStatusDTOs.Add(new RoomStatusDTO
+                {
+                    RoomStatusID = roomStatus.RoomStatusId,
+                    RoomStatusName = roomStatus.RoomStatusName
+                });
+            }
+            return roomStatusDTOs;
+        }
+
+        [HttpPut("editroom")]
+        public async Task<IActionResult> EditRoom(RoomDTO roomDTO)
+        {
+            var room = await _context.Rooms.FindAsync(roomDTO.RoomID);
+            if (room == null)
+            {
+                return NotFound("Không tìm thấy phòng");
+            }
+            room.RoomName = roomDTO.RoomName;
+            room.RoomStatusId = roomDTO.RoomStatusID;
+            room.RoomNote = roomDTO.RoomNote;
+            _context.SaveChanges();
+            return NoContent();
+        }
 
 
 

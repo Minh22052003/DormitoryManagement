@@ -43,5 +43,12 @@ namespace Manager.Controllers
             List<UtilityMeter> utilityMeters = _utilityMeterData.GetAllUtilityMeter().Result;
             return View(utilityMeters);
         }
+
+        [HttpPost]
+        public IActionResult CreateUtilityMeter(UtilityMeter utilityMeter)
+        {
+            _utilityMeterData.CreateUtilityMeter(utilityMeter);
+            return RedirectToAction("List");
+        }
     }
 }

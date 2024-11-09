@@ -1,4 +1,5 @@
 ﻿using Manager.Data;
+using Manager.Helpers;
 using Manager.ModelRequest;
 using Manager.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +10,12 @@ namespace Manager.Controllers
     {
         private AnnouncementData _announcementData;
         private NewsData _newData;
+        private ViewImage ViewImage;
         public InformationController(IHttpContextAccessor httpContextAccessor)
         {
             _newData = new NewsData(httpContextAccessor);
             _announcementData = new AnnouncementData(httpContextAccessor);
+            ViewImage = new ViewImage();
         }
         public IActionResult Announcement()
         {
@@ -26,10 +29,27 @@ namespace Manager.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create_Announcement(Announcement announcement)
+        public async Task<IActionResult> Create_Announcement(Announcement announcementrq)
         {
+            if(announcementrq == null)
+            {
+                return RedirectToAction("Create_Announcement");
+            }
+            Console.WriteLine("Test");
+            var announcement = new AnnouncementRQ
+            {
+                Title = announcementrq.Title,
+                Content = announcementrq.Content,
+                Target = announcementrq.Target,
+                //Image = await ViewImage.ConvertFormFileToBase64Async(announcementrq.Image),
+            };
+            Console.WriteLine(announcement.Image);
+            await _announcementData.CreateAnnouncement(announcement);
             return View();
         }
+
+
+
         public IActionResult News()
         {
             try

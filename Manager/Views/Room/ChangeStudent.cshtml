@@ -1,10 +1,5 @@
-﻿@model Manager.Models.UtilityMeter
+﻿@model Manager.Models.Student
 
-@{
-    var rooms = ViewBag.rooms as List<Room>;
-
-    var buildings = ViewBag.buildings as List<Building>;
-}
 
 <div class="container-fluid">
     <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
@@ -12,16 +7,23 @@
             <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <a href="index.html" class="">
-                        <h3 class="text-primary"><i class="bi bi-droplet-half me-2"></i>Ghi số điện nước</h3>
+                        <h3 class="text-primary"><i class="bi bi-droplet-half me-2"></i>Chuyển phòng</h3>
                     </a>
                 </div>
 
                 <!-- Bọc các trường trong một form để gửi dữ liệu -->
-                <form asp-action="CreateUtilityMeter" asp-controller="UtilityMeter" method="post">
+                <form asp-action="ChangeStudent1" asp-controller="Room" method="post">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h4 class="text-primary">Tên: @Model.FullName</h4>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 class="text-primary">MSV: @Model.StudentID</h5>
+                    </div>
+                    <input asp-for="StudentID" type="hidden" />
                     <div class="form-floating mb-3">
                         <select class="form-select" id="buildingSelect" aria-label="">
                             <option disabled selected>--Chọn tòa nhà--</option>
-                            @foreach (var b in buildings)
+                            @foreach (var b in @ViewBag.buildings)
 
                             {
                                 <option value="@b.BuildingID">@b.BuildingName</option>
@@ -44,9 +46,11 @@
                                 var buildingId = $(this).val();
 
                                 $.ajax({
-                                    url: '@Url.Action("GetRoomsByBuilding", "UtilityMeter")',
+                                    url: '@Url.Action("GetRoomsByBuilding", "Room")',
                                     type: 'GET',
-                                    data: { buildingId: buildingId },
+                                    data: {
+                                        buildingId: buildingId,
+                                    },
                                     success: function (rooms) {
                                         // Xóa các tùy chọn cũ
                                         $('#roomSelect').empty();
@@ -64,16 +68,9 @@
                             });
                         });
                     </script>
+                    <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Đổi</button>
 
-                    <div class="form-floating mb-4">
-                        <input asp-for="Electricity" type="number" class="form-control" id="floatingElectricity" placeholder="Số điện sử dụng" min="0">
-                        <label for="floatingElectricity">Số điện sử dụng</label>
-                    </div>
-                    <div class="form-floating mb-4">
-                        <input asp-for="Water" type="number" class="form-control" id="floatingWater" placeholder="Số nước sử dụng" min="0">
-                        <label for="floatingWater">Số nước sử dụng</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Thêm</button>
+                    <a asp-controller="Room" asp-action="Room" class="btn btn-danger">Quay lại</a>
                 </form>
             </div>
         </div>

@@ -1,6 +1,7 @@
 ﻿using Manager.Data;
 using Manager.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Manager.Controllers
 {
@@ -9,11 +10,13 @@ namespace Manager.Controllers
         private RoomData _roomData;
         private StudentData _studentData;
         private EquipmentData _equipmentData;
+        private BuildingData _buildingData;
         public RoomController(IHttpContextAccessor httpContextAccessor)
         {
             _roomData = new RoomData(httpContextAccessor);
             _studentData = new StudentData(httpContextAccessor);
             _equipmentData = new EquipmentData(httpContextAccessor);
+            _buildingData = new BuildingData(httpContextAccessor);
         }
         public IActionResult Room()
         {
@@ -37,62 +40,124 @@ namespace Manager.Controllers
         [HttpGet]
         public IActionResult RoomDetail(string id)
         {
-            Room room = new Room();
+            List<Room> rooms = _roomData.GetAllRoom().Result;
+            Room room = rooms.Find(r => r.RoomID == id);
 
             List<Student> students = _studentData.GetStudentByRoomAsyn(id).Result;
             ViewBag.listStudent = students;
 
             List<Equipment> equipments = _equipmentData.GetEquipmentbyRoomAsyn(id).Result;
+            List<Equipment> equipmentadd = _equipmentData.GetEquipmentbyRoomAsyn(id).Result;
+            List<RoomStatus> roomStatuses = _roomData.GetAllRoomStatus().Result;
+            List<Building> buildings = _buildingData.GetAllBuilding().Result;
 
             ViewBag.listEquipment = equipments;
-            ViewBag.listEquipment_Add = new List<Equipment>
-            {
-                new Equipment
-                {
-                    EquipmentID = 1,
-                    EquipmentName = "Projector",
-                    Price = 1500000m,
-                    Quantity = 5,
-                    Condition = "New"
-                },
-                new Equipment
-                {
-                    EquipmentID = 2,
-                    EquipmentName = "Air Conditioner",
-                    Price = 7000000m,
-                    Quantity = 3,
-                    Condition = "Good"
-                },
-                new Equipment
-                {
-                    EquipmentID = 3,
-                    EquipmentName = "Desk",
-                    Price = 500000m,
-                    Quantity = 20,
-                    Condition = "Used"
-                }
-            };
+            ViewBag.listEquipment_Add = equipmentadd;
+            ViewBag.listRoomStatus = roomStatuses;
+            ViewBag.buildings = buildings;
             return View(room);
         }
-        [HttpPut]
-        public IActionResult RemoveStudent(int studentID)
+
+        [HttpGet]
+        public IActionResult ChangeStudent(string id)
         {
-            return View(RoomDetail);
+            List<Building> buildings = _buildingData.GetAllBuilding().Result;
+            List<Student> students = _studentData.GetAllStudentAsyn().Result;
+            var student = students.Find(s => s.StudentID == id);
+            ViewBag.buildings = buildings;
+            return View(student);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeStudent1(Student student)
+        {
+            if (student != null)
+            {
+                await _studentData.UpdateStudentWithRoom(student);
+                return RedirectToAction("Room");
+            }
+            return null;
+        }
+
+
+
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveStudentAsync(string id)
+        {
+            if (id != "")
+            {
+                List<Student> students = _studentData.GetAllStudentAsyn().Result;
+                var student = students.Find(s => s.StudentID == id);
+                await _studentData.DeleteStudentWithRoom(student);
+                return RedirectToAction("Room");
+            }
+            return null;
         }
         public IActionResult RemoveEquipment(int equipmentID)
         {
             return View();
         }
-        [HttpPut("{id}")]
-        public IActionResult AddStudentToRoom(int studentID)
-        { return View(); }
-        [HttpPost]
-        public IActionResult AddEquipmentToRoom(int studentID)
-        { return View(); }
-        [HttpPut]
-        public IActionResult ChangeRoomInformation(Room r)
+        [HttpGet]
+        public IActionResult AddStudentToRoom(string id)
         {
-            return View();
+            List<Room> rooms = _roomData.GetAllRoom().Result;
+            Room room = rooms.Find(r => r.RoomID == id);
+            ViewBag.Room = room;
+            List<Student> students = _studentData.GetAllStudentAsyn().Result;
+            var student = students.Where(s=>s.RoomID==null).ToList();
+            return View(student);
+        }
+        public async Task<IActionResult> AddStudentToRoom1(string idstudent, string idroom)
+        {
+            List<Student> students = _studentData.GetAllStudentAsyn().Result;
+            var student = students.Find(s => s.StudentID == idstudent);
+            student.RoomID = idroom;
+            await _studentData.AddStudentWithRoom(student);
+            return RedirectToAction("RoomDetail", new { id = idroom });
+        }
+        [HttpGet]
+        public IActionResult AddEquipmentToRoom(string id)
+        {
+            List<Room> rooms = _roomData.GetAllRoom().Result;
+            Room room = rooms.Find(r => r.RoomID == id);
+            ViewBag.Room = room;
+            List<Equipment> equipmentadd = _equipmentData.GetAllEquipment().Result;
+            List<Equipment> equipments = _equipmentData.GetEquipmentbyRoomAsyn(id).Result;
+            List<Equipment> equipmentNotInRoom = equipmentadd
+                                                .Where(e => !equipments.Any(eq => eq.EquipmentID == e.EquipmentID))
+                                                .ToList();
+            return View(equipmentNotInRoom);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddEquipmentToRoom1(Equipment equipment)
+        {
+            await _equipmentData.AddEquipmentWithRoom(equipment);
+            return RedirectToAction("RoomDetail", new { id = equipment.RoomID });
+        }
+        [HttpPost]
+        public async Task<IActionResult> ChangeRoomInformationAsync(Room room)
+        {
+            await _roomData.UpdateRoom(room);
+            return RedirectToAction("RoomDetail", new { id = room.RoomID });
+        }
+
+
+
+
+
+        [HttpGet]
+        public JsonResult GetRoomsByBuilding(string buildingId)
+        {
+            List<Room> rooms = _roomData.GetAllRoom().Result;
+            var rooms1 = rooms.Where(r => r.BuildingID == buildingId && r.NumberOfStudent < r.Capacity).Select(r => new
+            {
+                roomID = r.RoomID,
+                roomName = r.RoomName
+            }).ToList();
+            return Json(rooms1);
         }
     }
 }

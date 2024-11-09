@@ -38,20 +38,21 @@ namespace DormitoryServer.Controllers
         public IActionResult GetEquipment(int id)
         {
             var equipment = _context.Equipment.FirstOrDefault(e => e.EquipmentId == id);
-                
-                return Ok(equipment);
+
+            return Ok(equipment);
         }
         [HttpGet("getequipmentbyroom")]
         public IActionResult GetEquipmentbyRoom(string idroom)
         {
 
-            var equipments = _context.RoomEquipments.Include(re=>re.Equipment).Where(re=>re.RoomId==idroom).ToList();
+            var equipments = _context.RoomEquipments.Include(re => re.Equipment).Where(re => re.RoomId == idroom).ToList();
             List<EquipmentDTO> equipment = new List<EquipmentDTO>() { };
             foreach (var item in equipments)
             {
                 equipment.Add(new EquipmentDTO
                 {
                     EquipmentID = item.EquipmentId,
+                    RoomID = item.RoomId,
                     EquipmentName = item.Equipment?.EquipmentName,
                     Price = item.Equipment?.Price,
                     Quantity = item.Quantity,
@@ -69,5 +70,21 @@ namespace DormitoryServer.Controllers
         //    _context.SaveChanges();
         //    return Ok();
         //}
+
+
+        [HttpPut("addequipmenttoroom")]
+        public IActionResult AddEquipmentToRoom(EquipmentDTO equipmentDTO)
+        {
+            var equipmentRoom = new RoomEquipment
+            {
+                RoomId = equipmentDTO.RoomID,
+                EquipmentId = equipmentDTO.EquipmentID,
+                Quantity = equipmentDTO.Quantity,
+                Condition = "New"
+            };
+            _context.RoomEquipments.Add(equipmentRoom);
+            _context.SaveChanges();
+            return Ok();
+        }
     }
 }

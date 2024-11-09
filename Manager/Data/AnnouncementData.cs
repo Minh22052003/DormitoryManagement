@@ -14,7 +14,7 @@ namespace Manager.Data
         private readonly IHttpContextAccessor _httpContextAccessor;
         private string nameURL;
         string keygetallannouncement = "/api/announcement/getallannouncement";
-        string keyaddannouncement = "/api/announcement/getallannouncement";
+        string keyaddannouncement = "/api/announcement/createannouncement";
 
         public AnnouncementData(IHttpContextAccessor httpContextAccessor)
         {
@@ -45,7 +45,7 @@ namespace Manager.Data
             string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var url = nameURL + keygetallannouncement;
+            var url = nameURL + keyaddannouncement;
             string json = JsonConvert.SerializeObject(announcementrq);
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await _httpClient.PostAsync(url, content);

@@ -13,6 +13,7 @@ namespace Manager.Data
         private string nameURL;
         string getallEquipment = "/api/Equipment/getallequipment";
         string getEquipmentbyRoom = "/api/Equipment/getequipmentbyroom";
+        string addEquipmenttoRoom = "/api/Equipment/addequipmenttoroom";
 
         public EquipmentData(IHttpContextAccessor httpContextAccessor)
         {
@@ -50,6 +51,32 @@ namespace Manager.Data
             equipment = JsonConvert.DeserializeObject<List<Equipment>>(responsData);
             return equipment;
         }
+
+        public async Task AddEquipmentWithRoom(Equipment equipment)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameURL + addEquipmenttoRoom;
+            string json = JsonConvert.SerializeObject(equipment);
+            StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PutAsync(url, data);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseData = await response.Content.ReadAsStringAsync();
+
+            }
+            else
+            {
+                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+            }
+        }
+
+
+
+
+
+
         //public async Task<HttpResponseMessage> Post_AddEquipmentAsync(Equipment equipment)
         //{
         //    try

@@ -10,7 +10,7 @@
             <div class="card bg-light">
                 <div class="bg-light rounded h-100 p-4">
                     <h2 class="mb-4">Tạo mới thông báo</h2>
-                    <form asp-controller="Information" asp-action="Create_Announcement">
+                    <form asp-controller="Information" asp-action="Create_Announcement" method="post">
                         <div class="form-floating mb-3">
                             <input asp-for="@Model.Title" type="text" class="form-control" id="floatingInput" placeholder="">
                             <label for="floatingInput">Tiêu đề</label>
@@ -34,7 +34,7 @@
                             <label for="formFile" class="form-label">Chọn ảnh</label>
                             <input asp-for="@Model.Image" class="form-control bg-white" type="file" id="formFile">
                         </div>
-                        <button type="submit" class="btn btn-success m-2" asp-controller="Information" asp-action="Create_Announcement" formmethod="post">Tạo mới</button>
+                        <button type="submit" class="btn btn-success m-2">Tạo mới</button>
                         <a asp-controller="Information" asp-action="Announcement" class="btn btn-secondary m-2">Trở về</a>
                     </form>
                 </div>

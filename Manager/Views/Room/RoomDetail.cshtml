@@ -11,7 +11,7 @@
 <div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
         <div class="card bg-light rounded h-100 p-4">
-            <form asp-action="ChangeRoomInformation" asp-controller="User">
+            <form asp-action="ChangeRoomInformation" asp-controller="Room" method="post">
                 <div class="row g-5">
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
@@ -40,7 +40,12 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
-                        @await Component.InvokeAsync("RoomStatusSelectList", Model)
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Trạng thái phòng</label>
+                            <select asp-for="RoomStatusID" asp-items="@(new SelectList(ViewBag.listRoomStatus, "RoomStatusID", "RoomStatusName"))" class="form-control">
+                                <option value="">-- Chọn trạng thái phòng --</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
@@ -82,13 +87,7 @@
                                     }
                                     <td>@s.PhoneNumber</td>
                                     <td>
-                                        <button type="button" class="btn btn-secondary" 
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#moveStudent"
-                                            data-student-id="@s.StudentID"
-                                            data-student-name="@s.FullName">
-                                            Chuyển phòng
-                                        </button>
+                                        <a asp-controller="Room" asp-action="ChangeStudent" asp-route-id="@s.StudentID" class="btn btn-success">Chuyển phòng</a>
                                     </td>
                                     <td>
                                         <a asp-controller="Room" asp-action="RemoveStudent" asp-route-id="@s.StudentID" class="btn btn-danger">Xóa khỏi phòng</a>
@@ -109,7 +108,7 @@
                                 <th scope="col">Giá</th>
                                 <th scope="col">Số lượng</th>
                                 <th scope="col">Tình trạng</th>
-                                <th scope="col"></th>
+                                @* <th scope="col"></th> *@
                             </tr>
                         </thead>
                         <tbody>
@@ -121,7 +120,7 @@
                                     <td>@e.Price VND</td>
                                     <td>@e.Quantity</td>
                                     <td>@e.Condition</td>
-                                    <td><a asp-controller="Room" asp-action="RemoveEquipment" asp-route-id="@e.EquipmentID" class="btn btn-danger">Xóa thiết bị</a></td>
+                                     @* <td><a asp-controller="Room" asp-action="EditEquipment" asp-route-id="@e.EquipmentID" class="btn btn-danger">Sửa trạng thái</a></td> *@
                                 </tr>
                                 j = j + 1;
                             }
@@ -131,10 +130,10 @@
                 <div class="row m-5">
                     <div class="col-3"></div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-success m-2 w-75" data-bs-toggle="modal" data-bs-target="#addStudent">Thêm sinh viên</button>
+                        <a asp-controller="Room" asp-action="AddStudentToRoom" asp-route-id="@Model.RoomID" class="btn btn-danger">Thêm sinh viên</a>
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-success m-2 w-75" data-bs-toggle="modal" data-bs-target="#addEquipment">Thêm thiết bị</button>
+                        <a asp-controller="Room" asp-action="AddEquipmentToRoom" asp-route-id="@Model.RoomID" class="btn btn-success m-2 w-75">Thêm thiết bị</a>
                     </div>
                     <div class="col-2">
                         <button type="submit" class="btn btn-success m-2 w-75">Lưu thay đổi</button>
@@ -150,109 +149,5 @@
     </div>
 </div>
 
-<div class="modal" id="addStudent">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
 
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Thêm sinh viên vào phòng @Model.RoomName</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <form asp-controller="Room" asp-action="AddStudentToRoom">
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="form-floating mb-4">
-                        <input type="text" class="form-control" id="studentID" placeholder="">
-                        <label for="floatingPassword">Mã sinh viên</label>
-                    </div>
-                </div>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button class="btn btn-success" type="submit">Thêm</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal" id="addEquipment">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Thêm thiết bị vào phòng @Model.RoomName</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <form asp-controller="Room" asp-action="AddEquipmentToRoom">
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="form-floating mb-3">
-                        <select class="form-select" id="equipment"
-                                aria-label="Floating label select example">
-                            @foreach (var e in equipments_add)
-                            {
-                                <option value="@e.EquipmentName">@e.EquipmentName</option>
-                            }
-                        </select>
-                        <label for="floatingSelect">Thiết bị</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="quantity" placeholder="">
-                        <label for="floatingInput">Số lượng</label>
-                    </div>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Thêm</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal" id="moveStudent">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title"></h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                @await Component.InvokeAsync("BuildingSelectList")
-                @await Component.InvokeAsync("RoomSelectList")
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                <button type="submit" class="btn btn-success">Đồng ý</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-<script>
-    var moveStudentModal = document.getElementById('moveStudent');
-    moveStudentModal.addEventListener('show.bs.modal', function (event) {
-        // Button that triggered the modal
-        var button = event.relatedTarget;
-
-        // Extract info from data-* attributes
-        var studentId = button.getAttribute('data-student-id');
-        var studentName = button.getAttribute('data-student-name');
-
-        // Update the modal title
-        var modalTitle = moveStudentModal.querySelector('.modal-title');
-        modalTitle.textContent = 'Chuyển ' + studentName + ' đến phòng khác';
-
-        // Use studentId in your modal, for example, set it in a hidden input or display it
-        var studentIdInput = moveStudentModal.querySelector('#studentIdInput');
-        studentIdInput.value = studentId;
-    });
-</script>

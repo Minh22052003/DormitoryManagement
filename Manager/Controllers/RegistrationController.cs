@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Manager.Models;
 using Manager.Data;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 namespace Manager.Controllers
 {
@@ -14,7 +15,7 @@ namespace Manager.Controllers
         public IActionResult Registrations()
         {
             List<RegistrationVM> registrations = _registrationData.GetAllRegistration().Result;
-            var registrationT = registrations.Where(r => r.ApplicationStatus == "Approved");
+            var registrationT = registrations.Where(r => r.ApplicationStatus == "Approved" || r.ApplicationStatus == "Refuse");
             return View(registrationT);
         }
         public IActionResult nRegistrations()
@@ -37,13 +38,23 @@ namespace Manager.Controllers
             RegistrationVM registrationVM = registrations.Find(x => x.StudentID == id);
             return View(registrationVM);
         }
-        public IActionResult AcceptRegistrations()
+        [HttpPost]
+        public IActionResult AcceptRegistrations(int id)
         {
-            return View();
+            RegistrationVM registrationVM = new RegistrationVM();
+            registrationVM.RegistrationID = id;
+            registrationVM.ApplicationStatus = "Approved";
+            _registrationData.UpdateRegistration(registrationVM);
+            return RedirectToAction("Registrations");
         }
-        public IActionResult RejectRegistrations()
+        [HttpPost]
+        public IActionResult RejectRegistrations(int id)
         {
-            return View();
+            RegistrationVM registrationVM = new RegistrationVM();
+            registrationVM.RegistrationID = id;
+            registrationVM.ApplicationStatus = "Refuse";
+            _registrationData.UpdateRegistration(registrationVM);
+            return View("Registrations");
         }
     }
 }

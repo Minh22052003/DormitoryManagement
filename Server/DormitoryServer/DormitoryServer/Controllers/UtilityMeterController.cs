@@ -43,5 +43,21 @@ namespace DormitoryServer.Controllers
             }
             return result;
         }
+        [HttpPost("addutilitymeter")]
+        public ActionResult AddUtilityMeter(UtilityMeterDTO utilityMeterDTO)
+        {
+            var staffid = User.FindFirst("UserID").Value;
+            var utilityMeter = new UtilityMeter
+            {
+                RoomId = utilityMeterDTO.RoomID,
+                StaffId = staffid,
+                Electricity = utilityMeterDTO.Electricity,
+                Water = utilityMeterDTO.Water,
+                RecordingDate = DateTime.Now,
+            };
+            _context.UtilityMeters.Add(utilityMeter);
+            _context.SaveChanges();
+            return Ok();
+        }
     }
 }

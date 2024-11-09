@@ -13,24 +13,31 @@ namespace DormitoryServer.Helpers
         }
 
         // Lưu ảnh vào thư mục
-        public async Task<string> SaveImageAsync(IFormFile file)
+        public async Task<string> SaveImageAsync(string base64File)
         {
-            // Đường dẫn thư mục lưu ảnh
             var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", "images");
 
-            // Tạo tên file duy nhất
-            var uniqueFileName = Guid.NewGuid().ToString()+".jpg";
+            var uniqueFileName = Guid.NewGuid().ToString() + ".jpg";
             var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-            // Lưu file vào thư mục
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            if (!Directory.Exists(uploadsFolder))
             {
-                await file.CopyToAsync(fileStream);
+                Directory.CreateDirectory(uploadsFolder);
             }
 
-            // Trả về đường dẫn tương đối để lưu vào cơ sở dữ liệu
-            var relativePath = Path.Combine(uniqueFileName);
+            var base64Data = base64File;
+            if (base64File.Contains(","))
+            {
+                base64Data = base64File.Substring(base64File.IndexOf(",") + 1);
+            }
+
+            byte[] imageBytes = Convert.FromBase64String(base64Data);
+
+            await System.IO.File.WriteAllBytesAsync(filePath, imageBytes);
+
+            var relativePath = uniqueFileName;
             return relativePath;
         }
+
     }
 }

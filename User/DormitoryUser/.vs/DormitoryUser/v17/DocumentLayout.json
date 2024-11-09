@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Project1\\User\\DormitoryUser\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\views\\home\\notification.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\views\\home\\notification.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -25,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\data\\studentdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -98,7 +98,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -110,15 +110,76 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AccommodationController.cs",
-              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\AccommodationController.cs",
-              "RelativeDocumentMoniker": "DormitoryUser\\Controllers\\AccommodationController.cs",
-              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\AccommodationController.cs",
-              "RelativeToolTip": "DormitoryUser\\Controllers\\AccommodationController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 14,
+              "Title": "AccountData.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Data\\AccountData.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Data\\AccountData.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Data\\AccountData.cs",
+              "RelativeToolTip": "DormitoryUser\\Data\\AccountData.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-07T16:50:05.542Z",
+              "WhenOpened": "2024-11-06T13:14:11.806Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "DormitoryUser\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAIwCUAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T11:37:01.934Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NotificationController.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\NotificationController.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Controllers\\NotificationController.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\NotificationController.cs",
+              "RelativeToolTip": "DormitoryUser\\Controllers\\NotificationController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAiwBIAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T11:39:55.213Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Announcement.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Models\\Announcement.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Models\\Announcement.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Models\\Announcement.cs",
+              "RelativeToolTip": "DormitoryUser\\Models\\Announcement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T11:38:59.282Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Notification.cshtml",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Views\\Home\\Notification.cshtml",
+              "RelativeDocumentMoniker": "DormitoryUser\\Views\\Home\\Notification.cshtml",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Views\\Home\\Notification.cshtml",
+              "RelativeToolTip": "DormitoryUser\\Views\\Home\\Notification.cshtml",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAswBkAAACwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-05T11:37:18.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Program.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Program.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Program.cs",
+              "RelativeToolTip": "DormitoryUser\\Program.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T12:52:34.687Z",
               "EditorCaption": ""
             },
             {
@@ -135,67 +196,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "AccountData.cs",
-              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Data\\AccountData.cs",
-              "RelativeDocumentMoniker": "DormitoryUser\\Data\\AccountData.cs",
-              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Data\\AccountData.cs",
-              "RelativeToolTip": "DormitoryUser\\Data\\AccountData.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "AccommodationController.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\AccommodationController.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Controllers\\AccommodationController.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\AccommodationController.cs",
+              "RelativeToolTip": "DormitoryUser\\Controllers\\AccommodationController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T13:14:11.806Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "DormitoryUser\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "DormitoryUser\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAIwCUAAABcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T11:37:01.934Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NotificationController.cs",
-              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\NotificationController.cs",
-              "RelativeDocumentMoniker": "DormitoryUser\\Controllers\\NotificationController.cs",
-              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\NotificationController.cs",
-              "RelativeToolTip": "DormitoryUser\\Controllers\\NotificationController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAiwBIAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T11:39:55.213Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Announcement.cs",
-              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Models\\Announcement.cs",
-              "RelativeDocumentMoniker": "DormitoryUser\\Models\\Announcement.cs",
-              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Models\\Announcement.cs",
-              "RelativeToolTip": "DormitoryUser\\Models\\Announcement.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T11:38:59.282Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Notification.cshtml",
-              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Views\\Home\\Notification.cshtml",
-              "RelativeDocumentMoniker": "DormitoryUser\\Views\\Home\\Notification.cshtml",
-              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Views\\Home\\Notification.cshtml",
-              "RelativeToolTip": "DormitoryUser\\Views\\Home\\Notification.cshtml",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAswBsAAABMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-05T11:37:18.36Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-07T16:50:05.542Z"
             },
             {
               "$type": "Document",
@@ -247,7 +256,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "DormitoryUser\\Controllers\\AccountController.cs",
@@ -255,8 +264,7 @@
               "RelativeToolTip": "DormitoryUser\\Controllers\\AccountController.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAmwC0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T12:01:02.547Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-05T12:01:02.547Z"
             },
             {
               "$type": "Document",
@@ -293,18 +301,6 @@
               "ViewState": "AgIAAA8AAAAAAAAAAAAAwBwAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-06T13:14:16.027Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Program.cs",
-              "RelativeDocumentMoniker": "DormitoryUser\\Program.cs",
-              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Program.cs",
-              "RelativeToolTip": "DormitoryUser\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T12:52:34.687Z"
             },
             {
               "$type": "Document",

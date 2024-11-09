@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Manager.Models.Student>
+
+@{
+    var i = 1;
+}
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="card bg-light rounded h-100 p-4">
+            <form >
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Mã phòng</label>
+                            <input class="form-control" value="@ViewBag.Room.RoomID" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Tên phòng</label>
+                            <input class="form-control" value="@ViewBag.Room.RoomName" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Tòa nhà</label>
+                            <input class="form-control" value="@ViewBag.Room.BuildingName" readonly>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row g-5 w-100">
+                    <p class="fw-bold p-4">Danh sách sinh viên</p>
+                    <table class="table table-striped m-3">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Mã sinh viên</th>
+                                <th scope="col">Tên sinh viên</th>
+                                <th scope="col">Giới tính</th>
+                                <th scope="col">Số điện thoại liên lạc</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@s.StudentID</td>
+                                    <td><a asp-controller="User" asp-action="StudentDetail" asp-route-id="@s.StudentID">@s.FullName</a></td>
+                                    @{
+                                        if (s.Gender == true)
+                                        {
+                                            <td>Nam</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Nữ</td>
+                                        }
+                                    }
+                                    <td>@s.PhoneNumber</td>
+                                    <td>
+                                        <a asp-controller="Room" asp-action="AddStudentToRoom1" asp-route-idstudent="@s.StudentID" asp-route-idroom="@ViewBag.Room.RoomID" class="btn btn-success">Thêm vào phòng</a>
+                                    </td>
+                                </tr>
+                                i = i + 1;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

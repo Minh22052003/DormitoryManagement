@@ -96,5 +96,15 @@ namespace DormitoryServer.Controllers
         {
             return _context.Relatives.Where(r => r.StudentId == studentId).FirstOrDefault();
         }
+
+
+        [HttpPut("updatestatus")]
+        public IActionResult UpdateStatus([FromBody] RegistrationDTO registrationDTO)
+        {
+            var registration = _context.Registrations.Find(registrationDTO.RegistrationID);
+            registration.ApplicationStatus = registrationDTO.ApplicationStatus;
+            _context.SaveChanges();
+            return Ok();
+        }
     }
 }
