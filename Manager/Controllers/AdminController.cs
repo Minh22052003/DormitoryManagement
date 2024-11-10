@@ -177,12 +177,26 @@ namespace Manager.Controllers
         public IActionResult StaffRegistration()
         {
             List<StaffRegistration> staffRegistrations = _accountData.GetAllStaffRegistration().Result;
+            var roles = _roleData.GetAllRole().Result;
+            ViewBag.Roles = roles;
             return View(staffRegistrations);
         }
         [HttpPost]
-        public IActionResult AcceptStaff()
+        public async Task<IActionResult> AcceptStaffAsync(string Email, int RoleId)
         {
-            return View();
+            Console.WriteLine(Email);
+            Console.WriteLine(RoleId);
+            List<StaffRegistration> staffRegistrations = _accountData.GetAllStaffRegistration().Result;
+            StaffRegistration staffRegistration = staffRegistrations.Find(x => x.Email == Email);
+            var accountStaff = new AccountStaff()
+            {
+                AccountStaff1 = staffRegistration?.AccountStaffId,
+                Username = staffRegistration.UserName,
+                RoleId = RoleId,
+                Email = staffRegistration.Email,
+            };
+            await _accountData.AcceptAccount(accountStaff);
+            return RedirectToAction("StaffRegistration");
         }
         [HttpDelete]
         public IActionResult RejectStaff(int id)

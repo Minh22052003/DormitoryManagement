@@ -97,5 +97,26 @@ namespace DormitoryServer.Controllers
             return Ok(requestDTOs);
         }
 
+        [Authorize(Policy = "Manager")]
+        [HttpPut("processrequest")]
+        public async Task<IActionResult> ProcessRequestAsync(RequestDTO requestDTO)
+        {
+            var staffId = User.FindFirst("UserId")?.Value;
+            var supportRequest = await _context.SupportRequests
+                .Where(s => s.RequestId == requestDTO.RequestID)
+                .FirstOrDefaultAsync();
+            if (supportRequest == null)
+            {
+                return NotFound();
+            }
+            supportRequest.StaffId = staffId;
+            supportRequest.RequestProcessDate = DateTime.Now;
+            supportRequest.Reply = requestDTO.Reply;
+            supportRequest.Status = requestDTO.Status;
+            _context.SupportRequests.Update(supportRequest);
+            await _context.SaveChangesAsync();
+            return Ok("Xử lý yêu cầu thành công");
+        }
+
     }
 }

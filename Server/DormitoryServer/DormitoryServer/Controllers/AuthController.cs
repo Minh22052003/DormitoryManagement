@@ -1,5 +1,6 @@
 ﻿using DormitoryServer.DTOs;
 using DormitoryServer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace DormitoryServer.Controllers
@@ -147,7 +149,53 @@ namespace DormitoryServer.Controllers
             
         }
 
+        //Chấp nhận tài khoản nhân viên
+        [HttpPost("acceptaccount")]
+        public async Task<IActionResult> AcceptAccount([FromBody] AccountStaffDTO accountStaffDTO)
+        {
+            var accountStaff = await _context.AccountStaffs
+                .Where(a => a.Username == accountStaffDTO.Username)
+                .FirstOrDefaultAsync();
+            if (accountStaff == null)
+            {
+                return NotFound("Tài khoản không tồn tại");
+            }
+            accountStaff.RoleId = accountStaffDTO.RoleId;
+            var staff = new staff
+            {
+                StaffId = GenerateUniqueIdMD5(accountStaffDTO.Username),
+                Email = accountStaffDTO.Email,
+            };
+            accountStaff.StaffId = staff.StaffId;
+            _context.staff.Add(staff);
+            _context.AccountStaffs.Update(accountStaff);
+            await _context.SaveChangesAsync();
+            return Ok("Chấp nhận tài khoản thành công");
+        }
 
+        [Authorize(Policy = "ManagerOrStudent")]
+        [HttpPost("changepassword")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDTO changePasswordDTO)
+        {
+            var staffId = User.FindFirst("UserId")?.Value;
+            var accountStaff = await _context.AccountStaffs
+                .Where(a => a.StaffId == staffId)
+                .FirstOrDefaultAsync();
+            if(accountStaff == null)
+            {
+                Console.WriteLine("Tài khoản không tồn tại");
+                return NotFound("Tài khoản không tồn tại");
+            }
+            if(accountStaff.Password != changePasswordDTO.MkCu)
+            {
+                Console.WriteLine("Mật khẩu cũ không đúng");
+                return BadRequest("Mật khẩu cũ không đúng");
+            }
+            accountStaff.Password = changePasswordDTO.MkMoi;
+            _context.AccountStaffs.Update(accountStaff);
+            await _context.SaveChangesAsync();
+            return Ok("Đổi mật khẩu thành công");
+        }
 
 
 
@@ -175,6 +223,23 @@ namespace DormitoryServer.Controllers
                 });
             }
             return roleDTOs;
+        }
+
+
+        private string GenerateUniqueIdMD5(string name)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(name);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashBytes)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+                return sb.ToString().Substring(0, 10);
+            }
         }
     }
 }

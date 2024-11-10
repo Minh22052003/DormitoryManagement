@@ -17,10 +17,12 @@
                             <input class="form-control" name="FullName" value="@Model.FullName">
                         </div>
                     </div>
+
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Chức vụ</label>
-                            <input class="form-control" name="RoleName" value="@Model.RoleName">
+                            <select asp-for="RoleID" asp-items="@(new SelectList(ViewBag.roles, "RoleId", "RoleName"))" class="form-control">
+                            </select>
                         </div>
                     </div>
                 </div>

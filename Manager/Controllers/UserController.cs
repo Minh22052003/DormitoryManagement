@@ -11,10 +11,13 @@ namespace Manager.Controllers
         private StudentData _studentData;
         private StaffData _staffData;
         private EquipmentData _equipmentData;
+        private RoleData _roleData;
         public UserController(IHttpContextAccessor httpContextAccessor)
         {
             _staffData = new StaffData(httpContextAccessor);
             _studentData = new StudentData(httpContextAccessor);
+            _equipmentData = new EquipmentData(httpContextAccessor);
+            _roleData = new RoleData(httpContextAccessor);
         }
 
         [HttpGet]
@@ -86,6 +89,8 @@ namespace Manager.Controllers
         {
             try
             {
+                List<Role> roles = _roleData.GetAllRole().Result;
+                ViewBag.roles = roles;
                 List<Staff> staffs = _staffData.GetAllStaffAsync().Result;
                 var staff = staffs.Find(s => s.StaffID == id);
                 return View(staff);

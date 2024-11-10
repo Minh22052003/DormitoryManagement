@@ -1,62 +1,80 @@
-﻿<div class="container mt-4">
-    <form asp-action="AddRoom" asp-controller= "Admin" method="post">
-        <!-- Room Name -->
-        <div class="mb-3">
-            <label for="RoomName" class="form-label">Tên phòng</label>
-            <input type="text" class="form-control" id="RoomName" name="RoomName" required>
+﻿
+<div class="container-fluid">
+    <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+        <div class="col-12 col-sm-8 col-md-8 col-lg-8 col-xl-4">
+            <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <a href="#" class="">
+                        <h3 class="text-primary"><i class="bi bi-house-fill me-2"></i>Thêm phòng</h3>
+                    </a>
+                </div>
+                <form asp-action="AddRoom" asp-controller="Admin" method="post">
+                    <!-- Room Name -->
+                    <div class="mb-3">
+                        <label for="RoomName" class="form-label fw-bold">Tên phòng</label>
+                        <input type="text" class="form-control" id="RoomName" name="RoomName" required>
+                    </div>
+
+                    <!-- Building Selection -->
+                    <div class="mb-3">
+                        <label for="BuildingID" class="form-label fw-bold">Tòa nhà</label>
+                        <select class="form-select" id="BuildingID" name="BuildingID" required>
+                            <option value="">Chọn tòa nhà</option>
+                            @foreach (var building in ViewBag.Buildings)
+
+
+
+                            {
+                                <option value="@building.BuildingID">
+                                    @building.BuildingName
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Room Type Selection -->
+                    <div class="mb-3">
+                        <label for="RoomTypeID" class="form-label fw-bold">Loại phòng</label>
+                        <select class="form-select" id="RoomTypeID" name="RoomTypeID" required>
+                            <option value="">Chọn loại phòng</option>
+                            @foreach (var roomType in ViewBag.RoomTypes)
+
+
+
+                            {
+                                <option value="@roomType.RoomTypeID">
+                                    @roomType.RoomTypeName
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Room Status Selection -->
+                    <div class="mb-3">
+                        <label for="RoomStatusID" class="form-label fw-bold">Trạng thái phòng</label>
+                        <select class="form-select" id="RoomStatusID" name="RoomStatusID" required>
+                            <option value="">Chọn trạng thái phòng</option>
+                            @foreach (var status in ViewBag.RoomStatuses)
+
+
+
+                            {
+                                <option value="@status.RoomStatusID">
+                                    @status.RoomStatusName
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Room Note -->
+                    <div class="mb-3">
+                        <label for="RoomNote" class="form-label fw-bold">Ghi chú phòng</label>
+                        <textarea class="form-control" id="RoomNote" name="RoomNote"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </form>
+            </div>
         </div>
-
-        <!-- Building Selection -->
-        <div class="mb-3">
-            <label for="BuildingID" class="form-label">Tòa nhà</label>
-            <select class="form-select" id="BuildingID" name="BuildingID" required>
-                <option value="">Chọn tòa nhà</option>
-                @foreach (var building in ViewBag.Buildings)
-
-                {
-                    <option value="@building.BuildingID">
-                        @building.BuildingName
-                    </option>
-                }
-            </select>
-        </div>
-
-        <!-- Room Type Selection -->
-        <div class="mb-3">
-            <label for="RoomTypeID" class="form-label">Loại phòng</label>
-            <select class="form-select" id="RoomTypeID" name="RoomTypeID" required>
-                <option value="">Chọn loại phòng</option>
-                @foreach (var roomType in ViewBag.RoomTypes)
-
-                {
-                    <option value="@roomType.RoomTypeID">
-                        @roomType.RoomTypeName
-                    </option>
-                }
-            </select>
-        </div>
-
-        <!-- Room Status Selection -->
-        <div class="mb-3">
-            <label for="RoomStatusID" class="form-label">Trạng thái phòng</label>
-            <select class="form-select" id="RoomStatusID" name="RoomStatusID" required>
-                <option value="">Chọn trạng thái phòng</option>
-                @foreach (var status in ViewBag.RoomStatuses)
-
-                {
-                    <option value="@status.RoomStatusID">
-                        @status.RoomStatusName
-                    </option>
-                }
-            </select>
-        </div>
-
-        <!-- Room Note -->
-        <div class="mb-3">
-            <label for="RoomNote" class="form-label">Ghi chú phòng</label>
-            <textarea class="form-control" id="RoomNote" name="RoomNote"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Lưu</button>
-    </form>
+    </div>
 </div>

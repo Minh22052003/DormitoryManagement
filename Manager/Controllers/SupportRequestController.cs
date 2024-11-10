@@ -23,5 +23,13 @@ namespace Manager.Controllers
             var rq = requests.Find(r => r.RequestID == id);
             return View(rq);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ResponseAsync(Request request)
+        {
+            request.Status = "Đã xử lý";
+            await _requestData.Response(request);
+            return RedirectToAction("List");
+        }
     }
 }

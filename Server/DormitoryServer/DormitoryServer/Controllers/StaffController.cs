@@ -158,6 +158,10 @@ namespace DormitoryServer.Controllers
             {
                 accountStaff.RoleId = staffDTO.RoleID;
             }
+            else
+            {
+                return BadRequest();
+            }
             _context.SaveChanges();
             return Ok();
         }
