@@ -144,6 +144,53 @@ namespace Manager.Controllers
             return RedirectToAction("RoomDetail", new { id = room.RoomID });
         }
 
+        public IActionResult RoomConsolidation()
+        {
+            var roomConsolidationList = new List<RoomConsolidation>
+     {
+         new RoomConsolidation
+         {
+             FullName = "Nguyễn Văn A",
+             StudentID = "SV001",
+             OldRoomID = "R101",
+             OldRoomName = "Phòng 101",
+             OldBuildingID = "B01",
+             OldBuildingName = "Tòa nhà A",
+             NewRoomID = "R201",
+             NewRoomName = "Phòng 201",
+             NewBuildingID = "B02",
+             NewBuildingName = "Tòa nhà B"
+         },
+         new RoomConsolidation
+         {
+             FullName = "Trần Thị B",
+             StudentID = "SV002",
+             OldRoomID = "R102",
+             OldRoomName = "Phòng 102",
+             OldBuildingID = "B01",
+             OldBuildingName = "Tòa nhà A",
+             NewRoomID = "R202",
+             NewRoomName = "Phòng 202",
+             NewBuildingID = "B02",
+             NewBuildingName = "Tòa nhà B"
+         },
+         new RoomConsolidation
+         {
+             FullName = "Lê Văn C",
+             StudentID = "SV003",
+             OldRoomID = "R103",
+             OldRoomName = "Phòng 103",
+             OldBuildingID = "B01",
+             OldBuildingName = "Tòa nhà A",
+             NewRoomID = "R203",
+             NewRoomName = "Phòng 203",
+             NewBuildingID = "B02",
+             NewBuildingName = "Tòa nhà B"
+         }
+     };
+
+            return View(roomConsolidationList);
+        }
 
 
 

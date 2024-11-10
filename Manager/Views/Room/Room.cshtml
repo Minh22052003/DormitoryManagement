@@ -3,7 +3,7 @@
 <div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
         <div class="row">
-            <div class="col-5">
+            <div class="col-6">
                 <div class="card border-0">
                     <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
                         <h6 class="mb-4">Tìm kiếm</h6>
@@ -15,18 +15,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="card border-0">
-                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
-                        <h6 class="mb-4">Chức năng</h6>
-                        <form class="d-none d-md-flex ms-4">
-                            <button type="button" class="btn btn-secondary m-2">Lọc phòng còn trống</button>
-                            <button type="button" class="btn btn-secondary m-2">Lọc phòng đang sử dụng</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
+            <div class="col-6">
                 <div class="card border-0">
                     <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
                         <h6 class="mb-4">Sắp xếp</h6>
@@ -35,6 +24,18 @@
                             <option >Sắp xếp phòng theo thứ tự từ tăng dần</option>
                             <option value="1">Sắp xếp phòng theo thứ tự từ giảm dần</option>
                         </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Chức năng</h6>
+                        <form class="d-none d-md-flex ms-4">
+                            <button type="button" class="btn btn-secondary m-2">Lọc phòng còn trống</button>
+                            <button type="button" class="btn btn-secondary m-2">Lọc phòng đang sử dụng</button>
+                            <button asp-controller="Room" asp-action="RoomConsolidation" class="btn btn-secondary m-2">Dồn phòng</button>
+                        </form>
                     </div>
                 </div>
             </div>

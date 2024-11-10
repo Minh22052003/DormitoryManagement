@@ -9,6 +9,7 @@
         public string? LeaderID { get; set; }
         public string? LeaderName { get; set; }
         public string? RoomName { get; set; }
+        public decimal? RoomPrice { get; set; }
         public int? NumberOfStudent { get; set; }
         public int? Capacity { get; set; }
         public int? RoomStatusID { get; set; }

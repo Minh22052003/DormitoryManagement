@@ -97,6 +97,33 @@ namespace DormitoryServer.Controllers
             return Ok(requestDTOs);
         }
 
+        [HttpPost("createsupportrequest")]
+        public async Task<IActionResult> CreateSupportRequestAsync(RequestDTO requestDTO)
+        {
+            var studentId = User.FindFirst("UserId")?.Value;
+            var student = await _context.Students
+                .Where(s => s.StudentId == studentId)
+                .FirstOrDefaultAsync();
+            if (student == null)
+            {
+                Console.WriteLine("Student not found");
+                return NotFound();
+            }
+            SupportRequest supportRequest = new SupportRequest();
+            supportRequest.StudentId = studentId;
+            supportRequest.RequestTypeId = requestDTO.RequestTypeID;
+            supportRequest.Description = requestDTO.Description;
+            supportRequest.RequestSentDate = DateTime.Now;
+            //supportRequest.Image = requestDTO.Image;
+            supportRequest.Status = "Chưa xử lý";
+            _context.SupportRequests.Add(supportRequest);
+            await _context.SaveChangesAsync();
+            return Ok("Tạo yêu cầu hỗ trợ thành công");
+        }
+
+
+
+
         [Authorize(Policy = "Manager")]
         [HttpPut("processrequest")]
         public async Task<IActionResult> ProcessRequestAsync(RequestDTO requestDTO)
@@ -116,6 +143,22 @@ namespace DormitoryServer.Controllers
             _context.SupportRequests.Update(supportRequest);
             await _context.SaveChangesAsync();
             return Ok("Xử lý yêu cầu thành công");
+        }
+
+
+        [HttpGet("getrequesttype")]
+        public IActionResult GetRequestType()
+        {
+            var requestTypes = _context.SupportRequestTypes.ToList();
+            List<RequestTypeDTO> requestTypeDTOs = new List<RequestTypeDTO>();
+            foreach (var requestType in requestTypes)
+            {
+                RequestTypeDTO requestTypeDTO = new RequestTypeDTO();
+                requestTypeDTO.RequestTypeId = requestType.RequestTypeId;
+                requestTypeDTO.RequestTypeName = requestType.RequestTypeName;
+                requestTypeDTOs.Add(requestTypeDTO);
+            }
+            return Ok(requestTypeDTOs);
         }
 
     }

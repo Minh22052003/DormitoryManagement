@@ -93,16 +93,29 @@ namespace DormitoryUser.Controllers
         public IActionResult Track_Rent()
         {
             List<RoomInvoice> roomInvoices = roomInvoiceData.GetAllRoomInvoice().Result;
+            var profile = studentData.GetProfileStudentAsyn().Result;
+            var room = roomData.GetRoomIn().Result;
             ViewBag.RoomInvoiceF = roomInvoices.Where(r => r.Status == "Not Paid").FirstOrDefault();
-            return View();
+            ViewBag.RoomPrice = room.RoomPrice;
+            ViewBag.Profile = profile;
+            var roomInvoiceDTT = roomInvoices.Where(r => r.Status != "Not Paid" && r.RoomID == room.RoomID).ToList();
+            return View(roomInvoiceDTT);
         }
 
         public IActionResult Sent_Request()
         {
+            var listtype = requestData.GetRequestTypesAsync().Result;
+            ViewBag.RequestTypes = listtype;
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> Sent_Request(Request_Sent request_Sent)
+        {
+            await requestData.CreateRequest(request_Sent);
+            return RedirectToAction("Request_Sent", "RequestDetail");
+        }
 
-        
+
         // Action tìm kiếm yêu cầu
         //public IActionResult Search(DateTime? searchDate, string requestType)
         //{
@@ -141,35 +154,35 @@ namespace DormitoryUser.Controllers
             }
         }
 
-        public IActionResult Parking_History()
-        {
-            // Initialize VehicleInfo with sample data (replace this with actual data as needed)
-            var vehicleInfo = new VehicleInfo
-            {
-                VehicleType = "Xe máy",
-                LicensePlate = "29A1-12345",
-                VehicleImageUrl = "~/img/wave-do.jpg",
-                ParkingHistories = new List<ParkingHistory>
-                {
-                    new ParkingHistory
-                {
-                    TicketId = 1001,
-                    TransactionType = "Vào",
-                    TransactionTime = new DateTime(2024, 10, 16, 8, 30, 0),
-                    ImageUrl = "~/img/car-entry.jpg"
-                },
-                new ParkingHistory
-                {
-                    TicketId = 1002,
-                    TransactionType = "Ra",
-                    TransactionTime = new DateTime(2024, 10, 16, 17, 30, 0),
-                    ImageUrl = "~/img/car-exit.jpg"
-                }
-                }
-            };
-            // Pass the viewModel to the view
-            return View(vehicleInfo);
-        }
+        //public IActionResult Parking_History()
+        //{
+        //    // Initialize VehicleInfo with sample data (replace this with actual data as needed)
+        //    var vehicleInfo = new VehicleInfo
+        //    {
+        //        VehicleType = "Xe máy",
+        //        LicensePlate = "29A1-12345",
+        //        VehicleImageUrl = "~/img/wave-do.jpg",
+        //        ParkingHistories = new List<ParkingHistory>
+        //        {
+        //            new ParkingHistory
+        //        {
+        //            TicketId = 1001,
+        //            TransactionType = "Vào",
+        //            TransactionTime = new DateTime(2024, 10, 16, 8, 30, 0),
+        //            ImageUrl = "~/img/car-entry.jpg"
+        //        },
+        //        new ParkingHistory
+        //        {
+        //            TicketId = 1002,
+        //            TransactionType = "Ra",
+        //            TransactionTime = new DateTime(2024, 10, 16, 17, 30, 0),
+        //            ImageUrl = "~/img/car-exit.jpg"
+        //        }
+        //        }
+        //    };
+        //    // Pass the viewModel to the view
+        //    return View(vehicleInfo);
+        //}
 
         public IActionResult Privacy()
         {

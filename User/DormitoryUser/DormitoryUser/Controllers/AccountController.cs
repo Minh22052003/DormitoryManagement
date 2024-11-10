@@ -7,9 +7,11 @@ namespace DormitoryUser.Controllers
     public class AccountController : Controller
     {
         private readonly AccountData _accountData;
+        private readonly StudentData _studentData;
         public AccountController(IHttpContextAccessor httpContextAccessor)
         {
             _accountData = new AccountData();
+            _studentData = new StudentData(httpContextAccessor);
         }
         public IActionResult Index()
         {
@@ -34,6 +36,9 @@ namespace DormitoryUser.Controllers
             {
                 var token = await response.Content.ReadAsStringAsync();
                 HttpContext.Session.SetString("jwt1", token);
+
+                Profile student = _studentData.GetProfileStudentAsyn().Result;
+                HttpContext.Session.SetString("StudentName", student.FullName);
                 return RedirectToAction("Index", "Home");
 
             }
@@ -48,10 +53,6 @@ namespace DormitoryUser.Controllers
 
         [HttpPost]
         public IActionResult Registration()
-        {
-            return View();
-        }
-        public IActionResult Registration(int id)
         {
             return View();
         }

@@ -66,6 +66,7 @@
                                 <th scope="col">Số điện thoại liên lạc</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,6 +93,18 @@
                                     <td>
                                         <a asp-controller="Room" asp-action="RemoveStudent" asp-route-id="@s.StudentID" class="btn btn-danger">Xóa khỏi phòng</a>
                                     </td>
+                                    @{
+                                        if(@s.IsLeader != true)
+                                        {
+                                            <td>
+                                                <a asp-controller="Room" asp-action="SetAsLeader" asp-route-id="@s.StudentID" class="btn btn-primary">Đặt làm trưởng phòng</a>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td><a class="fw-bold text-black">Trưởng phòng hiện tại</a></td>
+                                        }
+                                    }
                                 </tr>
                                 i = i + 1;
                             }

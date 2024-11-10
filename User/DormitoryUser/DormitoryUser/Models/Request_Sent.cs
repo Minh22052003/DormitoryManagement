@@ -2,7 +2,7 @@
 {
     public class Request_Sent
     {
-        public int RequestID { get; set; }
+        public int? RequestID { get; set; }
         public string? StudentID { get; set; }
         public string? StudentName { get; set; }
         public string? RoomID { get; set; }

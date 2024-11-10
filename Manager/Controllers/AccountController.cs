@@ -42,6 +42,12 @@ namespace Manager.Controllers
             {
                 var token = await response.Content.ReadAsStringAsync();
                 HttpContext.Session.SetString("jwt", token);
+                var staff = _staffData.GetStaffAsync().Result;
+                if(staff.FullName == "")
+                {
+                    HttpContext.Session.SetString("fullname", "Chưa cập nhật");
+                }
+                HttpContext.Session.SetString("fullname", staff.FullName);
                 return RedirectToAction("TTCN", "User");
             }
             else
@@ -58,7 +64,9 @@ namespace Manager.Controllers
         }
         public IActionResult SignOut()
         {
-            return View();
+            HttpContext.Session.Remove("jwt");
+            HttpContext.Session.Remove("fullname");
+            return RedirectToAction("SignIn");
         }
 
 
