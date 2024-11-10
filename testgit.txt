@@ -1,1 +1,27 @@
 Cai nay de thu xem co tu push len git dc k
+Các chức năng chưa hoạt động
++Xóa thông báo
++Tạo mới tin
++Tạo mới hóa 
++Phản hồi yc hỗ trợ
++Duyệt tài khoản
++Đổi mật khẩu
++Đăng xuất
+
+Các chức năng lỗi
++Tạo mới thông báo
++Ghi số điện nước lỗi chọn tòa nhà, phòng
++Thêm loại phòng
++Thêm phòng 
++Xem tt cá nhân
+
+Chưa check được
++Đơn đã đăng ký 
+
+Logic
++Số điện 
+
+Sửa View
++Hóa đơn KTX
++YC hỗ trợ 
++Thêm code check giá thêm thiết bị, dịch vụ 
