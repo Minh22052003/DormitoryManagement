@@ -26,4 +26,8 @@ Sửa View
 +Hóa đơn KTX
 +YC hỗ trợ 
 +Thêm code check giá thêm thiết bị, dịch vụ 
+<<<<<<< HEAD
 +Staff detail doi Chuc Vu thanh select list => mat quyen :v
+=======
++Staff detail doi Chuc Vu thanh select list => mat quyen :v
+>>>>>>> 6f7ee218d262c8c98d8475f1c4e9a1af3b3eaede
