@@ -17,6 +17,7 @@ Các chức năng lỗi
 
 Chưa check được
 +Đơn đã đăng ký 
++Phong
 
 Logic
 +Số điện 
@@ -25,3 +26,4 @@ Sửa View
 +Hóa đơn KTX
 +YC hỗ trợ 
 +Thêm code check giá thêm thiết bị, dịch vụ 
++Staff detail doi Chuc Vu thanh select list => mat quyen :v
