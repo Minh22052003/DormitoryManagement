@@ -15,6 +15,7 @@ namespace Manager.Data
         private string nameURL;
         string keylogin = "/api/Auth/loginnv";
         string keysignup = "/api/Auth/signupnv";
+        string keysignout = "/api/Auth/logout";
         string keygetallregistration = "/api/StaffRegistration/getalllregistration";
         string keyacceptregistration = "/api/Auth/acceptaccount";
         string keychangepassword = "/api/Auth/changepassword";
@@ -113,6 +114,22 @@ namespace Manager.Data
             else
             {
                 throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+            }
+        }
+
+        public async Task SignOut()
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameURL + keysignout;
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                string responseData = await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                throw new Exception("Không thể đăng xuất: " + response.StatusCode);
             }
         }
 

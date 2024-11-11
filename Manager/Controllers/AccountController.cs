@@ -62,10 +62,12 @@ namespace Manager.Controllers
         {
             return View();
         }
-        public IActionResult SignOut()
+        public async Task<IActionResult> SignOut()
         {
+            HttpContext.Session.Remove("username");
             HttpContext.Session.Remove("jwt");
             HttpContext.Session.Remove("fullname");
+            await _accountData.SignOut();
             return RedirectToAction("SignIn");
         }
 
@@ -79,12 +81,6 @@ namespace Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> ChangePasswordAsync(ChangePassword change)
         {
-            Staff profile = _staffData.GetStaffAsync().Result;
-            if (profile == null)
-            {
-                Console.WriteLine("Profile is null");
-                return View();
-            }
             string Username  = HttpContext.Session.GetString("username");
             if (change == null)
             {

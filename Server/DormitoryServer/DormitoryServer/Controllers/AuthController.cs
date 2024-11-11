@@ -26,8 +26,8 @@ namespace DormitoryServer.Controllers
             _configuration = configuration;
         }
 
-        //Đăng nhập cho sinh viên 
 
+        //Đăng nhập cho sinh viên 
         [HttpPost("loginsv")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
@@ -64,21 +64,6 @@ namespace DormitoryServer.Controllers
             }
         }
 
-        //Đăng xuất
-        [HttpPost("logout")]
-        public IActionResult Logout()
-        {
-            var cookieOptions = new CookieOptions
-            {
-                HttpOnly = true,
-                Secure = true,
-                SameSite = SameSiteMode.Strict,
-                Expires = DateTime.Now.AddDays(-1)
-            };
-
-            Response.Cookies.Append("AuthToken", "", cookieOptions);
-            return Ok("Đăng xuất thành công");
-        }
 
         //Đăng nhập dành cho nhân viên
         [HttpPost("loginnv")]
@@ -127,6 +112,8 @@ namespace DormitoryServer.Controllers
             return Ok(jwtToken);
         }
 
+
+        //Đăng ký nhân viên
         [HttpPost("signupnv")]
         public async Task<IActionResult> SignUpNV([FromBody] StaffRegistration registration)
         {
@@ -150,6 +137,7 @@ namespace DormitoryServer.Controllers
         }
 
         //Chấp nhận tài khoản nhân viên
+        [Authorize(Policy = "Manager")]
         [HttpPost("acceptaccount")]
         public async Task<IActionResult> AcceptAccount([FromBody] AccountStaffDTO accountStaffDTO)
         {
@@ -173,7 +161,8 @@ namespace DormitoryServer.Controllers
             return Ok("Chấp nhận tài khoản thành công");
         }
 
-        [Authorize(Policy = "ManagerOrStudent")]
+        //Đổi mật khẩu nhân viên
+        [Authorize(Policy = "Manager")]
         [HttpPost("changepassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordDTO changePasswordDTO)
         {
@@ -197,9 +186,46 @@ namespace DormitoryServer.Controllers
             return Ok("Đổi mật khẩu thành công");
         }
 
+        //Đổi mật khẩu sinh viên
+        [Authorize(Policy = "Student")]
+        [HttpPost("changepasswordsv")]
+        public async Task<IActionResult> ChangePasswordSV(ChangePasswordDTO changePasswordDTO)
+        {
+            var studentId = User.FindFirst("UserId")?.Value;
+            var accountStudent = await _context.AccountStudents
+                .Where(a => a.StudentId == studentId)
+                .FirstOrDefaultAsync();
+            if (accountStudent == null)
+            {
+                Console.WriteLine("Tài khoản không tồn tại");
+                return NotFound("Tài khoản không tồn tại");
+            }
+            if (accountStudent.Password != changePasswordDTO.MkCu)
+            {
+                Console.WriteLine("Mật khẩu cũ không đúng");
+                return BadRequest("Mật khẩu cũ không đúng");
+            }
+            accountStudent.Password = changePasswordDTO.MkMoi;
+            _context.AccountStudents.Update(accountStudent);
+            await _context.SaveChangesAsync();
+            return Ok("Đổi mật khẩu thành công");
+        }
 
+        //Đăng xuất
+        [HttpGet("logout")]
+        public IActionResult Logout()
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                Expires = DateTime.Now.AddDays(-1)
+            };
 
-
+            Response.Cookies.Append("AuthToken", "", cookieOptions);
+            return Ok("Đăng xuất thành công");
+        }
 
 
 

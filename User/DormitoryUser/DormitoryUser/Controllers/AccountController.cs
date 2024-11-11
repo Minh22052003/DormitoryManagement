@@ -14,7 +14,7 @@ namespace DormitoryUser.Controllers
         private readonly RegistrationData _registrationdata;
         public AccountController(IHttpContextAccessor httpContextAccessor)
         {
-            _accountData = new AccountData();
+            _accountData = new AccountData(httpContextAccessor);
             _studentData = new StudentData(httpContextAccessor);
             _roomData = new RoomData(httpContextAccessor);
             _registrationdata = new RegistrationData(httpContextAccessor);
@@ -44,6 +44,7 @@ namespace DormitoryUser.Controllers
 
                 Profile student = _studentData.GetProfileStudentAsyn().Result;
                 HttpContext.Session.SetString("StudentName", student.FullName);
+                HttpContext.Session.SetString("MSV", student.StudentID);
                 return RedirectToAction("Index", "Home");
 
             }
@@ -68,6 +69,21 @@ namespace DormitoryUser.Controllers
             await _registrationdata.CreateRequest(profile);
             return RedirectToAction("Index", "Introduce");
         }
+
+
+
+        public IActionResult SignOut()
+        {
+            HttpContext.Session.Remove("jwt1");
+            HttpContext.Session.Remove("StudentName");
+            HttpContext.Session.Remove("MSV");
+            return RedirectToAction("Index", "News");
+        }
+
+
+
+
+
 
 
 
