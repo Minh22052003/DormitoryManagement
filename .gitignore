@@ -369,3 +369,7 @@ obj/
 *.pdb
 *.cache
 *.suo
+# Ignore Visual Studio files
+.vs/
+*.suo
+*.user
