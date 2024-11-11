@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DormitoryServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32ae1046dae6996fe8ed49d56ebe33572f4caf9d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+972f98de692c35dd08de1c414497a050e9efa036")]
 [assembly: System.Reflection.AssemblyProductAttribute("DormitoryServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DormitoryServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
