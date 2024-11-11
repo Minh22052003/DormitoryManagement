@@ -1,7 +1,7 @@
 ﻿@model Manager.Models.Announcement
 
 @{
-    ViewData["Title"] = "Create_Announcement";
+    ViewData["Title"] = "Tạo thông báo";
 }
 
 <div class="container-fluid position-relative d-flex p-0">
@@ -12,11 +12,11 @@
                     <h2 class="mb-4">Tạo mới thông báo</h2>
                     <form asp-controller="Information" asp-action="Create_Announcement" method="post">
                         <div class="form-floating mb-3">
-                            <input asp-for="@Model.Title" type="text" class="form-control" id="floatingInput" placeholder="">
+                            <input asp-for="@Model.Title" type="text" class="form-control" id="floatingInput" placeholder="" required>
                             <label for="floatingInput">Tiêu đề</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input asp-for="@Model.Content" type="text" class="form-control" id="floatingInput" placeholder="">
+                            <input asp-for="@Model.Content" type="text" class="form-control" id="floatingInput" placeholder="" required>
                             <label for="floatingInput">Nội dung</label>
                         </div>
                         <div class="form-floating mb-3">
@@ -25,7 +25,7 @@
                                 new SelectListItem { Text = "Chỉ nhân viên", Value = "NhanVien" },
                                 new SelectListItem { Text = "Chỉ sinh viên", Value = "SinhVien" }
                             })" class="form-select" id="floatingSelect"
-                                    aria-label="Floating label select example">
+                                    aria-label="Floating label select example" required>
                             </select>
                             <label for="floatingSelect">Đối tượng</label>
                         </div>

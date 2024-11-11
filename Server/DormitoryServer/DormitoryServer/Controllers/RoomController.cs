@@ -46,8 +46,8 @@ namespace DormitoryServer.Controllers
             }
             return roomDTOs;
         }
+        
 
-        [Authorize(Policy = "Manager")]
         [HttpGet("getallroomtype")]
         public async Task<ActionResult<List<RoomTypeDTO>>> GetRoomTypes()
         {

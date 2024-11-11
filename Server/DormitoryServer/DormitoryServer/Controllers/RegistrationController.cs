@@ -1,9 +1,12 @@
 ﻿using DormitoryServer.DTOs;
 using DormitoryServer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace DormitoryServer.Controllers
 {
@@ -103,8 +106,125 @@ namespace DormitoryServer.Controllers
         {
             var registration = _context.Registrations.Find(registrationDTO.RegistrationID);
             registration.ApplicationStatus = registrationDTO.ApplicationStatus;
+            if(registrationDTO.ApplicationStatus == "Approved")
+            {
+                Student student = _context.Students.Find(registration.StudentId);
+                DateTime birthday;
+                string pass;
+                if (student.BirthDate.HasValue)
+                {
+                    birthday = student.BirthDate.Value;
+                    pass = birthday.ToString("ddMMyyyy");
+                }
+                else
+                {
+                    pass = student.StudentId;
+                }
+                AccountStudent accountStudent = new AccountStudent
+                {
+                    StudentId = registration.StudentId,
+                    Password = HashPassword(registration.StudentId, pass),
+                    Status = true
+                };
+                _context.AccountStudents.Add(accountStudent);
+            }
             _context.SaveChanges();
             return Ok();
         }
+
+        [HttpPost("addregistration")]
+        public IActionResult AddRegistration([FromBody] RegistrationDTO registrationDTO)
+        {
+            string semester="1";
+            DateTime currentDate = DateTime.Now;
+
+            if ((currentDate.Month == 8 && currentDate.Day >= 15) ||
+                (currentDate.Month > 8 && currentDate.Month <= 12) ||
+                (currentDate.Month == 1 && currentDate.Day <= 1))
+            {
+                semester = "1";
+            }
+            else if ((currentDate.Month == 1 && currentDate.Day >= 2) ||
+                     (currentDate.Month >= 2 && currentDate.Month <= 7) ||
+                     (currentDate.Month == 8 && currentDate.Day <= 14))
+            {
+                semester = "2";
+            }
+            Registration registration = new Registration
+            {
+                RoomTypeId = registrationDTO.RoomTypeID,
+                StudentId = registrationDTO.StudentID,
+                Semester = semester,
+                AcademicYear = DateTime.Now.Year.ToString(),
+                ApplicationStatus = "Pending"
+            };
+            Student student = new Student
+            {
+                StudentId = registrationDTO.StudentID,
+                FullName = registrationDTO.StudentName,
+                BirthDate = registrationDTO.BirthDate,
+                Gender = registrationDTO.Gender,
+                PhoneNumber = registrationDTO.PhoneNumber,
+                Email = registrationDTO.Email,
+                ProvinceId = registrationDTO.ProvinceID,
+                District = registrationDTO.District,
+                Ward = registrationDTO.Ward,
+                Street = registrationDTO.Street,
+                Idcard = registrationDTO.IDCard,
+                Ethnicity = registrationDTO.Ethnicity,
+                Religion = registrationDTO.Religion,
+                Nationality = registrationDTO.Nationality,
+                DateOfIssueOfIdcard = registrationDTO.DateOfIssueOfIDCard,
+                PlaceOfIssueOfIdcard = registrationDTO.PlaceOfIssueOfIDCard,
+                PolicyCoverage = registrationDTO.PolicyCoverage,
+                InsuranceNumber = registrationDTO.InsuranceNumber,
+                NgayCapBhxh = registrationDTO.NgayCapBHXH,
+                GiaTriSuDungTuNgay = registrationDTO.GiaTriSuDungTuNgay,
+                ThoiDiem5NamLienTuc = registrationDTO.ThoiDiem5NamLienTuc,
+                IdtinhCapBhxh = registrationDTO.IDTinhCapBHXH,
+                KhamBenhBanDau = registrationDTO.KhamBenhBanDau,
+                AnhThe4x6 = registrationDTO.AnhThe4x6,
+                AnhCmndmatTruoc = registrationDTO.AnhCMNDMatTruoc,
+                AnhCmndmatSau = registrationDTO.AnhCMNDMatSau,
+                AnhBhytmatTruoc = registrationDTO.AnhBHYTMatTruoc
+            };
+            Relative relative = new Relative
+            {
+                StudentId = registrationDTO.StudentID,
+                FullName = registrationDTO.RelativeName,
+                PhoneNumber = registrationDTO.RelativePhoneNumber,
+                Address = registrationDTO.RelativeAddress
+            };
+
+
+
+            _context.Students.Add(student);
+            _context.Relatives.Add(relative);
+            _context.Registrations.Add(registration);
+            _context.SaveChanges();
+            return Ok();
+        }
+
+
+        private static string HashPassword(string username, string password)
+        {
+            string input = username + password;
+
+            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("x2"));
+                }
+
+                return sb.ToString();
+            }
+        }
+
     }
 }

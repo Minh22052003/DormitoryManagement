@@ -1,4 +1,9 @@
 ﻿@model Manager.Models.RegistrationVM
+
+@{
+    ViewData["Title"] = "Duyệt đơn đăng ký";
+}
+
 @{
     var fullName = Model.StudentName ?? ""; // Lấy giá trị từ Model và đảm bảo không bị null
 
@@ -12,7 +17,7 @@
 <div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
         <div class="card bg-light rounded h-100 p-4">
-            <form asp-action="StudentDetail" asp-controller="User">
+            <form asp-controller="Registration" asp-action="AcceptRegistrations" asp-route-id="@Model.RegistrationID" method="post">
                 <div class="row g-5">
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
@@ -113,7 +118,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div class="row g-5">
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
@@ -259,14 +263,12 @@
                 <div class="row m-5">
                     <div class="col-4"></div>
                     <div class="col-2">
-                        <form asp-controller="Registration" asp-action="AcceptRegistrations" asp-route-id="@Model.RegistrationID" method="post">
                             <button type="submit" class="btn btn-success">Đồng ý</button>
-                        </form>
                     </div>
                     <div class="col-2">
-                        <form asp-controller="Registration" asp-action="RejectRegistrations" asp-route-id="@Model.RegistrationID" method="post">
-                            <button type="submit" class="btn btn-success">Từ chối</button>
-                        </form>
+                        <a asp-controller="Registration" asp-action="RejectRegistrations" asp-route-id="@Model.RegistrationID" method="post" class="btn btn-danger">
+                            Từ chối
+                        </a>
                     </div>
                     <div class="col-4"></div>
                 </div>

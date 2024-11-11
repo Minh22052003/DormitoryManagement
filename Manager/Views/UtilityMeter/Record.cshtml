@@ -1,6 +1,10 @@
 ﻿@model Manager.Models.UtilityMeter
 
 @{
+    ViewData["Title"] = "Ghi số điện nước";
+}
+
+@{
     var rooms = ViewBag.rooms as List<Room>;
 
     var buildings = ViewBag.buildings as List<Building>;

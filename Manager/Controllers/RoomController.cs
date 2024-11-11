@@ -36,6 +36,48 @@ namespace Manager.Controllers
                 return RedirectToAction("Error", new { message = ex });
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> RoomMethod(string sortOrder, string filterStatus)
+        {
+            List<Room> rooms = _roomData.GetAllRoom().Result;
+
+            // Lọc trạng thái phòng
+            if (!String.IsNullOrEmpty(filterStatus))
+            {
+                rooms = rooms.Where(r => r.RoomStatusName == filterStatus).ToList();
+            }
+
+            // Sắp xếp
+            rooms = sortOrder switch
+            {
+                "room_asc" => rooms.OrderBy(r => r.RoomName).ToList(),
+                "room_desc" => rooms.OrderByDescending(r => r.RoomName).ToList(),
+                _ => rooms
+            };
+
+            return View("Room", rooms);
+        }
+        [HttpGet]
+        public IActionResult Search(string searchTerm)
+        {
+            List<Room> rooms = _roomData.GetAllRoom().Result;
+            List<Room> searchResults;
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                searchResults = rooms.Where(r =>
+                    r.RoomName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                    r.BuildingName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                    r.RoomStatusName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+                ).ToList();
+            }
+            else
+            {
+                searchResults = rooms.ToList();
+            }
+
+            return View("Room", searchResults); // Trả về View với kết quả tìm kiếm
+        }
 
         [HttpGet]
         public IActionResult RoomDetail(string id)

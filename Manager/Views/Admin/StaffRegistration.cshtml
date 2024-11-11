@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<Manager.Models.StaffRegistration>
 
+@{
+    ViewData["Title"] = "Duyệt đơn đăng ký của nhân viên";
+}
+
 <div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
         <!-- Bảng danh sách đăng ký -->
@@ -38,7 +42,7 @@
                                                 }
                                             </select>
                                         </td>
-                                        <td>
+                                        <td class="justify-content-center">
                                                 <input type="hidden" name="Email" value="@sr.Email" />
                                                 <button type="submit" class="btn btn-success m-2">Chấp nhận</button>
                                         </td>

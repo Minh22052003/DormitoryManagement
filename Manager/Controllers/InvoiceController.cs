@@ -16,6 +16,7 @@ namespace Manager.Controllers
             List<DormInvoice> dormInvoices = _invoiceData.GetAllDormInvoice().Result;
             return View(dormInvoices);
         }
+
         [HttpGet]
         public IActionResult DormInvoiceDetail(string id)
         {
@@ -32,6 +33,45 @@ namespace Manager.Controllers
             List<RoomInvoice> roomInvoices = _invoiceData.GetAllRoomInvoice().Result;
             return View(roomInvoices);
         }
+        [HttpGet]
+        public IActionResult RoomInvoiceList(string searchTerm, string searchBy, string sortOption)
+        {
+            List<RoomInvoice> invoices = _invoiceData.GetAllRoomInvoice().Result;
+
+            // Tìm kiếm theo nội dung
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                if (searchBy == "room")
+                {
+                    invoices = invoices.Where(i => i.RoomName.Contains(searchTerm)).ToList();
+                }
+                else if (searchBy == "manager")
+                {
+                    invoices = invoices.Where(i => i.PayerName.Contains(searchTerm)).ToList();
+                }
+            }
+
+            // Sắp xếp dựa trên tùy chọn
+            switch (sortOption)
+            {
+                case "building":
+                    invoices = invoices.OrderBy(i => i.BuildingName).ToList();
+                    break;
+                case "room":
+                    invoices = invoices.OrderBy(i => i.RoomName).ToList();
+                    break;
+                case "manager_asc":
+                    invoices = invoices.OrderBy(i => i.PayerName).ToList();
+                    break;
+                case "manager_desc":
+                    invoices = invoices.OrderByDescending(i => i.PayerName).ToList();
+                    break;
+            }
+
+            return View("RoomInvoice", invoices);
+        }
+
+
         [HttpGet]
         public IActionResult RoomInvoiceDetail(string id)
         {

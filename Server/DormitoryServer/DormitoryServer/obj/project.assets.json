@@ -2832,19 +2832,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mtmin\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\HK7\\Project1\\Test\\Test09\\Server\\DormitoryServer\\DormitoryServer\\DormitoryServer.csproj",
+      "projectUniqueName": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\DormitoryServer.csproj",
       "projectName": "DormitoryServer",
-      "projectPath": "D:\\HK7\\Project1\\Test\\Test09\\Server\\DormitoryServer\\DormitoryServer\\DormitoryServer.csproj",
-      "packagesPath": "C:\\Users\\mtmin\\.nuget\\packages\\",
-      "outputPath": "D:\\HK7\\Project1\\Test\\Test09\\Server\\DormitoryServer\\DormitoryServer\\obj\\",
+      "projectPath": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\DormitoryServer.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mtmin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

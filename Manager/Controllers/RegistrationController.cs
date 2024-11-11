@@ -18,6 +18,27 @@ namespace Manager.Controllers
             var registrationT = registrations.Where(r => r.ApplicationStatus == "Approved" || r.ApplicationStatus == "Refuse");
             return View(registrationT);
         }
+        [HttpGet]
+        public IActionResult Search(string searchTerm)
+        {
+            List<RegistrationVM> registrations = _registrationData.GetAllRegistration().Result;
+            List<RegistrationVM> searchResults;
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                searchResults = registrations.Where(r =>
+                    r.StudentID.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                    r.StudentName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+                ).ToList();
+            }
+            else
+            {
+                searchResults = registrations.ToList();
+            }
+
+            return View("Registrations", searchResults); // Trả về View với danh sách đơn đăng ký sau khi tìm kiếm
+        }
+
         public IActionResult nRegistrations()
         {
             List<RegistrationVM> registrations = _registrationData.GetAllRegistration().Result;

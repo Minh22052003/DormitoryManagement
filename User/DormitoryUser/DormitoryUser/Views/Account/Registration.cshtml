@@ -1,4 +1,4 @@
-﻿@model DormitoryUser.Models.Profile
+﻿@model DormitoryUser.Models.RegistrationVM
 @{
     Layout = "~/Views/Shared/IntroLayout.cshtml";
 }
@@ -18,7 +18,19 @@
                 <div class="row">
                     <div class="card bg-light rounded h-auto w-100 p-4 border-0">
                         <div class="col">
-                            <form class="p-5 bg-light" id="registrationForm" asp-action="StudentDetail" asp-controller="User">
+                            <form class="p-5 bg-light" asp-controller="Account" asp-action="Registration" method="post">
+                                <div class="row g-5">
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <label for="RoomTypeID">Chọn loại phòng</label>
+                                        <select name="RoomTypeID" id="RoomTypeID" class="form-select">
+                                            <option value="">Chọn loại phòng</option>
+                                            @foreach (var item in ViewBag.RoomTypes)
+                                            {
+                                                <option value="@item.RoomTypeID">@item.RoomTypeName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="row g-5">
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
@@ -42,8 +54,14 @@
                                 <div class="row g-5">
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Họ & Tên lót</label>
-                                            <input class="form-control" asp-for="@Model.FullName">
+                                            <label class="form-label my-3 fw-bold">Họ & Tên</label>
+                                            <input class="form-control" asp-for="@Model.StudentName">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Mã sinh viên</label>
+                                            <input class="form-control" asp-for="@Model.StudentID">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
@@ -51,18 +69,14 @@
                                             <label class="form-label my-3 fw-bold">Giới tính</label>
                                             <div class="row">
                                                 <div class="col-2">
-                                                    <input class="form-check-input" type="radio" name="gender"
-                                                           id="male" value="option1">
-                                                    <label class="form-check-label" for="male">
-                                                        Nam
-                                                    </label>
+                                                    <input class="form-check-input" type="radio" name="Gender"
+                                                           id="male" value="true">
+                                                    <label class="form-check-label" for="male">Nam</label>
                                                 </div>
                                                 <div class="col-2">
-                                                    <input class="form-check-input" type="radio" name="gender"
-                                                           id="female" value="option2">
-                                                    <label class="form-check-label" for="female">
-                                                        Nữ
-                                                    </label>
+                                                    <input class="form-check-input" type="radio" name="Gender"
+                                                           id="female" value="false">
+                                                    <label class="form-check-label" for="female">Nữ</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -206,19 +220,19 @@
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
                                             <label class="form-label my-3 fw-bold">Ảnh thẻ 4x6</label>
-                                            <div class="row"><img class="w-75" src="~/img/avatar-profile.jpg" /></div>
+                                            <input class="form-control-file" type="file" name="photo4x6" accept="image/*">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
                                             <label class="form-label my-3 fw-bold">Ảnh CMND mặt trước</label>
-                                            <div class="row"><img class="w-75" src="~/img/avatar-profile.jpg" /></div>
+                                            <input class="form-control-file" type="file" name="idFront" accept="image/*">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
                                             <label class="form-label my-3 fw-bold">Ảnh CMND mặt sau</label>
-                                            <div class="row"><img class="w-75" src="~/img/avatar-profile.jpg" /></div>
+                                            <input class="form-control-file" type="file" name="idBack" accept="image/*">
                                         </div>
                                     </div>
                                 </div>
@@ -226,12 +240,13 @@
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
                                             <label class="form-label my-3 fw-bold">Ảnh BHYT mặt trước</label>
-                                            <div class="row"><img class="w-75" src="~/img/avatar-profile.jpg" /></div>
+                                            <input class="form-control-file" type="file" name="healthInsuranceFront" accept="image/*">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="d-flex mt-5 justify-content-end">
-                                    <a asp-controller="Registration" asp-action="AcceptRegistrations" class="btn btn-success" style="margin-right: 30px;">Đăng kí</a>
+                                    <button type="submit" class="btn btn-success" style="margin-right: 30px;">Đăng kí</button>
                                     <a class="btn btn-primary text-light" onclick="resetForm()">Reset</a>
                                 </div>
                             </form>
@@ -243,14 +258,3 @@
     </div>
 </div>
 
-<script>
-    // Hàm để xử lý submit form
-    function submitForm() {
-        document.getElementById("registrationForm").submit();
-    }
-
-    // Hàm để reset tất cả các ô trong form
-    function resetForm() {
-        document.getElementById("registrationForm").reset();
-    }
-</script>

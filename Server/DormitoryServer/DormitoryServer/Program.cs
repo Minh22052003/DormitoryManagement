@@ -18,16 +18,6 @@ builder.Services.AddDataProtection()
     .SetApplicationName(dataProtectionConfig["ApplicationName"]);
 
 
-
-
-
-
-
-
-
-
-
-
 // Add services to the container.
 
 

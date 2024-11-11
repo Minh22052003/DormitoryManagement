@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<Manager.ModelRequest.AnnouncementRQ>
 
+@{
+    ViewData["Title"] = "Danh sách thông báo";
+}
 
 <div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
@@ -8,11 +11,15 @@
                 <div class="card border-0">
                     <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
                         <h6 class="mb-4">Tìm kiếm</h6>
-                        <form class="d-none d-md-flex ms-4">
-                            <div class="col-4"><input class="form-control bg-white border-0 mt-2 me-3" type="search" placeholder="Search"></div>
-                            <button type="button" class="btn btn-secondary m-2">Tìm theo nội dung</button>
-                            <button type="button" class="btn btn-secondary m-2">Tìm theo người đăng</button>
-                            <button type="button" class="btn btn-secondary m-2">Tìm theo ngày đăng</button>
+                        <form class="row" id="searchForm" method="get" action="/Information/SearchAndSortAnnouncements" class="d-md-flex ms-4">
+                            <div class="col-3">
+                                <input name="searchTerm" class="form-control bg-white border-0 mt-2 me-3" type="search" placeholder="Search">
+                            </div>
+                            <div class="col-9">
+                                <button type="submit" name="searchBy" value="content" class="btn btn-secondary m-2">Tìm theo nội dung</button>
+                                <button type="submit" name="searchBy" value="poster" class="btn btn-secondary m-2">Tìm theo người đăng</button>
+                                <button type="submit" name="searchBy" value="date" class="btn btn-secondary m-2">Tìm theo ngày đăng</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -21,10 +28,11 @@
                 <div class="card border-0">
                     <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
                         <h6 class="mb-4">Sắp xếp</h6>
-                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                            <option selected>Sắp xếp tên theo người đăng</option>
-                            <option value="2">Sắp xếp ngày đăng theo thứ tự tăng dần</option>
-                            <option value="3">Sắp xếp ngày đăng theo thứ tự giảm dần</option>
+                        <select name="sortBy" class="form-select form-select-sm mb-3" onchange="this.form.submit()" form="searchForm">
+                            <option disabled selected>--Chọn phương thức sắp xếp--</option>
+                            <option value="name">Sắp xếp tên theo người đăng</option>
+                            <option value="dateAsc">Sắp xếp ngày đăng theo thứ tự tăng dần</option>
+                            <option value="dateDesc">Sắp xếp ngày đăng theo thứ tự giảm dần</option>
                         </select>
                     </div>
                 </div>
@@ -43,7 +51,7 @@
                                 <th scope="col">Mục tiêu</th>
                                 <th scope="col">Người đăng</th>
                                 <th scope="col">Ngày đăng</th>
-                                <th scope="col">#</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>

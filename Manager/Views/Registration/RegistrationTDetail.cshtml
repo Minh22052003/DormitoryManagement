@@ -1,4 +1,9 @@
 ﻿@model Manager.Models.RegistrationVM
+
+@{
+    ViewData["Title"] = "Đơn đăng ký";
+}
+
 @{
     var fullName = Model.StudentName ?? ""; // Lấy giá trị từ Model và đảm bảo không bị null
 

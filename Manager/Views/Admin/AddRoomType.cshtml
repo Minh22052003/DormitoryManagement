@@ -1,26 +1,30 @@
 ﻿@model Manager.Models.RoomType
 
+@{
+    ViewData["Title"] = "Thêm loại phòng";
+}
+
 <div class="container-fluid">
     <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
         <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
             <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <a href="index.html" class="">
+                    <a href="#" class="">
                         <h3 class="text-primary"><i class="bi bi-house-fill me-2"></i>Thêm loại phòng</h3>
                     </a>
                 </div>
                 <form asp-controller="Admin" asp-action="AddRoomType" method="post">
                     <div class="form-floating mb-4">
-                        <input asp-for="RoomTypeName" name="RoomTypeName" type="text" class="form-control" id="floatingPassword" placeholder="">
-                        <label for="floatingPassword">Tên loại phòng</label>
+                        <input asp-for="RoomTypeName" name="RoomTypeName" type="text" class="form-control" id="RoomTypeName" placeholder="" required>
+                        <label for="RoomTypeName">Tên loại phòng</label>
                     </div>
                     <div class="form-floating mb-4">
-                        <input asp-for="Capacity" name="Capacity" type="text" class="form-control" id="floatingPassword" placeholder="">
-                        <label for="floatingPassword">Sức chứa</label>
+                        <input asp-for="Capacity" name="Capacity" type="number" min="1" class="form-control" id="Capacity" placeholder="" required>
+                        <label for="Capacity">Sức chứa</label>
                     </div>
                     <div class="form-floating mb-4">
-                        <input asp-for="RoomPrice" name="RoomPrice" type="text" class="form-control" id="floatingPassword" placeholder="">
-                        <label for="floatingPassword">Giá phòng</label>
+                        <input asp-for="RoomPrice" name="RoomPrice" type="number" min="0" class="form-control" id="RoomPrice" placeholder="" required>
+                        <label for="RoomPrice">Giá phòng</label>
                     </div>
                     <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Thêm loại phòng</button>
                 </form>

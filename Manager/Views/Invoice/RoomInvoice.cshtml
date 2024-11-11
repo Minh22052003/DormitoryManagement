@@ -1,16 +1,28 @@
 ﻿@model IEnumerable<Manager.Models.RoomInvoice>
+
+@{
+    ViewData["Title"] = "Hóa đơn phòng";
+}
+
 <div class="container-fluid position-relative d-flex p-0">
-    <!-- Content Start -->
     <div class="col m-5">
         <div class="row">
-            <div class="col-6">
+            <div class="col-12">
                 <div class="card border-0">
                     <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
                         <h6 class="mb-4">Tìm kiếm</h6>
-                        <form class="d-none d-md-flex ms-4">
-                            <div class="col-4"><input class="form-control bg-light mt-2 me-3" type="search" placeholder="Search"></div>
-                            <button type="button" class="btn btn-secondary m-2">Tìm theo phòng</button>
-                            <button type="button" class="btn btn-secondary m-2">Tìm theo trưởng phòng</button>
+                        <form asp-action="RoomInvoiceList" asp-controller="Invoice" method="get" class="d-flex ms-4 row">
+                            <div class="col-4">
+                                <input type="text" name="searchTerm" class="form-control bg-light mt-2 me-3" placeholder="Search">
+                            </div>
+                            <div class="col">
+                                <input type="hidden" name="searchBy" value="room">
+                                <button type="submit" class="btn btn-secondary m-2">Tìm theo phòng</button>
+                                <input type="hidden" name="searchBy" value="manager">
+                                <button type="submit" class="btn btn-secondary m-2">Tìm theo trưởng phòng</button>
+                            </div>
+                            
+                            
                         </form>
                     </div>
                 </div>
@@ -30,13 +42,15 @@
                 <div class="card border-0">
                     <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
                         <h6 class="mb-4">Sắp xếp</h6>
-                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                            <option disabled selected>--Chọn phương thức sắp xếp--</option>
-                            <option>Sắp xếp theo tòa nhà</option>
-                            <option value="1">Sắp xếp theo phòng</option>
-                            <option value="2">Sắp xếp trưởng phòng theo thứ tự tăng dần</option>
-                            <option value="3">Sắp xếp trưởng phòng theo thứ tự giảm dần</option>
-                        </select>
+                        <form asp-action="RoomInvoiceList" asp-controller="Invoice" method="get">
+                            <select name="sortOption" class="form-select form-select-sm mb-3" onchange="this.form.submit()">
+                                <option disabled selected>--Chọn phương thức sắp xếp--</option>
+                                <option value="building">Sắp xếp theo tòa nhà</option>
+                                <option value="room">Sắp xếp theo phòng</option>
+                                <option value="manager_asc">Sắp xếp trưởng phòng tăng dần</option>
+                                <option value="manager_desc">Sắp xếp trưởng phòng giảm dần</option>
+                            </select>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -70,7 +84,7 @@
                                         </a>
                                     </td>
                                     <td>@h.Description</td>
-                                    <td>@h.IssueDate</td>
+                                    <td>@h.IssueDate?.ToString("yyyy-MM-dd")</td>
                                     <td>@h.RoomName</td>
                                     <td>@h.BuildingName</td>
                                     <td>@h.PayerName</td>
@@ -86,5 +100,4 @@
             </div>
         </div>
     </div>
-    <!-- Content End -->
 </div>
