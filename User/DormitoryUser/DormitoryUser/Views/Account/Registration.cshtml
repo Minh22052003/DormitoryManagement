@@ -22,55 +22,47 @@
                                 <div class="row g-5">
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Mã sinh viên<span class="text-danger"> (*)</span></label>
-                                            <input asp-for="StudentID" class="form-control border-0">
+                                            <label class="form-label my-3 fw-bold">Số CMND/Thẻ căn cước</label>
+                                            <input class="form-control" asp-for="@Model.IDCard">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Ngày cấp CMND</label>
+                                            <input type="date" class="form-control" id="dateInput" asp-for="@Model.DateOfIssueOfIDCard">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Nơi cấp CMND</label>
+                                            <input class="form-control" asp-for="@Model.PlaceOfIssueOfIDCard">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row g-5">
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Số CMND/Thẻ căn cước<span class="text-danger"> (*)</span></label>
-                                            <input class="form-control border-0">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-lg-6 col-xl-4">
-                                        <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Ngày cấp CMND<span class="text-danger"> (*)</span></label>
-                                            <input type="date" class="form-control border-0" id="dateInput">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-lg-6 col-xl-4">
-                                        <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Nơi cấp CMND<span class="text-danger"> (*)</span></label>
-                                            <input class="form-control border-0">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row g-5">
-                                    <div class="col-md-12 col-lg-6 col-xl-4">
-                                        <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Họ & Tên đệm<span class="text-danger"> (*)</span></label>
-                                            <input class="form-control border-0">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-lg-6 col-xl-4">
-                                        <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Tên<span class="text-danger"> (*)</span></label>
-                                            <input class="form-control border-0">
+                                            <label class="form-label my-3 fw-bold">Họ & Tên lót</label>
+                                            <input class="form-control" asp-for="@Model.FullName">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-check">
-                                            <label class="form-label my-3 fw-bold">Giới tính<span class="text-danger"> (*)</span></label>
-                                            <div class="d-flex ml-5">
-                                                <div class="me-3">
-                                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked readonly>
-                                                    <label class="form-check-label" for="gridRadios1">Nam</label>
+                                            <label class="form-label my-3 fw-bold">Giới tính</label>
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                           id="male" value="option1">
+                                                    <label class="form-check-label" for="male">
+                                                        Nam
+                                                    </label>
                                                 </div>
-                                                <div class="ml-5" style="margin-left:20px;">
-                                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" readonly>
-                                                    <label class="form-check-label" for="gridRadios2">Nữ</label>
+                                                <div class="col-2">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                           id="female" value="option2">
+                                                    <label class="form-check-label" for="female">
+                                                        Nữ
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
@@ -79,124 +71,114 @@
                                 <div class="row g-5">
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Dân tộc<span class="text-danger"> (*)</span></label>
-                                            <input class="form-control border-0">
+                                            <label class="form-label my-3 fw-bold">Dân tộc</label>
+                                            <input class="form-control" asp-for="@Model.Ethnicity">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
                                             <label class="form-label my-3 fw-bold">Tôn giáo</label>
-                                            <input class="form-control border-0">
+                                            <input class="form-control" asp-for="@Model.Religion">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Quốc tịch<span class="text-danger"> (*)</span></label>
-                                            <input class="form-control border-0">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row g-5">
-                                    <div class="col-md-12 col-lg-6 col-xl-4">
-                                        <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Ngày sinh<span class="text-danger"> (*)</span></label>
-                                            <input type="date" class="form-control border-0" id="dateInput">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-lg-6 col-xl-4">
-                                        <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Email<span class="text-danger"> (*)</span></label>
-                                            <input class="form-control border-0">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-lg-6 col-xl-4">
-                                        <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Số điện thoại<span class="text-danger"> (*)</span></label>
-                                            <input class="form-control border-0">
+                                            <label class="form-label my-3 fw-bold">Quốc tịch</label>
+                                            <input class="form-control" asp-for="@Model.Nationality">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row g-5">
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Tỉnh/Thành phố<span class="text-danger"> (*)</span></label>
-                                            <input class="form-control border-0">
+                                            <label class="form-label my-3 fw-bold">Ngày sinh</label>
+                                            <input type="date" class="form-control" id="dateInput" asp-for="@Model.BirthDate">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Quận/Huyện<span class="text-danger"> (*)</span></label>
-                                            <input class="form-control border-0">
+                                            <label class="form-label my-3 fw-bold">Email</label>
+                                            <input class="form-control" asp-for="@Model.Email">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Phường/Xã<span class="text-danger"> (*)</span></label>
-                                            <input class="form-control border-0">
+                                            <label class="form-label my-3 fw-bold">Số điện thoại</label>
+                                            <input class="form-control" asp-for="@Model.PhoneNumber">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row g-5">
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Số nhà, tên đường<span class="text-danger"> (*)</span></label>
-                                            <input class="form-control border-0">
+                                            <label class="form-label my-3 fw-bold">Tỉnh/Thành phố</label>
+                                            <input class="form-control" asp-for="@Model.ProvinceName">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Quận/Huyện</label>
+                                            <input class="form-control" asp-for="@Model.District">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Phường/Xã</label>
+                                            <input class="form-control" asp-for="@Model.Ward">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-5">
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Số nhà, tên đường</label>
+                                            <input class="form-control" asp-for="@Model.Street">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
                                             <label class="form-label my-3 fw-bold">Diện chính sách</label>
-                                            <input class="form-control border-0">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-lg-6 col-xl-4">
-                                        <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Mã số BHYT<span class="text-danger"> (*)</span></label>
-                                            <input class="form-control border-0">
+                                            <input class="form-control" asp-for="@Model.PolicyCoverage">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row g-5">
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Ảnh BHYT mặt trước<span class="text-danger"> (*)</span></label>
-                                            <div class="d-flex align-items-center">
-                                                <input type="file" class="form-control border-0" accept="image/*" onchange="previewImage(event, 'img4')" />
-                                                <img id="img4" class="w-75 ms-2" src="" alt="Preview" style="display: none;" />
-                                            </div>
+                                            <label class="form-label my-3 fw-bold">Mã số BHYT</label>
+                                            <input class="form-control" asp-for="@Model.InsuranceNumber">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Ngày cấp BHYT<span class="text-danger"> (*)</span></label>
-                                            <input type="date" class="form-control border-0" id="dateInput">
+                                            <label class="form-label my-3 fw-bold">Ngày cấp BHYT</label>
+                                            <input type="date" class="form-control" id="dateInput" asp-for="@Model.NgayCapBHXH">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Giá trị sử dụng từ ngày<span class="text-danger"> (*)</span></label>
-                                            <input type="date" class="form-control border-0" id="dateInput">
+                                            <label class="form-label my-3 fw-bold">Giá trị sử dụng từ ngày</label>
+                                            <input type="date" class="form-control" id="dateInput" asp-for="@Model.GiaTriSuDungTuNgay">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row g-5">
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Thời điểm đủ 05 năm liên tục từ<span class="text-danger"> (*)</span></label>
-                                            <input type="date" class="form-control border-0" id="dateInput">
+                                            <label class="form-label my-3 fw-bold">Thời điểm đủ 05 năm liên tục từ</label>
+                                            <input type="date" class="form-control" id="dateInput" asp-for="@Model.ThoiDiem5NamLienTuc">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
                                             <label class="form-label my-3 fw-bold">Tỉnh</label>
-                                            <input class="form-control border-0">
+                                            <input class="form-control" asp-for="@Model.TenTinhCapBHXH">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
                                             <label class="form-label my-3 fw-bold">Khám bệnh ban đầu</label>
-                                            <input class="form-control border-0">
+                                            <input class="form-control" asp-for="@Model.KhamBenhBanDau">
                                         </div>
                                     </div>
                                 </div>
@@ -204,52 +186,50 @@
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
                                             <label class="form-label my-3 fw-bold">Tên người thân</label>
-                                            <input class="form-control border-0">
+                                            <input class="form-control" asp-for="@Model.RelativeName">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Số điện thoại người thân<span class="text-danger"> (*)</span></label>
-                                            <input class="form-control border-0">
+                                            <label class="form-label my-3 fw-bold">Số điện thoại người thân</label>
+                                            <input class="form-control" asp-for="@Model.RelativePhoneNumber">
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
                                             <label class="form-label my-3 fw-bold">Địa chỉ người thân</label>
-                                            <input class="form-control border-0">
+                                            <input class="form-control" asp-for="@Model.RelativeAddress">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row g-5">
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Ảnh thẻ 4x6<span class="text-danger"> (*)</span></label>
-                                            <div class="d-flex align-items-center">
-                                                <input type="file" class="form-control border-0" accept="image/*" onchange="previewImage(event, 'img1')" />
-                                                <img id="img1" class="w-75 ms-2" src="" alt="Preview" style="display: none;" />
-                                            </div>
+                                            <label class="form-label my-3 fw-bold">Ảnh thẻ 4x6</label>
+                                            <div class="row"><img class="w-75" src="~/img/avatar-profile.jpg" /></div>
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Ảnh CMND mặt trước<span class="text-danger"> (*)</span></label>
-                                            <div class="d-flex align-items-center">
-                                                <input type="file" class="form-control border-0" accept="image/*" onchange="previewImage(event, 'img2')" />
-                                                <img id="img2" class="w-75 ms-2" src="" alt="Preview" style="display: none;" />
-                                            </div>
+                                            <label class="form-label my-3 fw-bold">Ảnh CMND mặt trước</label>
+                                            <div class="row"><img class="w-75" src="~/img/avatar-profile.jpg" /></div>
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
-                                            <label class="form-label my-3 fw-bold">Ảnh CMND mặt sau<span class="text-danger"> (*)</span></label>
-                                            <div class="d-flex align-items-center">
-                                                <input type="file" class="form-control border-0" accept="image/*" onchange="previewImage(event, 'img3')" />
-                                                <img id="img3" class="w-75 ms-2" src="" alt="Preview" style="display: none;" />
-                                            </div>
+                                            <label class="form-label my-3 fw-bold">Ảnh CMND mặt sau</label>
+                                            <div class="row"><img class="w-75" src="~/img/avatar-profile.jpg" /></div>
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="row g-5">
+                                    <div class="col-md-12 col-lg-6 col-xl-4">
+                                        <div class="form-item">
+                                            <label class="form-label my-3 fw-bold">Ảnh BHYT mặt trước</label>
+                                            <div class="row"><img class="w-75" src="~/img/avatar-profile.jpg" /></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="d-flex mt-5 justify-content-end">
                                     <a asp-controller="Registration" asp-action="AcceptRegistrations" class="btn btn-success" style="margin-right: 30px;">Đăng kí</a>
                                     <a class="btn btn-primary text-light" onclick="resetForm()">Reset</a>
