@@ -33,18 +33,6 @@
                 <div class="row g-5">
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
-                            <label class="form-label my-3 fw-bold">Người thanh toán</label>
-                            <input class="form-control" value="@Model.PayerName">
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-lg-6 col-xl-4">
-                        <div class="form-item">
-                            <label class="form-label my-3 fw-bold">Ngày thanh toán</label>
-                            <input type="date" class="form-control" value="@Model.PaymentDate?.ToString("yyyy-MM-dd")">
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-lg-6 col-xl-4">
-                        <div class="form-item">
                             <label class="form-label my-3 fw-bold">Ngày lập hóa đơn</label>
                             <input type="date" class="form-control" value="@Model.IssueDate?.ToString("yyyy-MM-dd")" disabled>
                         </div>
@@ -101,14 +89,9 @@
                     <p class="fw-bold p-4">Tổng tiền: @Model.TotalAmount VND</p>
                 </div>
                 <div class="row m-5">
-                    @if (Model.Status != "Paid")
-                    {
-                        <div class="col-2">
-                            <a asp-controller="Invoice" asp-action="QR" asp-for="@Model.InvoiceID" class="btn btn-success m-2">Thanh toán </a>
-                        </div>
-                    }
+                    <div class="col-4"></div>
                     <div class="col-2">
-                        <a class="btn btn-success">Lưu thay đổi</a>
+                        <a asp-controller="Invoice" asp-action="AddRoomInvoice" class="btn btn-success m-2">Quay lại </a>
                     </div>
                     <div class="col-4"></div>
                 </div>

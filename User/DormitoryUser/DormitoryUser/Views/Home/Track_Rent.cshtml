@@ -10,9 +10,9 @@
         <div class="section-header">
             <h1>Theo dõi tiền trọ</h1>
             <div>
-                <h1 class="ml-5">@ViewBag.Profile.FullName</h1>
-                <span class="ml-5">Mã sinh viên: @ViewBag.Profile.StudentID</span>
-                <h1 class="ml-5 bg-danger text-white p-2 rounded">Tổng nợ: @ViewBag.RoomInvoiceF.TotalAmount đ</h1>
+                <h1 class="ml-5">@ViewBag.Profile?.FullName</h1>
+                <span class="ml-5">Mã sinh viên: @ViewBag.Profile?.StudentID</span>
+                <h1 class="ml-5 bg-danger text-white p-2 rounded">Tổng nợ: @ViewBag.RoomInvoiceF?.TotalAmount đ</h1>
             </div>
         </div>
 
@@ -47,12 +47,16 @@
                             @foreach (var t in ViewBag.RoomInvoiceF.Services)
 
                             {
-                                <p><strong>- @t.ServiceName </strong><span>@t.Price</span>đ</p>
+                                <p><strong>- @t?.ServiceName </strong><span>@t.Price</span>đ</p>
+                                <p><strong>- @t?.Quantity </strong></p>
                             }
                             <br>
-                            <h5>Tổng: <span id="tong-phi">@ViewBag.RoomInvoiceF.TotalAmount</span>đ</h5>
+                            <h5>Tổng: <span id="tong-phi">@ViewBag?.RoomInvoiceF?.TotalAmount</span>đ</h5>
                             <br>
-                            <a id="submit-yeu-cau" href="~/Track_Rent/Index" class="btn btn-primary btn-md btn-icon icon-right" tabindex="4">Thanh toán</a>
+                            @if (ViewBag?.Profile?.IsLeader)
+                            {
+                                <a id="submit-yeu-cau" href="~/Track_Rent/Index" class="btn btn-primary btn-md btn-icon icon-right" tabindex="4">Thanh toán</a>
+                            }
                         </div>
                     </div>
                     <div class="col-12 col-lg-12 col-xl-7">
@@ -77,12 +81,12 @@
 
                                         {
                                             <tr>
-                                                <td>@history.InvoiceID</td>
-                                                <td>@history.RoomID</td>
-                                                <td>@history.PayerName</td>
-                                                <td>@history.PaymentDate?.ToString("dd/MM/yyyy")</td>
-                                                <td>@history.TotalAmount</td>
-                                                <td>@history.Note</td>
+                                                <td>@history?.InvoiceID</td>
+                                                <td>@history?.RoomID</td>
+                                                <td>@history?.PayerName</td>
+                                                <td>@history?.PaymentDate?.ToString("dd/MM/yyyy")</td>
+                                                <td>@history?.TotalAmount</td>
+                                                <td>@history?.Note</td>
                                             </tr>
                                         }
                                     </tbody>

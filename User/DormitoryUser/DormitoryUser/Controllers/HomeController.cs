@@ -1,6 +1,7 @@
 ﻿using DormitoryUser.Data;
 using DormitoryUser.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace DormitoryUser.Controllers
@@ -36,7 +37,8 @@ namespace DormitoryUser.Controllers
         public IActionResult Notification()
         {
             List<Announcement> announcements = announcementData.GetAllAnnouncement().Result;
-            return View(announcements);
+            List < Announcement > announcementsforstudent = announcements.FindAll(a => a.Target == "SinhVien");
+            return View(announcementsforstudent);
         }
 
         public async Task<IActionResult> Room()
@@ -95,10 +97,10 @@ namespace DormitoryUser.Controllers
             List<RoomInvoice> roomInvoices = roomInvoiceData.GetAllRoomInvoice().Result;
             var profile = studentData.GetProfileStudentAsyn().Result;
             var room = roomData.GetRoomIn().Result;
-            ViewBag.RoomInvoiceF = roomInvoices.Where(r => r.Status == "Not Paid").FirstOrDefault();
+            ViewBag.RoomInvoiceF = roomInvoices.Where(r => r.Status == "Not Paid" && r.RoomID == room.RoomID).FirstOrDefault();
             ViewBag.RoomPrice = room.RoomPrice;
             ViewBag.Profile = profile;
-            var roomInvoiceDTT = roomInvoices.Where(r => r.Status != "Not Paid" && r.RoomID == room.RoomID).ToList();
+            var roomInvoiceDTT = roomInvoices.Where(r => r.Status == "Paid" && r.RoomID == room.RoomID).ToList();
             return View(roomInvoiceDTT);
         }
 

@@ -9,8 +9,9 @@ namespace Manager.Data
         private readonly HttpClient _httpClient;
         private readonly Hosting _hosting = new Hosting();//Thêm thằng này
         private readonly IHttpContextAccessor _httpContextAccessor;//Thêm thằng này
-        private string nameurl;//Thêm thằng này
-        string apiKey = "/api/Student/getallstudent";//Loại bỏ đường dẫn cứng
+        private string nameurl;
+        string apiKeygetallroominvoicenew = "/api/Invoice/getallroominvoicenew";
+        string apiKeyapproveroominvoicenew = "/api/Invoice/approveroominvoicenew";
 
         public RoomInvoiceData(IHttpContextAccessor httpContextAccessor)//Thêm thằng này
         {
@@ -19,25 +20,45 @@ namespace Manager.Data
             nameurl = _hosting.nameurl;//Thêm thằng này
         }
 
-        public async Task<List<RoomInvoice>> GetAllUtilityMeter()
+
+        public async Task<List<RoomInvoice>> CreateRoomInvoice()
         {
-            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");//Thêm thằng này
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);//Thêm thằng này
-            var url = nameurl + apiKey;//Thêm thằng này
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameurl + apiKeygetallroominvoicenew;
 
 
             List<RoomInvoice> roomInvoices;
-            HttpResponseMessage response = await _httpClient.GetAsync(url);//thay key
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
 
 
-            if(!response.IsSuccessStatusCode)//Thêm thằng này
+            if (!response.IsSuccessStatusCode)
             {//Thêm thằng này
-                throw new Exception(response.StatusCode.ToString());//Thêm thằng này
+                throw new Exception(response.StatusCode.ToString());
             }//Thêm thằng này
 
             string reponseData = await response.Content.ReadAsStringAsync();
             roomInvoices = JsonConvert.DeserializeObject<List<RoomInvoice>>(reponseData);
             return roomInvoices;
+        }
+        public async Task Approveroominvoicenew()
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameurl + apiKeyapproveroominvoicenew;
+
+
+            List<RoomInvoice> roomInvoices;
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
+
+
+            if (!response.IsSuccessStatusCode)
+            {//Thêm thằng này
+                throw new Exception(response.StatusCode.ToString());
+            }//Thêm thằng này
+
+            string reponseData = await response.Content.ReadAsStringAsync();
+            
         }
     }
 }

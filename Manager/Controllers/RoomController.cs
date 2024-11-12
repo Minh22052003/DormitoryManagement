@@ -122,6 +122,18 @@ namespace Manager.Controllers
         }
 
 
+        public async Task<IActionResult> SetAsLeader(string id)
+        {
+            List<Student> students = _studentData.GetAllStudentAsyn().Result;
+            var student = students.Find(s => s.StudentID == id);
+            student.IsLeader = true;
+            if (student != null)
+            {
+                await _studentData.UpdateStudentLeader(student);
+                return RedirectToAction("Room");
+            }
+            return null;
+        }
 
 
 
@@ -142,6 +154,11 @@ namespace Manager.Controllers
         {
             return View();
         }
+
+
+
+
+
         [HttpGet]
         public IActionResult AddStudentToRoom(string id)
         {
@@ -160,6 +177,12 @@ namespace Manager.Controllers
             await _studentData.AddStudentWithRoom(student);
             return RedirectToAction("RoomDetail", new { id = idroom });
         }
+
+
+
+
+
+
         [HttpGet]
         public IActionResult AddEquipmentToRoom(string id)
         {

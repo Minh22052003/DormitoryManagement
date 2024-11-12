@@ -18,7 +18,7 @@ namespace DormitoryUser.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> ChangePasswordAsync(ChangePassword change)
+        public async Task<IActionResult> ChangePassword(ChangePassword change)
         {
             string Username = HttpContext.Session.GetString("MSV");
             if (change == null)

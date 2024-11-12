@@ -7,9 +7,11 @@ namespace Manager.Controllers
     public class InvoiceController : Controller
     {
         private readonly InvoiceData _invoiceData;
+        private readonly RoomInvoiceData _roominvoiceData;
         public InvoiceController(IHttpContextAccessor httpContextAccessor)
         {
             _invoiceData = new InvoiceData(httpContextAccessor);
+            _roominvoiceData = new RoomInvoiceData(httpContextAccessor);
         }
         public IActionResult DormInvoice()
         {
@@ -31,8 +33,27 @@ namespace Manager.Controllers
         public IActionResult RoomInvoice()
         {
             List<RoomInvoice> roomInvoices = _invoiceData.GetAllRoomInvoice().Result;
-            return View(roomInvoices);
+            var notpendingInvoices = roomInvoices.Where(ri => ri.Status != "Pending Approval").ToList();
+            return View(notpendingInvoices);
         }
+
+        public IActionResult AddRoomInvoice()
+        {
+            List<RoomInvoice> roomInvoices = _invoiceData.GetAllRoomInvoice().Result;
+
+            var pendingInvoices = roomInvoices.Where(ri => ri.Status == "Pending Approval").ToList();
+
+            if (pendingInvoices.Count == 0)
+            {
+                List<RoomInvoice> roomInvoicescd = _roominvoiceData.CreateRoomInvoice().Result;
+                return View(roomInvoicescd);
+            }
+            return View(pendingInvoices);
+        }
+
+
+
+
         [HttpGet]
         public IActionResult RoomInvoiceList(string searchTerm, string searchBy, string sortOption)
         {
@@ -80,6 +101,22 @@ namespace Manager.Controllers
             ViewBag.listService = roomInvoice?.Services;
             return View(roomInvoice);
         }
+        [HttpGet]
+        public IActionResult RoomInvoicePendingApprovalDetail(string id)
+        {
+            List<RoomInvoice> roomInvoices = _invoiceData.GetAllRoomInvoice().Result;
+            RoomInvoice roomInvoice = roomInvoices.Find(r => r.InvoiceID == int.Parse(id));
+            ViewBag.listService = roomInvoice?.Services;
+            return View(roomInvoice);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ApproveInvoices()
+        {
+            await _roominvoiceData.Approveroominvoicenew();
+            return View("RoomInvoice");
+        }
+
 
     }
 }

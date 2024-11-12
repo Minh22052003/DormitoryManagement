@@ -239,7 +239,7 @@ namespace DormitoryServer.Controllers
         }
 
 
-        [Authorize(Policy = "Student")]
+        //[Authorize(Policy = "Student")]
         [HttpGet("getroommate")]
         public ActionResult<List<StudentDTO>> GetRoomMate()
         {
@@ -388,14 +388,50 @@ namespace DormitoryServer.Controllers
             }
             else
             {
+                if (room.NumberOfStudent == 0)
+                {
+                    student.IsLeader = true;
+                }
+                else
+                {
+                    student.IsLeader = false;
+                }
                 room.NumberOfStudent += 1;
                 roomold.NumberOfStudent -= 1;
                 student.RoomId = studentdto.RoomID;
-
                 _context.SaveChanges();
-            }   
+            }
             return NoContent();
         }
+
+        [Authorize(Policy ="Manager")]
+        [HttpPut("editstudenleader")]
+        public async Task<IActionResult> EditStudenLeader(StudentDTO studentdto)
+        {
+            if (studentdto == null)
+            {
+                return BadRequest();
+            }
+            var student = await _context.Students.FindAsync(studentdto.StudentID);
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            if (studentdto.IsLeader == true)
+            {
+                var studentleader = _context.Students.Where(s => s.RoomId == student.RoomId && s.IsLeader == true).FirstOrDefault();
+                if (studentleader != null)
+                {
+                    studentleader.IsLeader = false;
+                }
+                student.IsLeader = true;
+                _context.SaveChanges();
+            }
+            return NoContent();
+        }
+
+
         [Authorize(Policy = "Manager")]
         [HttpPut("addstudentwithroom")]
         public async Task<IActionResult> AddStudentWithRoom(StudentDTO studentdto)
@@ -420,6 +456,10 @@ namespace DormitoryServer.Controllers
             }
             else
             {
+                if (room.NumberOfStudent == 0)
+                {
+                    student.IsLeader = true;
+                }
                 room.NumberOfStudent += 1;
                 student.RoomId = studentdto.RoomID;
 

@@ -21,8 +21,8 @@
                                 <input type="hidden" name="searchBy" value="manager">
                                 <button type="submit" class="btn btn-secondary m-2">Tìm theo trưởng phòng</button>
                             </div>
-                            
-                            
+
+
                         </form>
                     </div>
                 </div>
@@ -73,13 +73,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @{var i = 1;}
-                            @foreach(var h in Model)
+                            @{
+                                var i = 1;
+                            }
+                            @foreach (var h in Model)
                             {
                                 <tr>
                                     <td>@i</td>
                                     <td>
-                                        <a asp-action="RoomInvoiceDetail" asp-controller="Invoice" asp-route-id="@h.InvoiceID">
+                                        <a asp-action="RoomInvoicePendingApprovalDetail" asp-controller="Invoice" asp-route-id="@h.InvoiceID">
                                             @h.InvoiceID
                                         </a>
                                     </td>
@@ -88,23 +90,14 @@
                                     <td>@h.RoomName</td>
                                     <td>@h.BuildingName</td>
                                     <td>@h.PayerName</td>
-                                    @if (h.Status != "Paid")
-                                    {
-                                        <td>
-                                            <a asp-controller="Invoice" asp-action="QR" asp-for="@h.InvoiceID" class="btn btn-success m-2">Thanh toán </a>
-                                        </td>
-                                    }
                                 </tr>
                                 i = i + 1;
                             }
                         </tbody>
                     </table>
+                    <a asp-controller="Invoice" asp-action="ApproveInvoices" class="btn btn-success m-2">Phê duyệt</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<a asp-controller="Invoice" asp-action="AddRoomInvoice" class="btn btn-success position-fixed" style="bottom: 40px; right: 40px;">
-    <i class="fa fa-solid fa-plus me-1"></i> Tạo hóa đơn
-</a>

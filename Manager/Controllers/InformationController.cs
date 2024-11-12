@@ -89,6 +89,15 @@ namespace Manager.Controllers
         }
 
 
+        //Hiển thị thông báo cho nhân viên
+        public IActionResult ListAnnouncement()
+        {
+            List<AnnouncementRQ> announcementrqs = _announcementData.GetAllAnnouncement().Result;
+            List<AnnouncementRQ> announcementsforstaff = announcementrqs.FindAll(a => a.Target == "NhanVien");
+            return View(announcementsforstaff);
+        }
+
+
 
         public IActionResult News()
         {

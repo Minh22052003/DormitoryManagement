@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DormitoryUser.Models.ChangePassword
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,11 +14,11 @@
                     <h4>Thay đổi mật khẩu của bạn</h4>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form asp-action="ChangePassword" asp-controller="ChangePassword" method="post">
                         <div class="form-group">
                             <label for="OldPassword">Mật khẩu cũ</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="OldPassword" placeholder="Nhập mật khẩu cũ">
+                                <input asp-for="MkCu" type="password" class="form-control" id="OldPassword" placeholder="Nhập mật khẩu cũ">
                                 <div class="input-group-append" style="cursor: pointer">
                                     <span class="input-group-text" onclick="togglePassword('OldPassword')">
                                         <i class="fa fa-eye" id="toggleOldPassword"></i>
@@ -29,7 +30,7 @@
                         <div class="form-group">
                             <label for="NewPassword">Mật khẩu mới</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="NewPassword" placeholder="Nhập mật khẩu mới">
+                                <input asp-for="MkMoi" type="password" class="form-control" id="NewPassword" placeholder="Nhập mật khẩu mới">
                                 <div class="input-group-append" style="cursor: pointer">
                                     <span class="input-group-text" onclick="togglePassword('NewPassword')">
                                         <i class="fa fa-eye" id="toggleNewPassword"></i>
@@ -41,7 +42,7 @@
                         <div class="form-group">
                             <label for="ConfirmPassword">Xác nhận mật khẩu</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="ConfirmPassword" placeholder="Xác nhận mật khẩu mới">
+                                <input asp-for="XnMk" type="password" class="form-control" id="ConfirmPassword" placeholder="Xác nhận mật khẩu mới">
                                 <div class="input-group-append" style="cursor: pointer">
                                     <span class="input-group-text" onclick="togglePassword('ConfirmPassword')">
                                         <i class="fa fa-eye" id="toggleConfirmPassword"></i>
@@ -50,7 +51,7 @@
                             </div>
                         </div>
 
-                       <a id="submit-yeu-cau" href="#" class="btn btn-primary btn-md btn-icon icon-right" tabindex="4">Thay đổi mật khẩu</a>
+                       <button type="submit" class="btn btn-primary btn-md btn-icon icon-right" tabindex="4">Thay đổi mật khẩu</button>
                     </form>
                 </div>
             </div>

@@ -42,7 +42,6 @@ namespace DormitoryServer.Controllers
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(JwtRegisteredClaimNames.Sub, request.User_Name),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim("UserId", account.StudentId),
                     new Claim("Roles", "Student")

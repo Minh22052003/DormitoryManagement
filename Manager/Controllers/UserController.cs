@@ -29,8 +29,9 @@ namespace Manager.Controllers
             {
                 List<Student> students = _studentData.GetAllStudentAsyn().Result;
                 List<RegistrationVM> registrations = _registrationData.GetAllRegistration().Result;
+                List<RegistrationVM> registrations1 = registrations.Where(r=>r.ApplicationStatus != "Approved").ToList();
                 List<Student> filteredStudents = students
-                .Where(student => !registrations.Any(registration => registration.StudentID == student.StudentID))
+                .Where(student => !registrations1.Any(registration => registration.StudentID == student.StudentID))
                 .ToList();
                 return View(filteredStudents);
             }
