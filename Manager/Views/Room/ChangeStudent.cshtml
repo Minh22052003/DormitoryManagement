@@ -1,0 +1,78 @@
+﻿@model Manager.Models.Student
+
+
+<div class="container-fluid">
+    <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+            <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <a href="index.html" class="">
+                        <h3 class="text-primary"><i class="bi bi-droplet-half me-2"></i>Chuyển phòng</h3>
+                    </a>
+                </div>
+
+                <!-- Bọc các trường trong một form để gửi dữ liệu -->
+                <form asp-action="ChangeStudent1" asp-controller="Room" method="post">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h4 class="text-primary">Tên: @Model.FullName</h4>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 class="text-primary">MSV: @Model.StudentID</h5>
+                    </div>
+                    <input asp-for="StudentID" type="hidden" />
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="buildingSelect" aria-label="">
+                            <option disabled selected>--Chọn tòa nhà--</option>
+                            @foreach (var b in @ViewBag.buildings)
+
+                            {
+                                <option value="@b.BuildingID">@b.BuildingName</option>
+                            }
+                        </select>
+                        <label for="buildingSelect">Tòa nhà</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <select asp-for="RoomID" class="form-select" id="roomSelect" aria-label="">
+                            <option disabled selected>--Chọn phòng--</option>
+                        </select>
+                        <label for="roomSelect">Phòng</label>
+                    </div>
+
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                    <script>
+                        $(document).ready(function () {
+                            $('#buildingSelect').change(function () {
+                                var buildingId = $(this).val();
+
+                                $.ajax({
+                                    url: '@Url.Action("GetRoomsByBuilding", "Room")',
+                                    type: 'GET',
+                                    data: {
+                                        buildingId: buildingId,
+                                    },
+                                    success: function (rooms) {
+                                        // Xóa các tùy chọn cũ
+                                        $('#roomSelect').empty();
+                                        $('#roomSelect').append('<option disabled selected>--Chọn phòng--</option>');
+
+                                        // Thêm các tùy chọn phòng mới
+                                        $.each(rooms, function (index, room) {
+                                            $('#roomSelect').append('<option value="' + room.roomID + '">' + room.roomName + '</option>');
+                                        });
+                                    },
+                                    error: function () {
+                                        alert("Không thể tải danh sách phòng, vui lòng thử lại.");
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                    <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Đổi</button>
+
+                    <a asp-controller="Room" asp-action="Room" class="btn btn-danger">Quay lại</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

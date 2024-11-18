@@ -1,0 +1,65 @@
+﻿@model DormitoryUser.Models.Request_Sent
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Gửi yêu cầu hỗ trợ</h1>
+        </div>
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <form asp-controller="Home" asp-action="Sent_Request" method="post" enctype="multipart/form-data">
+                            <div class="card-header">
+                                <h4>Form gửi phản hồi</h4>
+                            </div>
+                            <div class="card-body">
+                                <!-- Loại yêu cầu hỗ trợ -->
+                                <div class="form-group">
+                                    <label>Loại yêu cầu hỗ trợ</label>
+                                    <select class="form-control" name="RequestTypeID" id="loai_yeu_cau" required>
+                                        <option value="">Chọn loại yêu cầu</option>
+                                        @foreach (var item in ViewBag.RequestTypes)
+
+                                        {
+                                            <option value="@item.RequestTypeId">@item.RequestTypeName</option>
+                                        }
+                                    </select>
+
+
+                                    <div class="invalid-feedback">
+                                        Vui lòng chọn loại yêu cầu hỗ trợ.
+                                    </div>
+                                </div>
+
+                                <!-- Nội dung yêu cầu -->
+                                <div class="form-group">
+                                    <label>Nội dung</label>
+                                    <textarea name="Description" id="content_yeu_cau" class="form-control" required></textarea>
+                                    <div class="invalid-feedback">
+                                        Vui lòng điền nội dung yêu cầu của bạn.
+                                    </div>
+                                </div>
+
+                                <!-- Ảnh đính kèm (nếu có) -->
+                                <div class="form-group mt-2">
+                                    <label>Ảnh đính kèm (tùy chọn)</label>
+                                    <input type="file" name="Image" class="form-control" id="file_upload">
+                                </div>
+
+                            </div>
+                            <div class="card-footer text-right">
+                                <button type="submit" class="btn btn-primary btn-md btn-icon icon-right" tabindex="4">Gửi yêu cầu</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

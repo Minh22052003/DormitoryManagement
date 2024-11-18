@@ -1,0 +1,26 @@
+﻿@model Manager.Models.Role
+
+@{
+    ViewData["Title"] = "Thêm vai trò";
+}
+
+<div class="container-fluid">
+    <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+            <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <a href="#" class="">
+                        <h3 class="text-primary"><i class="bi bi-people me-2"></i>Thêm vai trò</h3>
+                    </a>
+                </div>
+                <form asp-controller="Admin" asp-action="AddRole" method="post">
+                    <div class="form-floating mb-4">
+                        <input asp-for="RoleName" type="text" class="form-control" id="roleName" placeholder="" required>
+                        <label for="roleName">Tên vai trò</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Thêm vai trò</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

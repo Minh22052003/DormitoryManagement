@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/Shared/IntroLayout.cshtml";
+}
+
+@model List<DormitoryUser.Models.News>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 col-lg-12 col-xl-9">
+            <div class="card mb-4" style="border: none;">
+                <div class="card-header" style="border: none;">
+                    <h4>Chi tiết thông báo</h4>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Tiêu đề thông báo</h5>
+                    <p class="card-text">Nội dung chi tiết của thông báo sẽ được hiển thị ở đây.</p>
+                    <p class="text-muted">Ngày đăng: 11/10/2024</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-12 col-xl-3">
+            <div class="card" id="news">
+                <div class="card-header">
+                    <h4>Tin tức</h4>
+                </div>
+                <div class="card-body">
+                    @foreach (var news in Model)
+                    {
+                        <div class="media mb-3">
+                            <img src="@news.ImageUrl" class="mr-3" alt="news image">
+                            <div class="media-body">
+                                <h6 class="mt-0">@news.Title</h6>
+                                <p>@news.Content</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+﻿@model Manager.Models.RoomInvoice
+
+@{
+    var i = 1;
+
+    var services = ViewBag.listService as List<Service>;
+}
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="card bg-light rounded h-100 p-4">
+            <form>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Mã hóa đơn</label>
+                            <input class="form-control" value="@Model.InvoiceID" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Phòng</label>
+                            <input class="form-control" value="@Model.RoomName" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Tòa nhà</label>
+                            <input class="form-control" value="@Model.BuildingName" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Ngày lập hóa đơn</label>
+                            <input type="date" class="form-control" value="@Model.IssueDate?.ToString("yyyy-MM-dd")" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Mô tả</label>
+                            <input asp-for="Description" class="form-control" value="@Model.Description">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Ghi chú</label>
+                            <input asp-for="Note" class="form-control" value="@Model.Note">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Tình trạng</label>
+                            <input class="form-control" value="@Model.Status" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5 w-75">
+                    <p class="fw-bold p-4">Các dịch vụ sử dụng</p>
+                    <table class="table table-striped m-3">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên dịch vụ</th>
+                                <th scope="col">Số lượng sử dụng</th>
+                                <th scope="col">Đơn vị tính</th>
+                                <th scope="col">Đơn giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in services)
+
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@s.ServiceName</td>
+                                    <td>@s.Quantity</td>
+                                    <td>@s.Unit</td>
+                                    <td>@s.Price</td>
+                                </tr>
+                                i = i + 1;
+
+                            }
+                        </tbody>
+                    </table>
+                    <p class="fw-bold p-4">Tổng tiền: @Model.TotalAmount VND</p>
+                </div>
+                <div class="row m-5">
+                    <div class="col-4"></div>
+                    <div class="col-2">
+                        <a asp-controller="Invoice" asp-action="AddRoomInvoice" class="btn btn-success m-2">Quay lại </a>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

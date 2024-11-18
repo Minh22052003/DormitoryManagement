@@ -1,0 +1,81 @@
+﻿@model IEnumerable<DormitoryUser.Models.Request_Sent>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Yêu cầu đã gửi</h1>
+        </div>
+        <div class="section-body">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="fw-bold text-primary">Tìm kiếm yêu cầu</h6>
+
+                    <!-- Search Form -->
+                    <form method="get" action="~/Request/Search">
+                        <div class="row mb-3">
+                            <!-- Search by Date -->
+                            <div class="col-md-4">
+                                <label for="searchDate" class="form-label">Ngày gửi</label>
+                                <input type="date" id="searchDate" name="searchDate" class="form-control" />
+                            </div>
+
+                            <!-- Search by Request Type -->
+                            <div class="col-md-4">
+                                <label for="requestType" class="form-label">Loại yêu cầu</label>
+                                <select id="requestType" name="requestType" class="form-select">
+                                    <option value="">Chọn loại yêu cầu</option>
+                                    <option value="mang">Vấn đề mạng</option>
+                                    <option value="sua">Sửa phòng</option>
+                                    <option value="khac">Khác</option>
+                                </select>
+                            </div>
+
+                            <!-- Search Button -->
+                            <div class="col-md-4 align-self-end">
+                                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <hr>
+
+                    <!-- Danh sách yêu cầu -->
+                    <h6 class="fw-bold text-primary">Danh sách yêu cầu đã gửi</h6>
+                    <hr>
+
+                    <table class="table table-bordered table-striped mt-3">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>ID Yêu Cầu</th>
+                                <th>Ngày Gửi</th>
+                                <th>Loại yêu cầu</th>
+                                <th>Trạng Thái</th>
+                                <th>Chi tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>1</td>
+                                    <td>@item.RequestID</td>
+                                    <td>@item.RequestSentDate</td>
+                                    <td>@item.RequestTypeName</td>
+                                    <td><span class="badge @(item.Status == "Completed" ? "bg-success" : "bg-warning")">@item.Status</span></td>
+                                    <td>
+                                        <a asp-action="Index" asp-controller="RequestDetail" asp-route-id="@item.RequestID" class="btn btn-primary">Chi tiết</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

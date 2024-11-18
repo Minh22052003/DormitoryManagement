@@ -1,0 +1,83 @@
+﻿@model Manager.Models.DormInvoice
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="card bg-light rounded h-100 p-4">
+            <form asp-action="StudentDetail" asp-controller="User">
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Mã hóa đơn</label>
+                            <input class="form-control" value="@Model.InvoiceID" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Người tạo hóa đơn</label>
+                            <input class="form-control" value="@Model.StaffName_Create" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Ngày tạo hóa đơn</label>
+                            <input type="date" class="form-control" value="@Model.IssueDate?.ToString("yyyy-MM-dd")" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Loại hóa đơn</label>
+                            <input asp-for="InvoiceTypeName" class="form-control" value="@Model.InvoiceTypeName">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Mô tả</label>
+                            <input asp-for="Description" class="form-control" value="@Model.Description">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Ghi chú</label>
+                            <input asp-for="Note" class="form-control" value="@Model.Note">
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Trạng thái</label>
+                            <input class="form-control" value="@Model.Status" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Người thanh toán</label>
+                            <input asp-for="StaffName_Pay" class="form-control" value="@Model.StaffName_Pay">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Ngày thanh toán</label>
+                            <input type="date" class="form-control" value="@Model.PayDate?.ToString("yyyy-MM-dd")">
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5 w-75">
+                    <p class="fw-bold p-4">Tổng tiền: @Model.TotalAmount VND</p>
+                </div>
+                <div class="row m-5">
+                    <div class="col-4"></div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-success m-2 w-75">Thanh toán</button>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-danger m-2 w-75">Xóa hóa đơn</button>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

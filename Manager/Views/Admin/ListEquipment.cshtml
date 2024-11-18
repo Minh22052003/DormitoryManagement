@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Manager.Models.Equipment>
+
+@{
+    ViewData["Title"] = "Danh sách thiết bị";
+}
+
+<div class="container-fluid position-relative d-flex p-0">
+    <!-- Content Start -->
+    <div class="col m-5">
+        <div class="row">
+            <div class="col-6">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Tìm kiếm</h6>
+                        <form class="d-none d-md-flex ms-4">
+                            <div class="col-4"><input class="form-control bg-light mt-2 me-3" type="search" placeholder="Search"></div>
+                            <button type="button" class="btn btn-secondary m-2">Tìm theo mã thiết bị</button>
+                            <button type="button" class="btn btn-secondary m-2">Tìm theo tên thiết bị</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Sắp xếp</h6>
+                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                            <option disabled selected>--Chọn phương thức sắp xếp--</option>
+                            <option>Sắp xếp tên thiết bị theo thứ tự từ A đến Z</option>
+                            <option value="1">Sắp xếp tên thiết bị theo thứ tự từ Z đến A</option>
+                            <option value="1">Sắp xếp thiết bị theo giá giảm dần</option>
+                            <option value="1">Sắp xếp thiết bị theo giá tăng dần</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card border-0">
+                <div class="bg-light rounded h-100 p-4">
+                    <h4 class="m-2">Danh sách thiết bị</h4>
+                    <table class="table table-striped">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Mã thiết bị</th>
+                                <th scope="col">Tên thiết bị</th>
+                                <th scope="col">Giá thiết bị</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{var i = 1;}
+                            @foreach(var e in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@e.EquipmentID</td>
+                                    <td>@e.EquipmentName</td>
+                                    <td>@e.Price VND</td>
+                                </tr>
+                                i = i + 1;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content End -->
+</div>
+<a asp-controller="Admin" asp-action="AddEquipment" class="btn btn-success position-fixed" style="bottom: 40px; right: 40px;">
+    <i class="fa fa-solid fa-plus me-1"></i> Tạo thiết bị
+</a>

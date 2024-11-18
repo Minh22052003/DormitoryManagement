@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quên Mật Khẩu - Hệ Thống Quản Lý Kí Túc Xá</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/assets/css/color.css" />
+    <link rel="stylesheet" href="~/assets/css/components.css" />
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="rounded p-4 shadow" style="width: 450px;">
+            <div class="text-center mb-4">
+                <h3>Quên Mật Khẩu</h3>
+                <p>Vui lòng nhập địa chỉ email để nhận liên kết đặt lại mật khẩu.</p>
+            </div>
+            <form>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control bg-light" id="email" placeholder="Nhập email">
+                </div>
+                <button type="submit" class="btn btn-primary p-2 mt-2 w-100">Cấp lại mật khẩu mới</button>
+            </form>
+            <div class="mt-3 text-center">
+                <a href="/Login" class="text-decoration-none">Quay lại đăng nhập</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

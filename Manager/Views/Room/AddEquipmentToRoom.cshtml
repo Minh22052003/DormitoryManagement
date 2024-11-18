@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Manager.Models.Equipment>
+
+@{
+    var j = 1;
+}
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="card bg-light rounded h-100 p-4">
+            <form method="post" asp-action="AddEquipmentToRoom1" asp-controller="Room">
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Mã phòng</label>
+                            <input type="text" name="RoomId" class="form-control" value="@ViewBag.Room.RoomID" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Tên phòng</label>
+                            <input class="form-control" value="@ViewBag.Room.RoomName" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Tòa nhà</label>
+                            <input class="form-control" value="@ViewBag.Room.BuildingName" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-5 w-100">
+                    <p class="fw-bold p-4">Danh sách thiết bị</p>
+                    <table class="table table-striped m-3">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên thiết bị</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Chọn số lượng</th>
+                                <th scope="col">Tình trạng</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var e in Model)
+                            {
+                                <tr>
+                                    <td>@j</td>
+                                    <td>@e.EquipmentName</td>
+                                    <td>@e.Price VND</td>
+                                    <td>
+                                        <input type="number" name="Quantity" class="form-control" min="0" max="@e.Quantity" value="1" />
+                                    </td>
+
+                                    <td>@e.Condition</td>
+                                    <td>
+                                        <input type="hidden" name="EquipmentId" value="@e.EquipmentID" />
+                                        <input type="hidden" name="RoomId" value="@ViewBag.Room.RoomID" />
+                                        <button type="submit" class="btn btn-danger">Thêm vào phòng</button>
+                                    </td>
+                                </tr>
+                                j++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

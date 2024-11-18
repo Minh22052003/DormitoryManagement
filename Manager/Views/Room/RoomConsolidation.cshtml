@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Manager.Models.RoomConsolidation>
+
+@{
+    ViewData["Title"] = "Dồn phòng";
+}
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="row">
+            <div class="col-6">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Chức năng</h6>
+                        <form class="d-none d-md-flex ms-4">
+                            <button type="button" class="btn btn-secondary m-2">Xem danh sách dồn phòng</button>
+                            <button type="button" class="btn btn-secondary m-2">Áp dụng dồn phòng</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card border-0">
+                <div class="bg-light rounded h-100 p-4">
+                    <h4 class="m-2">Danh sách các sinh viên chuyển phòng</h4>
+                    <table class="table table-striped">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Mã sinh viên</th>
+                                <th scope="col">Tên sinh viên</th>
+                                <th scope="col">Tòa nhà cũ</th>
+                                <th scope="col">Phòng cũ</th>
+                                <th scope="col">Tòa nhà mới</th>
+                                <th scope="col">Phòng mới</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var i = 1;
+                            }
+                            @foreach (var r in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@r.StudentID</td>
+                                    <td>@r.FullName</td>
+                                    <td>@r.OldBuildingName</td>
+                                    <td>@r.OldRoomName</td>
+                                    <td>@r.NewBuildingName</td>
+                                    <td>@r.NewRoomName</td>
+                                </tr>
+                                i = i + 1;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

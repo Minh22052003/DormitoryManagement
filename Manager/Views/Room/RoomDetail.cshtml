@@ -1,0 +1,166 @@
+﻿@model Manager.Models.Room
+
+@{
+    var i = 1;
+    var j = 1;
+    var students = ViewBag.listStudent as List<Student>;
+    var equipments = ViewBag.listEquipment as List<Equipment>;
+    var equipments_add = ViewBag.listEquipment_Add as List<Equipment>;
+}
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="card bg-light rounded h-100 p-4">
+            <form asp-action="ChangeRoomInformation" asp-controller="Room" method="post">
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Mã phòng</label>
+                            <input asp-for="@Model.RoomID" class="form-control" value="@Model.RoomID" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Tên phòng</label>
+                            <input asp-for="@Model.RoomName" class="form-control" value="@Model.RoomName">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Tòa nhà</label>
+                            <input class="form-control" value="@Model.BuildingName" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Số sinh viên</label>
+                            <input class="form-control" value="@Model.NumberOfStudent/@Model.Capacity" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Trạng thái phòng</label>
+                            <select asp-for="RoomStatusID" asp-items="@(new SelectList(ViewBag.listRoomStatus, "RoomStatusID", "RoomStatusName"))" class="form-control">
+                                <option value="">-- Chọn trạng thái phòng --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Ghi chú</label>
+                            <input asp-for="@Model.RoomNote" class="form-control" value="@Model.RoomNote">
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5 w-100">
+                    <p class="fw-bold p-4">Danh sách sinh viên</p>
+                    <table class="table table-striped m-3">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Mã sinh viên</th>
+                                <th scope="col">Tên sinh viên</th>
+                                <th scope="col">Giới tính</th>
+                                <th scope="col">Số điện thoại liên lạc</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var s in students)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@s.StudentID</td>
+                                    <td><a asp-controller="User" asp-action="StudentDetail" asp-route-id="@s.StudentID">@s.FullName</a></td>
+                                    @{
+                                        if(s.Gender == true)
+                                        {
+                                            <td>Nam</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Nữ</td>
+                                        }
+                                    }
+                                    <td>@s.PhoneNumber</td>
+                                    <td>
+                                        <a asp-controller="Room" asp-action="ChangeStudent" asp-route-id="@s.StudentID" class="btn btn-success">Chuyển phòng</a>
+                                    </td>
+                                    <td>
+                                        <a asp-controller="Room" asp-action="RemoveStudent" asp-route-id="@s.StudentID" class="btn btn-danger">Xóa khỏi phòng</a>
+                                    </td>
+                                    @{
+                                        if(@s.IsLeader != true)
+                                        {
+                                            <td>
+                                                <a asp-controller="Room" asp-action="SetAsLeader" asp-route-id="@s.StudentID" class="btn btn-primary">Đặt làm trưởng phòng</a>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td><a class="fw-bold text-black">Trưởng phòng hiện tại</a></td>
+                                        }
+                                    }
+                                </tr>
+                                i = i + 1;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row g-5 w-100">
+                    <p class="fw-bold p-4">Danh sách thiết bị</p>
+                    <table class="table table-striped m-3">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tên thiết bị</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Tình trạng</th>
+                                @* <th scope="col"></th> *@
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var e in equipments)
+                            {
+                                <tr>
+                                    <td>@j</td>
+                                    <td>@e.EquipmentName</td>
+                                    <td>@e.Price VND</td>
+                                    <td>@e.Quantity</td>
+                                    <td>@e.Condition</td>
+                                     @* <td><a asp-controller="Room" asp-action="EditEquipment" asp-route-id="@e.EquipmentID" class="btn btn-danger">Sửa trạng thái</a></td> *@
+                                </tr>
+                                j = j + 1;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row m-5">
+                    <div class="col-3"></div>
+                    <div class="col-2">
+                        <a asp-controller="Room" asp-action="AddStudentToRoom" asp-route-id="@Model.RoomID" class="btn btn-danger">Thêm sinh viên</a>
+                    </div>
+                    <div class="col-2">
+                        <a asp-controller="Room" asp-action="AddEquipmentToRoom" asp-route-id="@Model.RoomID" class="btn btn-success m-2 w-75">Thêm thiết bị</a>
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-success m-2 w-75">Lưu thay đổi</button>
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+            </form>
+            <div class="text-danger fst-italic">
+                <p>*Chỉ có thể thay đổi được tên phòng, tình trạng phòng và ghi chú</p>
+                <p>*Nhớ lưu lại những thay đổi của bạn</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

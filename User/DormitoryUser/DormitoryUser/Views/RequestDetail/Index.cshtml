@@ -1,0 +1,48 @@
+﻿@model DormitoryUser.Models.Request_Sent
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Chi Tiết Yêu Cầu Hỗ Trợ</h1>
+        </div>
+        <div class="section-body">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="fw-bold">Thông Tin Chi Tiết Yêu Cầu</h5>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">
+                            <p><strong>ID Yêu Cầu:</strong><span class="ml-3">@Model.RequestID</span></p>
+                            <p><strong>Ngày Gửi:</strong><span class="ml-3">@Model.RequestSentDate</span></p>
+                            <p>
+                                <strong>Trạng Thái:</strong>
+                                <span class="ml-3">@Model.Status</span>
+                            </p>
+                        </div>
+                        <div class="col-6">
+                            <p><strong>Loại yêu cầu:</strong><span class="ml-3">@Model.RequestTypeName</span></p>
+                            <p>
+                                <strong>Nhân viên phản hồi:</strong>
+                                <span class="ml-3">@Model.StaffName</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h5 class="fw-bold mt-4">Nội Dung Yêu Cầu</h5>
+                    <p>@Model.Description</p>
+
+                    <h5 class="fw-bold mt-4">Phản hồi từ ban quản lý</h5>
+                    <p>@Model.Reply</p>
+
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary" onclick="window.history.back();">Quay Lại</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

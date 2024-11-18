@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Manager.Models.RoomInvoice>
+
+@{
+    ViewData["Title"] = "Hóa đơn phòng";
+}
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Tìm kiếm</h6>
+                        <form asp-action="RoomInvoiceList" asp-controller="Invoice" method="get" class="d-flex ms-4 row">
+                            <div class="col-4">
+                                <input type="text" name="searchTerm" class="form-control bg-light mt-2 me-3" placeholder="Search">
+                            </div>
+                            <div class="col">
+                                <input type="hidden" name="searchBy" value="room">
+                                <button type="submit" class="btn btn-secondary m-2">Tìm theo phòng</button>
+                                <input type="hidden" name="searchBy" value="manager">
+                                <button type="submit" class="btn btn-secondary m-2">Tìm theo trưởng phòng</button>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Chức năng</h6>
+                        <form class="d-none d-md-flex ms-4">
+                            <button type="button" class="btn btn-secondary m-2">Lọc hóa đơn chưa thanh toán</button>
+                            <button type="button" class="btn btn-secondary m-2">Lọc hóa đơn đã thanh toán</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Sắp xếp</h6>
+                        <form asp-action="RoomInvoiceList" asp-controller="Invoice" method="get">
+                            <select name="sortOption" class="form-select form-select-sm mb-3" onchange="this.form.submit()">
+                                <option disabled selected>--Chọn phương thức sắp xếp--</option>
+                                <option value="building">Sắp xếp theo tòa nhà</option>
+                                <option value="room">Sắp xếp theo phòng</option>
+                                <option value="manager_asc">Sắp xếp trưởng phòng tăng dần</option>
+                                <option value="manager_desc">Sắp xếp trưởng phòng giảm dần</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card border-0">
+                <div class="bg-light rounded h-100 p-4">
+                    <h4 class="m-2">Danh sách hóa đơn/ biên lai</h4>
+                    <table class="table table-striped">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Mã hóa đơn</th>
+                                <th scope="col">Mô tả</th>
+                                <th scope="col">Ngày lập hóa đơn</th>
+                                <th scope="col">Phòng</th>
+                                <th scope="col">Tòa</th>
+                                <th scope="col">Trưởng phòng</th>
+                                <th scope="col">#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var i = 1;
+                            }
+                            @foreach (var h in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>
+                                        <a asp-action="RoomInvoicePendingApprovalDetail" asp-controller="Invoice" asp-route-id="@h.InvoiceID">
+                                            @h.InvoiceID
+                                        </a>
+                                    </td>
+                                    <td>@h.Description</td>
+                                    <td>@h.IssueDate?.ToString("yyyy-MM-dd")</td>
+                                    <td>@h.RoomName</td>
+                                    <td>@h.BuildingName</td>
+                                    <td>@h.PayerName</td>
+                                </tr>
+                                i = i + 1;
+                            }
+                        </tbody>
+                    </table>
+                    <a asp-controller="Invoice" asp-action="ApproveInvoices" class="btn btn-success m-2">Phê duyệt</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

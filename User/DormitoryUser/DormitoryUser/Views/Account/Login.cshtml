@@ -1,0 +1,47 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập - Hệ Thống Quản Lý Kí Túc Xá</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="~/assets/css/color.css" />
+    <link rel="stylesheet" href="~/assets/css/components.css" />
+    <link rel="stylesheet" href="~/assets/css/custom.css" />
+    <link rel="stylesheet" href="~/assets/css/customCalendar.css" />
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="rounded shadow" style="width: 450px;">
+            <div class="text-center mb-4 pt-4 header-bg text-light">
+                <h3>Hệ thống quản lý kí túc xá</h3>
+                <h5>Đăng nhập hệ thống</h5>
+            </div>
+            <div class="text-center mb-4">
+                <img src="~/img/LogoUTC.png" alt="Logo Trường" class="img-fluid" style="max-width: 150px;">
+            </div>
+            <form class="ps-4 pe-4 pb-4" asp-action="Login" asp-controller="Account" method="post">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Tài khoản</label>
+                    <input type="text" class="form-control bg-light" id="username" placeholder="Nhập tài khoản" name="username">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <input type="password" class="form-control bg-light" id="password" placeholder="Nhập mật khẩu" name="password">
+                </div>
+                <a href="~/ForgotPassword/Index" class="text-black p-2 ms-auto mt-2">Quên mật khẩu</a>
+                <button type="submit" class="btn btn-primary p-2 mt-3 w-100">Đăng nhập</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

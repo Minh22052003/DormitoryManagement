@@ -1,0 +1,148 @@
+﻿@model Manager.Models.Staff
+
+@{
+    ViewData["Title"] = "Chi tiết nhân viên";
+}
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="card bg-light rounded h-100 p-4">
+             <form asp-action="UpdateStaff" asp-controller="User" method="post">
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Mã nhân viên</label>
+                            <input class="form-control" name="StaffID" value="@Model.StaffID" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Họ và tên</label>
+                            <input class="form-control" name="FullName" value="@Model.FullName">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Chức vụ</label>
+                            <select asp-for="RoleID" asp-items="@(new SelectList(ViewBag.roles, "RoleId", "RoleName"))" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Dân tộc</label>
+                            <input class="form-control" name="Ethnicity" value="@Model.Ethnicity">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Tôn giáo</label>
+                            <input class="form-control" name="Religion" value="@Model.Religion">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Quốc tịch</label>
+                            <input class="form-control" name="Nationality" value="@Model.Nationality">
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Ngày sinh</label>
+                            <input type="date" name="BirthDate" class="form-control" id="dateInput" value="@Model.BirthDate?.ToString("yyyy-MM-dd")">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-check">
+                            <label class="form-label my-3 fw-bold">Giới tính</label>
+                            <div class="row">
+                                <div class="col-2">
+                                    @if (Model.Gender == true)
+                                    {
+                                        <input class="form-check-input" type="radio" asp-for="Gender" id="male" value="true" checked>
+                                    }
+                                    else
+                                    {
+                                        <input class="form-check-input" type="radio" asp-for="Gender" id="male" value="true">
+                                    }
+                                    <label class="form-check-label" for="male">Nam</label>
+                                </div>
+
+                                <div class="col-2">
+                                    @if (Model.Gender == false)
+                                    {
+                                        <input class="form-check-input" type="radio" asp-for="Gender" id="female" value="false" checked>
+                                    }
+                                    else
+                                    {
+                                        <input class="form-check-input" type="radio" asp-for="Gender" id="female" value="false">
+                                    }
+                                    <label class="form-check-label" for="female">Nữ</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Số điện thoại</label>
+                            <input name="PhoneNumber" class="form-control" value="@Model.PhoneNumber">
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Email</label>
+                            <input name="Email" class="form-control" value="@Model.Email">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Quê quán</label>
+                            <input name="Hometown" class="form-control" value="@Model.Hometown">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Số CMND/Thẻ căn cước</label>
+                            <input name="IDCard" class="form-control" value="@Model.IDCard">
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Mã số BHXH</label>
+                            <input name="InsuranceNumber" class="form-control" value="@Model.InsuranceNumber">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Phòng làm việc</label>
+                            <input name="Office" class="form-control" value="@Model.Office">
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Giờ làm việc</label>
+                            <input name="WorkSchedule" class="form-control" value="@Model.WorkSchedule">
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-5">
+                    <div class="col-4"></div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-success m-2 w-75">Cập nhật</button>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

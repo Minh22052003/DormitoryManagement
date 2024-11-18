@@ -1,0 +1,101 @@
+﻿@model IEnumerable<DormitoryUser.Models.RoomInvoice>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+
+        <div class="section-header">
+            <h1>Theo dõi tiền trọ</h1>
+            <div>
+                <h1 class="ml-5">@ViewBag.Profile?.FullName</h1>
+                <span class="ml-5">Mã sinh viên: @ViewBag.Profile?.StudentID</span>
+                <h1 class="ml-5 bg-danger text-white p-2 rounded">Tổng nợ: @ViewBag.RoomInvoiceF?.TotalAmount đ</h1>
+            </div>
+        </div>
+
+
+
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-lg-12 col-xl-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Phòng trọ</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="author-box-details" id="info-description">
+                                        <div class="author-box-name">
+                                            <p><strong>Phòng trọ: </strong><span id="student-room">@ViewBag.RoomInvoiceF.RoomName</span></p>
+                                            <p><strong>Tiền trọ: </strong><span id="room-fee">@ViewBag.RoomPrice</span>đ / 1 kỳ học</p>
+                                            <p><strong>Trạng thái: </strong><span id="fee-status">@ViewBag.RoomInvoiceF.Status</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Các khoản tiền phải đóng hàng tháng</h4>
+                        </div>
+                        <div class="card-body">
+                            @foreach (var t in ViewBag.RoomInvoiceF.Services)
+
+                            {
+                                <p><strong>- @t?.ServiceName </strong><span>@t.Price</span>đ</p>
+                                <p><strong>- @t?.Quantity </strong></p>
+                            }
+                            <br>
+                            <h5>Tổng: <span id="tong-phi">@ViewBag?.RoomInvoiceF?.TotalAmount</span>đ</h5>
+                            <br>
+                            @if (ViewBag?.Profile?.IsLeader)
+                            {
+                                <a id="submit-yeu-cau" href="~/Track_Rent/Index" class="btn btn-primary btn-md btn-icon icon-right" tabindex="4">Thanh toán</a>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12 col-xl-7">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Lịch sử thanh toán tiền trọ</h4>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã hóa đơn</th>
+                                            <th>Phòng</th>
+                                            <th>Người thanh toán</th>
+                                            <th>Ngày thanh toán</th>
+                                            <th>Số tiền</th>
+                                            <th>Ghi chú</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var history in Model)
+
+                                        {
+                                            <tr>
+                                                <td>@history?.InvoiceID</td>
+                                                <td>@history?.RoomID</td>
+                                                <td>@history?.PayerName</td>
+                                                <td>@history?.PaymentDate?.ToString("dd/MM/yyyy")</td>
+                                                <td>@history?.TotalAmount</td>
+                                                <td>@history?.Note</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

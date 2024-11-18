@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Manager.Models.StaffRegistration>
+
+@{
+    ViewData["Title"] = "Duyệt đơn đăng ký của nhân viên";
+}
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <!-- Bảng danh sách đăng ký -->
+        <div class="row">
+            <div class="card border-0">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Các tài khoản đăng ký</h6>
+                    <table class="table table-striped">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">User Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var i = 1;
+                                foreach (var sr in Model)
+                                {
+                                    <tr>
+                                        <!-- Form for accepting staff -->
+                                        <form asp-controller="Admin" asp-action="AcceptStaff" method="post">
+                                        <td>@i</td>
+                                        <td>@sr.UserName</td>
+                                        <td>@sr.Email</td>
+                                        <td>
+                                            <!-- Dropdown chọn Role trực tiếp -->
+                                            <select name="RoleId" class="form-select">
+                                                <option disabled selected>Chọn Role</option>
+                                                @foreach (var role in ViewBag.Roles)
+                                                {
+                                                    <option value="@role.RoleId">@role.RoleName</option>
+                                                }
+                                            </select>
+                                        </td>
+                                        <td class="justify-content-center">
+                                                <input type="hidden" name="Email" value="@sr.Email" />
+                                                <button type="submit" class="btn btn-success m-2">Chấp nhận</button>
+                                        </td>
+                                        </form>
+
+                                        <!-- Form for rejecting staff -->
+                                        <form asp-controller="Admin" asp-action="RejectStaff" method="post" style="display:inline;">
+                                            <input type="hidden" name="Email" value="@sr.Email" />
+                                            <button type="submit" class="btn btn-danger m-2">Từ chối</button>
+                                        </form>
+                                    </tr>
+                                    i++;
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

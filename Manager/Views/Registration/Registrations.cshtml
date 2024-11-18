@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Manager.Models.RegistrationVM>
+
+@{
+    ViewData["Title"] = "Danh sách đơn đăng ký";
+}
+
+<div class="container-fluid position-relative d-flex p-0">
+    <!-- Content Start -->
+    <div class="col m-5">
+        <div class="row">
+            <div class="col-6">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Tìm kiếm</h6>
+                        <form asp-controller="Registration" asp-action="Search" method="get" class="d-flex">
+                            <input class="form-control border-0 mt-2 me-3 w-75" type="search" name="searchTerm" placeholder="Tìm theo MSV, tên">
+                            <button type="submit" class="btn btn-secondary m-2">Tìm kiếm</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Sắp xếp</h6>
+                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                            <option selected>Sắp xếp tên theo thứ tự từ A đến Z</option>
+                            <option value="1">Sắp xếp tên theo thứ tự từ Z đến A</option>
+                            <option value="2">Sắp xếp MSV theo thứ tự tăng dần</option>
+                            <option value="3">Sắp xếp MSV theo thứ tự giảm dần</option>
+                            <option value="3">Sắp xếp tình trạng đơn</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card border-0">
+                <div class="bg-light rounded h-100 p-4">
+                    <h4 class="m-2">Danh sách đơn đăng ký đã duyệt</h4>
+                    <table class="table table-striped">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Mã sinh viên</th>
+                                <th scope="col">Họ và tên sinh viên</th>
+                                <th scope="col">Học kỳ</th>
+                                <th scope="col">Năm học</th>
+                                <th scope="col">Tình trạng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{var i = 1;}
+                            @foreach(var r in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>
+                                        <a asp-action="RegistrationTDetail" asp-controller="Registration" asp-route-id="@r.StudentID">
+                                            @r.StudentID
+                                        </a>
+                                    </td>
+                                    <td>@r.StudentName</td>
+                                    <td>@r.Semester</td>
+                                    <td>@r.AcademicYear</td>
+                                    <td>@r.ApplicationStatus</td>
+                                </tr>
+                                i = i + 1;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

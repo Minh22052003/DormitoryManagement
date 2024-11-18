@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Manager.Models.DormInvoice>
+
+@{
+    ViewData["Title"] = "Hóa đơn KTX";
+}
+
+<div class="container-fluid position-relative d-flex p-0">
+    <!-- Content Start -->
+    <div class="col m-5">
+        <div class="row">
+            <div class="col-6">
+                <div class="border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Tìm kiếm</h6>
+                        <form class="d-none d-md-flex ms-4">
+                            <div class="col-4"><input class="form-control bg-light mt-2 me-3" type="search" placeholder="Search"></div>
+                            <button type="button" class="btn btn-secondary m-2">Tìm theo phòng</button>
+                            <button type="button" class="btn btn-secondary m-2">Tìm theo trưởng phòng</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="border-0">
+                    <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
+                        <h6 class="mb-4">Sắp xếp</h6>
+                        <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                            <option disabled selected>--Chọn phương thức sắp xếp--</option>
+                            <option>Sắp xếp theo tòa nhà</option>
+                            <option value="1">Sắp xếp theo phòng</option>
+                            <option value="2">Sắp xếp trưởng phòng theo thứ tự tăng dần</option>
+                            <option value="3">Sắp xếp trưởng phòng theo thứ tự giảm dần</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="border-0">
+                <div class="bg-light rounded h-100 p-4">
+                    <h4 class="m-2">Danh sách sinh viên</h4>
+                    <table class="table table-striped">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Mã hóa đơn</th>
+                                <th scope="col">Loại hóa đơn</th>
+                                <th scope="col">Mô tả</th>
+                                <th scope="col">Tổng số</th>
+                                <th scope="col">Người lập hóa đơn</th>
+                                <th scope="col">Ngày lập hóa đơn</th>
+                                <th scope="col">Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{var i = 1;}
+                            @foreach(var d in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>
+                                        <a asp-action="DormInvoiceDetail" asp-controller="Invoice" asp-route-id="@d.InvoiceID">
+                                            @d.InvoiceID
+                                        </a>
+                                    </td>
+                                    <td>@d.InvoiceTypeName</td>
+                                    <td>@d.Description</td>
+                                    <td>@d.TotalAmount</td>
+                                    <td>@d.StaffName_Create</td>
+                                    <td>@d.IssueDate?.ToString("yyyy-MM-dd")</td>
+                                    <td>@d.Status</td>
+                                </tr>
+                                i = i + 1;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content End -->
+</div>
+<a asp-controller="Information" asp-action="Create_Announcement" class="btn btn-success position-fixed" style="bottom: 40px; right: 40px;">
+    <i class="fa fa-solid fa-plus me-1"></i> Tạo hóa đơn mới
+</a>
