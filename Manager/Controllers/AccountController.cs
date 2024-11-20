@@ -33,6 +33,7 @@ namespace Manager.Controllers
             LoginAcc loginRequest = new LoginAcc()
             {
                 User_Name = username,
+                //Password = password
                 Password = HashPassword(username, password)
             };
             HttpContext.Session.SetString("username", username);

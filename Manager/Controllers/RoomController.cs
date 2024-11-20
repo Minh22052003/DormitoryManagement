@@ -11,12 +11,15 @@ namespace Manager.Controllers
         private StudentData _studentData;
         private EquipmentData _equipmentData;
         private BuildingData _buildingData;
+        private RoomTypeData _roomtypeData;
         public RoomController(IHttpContextAccessor httpContextAccessor)
         {
             _roomData = new RoomData(httpContextAccessor);
             _studentData = new StudentData(httpContextAccessor);
             _equipmentData = new EquipmentData(httpContextAccessor);
             _buildingData = new BuildingData(httpContextAccessor);
+            _roomtypeData = new RoomTypeData(httpContextAccessor);
+
         }
         public IActionResult Room()
         {
@@ -166,7 +169,7 @@ namespace Manager.Controllers
             Room room = rooms.Find(r => r.RoomID == id);
             ViewBag.Room = room;
             List<Student> students = _studentData.GetAllStudentAsyn().Result;
-            var student = students.Where(s=>s.RoomID==null).ToList();
+            var student = students.Where(s => s.RoomID == null).ToList();
             return View(student);
         }
         public async Task<IActionResult> AddStudentToRoom1(string idstudent, string idroom)
@@ -208,54 +211,81 @@ namespace Manager.Controllers
             await _roomData.UpdateRoom(room);
             return RedirectToAction("RoomDetail", new { id = room.RoomID });
         }
-
         public IActionResult RoomConsolidation()
         {
-            var roomConsolidationList = new List<RoomConsolidation>
-     {
-         new RoomConsolidation
-         {
-             FullName = "Nguyễn Văn A",
-             StudentID = "SV001",
-             OldRoomID = "R101",
-             OldRoomName = "Phòng 101",
-             OldBuildingID = "B01",
-             OldBuildingName = "Tòa nhà A",
-             NewRoomID = "R201",
-             NewRoomName = "Phòng 201",
-             NewBuildingID = "B02",
-             NewBuildingName = "Tòa nhà B"
-         },
-         new RoomConsolidation
-         {
-             FullName = "Trần Thị B",
-             StudentID = "SV002",
-             OldRoomID = "R102",
-             OldRoomName = "Phòng 102",
-             OldBuildingID = "B01",
-             OldBuildingName = "Tòa nhà A",
-             NewRoomID = "R202",
-             NewRoomName = "Phòng 202",
-             NewBuildingID = "B02",
-             NewBuildingName = "Tòa nhà B"
-         },
-         new RoomConsolidation
-         {
-             FullName = "Lê Văn C",
-             StudentID = "SV003",
-             OldRoomID = "R103",
-             OldRoomName = "Phòng 103",
-             OldBuildingID = "B01",
-             OldBuildingName = "Tòa nhà A",
-             NewRoomID = "R203",
-             NewRoomName = "Phòng 203",
-             NewBuildingID = "B02",
-             NewBuildingName = "Tòa nhà B"
-         }
-     };
+            var roomConsolidationList = new List<RoomConsolidation>();
+            List<Room> rooms = _roomData.GetAllRoom().Result;
+            List<RoomType> roomTypes = _roomtypeData.GetAllRoomType().Result;
+            List<Student> students = _studentData.GetAllStudentAsyn().Result;
+            //        var roomsAvailable = rooms
+            //.Where(r =>
+            //{
+            //    var roomType = roomTypes.FirstOrDefault(rt => rt.RoomTypeID == r.RoomTypeID);
+            //    return roomType != null && r.NumberOfStudent < roomType.Capacity;
+            //})
+            //.OrderBy(r =>
+            //{
+            //    if (int.TryParse(r.RoomName.Substring(r.RoomName.Length - 3), out int roomNumber))
+            //        return roomNumber;
+            //    return int.MaxValue;
+            //})
+            //.ToList();
+            var roomsSorted = rooms
+             .OrderBy(r =>
+             {
+                 if (int.TryParse(r.RoomName.Substring(r.RoomName.Length - 3), out int roomNumber))
+                     return roomNumber;
+                 return int.MaxValue; // Nếu không parse được, đưa về cuối danh sách
+             })
+             .ToList();
+
+            // Dồn sinh viên
+            foreach (var room in roomsSorted)
+            {
+                var roomType = roomTypes.FirstOrDefault(rt => rt.RoomTypeID == room.RoomTypeID);
+                if (roomType == null || room.NumberOfStudent >= roomType.Capacity)
+                    continue;
+
+                foreach (var donorRoom in roomsSorted.Skip(roomsSorted.IndexOf(room) + 1))
+                {
+                    var donorRoomType = roomTypes.FirstOrDefault(rt => rt.RoomTypeID == donorRoom.RoomTypeID);
+
+                    if (donorRoomType == null || donorRoom.NumberOfStudent <= 0)
+                        continue;
+
+                    var studentsFromDonorRoom = students
+                        .Where(s => s.RoomID == donorRoom.RoomID)
+                        .OrderBy(s => int.Parse(s.StudentID.Substring(2)))
+                        .ToList();
+
+                    while (room.NumberOfStudent < roomType.Capacity && studentsFromDonorRoom.Count > 0)
+                    {
+                        var studentToMove = studentsFromDonorRoom.First();
+                        studentsFromDonorRoom.Remove(studentToMove);
+
+                        roomConsolidationList.Add(new RoomConsolidation
+                        {
+                            StudentID = studentToMove.StudentID,
+                            FullName = studentToMove.FullName,
+                            OldRoomID = studentToMove.RoomID,
+                            OldRoomName = studentToMove.RoomName,
+                            NewRoomID = room.RoomID,
+                            NewRoomName = room.RoomName
+                        });
+
+                        studentToMove.RoomID = room.RoomID;
+                        room.NumberOfStudent++;
+                        donorRoom.NumberOfStudent--;
+                    }
+
+                    if (room.NumberOfStudent >= roomType.Capacity)
+                        break;
+                }
+            }
 
             return View(roomConsolidationList);
         }
+
 
 
 

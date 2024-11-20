@@ -69,7 +69,13 @@ builder.Services.AddAuthorization(options =>
         options.AddPolicy(role, policy => policy.RequireClaim("Roles", role));
     }
 });
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.AllowAnyOrigin()
+                              .AllowAnyMethod()
+                              .AllowAnyHeader());
+});
 
 var app = builder.Build();
 
@@ -84,7 +90,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors("AllowSpecificOrigin");
 
 app.MapControllers();
 

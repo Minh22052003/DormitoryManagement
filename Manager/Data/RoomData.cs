@@ -17,6 +17,7 @@ namespace Manager.Data
         string keyeditroom = "/api/Room/editroom";
         string keyaddroom = "/api/Room/addroom";
 
+
         public RoomData(IHttpContextAccessor httpContextAccessor)
         {
             _httpClient = new HttpClient();
@@ -57,6 +58,7 @@ namespace Manager.Data
             roomStatuses = JsonConvert.DeserializeObject<List<RoomStatus>>(reponseData);
             return roomStatuses;
         }
+        
 
         public async Task UpdateRoom(Room room)
         {
@@ -70,7 +72,6 @@ namespace Manager.Data
             if (response.IsSuccessStatusCode)
             {
                 string responseData = await response.Content.ReadAsStringAsync();
-
             }
             else
             {
