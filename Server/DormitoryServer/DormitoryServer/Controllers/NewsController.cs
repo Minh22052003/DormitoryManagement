@@ -30,12 +30,25 @@ namespace DormitoryServer.Controllers
                 newsDTO.StaffName = item.Staff?.FullName;
                 newsDTO.Title = item.Title;
                 newsDTO.Content = item.Content;
-                newsDTO.Tag = item.Tag;
                 newsDTO.Status = item.Status;
                 newsDTO.CreationDate = item.CreationDate;
                 newsDTOs.Add(newsDTO);
             }
             return Ok(newsDTOs);
+        }
+
+        [HttpPost("addnews")]
+        public IActionResult AddNews([FromBody] NewsDTO newsDTO)
+        {
+            News news = new News();
+            news.StaffId = newsDTO.StaffID;
+            news.Title = newsDTO.Title;
+            news.Content = newsDTO.Content;
+            news.Status = newsDTO.Status;
+            news.CreationDate = newsDTO.CreationDate;
+            _context.News.Add(news);
+            _context.SaveChanges();
+            return Ok();
         }
 
     }

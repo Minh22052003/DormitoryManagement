@@ -1,9 +1,9 @@
-﻿using Manager.Models;
+﻿using DormitoryUser.Models;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace Manager.Data
+namespace DormitoryUser.Data
 {
     public class NewsData
     {
@@ -12,7 +12,6 @@ namespace Manager.Data
         private readonly IHttpContextAccessor _httpContextAccessor;
         private string nameURL;
         string keygetallnews = "/api/News/getallnews";
-        string keyaddnews = "/api/News/addnews";
 
         public NewsData(IHttpContextAccessor httpContextAccessor)
         {
@@ -38,19 +37,5 @@ namespace Manager.Data
             return news;
         }
 
-        public async Task CreateNews(News news)
-        {
-            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-            var url = nameURL + keyaddnews;
-            var json = JsonConvert.SerializeObject(news);
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await _httpClient.PostAsync(url, data);
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception(response.StatusCode.ToString());
-            }
-        }
     }
 }

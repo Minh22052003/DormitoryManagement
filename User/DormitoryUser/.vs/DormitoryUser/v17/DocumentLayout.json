@@ -3,8 +3,36 @@
   "WorkspaceRootPath": "D:\\Project1\\User\\DormitoryUser\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\views\\news\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\views\\news\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\controllers\\introducecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\controllers\\introducecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\data\\equipmentdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\data\\equipmentdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\models\\news.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\models\\news.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\data\\newsdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\data\\newsdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\data\\hosting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\data\\hosting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\views\\home\\track_rent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -18,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,7 +62,111 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Views\\News\\Index.cshtml",
+              "RelativeDocumentMoniker": "DormitoryUser\\Views\\News\\Index.cshtml",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Views\\News\\Index.cshtml",
+              "RelativeToolTip": "DormitoryUser\\Views\\News\\Index.cshtml",
+              "ViewState": "AgIAABwAAAAAAAAAAAAAACsAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-21T16:53:00.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProfileController.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\ProfileController.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Controllers\\ProfileController.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\ProfileController.cs",
+              "RelativeToolTip": "DormitoryUser\\Controllers\\ProfileController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T16:51:52.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EquipmentData.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Data\\EquipmentData.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Data\\EquipmentData.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Data\\EquipmentData.cs",
+              "RelativeToolTip": "DormitoryUser\\Data\\EquipmentData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T16:51:23.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Hosting.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Data\\Hosting.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Data\\Hosting.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Data\\Hosting.cs",
+              "RelativeToolTip": "DormitoryUser\\Data\\Hosting.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T16:49:50.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "NewsData.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Data\\NewsData.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Data\\NewsData.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Data\\NewsData.cs",
+              "RelativeToolTip": "DormitoryUser\\Data\\NewsData.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T16:49:20.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IntroduceController.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\IntroduceController.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Controllers\\IntroduceController.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\IntroduceController.cs",
+              "RelativeToolTip": "DormitoryUser\\Controllers\\IntroduceController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T16:48:34.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "NewsController.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\NewsController.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Controllers\\NewsController.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\NewsController.cs",
+              "RelativeToolTip": "DormitoryUser\\Controllers\\NewsController.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAYwBAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T15:56:48.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "News.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Models\\News.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Models\\News.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Models\\News.cs",
+              "RelativeToolTip": "DormitoryUser\\Models\\News.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T15:53:54.095Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Track_Rent.cshtml",
               "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Views\\Home\\Track_Rent.cshtml",
               "RelativeDocumentMoniker": "DormitoryUser\\Views\\Home\\Track_Rent.cshtml",
@@ -43,19 +175,6 @@
               "ViewState": "AgIAAEsAAAAAAAAAAAAAAGUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-11-20T12:59:59.004Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "DormitoryUser\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "DormitoryUser\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAowFwAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T12:59:50.163Z",
-              "EditorCaption": ""
             }
           ]
         }

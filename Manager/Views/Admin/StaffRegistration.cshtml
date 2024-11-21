@@ -19,6 +19,7 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Role</th>
                                 <th scope="col">Hành động</th>
+                                <th scope="col">Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,13 +28,11 @@
                                 foreach (var sr in Model)
                                 {
                                     <tr>
-                                        <!-- Form for accepting staff -->
                                         <form asp-controller="Admin" asp-action="AcceptStaff" method="post">
                                         <td>@i</td>
                                         <td>@sr.UserName</td>
                                         <td>@sr.Email</td>
                                         <td>
-                                            <!-- Dropdown chọn Role trực tiếp -->
                                             <select name="RoleId" class="form-select">
                                                 <option disabled selected>Chọn Role</option>
                                                 @foreach (var role in ViewBag.Roles)
@@ -48,11 +47,12 @@
                                         </td>
                                         </form>
 
-                                        <!-- Form for rejecting staff -->
-                                        <form asp-controller="Admin" asp-action="RejectStaff" method="post" style="display:inline;">
-                                            <input type="hidden" name="Email" value="@sr.Email" />
-                                            <button type="submit" class="btn btn-danger m-2">Từ chối</button>
-                                        </form>
+                                        <td>
+                                            <form asp-controller="Admin" asp-action="RejectStaff" method="post" style="display:inline;">
+                                                <input type="hidden" name="Email" value="@sr.Email" />
+                                                <button type="submit" class="btn btn-danger m-2">Từ chối</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     i++;
                                 }

@@ -103,7 +103,7 @@ namespace Manager.Controllers
         {
             try
             {
-                List<New> newsList = _newData.GetAllNews().Result;
+                List<News> newsList = _newData.GetAllNews().Result;
                 return View(newsList);
             }
             catch (UnauthorizedAccessException ex)
@@ -120,7 +120,7 @@ namespace Manager.Controllers
         [HttpGet]
         public IActionResult SearchAndSortNews(string searchTerm, string searchBy, string sortBy)
         {
-            List<New> news = _newData.GetAllNews().Result;
+            List<News> news = _newData.GetAllNews().Result;
 
             // Tìm kiếm
             if (!string.IsNullOrEmpty(searchTerm))
@@ -160,6 +160,27 @@ namespace Manager.Controllers
         public IActionResult Create_News()
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create_NewsAsync(News @new)
+        {
+            var staffid = HttpContext.Session.GetString("staffid");
+            if (@new == null)
+            {
+                return RedirectToAction("Create_News");
+            }
+            var news = new News
+            {
+                Title = @new.Title,
+                Content = @new.Content,
+                StaffID = staffid,
+                StaffName = HttpContext.Session.GetString("fullname"),
+                Status = "Active",
+                CreationDate = DateTime.Now,
+            };
+            await _newData.CreateNews(news);
+            List<News> newsList = _newData.GetAllNews().Result;
+            return View("News", newsList);
         }
     }
 }

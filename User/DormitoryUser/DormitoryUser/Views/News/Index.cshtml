@@ -3,6 +3,14 @@
 }
 
 @model List<DormitoryUser.Models.News>
+<style>
+    .card-text img {
+        max-width: 100px;  /* Giới hạn chiều rộng ảnh */
+        height: auto;     /* Tự động điều chỉnh chiều cao */
+        display: block;   /* Đảm bảo ảnh là phần tử block */
+        margin: 10px 0;    /* Thêm khoảng cách trên và dưới ảnh */
+    }
+</style>
 
 <div class="container mt-4">
     <div class="row">
@@ -12,9 +20,9 @@
                     <h4>Chi tiết thông báo</h4>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Tiêu đề thông báo</h5>
-                    <p class="card-text">Nội dung chi tiết của thông báo sẽ được hiển thị ở đây.</p>
-                    <p class="text-muted">Ngày đăng: 11/10/2024</p>
+                    <h5 class="card-title">@Model[5].Title</h5>
+                    <p class="card-text">@Html.Raw(Model[5].Content)</p>
+                    <p class="text-muted">Ngày đăng: @Model[5].CreationDate</p>
                 </div>
             </div>
         </div>
@@ -28,10 +36,9 @@
                     @foreach (var news in Model)
                     {
                         <div class="media mb-3">
-                            <img src="@news.ImageUrl" class="mr-3" alt="news image">
                             <div class="media-body">
                                 <h6 class="mt-0">@news.Title</h6>
-                                <p>@news.Content</p>
+                                <p>@news.CreationDate</p>
                             </div>
                         </div>
                     }

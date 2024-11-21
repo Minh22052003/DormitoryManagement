@@ -49,6 +49,7 @@ namespace Manager.Controllers
                     HttpContext.Session.SetString("fullname", "Chưa cập nhật");
                 }
                 HttpContext.Session.SetString("fullname", staff.FullName);
+                HttpContext.Session.SetString("staffid", staff.StaffID);
                 return RedirectToAction("TTCN", "User");
             }
             else

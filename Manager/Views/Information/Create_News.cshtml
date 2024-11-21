@@ -1,4 +1,4 @@
-﻿@model Manager.Models.New
+﻿@model Manager.Models.News
 @{
     ViewData["Title"] = "Thêm mới tin tức";
 }
@@ -9,16 +9,16 @@
             <div class="card bg-light">
                 <div class="bg-light rounded h-100 p-4">
                     <h2 class="mb-4">Tạo mới tin tức</h2>
-                    <form asp-controller="Information" asp-action="Create_Announcement">
+                    <form asp-controller="Information" asp-action="Create_News" method="post">
                         <div class="form-floating mb-3">
                             <input asp-for="@Model.Title" type="text" class="form-control" id="floatingInput" placeholder="" required>
                             <label for="floatingInput">Tiêu đề</label>
                         </div>
                         <div class="form-item mb-3">
                             <label class="form-label my-3 fw-bold">Nội dung</label>
-                            <textarea asp-for="@Model.Content" id="content" required></textarea>
+                            <textarea asp-for="@Model.Content" id="content"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-success m-2" asp-controller="Information" asp-action="Create_News">Tạo mới</button>
+                        <button type="submit" class="btn btn-success m-2">Tạo mới</button>
                         <a asp-controller="Information" asp-action="News" class="btn btn-secondary m-2">Trở về</a>
                     </form>
                 </div>
