@@ -1,7 +1,9 @@
 ﻿using Manager.Data;
 using Manager.Models;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Manager.Controllers
 {
@@ -215,21 +217,9 @@ namespace Manager.Controllers
         {
             var roomConsolidationList = new List<RoomConsolidation>();
             List<Room> rooms = _roomData.GetAllRoom().Result;
+            List<Building> buildings = _buildingData.GetAllBuilding().Result;
             List<RoomType> roomTypes = _roomtypeData.GetAllRoomType().Result;
             List<Student> students = _studentData.GetAllStudentAsyn().Result;
-            //        var roomsAvailable = rooms
-            //.Where(r =>
-            //{
-            //    var roomType = roomTypes.FirstOrDefault(rt => rt.RoomTypeID == r.RoomTypeID);
-            //    return roomType != null && r.NumberOfStudent < roomType.Capacity;
-            //})
-            //.OrderBy(r =>
-            //{
-            //    if (int.TryParse(r.RoomName.Substring(r.RoomName.Length - 3), out int roomNumber))
-            //        return roomNumber;
-            //    return int.MaxValue;
-            //})
-            //.ToList();
             var roomsSorted = rooms
              .OrderBy(r =>
              {
@@ -269,8 +259,12 @@ namespace Manager.Controllers
                             FullName = studentToMove.FullName,
                             OldRoomID = studentToMove.RoomID,
                             OldRoomName = studentToMove.RoomName,
+                            OldBuildingID = studentToMove.BuildingID,
+                            OldBuildingName = buildings.FirstOrDefault(b => b.BuildingID == studentToMove.BuildingID)?.BuildingName,
                             NewRoomID = room.RoomID,
-                            NewRoomName = room.RoomName
+                            NewRoomName = room.RoomName,
+                            NewBuildingID = room.BuildingID,
+                            NewBuildingName = buildings.FirstOrDefault(b => b.BuildingID == room.BuildingID)?.BuildingName
                         });
 
                         studentToMove.RoomID = room.RoomID;
@@ -284,6 +278,114 @@ namespace Manager.Controllers
             }
 
             return View(roomConsolidationList);
+        }
+
+        public IActionResult ExportToExcel()
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            var roomConsolidationList = new List<RoomConsolidation>();
+            List<Room> rooms = _roomData.GetAllRoom().Result;
+            List<Building> buildings = _buildingData.GetAllBuilding().Result;
+            List<RoomType> roomTypes = _roomtypeData.GetAllRoomType().Result;
+            List<Student> students = _studentData.GetAllStudentAsyn().Result;
+            var roomsSorted = rooms
+             .OrderBy(r =>
+             {
+                 if (int.TryParse(r.RoomName.Substring(r.RoomName.Length - 3), out int roomNumber))
+                     return roomNumber;
+                 return int.MaxValue;
+             })
+             .ToList();
+
+            foreach (var room in roomsSorted)
+            {
+                var roomType = roomTypes.FirstOrDefault(rt => rt.RoomTypeID == room.RoomTypeID);
+                if (roomType == null || room.NumberOfStudent >= roomType.Capacity)
+                    continue;
+
+                foreach (var donorRoom in roomsSorted.Skip(roomsSorted.IndexOf(room) + 1))
+                {
+                    var donorRoomType = roomTypes.FirstOrDefault(rt => rt.RoomTypeID == donorRoom.RoomTypeID);
+
+                    if (donorRoomType == null || donorRoom.NumberOfStudent <= 0)
+                        continue;
+
+                    var studentsFromDonorRoom = students
+                        .Where(s => s.RoomID == donorRoom.RoomID)
+                        .OrderBy(s => int.Parse(s.StudentID.Substring(2)))
+                        .ToList();
+
+                    while (room.NumberOfStudent < roomType.Capacity && studentsFromDonorRoom.Count > 0)
+                    {
+                        var studentToMove = studentsFromDonorRoom.First();
+                        studentsFromDonorRoom.Remove(studentToMove);
+
+                        roomConsolidationList.Add(new RoomConsolidation
+                        {
+                            StudentID = studentToMove.StudentID,
+                            FullName = studentToMove.FullName,
+                            OldRoomID = studentToMove.RoomID,
+                            OldRoomName = studentToMove.RoomName,
+                            OldBuildingID = studentToMove.BuildingID,
+                            OldBuildingName = buildings.FirstOrDefault(b => b.BuildingID == studentToMove.BuildingID)?.BuildingName,
+                            NewRoomID = room.RoomID,
+                            NewRoomName = room.RoomName,
+                            NewBuildingID = room.BuildingID,
+                            NewBuildingName = buildings.FirstOrDefault(b => b.BuildingID == room.BuildingID)?.BuildingName
+                        });
+
+                        studentToMove.RoomID = room.RoomID;
+                        room.NumberOfStudent++;
+                        donorRoom.NumberOfStudent--;
+                    }
+
+                    if (room.NumberOfStudent >= roomType.Capacity)
+                        break;
+                }
+            }
+            var data = roomConsolidationList; // Thay bằng dữ liệu thực tế của bạn, ví dụ từ cơ sở dữ liệu.
+
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Danh sách chuyển phòng");
+
+                // Tạo tiêu đề cột
+                worksheet.Cells[1, 1].Value = "STT";
+                worksheet.Cells[1, 2].Value = "Mã sinh viên";
+                worksheet.Cells[1, 3].Value = "Tên sinh viên";
+                worksheet.Cells[1, 4].Value = "Tòa nhà cũ";
+                worksheet.Cells[1, 5].Value = "Phòng cũ";
+                worksheet.Cells[1, 6].Value = "Tòa nhà mới";
+                worksheet.Cells[1, 7].Value = "Phòng mới";
+
+                // Ghi dữ liệu
+                int row = 2;
+                int index = 1;
+                foreach (var r in data)
+                {
+                    worksheet.Cells[row, 1].Value = index;
+                    worksheet.Cells[row, 2].Value = r.StudentID;
+                    worksheet.Cells[row, 3].Value = r.FullName;
+                    worksheet.Cells[row, 4].Value = r.OldBuildingName;
+                    worksheet.Cells[row, 5].Value = r.OldRoomName;
+                    worksheet.Cells[row, 6].Value = r.NewBuildingName;
+                    worksheet.Cells[row, 7].Value = r.NewRoomName;
+
+                    row++;
+                    index++;
+                }
+
+                // Lưu vào stream
+                var stream = new MemoryStream();
+                package.SaveAs(stream);
+                stream.Position = 0;
+
+                // Trả về file Excel
+                string fileName = "DanhSachChuyenPhong.xlsx";
+                string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                return File(stream, contentType, fileName);
+            }
         }
 
 

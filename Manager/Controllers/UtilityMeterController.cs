@@ -22,6 +22,13 @@ namespace Manager.Controllers
             return View();
         }
 
+        public IActionResult ChangeRecord(int id)
+        {
+            List<UtilityMeter> utilityMeters = _utilityMeterData.GetAllUtilityMeter().Result;
+            UtilityMeter utilityMeter = utilityMeters.FirstOrDefault(u => u.UtilityMeterID == id);
+            return View(utilityMeter);
+        }
+
 
         [HttpGet]
         public JsonResult GetRoomsByBuilding(string buildingId)

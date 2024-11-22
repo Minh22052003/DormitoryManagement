@@ -58,7 +58,7 @@ namespace Manager.Data
             roomStatuses = JsonConvert.DeserializeObject<List<RoomStatus>>(reponseData);
             return roomStatuses;
         }
-        
+
 
         public async Task UpdateRoom(Room room)
         {
@@ -88,18 +88,20 @@ namespace Manager.Data
             StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await _httpClient.PostAsync(url, data);
 
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    string responseData = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                string responseData = await response.Content.ReadAsStringAsync();
 
-            //}
-            //else
-            //{
-            //    throw new Exception("Không cập nhật thành công: " + response.StatusCode);
-            //}
+            }
+            if (!response.IsSuccessStatusCode)
+            {
+                string errorDetail = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Error: {response.StatusCode}, Details: {errorDetail}");
+                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+            }
+
+
+
         }
-
-
-
     }
 }

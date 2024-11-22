@@ -2,7 +2,7 @@
 {
     public class RoomDTO
     {
-        public string RoomID { get; set; } = null!;
+        public string? RoomID { get; set; }
         public int? RoomTypeID { get; set; }
         public string? BuildingID { get; set; }
         public string? BuildingName { get; set; }

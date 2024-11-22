@@ -164,7 +164,7 @@ namespace Manager.Controllers
         {
             if(room == null)
             {
-                return RedirectToAction("ListBuilding");
+                return View();
             }
             await _roomData.AddRoom(room);
             return RedirectToAction("ListBuilding");

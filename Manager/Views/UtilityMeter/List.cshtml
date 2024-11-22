@@ -68,7 +68,7 @@
                                     <td>@u.StaffName</td>
                                     <td>@u.RecordingDate?.ToString("yyyy-MM-dd")</td>
                                     <td>
-                                        <button type="button" class="btn btn-danger m-2">Sửa bản ghi</button>
+                                        <a type="button" class="btn btn-danger m-2" asp-controller="UtilityMeter" asp-action="ChangeRecord" asp-route-id="@u.UtilityMeterID">Sửa bản ghi</a>
                                     </td>
                                 </tr>
                                 i = i + 1;

@@ -50,6 +50,7 @@ namespace Manager.Controllers
                 }
                 HttpContext.Session.SetString("fullname", staff.FullName);
                 HttpContext.Session.SetString("staffid", staff.StaffID);
+                HttpContext.Session.SetString("role", staff.RoleName);
                 return RedirectToAction("TTCN", "User");
             }
             else
