@@ -348,7 +348,7 @@ namespace Manager.Controllers
 
             using (var package = new ExcelPackage())
             {
-                var worksheet = package.Workbook.Worksheets.Add("Danh sách chuyển phòng");
+                var worksheet = package.Workbook.Worksheets.Add("Danh sách chuyển phòng "+DateTime.Now);
 
                 // Tạo tiêu đề cột
                 worksheet.Cells[1, 1].Value = "STT";
