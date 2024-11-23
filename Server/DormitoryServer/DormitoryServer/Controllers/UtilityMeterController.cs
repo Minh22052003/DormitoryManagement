@@ -43,6 +43,7 @@ namespace DormitoryServer.Controllers
             }
             return result;
         }
+        
         [HttpPost("addutilitymeter")]
         public ActionResult AddUtilityMeter(UtilityMeterDTO utilityMeterDTO)
         {
@@ -56,6 +57,17 @@ namespace DormitoryServer.Controllers
                 RecordingDate = DateTime.Now,
             };
             _context.UtilityMeters.Add(utilityMeter);
+            _context.SaveChanges();
+            return Ok();
+        }
+
+        [HttpPut("updateutilitymeter")]
+        public ActionResult EditUtilityMeter(UtilityMeterDTO utilityMeterDTO)
+        {
+            var utilityMeter = _context.UtilityMeters.Find(utilityMeterDTO.UtilityMeterID);
+            utilityMeter.Electricity = utilityMeterDTO.Electricity;
+            utilityMeter.Water = utilityMeterDTO.Water;
+            _context.UtilityMeters.Update(utilityMeter);
             _context.SaveChanges();
             return Ok();
         }

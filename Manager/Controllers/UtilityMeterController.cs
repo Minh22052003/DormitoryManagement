@@ -29,6 +29,13 @@ namespace Manager.Controllers
             return View(utilityMeter);
         }
 
+        [HttpPost]
+        public IActionResult ChangeRecord(UtilityMeter utilityMeter)
+        {
+            _utilityMeterData.UpdateUtilityMeter(utilityMeter);
+            return RedirectToAction("List");
+        }
+
 
         [HttpGet]
         public JsonResult GetRoomsByBuilding(string buildingId)

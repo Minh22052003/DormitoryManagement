@@ -21,6 +21,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
+        [Authorize(Policy = "Manager")]
         [HttpGet("getallannouncement")]
         public IActionResult GetAllAnnouncement()
         {
@@ -59,6 +60,22 @@ namespace DormitoryServer.Controllers
                 CreationDate = DateTime.Now,
             };
             _context.Announcements.Add(announcement);
+            _context.SaveChanges();
+
+
+            return Ok();
+        }
+
+        [Authorize(Policy = "Manager")]
+        [HttpDelete("deleteannouncement")]
+        public async Task<IActionResult> DeleteAnnouncementAsync([FromBody] int id)
+        {
+            Announcement announcement = _context.Announcements.Find(id);
+            if (announcement == null)
+            {
+                return NotFound();
+            }
+            _context.Announcements.Remove(announcement);
             _context.SaveChanges();
 
 

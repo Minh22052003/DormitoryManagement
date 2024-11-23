@@ -14,6 +14,7 @@ namespace Manager.Data
         private string nameURL;
         string keyGetAllUtilityMeter = "/api/UtilityMeter/getallutilitymeter";
         string keyCreateUtilityMeter = "/api/UtilityMeter/addutilitymeter";
+        string keyUpdateUtilityMeter = "/api/UtilityMeter/updateutilitymeter";
 
         public UtilityMeterData(IHttpContextAccessor httpContextAccessor)
         {
@@ -54,5 +55,22 @@ namespace Manager.Data
             }
             return true;
         }
+
+        public async Task<bool> UpdateUtilityMeter(UtilityMeter utilityMeter)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var url = nameURL + keyUpdateUtilityMeter;
+            var json = JsonConvert.SerializeObject(utilityMeter);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PutAsync(url, data);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.StatusCode.ToString());
+            }
+            return true;
+        }
+
     }
 }

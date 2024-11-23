@@ -37,7 +37,7 @@ namespace DormitoryUser.Controllers
         public IActionResult Notification()
         {
             List<Announcement> announcements = announcementData.GetAllAnnouncement().Result;
-            List < Announcement > announcementsforstudent = announcements.FindAll(a => a.Target == "SinhVien");
+            List < Announcement > announcementsforstudent = announcements.FindAll(a => a.Target == "SinhVien" || a.Target== "TatCa");
             return View(announcementsforstudent);
         }
 

@@ -21,8 +21,8 @@ namespace Manager.Controllers
         {
             List<AnnouncementRQ> announcementrqs = _announcementData.GetAllAnnouncement().Result;
             return View(announcementrqs);
-           
         }
+
         [HttpGet]
         public IActionResult SearchAndSortAnnouncements(string searchTerm, string searchBy, string sortBy)
         {
@@ -89,14 +89,12 @@ namespace Manager.Controllers
         }
 
 
-        //Hiển thị thông báo cho nhân viên
-        public IActionResult ListAnnouncement()
-        {
-            List<AnnouncementRQ> announcementrqs = _announcementData.GetAllAnnouncement().Result;
-            List<AnnouncementRQ> announcementsforstaff = announcementrqs.FindAll(a => a.Target == "NhanVien");
-            return View(announcementsforstaff);
-        }
 
+        public async Task<IActionResult> DeleteAnnouncement(int id)
+        {
+            await _announcementData.DeleteAnnouncement(id);
+            return RedirectToAction("Announcement");
+        }
 
 
         public IActionResult News()

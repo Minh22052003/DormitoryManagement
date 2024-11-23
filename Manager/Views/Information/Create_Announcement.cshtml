@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-floating mb-3">
                             <select asp-for="Target" asp-items="@(new List<SelectListItem> {
-                                new SelectListItem { Text = "Tất cả", Value = "" },
+                                new SelectListItem { Text = "Tất cả", Value = "TatCa" },
                                 new SelectListItem { Text = "Chỉ nhân viên", Value = "NhanVien" },
                                 new SelectListItem { Text = "Chỉ sinh viên", Value = "SinhVien" }
                             })" class="form-select" id="floatingSelect"

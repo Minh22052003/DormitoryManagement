@@ -7,7 +7,7 @@
 <div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
         <div class="card bg-light rounded h-100 p-4">
-            <form asp-action="UpdateStaff" asp-controller="User" method="post">
+            <form asp-action="ChangeRecord" asp-controller="UtilityMeter" method="post">
                 <div class="row g-5">
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
@@ -47,13 +47,13 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Số điện sử dụng</label>
-                            <input type="date" name="Electricity" class="form-control" id="dateInput" value="@Model.Electricity">
+                            <input type="number" name="Electricity" class="form-control" id="dateInput" value="@Model.Electricity">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Số nước sử dụng</label>
-                            <input name="Water" class="form-control" value="@Model.Water">
+                            <input type="number" name="Water" class="form-control" value="@Model.Water">
                         </div>
                     </div>
                 </div>

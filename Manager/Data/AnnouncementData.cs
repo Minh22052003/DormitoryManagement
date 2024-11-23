@@ -15,6 +15,7 @@ namespace Manager.Data
         private string nameURL;
         string keygetallannouncement = "/api/announcement/getallannouncement";
         string keyaddannouncement = "/api/announcement/createannouncement";
+        string keydeleteannouncement = "/api/announcement/deleteannouncement";
 
         public AnnouncementData(IHttpContextAccessor httpContextAccessor)
         {
@@ -54,6 +55,30 @@ namespace Manager.Data
                 throw new Exception(response.StatusCode.ToString());
             }
         }
+        public async Task DeleteAnnouncement(int id)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var url = nameURL + keydeleteannouncement;
+            string json = JsonConvert.SerializeObject(id);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri(url),
+                Content = content
+            };
+
+            HttpResponseMessage response = await _httpClient.SendAsync(request);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"Failed to delete. Status: {response.StatusCode}");
+            }
+        }
+
+
 
     }
 }
