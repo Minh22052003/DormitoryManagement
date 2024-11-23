@@ -182,5 +182,13 @@ namespace Manager.Controllers
             List<News> newsList = _newData.GetAllNews().Result;
             return View("News", newsList);
         }
+
+
+        public IActionResult SeeAnnouncement()
+        {
+            var sampleAnnouncements = _announcementData.GetAllAnnouncement().Result;
+            sampleAnnouncements = sampleAnnouncements.Where(sa => sa.Target == "NhanVien" || sa.Target == "TatCa").ToList();
+            return View(sampleAnnouncements);
+        }
     }
 }

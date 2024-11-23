@@ -2,7 +2,6 @@
 
 @{
     var Name = HttpContextAccessor.HttpContext.Session.GetString("fullname");
-    var Role = HttpContextAccessor.HttpContext.Session.GetString("role");
 }
 
 <!DOCTYPE html>
@@ -81,12 +80,8 @@
                     <a asp-controller="Room" asp-action="Room" class="nav-item nav-link"><i class="bi bi-house-fill me-2"></i>Quản lý phòng</a>
                     <a asp-controller="SupportRequest" asp-action="List" class="nav-item nav-link"><i class="bi bi-question-square-fill me-2"></i>Yêu cầu hỗ trợ</a>
                     <a asp-controller="BaoCaoThongKe" asp-action="Index" class="nav-item nav-link"><i class="bi bi-bar-chart-fill me-2"></i>Báo cáo và thống kê</a>
-                    @if (Role == "Admin")
-                    {
-                        
-                    
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-solid fa-user-lock me-2"></i>Admin</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-solid fa-user-lock me-2"></i></i>Admin</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a asp-controller="Admin" asp-action="ListBuilding" class="dropdown-item ms-3"><i class="fa fa-solid fa-building me-2"></i> Thêm tòa nhà</a>
                             <a asp-controller="Admin" asp-action="ListRoomType" class="dropdown-item ms-3"><i class="bi bi-house-fill me-2"></i> Thêm loại phòng</a>
@@ -97,7 +92,6 @@
                             <a asp-controller="Admin" asp-action="StaffRegistration" class="dropdown-item ms-3"><i class="bi bi-person me-2"></i> Duyệt tài khoản</a>
                         </div>
                     </div>
-                    }
                 </div>
             </nav>
         </div>
@@ -138,12 +132,11 @@
                             <i class="fa fa-bell me-lg-2"></i>
                             <span class="d-none d-lg-inline-flex">Thông báo</span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Tính năng này đang được phát triển</h6>
-                                <small>0 phút trước</small>
-                            </a>
-                            <a href="#" class="dropdown-item text-center">Xem tất cả thông báo</a>
+                        <div class="dropdown-menu dropdown-menu-end bg-white border-0 rounded-0 rounded-bottom m-0">
+                            <div style="max-height: 300px; overflow-y: auto;">
+                                @await Component.InvokeAsync("AnnouncementComponent")
+                            </div>
+                            <a asp-controller="Information" asp-action="SeeAnnouncement" class="dropdown-item text-center">Xem tất cả thông báo</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">

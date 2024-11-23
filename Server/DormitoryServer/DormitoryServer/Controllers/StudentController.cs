@@ -488,6 +488,7 @@ namespace DormitoryServer.Controllers
             }
             room.NumberOfStudent -= 1;
             student.RoomId = null;
+            student.IsLeader = false;
 
             _context.SaveChanges();
 

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Manager.ModelRequest.AnnouncementRQ>
+
+@using Manager.Helpers
+
+@{
+    ViewData["Title"] = "Tất cả thông báo";
+}
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="row">
+            <div class="card border-0">
+                <div class="bg-light rounded h-100 p-4">
+                    <h4 class="m-2">Danh sách thông báo</h4>
+                    <table class="table table-striped">
+                        <thead class="fw-bold">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Tiêu đề</th>
+                                <th class="w-50" scope="col">Nội dung</th>
+                                <th scope="col">Người thông báo</th>
+                                <th scope="col">Thời gian</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var i = 1;
+                            }
+                            @foreach (var a in Model)
+                            {
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@a.Title</td>
+                                    <td>@a.Content</td>
+                                    <td>@a.StaffName</td>
+                                    <td>@TimeHelper.TimeAgo(a.CreationDate)</td>
+                                </tr>
+                                i++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

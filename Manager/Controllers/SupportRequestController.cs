@@ -23,7 +23,7 @@ namespace Manager.Controllers
             var rq = requests.Find(r => r.RequestID == id);
             return View(rq);
         }
-        public async Task<IActionResult> Method(string searchString, string filterStatus, string sortOrder)
+        public async Task<IActionResult> Method(string? searchString, string? filterStatus, string? sortOrder)
         {
             List<Request> requests = _requestData.GetAllRequest().Result;
 

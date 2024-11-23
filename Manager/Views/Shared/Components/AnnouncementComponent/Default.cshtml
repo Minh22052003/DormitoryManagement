@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Manager.Models.Announcement>
+@using Manager.Helpers
+@foreach(var a in Model)
+{
+    <a href="#" class="dropdown-item">
+        <h6 class="fw-normal mb-0">@a.Title</h6>
+        <small>@TimeHelper.TimeAgo(a.CreationDate)</small>
+        <hr class="dropdown-divider">
+    </a>
+}
