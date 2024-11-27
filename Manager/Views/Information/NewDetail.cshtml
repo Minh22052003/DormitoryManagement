@@ -1,0 +1,24 @@
+﻿@model Manager.Models.News
+
+@{
+    ViewData["Title"] = "Chi tiết tin tức";
+}
+
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="row">
+            <div class="card border-0">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Title</h5>
+                    <p class="card-text">@Html.Raw(Model.Content)</p>
+                    <p class="text-muted">Ngày đăng: @Model.CreationDate</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

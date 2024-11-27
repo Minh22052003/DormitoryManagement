@@ -1,5 +1,6 @@
 ﻿using DormitoryServer.DTOs;
 using DormitoryServer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
@@ -16,6 +17,8 @@ namespace DormitoryServer.Controllers
         {
             _context = context;
         }
+
+        [Authorize]
         [HttpGet("getallbuilding")]
         public IActionResult GetAllBuilding()
         {
@@ -33,6 +36,9 @@ namespace DormitoryServer.Controllers
             }
             return Ok(buildingDTOs);
         }
+
+
+        [Authorize(Roles = "Admin")]
         [HttpPost("addbuilding")]
         public IActionResult AddBuilding(BuildingDTO buildingDTO)
         {

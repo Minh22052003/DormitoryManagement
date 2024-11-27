@@ -19,7 +19,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
-        [Authorize(Policy = "Manager")]
+        [Authorize(Roles = "Admin,Staff")]
         [HttpGet("getallroom")]
         public async Task<ActionResult<List<RoomDTO>>> GetRooms()
         {
@@ -46,8 +46,8 @@ namespace DormitoryServer.Controllers
             }
             return roomDTOs;
         }
-        
 
+        [Authorize]
         [HttpGet("getallroomtype")]
         public async Task<ActionResult<List<RoomTypeDTO>>> GetRoomTypes()
         {
@@ -66,6 +66,7 @@ namespace DormitoryServer.Controllers
             return roomTypeDTOs;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("addroomtype")]
         public async Task<ActionResult<RoomTypeDTO>> AddRoomType(RoomTypeDTO roomTypeDTO)
         {
@@ -81,7 +82,7 @@ namespace DormitoryServer.Controllers
         }
 
 
-        [Authorize(Policy = "Student")]
+        [Authorize(Roles = "Student")]
         [HttpGet("getroombysytudent")]
         public async Task<ActionResult<RoomDTO>> GetRoomByStudent()
         {
@@ -115,6 +116,7 @@ namespace DormitoryServer.Controllers
             return roomDTO;
         }
 
+        [Authorize]
         [HttpGet("getallroomstatus")]
         public async Task<ActionResult<List<RoomStatusDTO>>> GetRoomStatus()
         {
@@ -131,6 +133,7 @@ namespace DormitoryServer.Controllers
             return roomStatusDTOs;
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpPost("addroom")]
         public async Task<IActionResult> AddRoom(RoomDTO roomDTO)
         {
@@ -164,6 +167,7 @@ namespace DormitoryServer.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Staff")]
         [HttpPut("editroom")]
         public async Task<IActionResult> EditRoom(RoomDTO roomDTO)
         {
@@ -178,24 +182,6 @@ namespace DormitoryServer.Controllers
             _context.SaveChanges();
             return NoContent();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         private Student getLeader(string idroom)

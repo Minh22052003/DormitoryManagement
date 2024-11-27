@@ -44,7 +44,7 @@ namespace DormitoryServer.Controllers
                 {
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim("UserId", account.StudentId),
-                    new Claim("Roles", "Student")
+                    new Claim(ClaimTypes.Role, "Student")
                 };
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -93,7 +93,7 @@ namespace DormitoryServer.Controllers
             {
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim("UserId", iduser.ToString()),
-                new Claim("Roles", string.Join(",", roles.Select(r => r.Role?.RoleName)))
+                new Claim(ClaimTypes.Role, string.Join(",", roles.Select(r => r.Role?.RoleName)))
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -136,7 +136,7 @@ namespace DormitoryServer.Controllers
         }
 
         //Chấp nhận tài khoản nhân viên
-        [Authorize(Policy = "Manager")]
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost("acceptaccount")]
         public async Task<IActionResult> AcceptAccount([FromBody] AccountStaffDTO accountStaffDTO)
         {
@@ -161,7 +161,7 @@ namespace DormitoryServer.Controllers
         }
 
         //Đổi mật khẩu nhân viên
-        [Authorize(Policy = "Manager")]
+        [Authorize]
         [HttpPost("changepassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordDTO changePasswordDTO)
         {
@@ -186,7 +186,7 @@ namespace DormitoryServer.Controllers
         }
 
         //Đổi mật khẩu sinh viên
-        [Authorize(Policy = "Student")]
+        [Authorize(Roles = "Student")]
         [HttpPost("changepasswordsv")]
         public async Task<IActionResult> ChangePasswordSV(ChangePasswordDTO changePasswordDTO)
         {
@@ -210,7 +210,6 @@ namespace DormitoryServer.Controllers
             return Ok("Đổi mật khẩu thành công");
         }
 
-        //Đăng xuất
         [HttpGet("logout")]
         public IActionResult Logout()
         {
@@ -226,14 +225,7 @@ namespace DormitoryServer.Controllers
             return Ok("Đăng xuất thành công");
         }
 
-
-
-
-
-
-
-
-        //Xuất danh sách chức vụ của nhân viên
+        [Authorize]
         [HttpGet("getallrole")]
         public async Task<ActionResult<List<RoleDTO>>> GetRoles()
         {

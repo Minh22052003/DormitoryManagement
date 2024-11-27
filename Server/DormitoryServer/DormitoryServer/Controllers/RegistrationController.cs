@@ -20,7 +20,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
-
+        [Authorize(Roles = "Admin, Manager")]
         [HttpGet("getallregistration")]
         public ActionResult<List<RegistrationDTO>> GetAllRegistration()
         {
@@ -101,6 +101,8 @@ namespace DormitoryServer.Controllers
         }
 
 
+
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPut("updatestatus")]
         public IActionResult UpdateStatus([FromBody] RegistrationDTO registrationDTO)
         {

@@ -60,14 +60,9 @@ var roles = await roleService.GetRolesFromDatabaseAsync();
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("Student", policy => policy.RequireClaim("Roles", "Student"));
-    options.AddPolicy("ManagerOrStudent", policy =>
-        policy.RequireAssertion(context =>
-            context.User.HasClaim("Roles", "Manager") || context.User.HasClaim("Roles", "Student")));
-    foreach (var role in roles)
-    {
-        options.AddPolicy(role, policy => policy.RequireClaim("Roles", role));
-    }
+    options.DefaultPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
 });
 builder.Services.AddCors(options =>
 {

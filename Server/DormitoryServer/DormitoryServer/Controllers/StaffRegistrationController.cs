@@ -1,5 +1,6 @@
 ﻿using DormitoryServer.DTOs;
 using DormitoryServer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,7 @@ namespace DormitoryServer.Controllers
         {
             _context = context;
         }
+        [Authorize(Roles = "Admin, Manager, Staff")]
         [HttpGet("getalllregistration")]
         public IActionResult GetAllRegistration()
         {

@@ -1,5 +1,6 @@
 ﻿using DormitoryServer.DTOs;
 using DormitoryServer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpGet("getallservice")]
         public IActionResult GetAllService()
         {
@@ -33,6 +35,7 @@ namespace DormitoryServer.Controllers
             return Ok(service);
         }
 
+        [Authorize(Roles = "Admin,Staff")]
         [HttpPost("addservice")]
         public IActionResult AddService(ServiceDTO serviceDTO)
         {

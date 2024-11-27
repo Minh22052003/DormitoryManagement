@@ -24,45 +24,46 @@ namespace Manager.Controllers
         }
 
         [HttpGet]
-        public IActionResult SearchAndSortAnnouncements(string searchTerm, string searchBy, string sortBy)
+        public IActionResult SearchNews(string searchTerm)
         {
-            List<AnnouncementRQ> announcements = _announcementData.GetAllAnnouncement().Result;
+            List<News> news = _newData.GetAllNews().Result;
+            List<News> searchResults;
 
-            // Tìm kiếm
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                switch (searchBy)
-                {
-                    case "content":
-                        announcements = announcements.Where(a => a.Content != null && a.Content.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
-                        break;
-                    case "poster":
-                        announcements = announcements.Where(a => a.StaffName != null && a.StaffName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
-                        break;
-                    case "date":
-                        if (DateTime.TryParse(searchTerm, out DateTime date))
-                            announcements = announcements.Where(a => a.CreationDate?.Date == date.Date).ToList();
-                        break;
-                }
+                searchResults = news.Where(r =>
+                r.Content.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                r.StaffName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+            ).ToList();
+                if (DateTime.TryParse(searchTerm, out DateTime date))
+                    searchResults = news.Where(a => a.CreationDate?.Date == date.Date).ToList();
+                return View("News", searchResults);
             }
-
-            // Sắp xếp
+            else
+            {
+                searchResults = news.ToList();
+            }
+            return View("News", searchResults);
+        }
+        [HttpGet]
+        public IActionResult SortNews(string sortBy)
+        {
+            List<News> news = _newData.GetAllNews().Result;
             switch (sortBy)
             {
                 case "name":
-                    announcements = announcements.OrderBy(a => a.StaffName).ToList();
+                    news = news.OrderBy(n => n.StaffName).ToList();
                     break;
                 case "dateAsc":
-                    announcements = announcements.OrderBy(a => a.CreationDate).ToList();
+                    news = news.OrderBy(n => n.CreationDate).ToList();
                     break;
                 case "dateDesc":
-                    announcements = announcements.OrderByDescending(a => a.CreationDate).ToList();
+                    news = news.OrderByDescending(n => n.CreationDate).ToList();
                     break;
             }
 
-            return View("Announcement", announcements); // Trả về view với danh sách đã được lọc và sắp xếp
+            return View("News", news);
         }
-
         public IActionResult Create_Announcement()
         {
             return View();
@@ -188,5 +189,6 @@ namespace Manager.Controllers
             sampleAnnouncements = sampleAnnouncements.Where(sa => sa.Target == "NhanVien" || sa.Target == "TatCa").ToList();
             return View(sampleAnnouncements);
         }
+
     }
 }

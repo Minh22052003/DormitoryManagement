@@ -20,7 +20,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
-        [Authorize(Policy = "ManagerOrStudent")]
+        [Authorize]
         [HttpGet("getallstaff")]
         public IActionResult GetAllStaff()
         {
@@ -57,7 +57,7 @@ namespace DormitoryServer.Controllers
             return Ok(staffDTOs);
         }
 
-
+        [Authorize]
         [HttpGet("getprofilestaff")]
         public IActionResult GetStaff()
         {
@@ -105,7 +105,7 @@ namespace DormitoryServer.Controllers
 
 
         //cho nhân viên cập nhật thông tin cá nhân thường xuyên
-        
+        [Authorize]
         [HttpPut("updateprofilestaff")]
         public IActionResult UpdateProfileStaff([FromBody] StaffDTO staffDTO)
         {
@@ -125,8 +125,7 @@ namespace DormitoryServer.Controllers
         }
 
 
-        //cho nhân viên quản lý cập nhật thông tin nhân viên
-
+        [Authorize(Roles= "Admin, Manager")]
         [HttpPut("updatestaffbymanager")]
         public IActionResult UpdateStaff([FromBody] StaffDTO staffDTO)
         {
@@ -167,12 +166,5 @@ namespace DormitoryServer.Controllers
         }
 
 
-        //[HttpPost("addstaff")]
-        //public IActionResult AddStaff([FromBody] Staff staff)
-        //{
-        //    _context.staff.Add(staff);
-        //    _context.SaveChanges();
-        //    return Ok();
-        //}
     }
 }

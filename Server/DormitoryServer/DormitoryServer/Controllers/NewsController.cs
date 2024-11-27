@@ -1,5 +1,6 @@
 ﻿using DormitoryServer.DTOs;
 using DormitoryServer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +38,7 @@ namespace DormitoryServer.Controllers
             return Ok(newsDTOs);
         }
 
+        [Authorize(Roles = "Admin, Staff")]
         [HttpPost("addnews")]
         public IActionResult AddNews([FromBody] NewsDTO newsDTO)
         {

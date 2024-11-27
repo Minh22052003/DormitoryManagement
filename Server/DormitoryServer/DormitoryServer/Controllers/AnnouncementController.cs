@@ -9,6 +9,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace DormitoryServer.Controllers
 {
+    
     [Route("api/announcement")]
     [ApiController]
     public class AnnouncementController : ControllerBase
@@ -20,8 +21,9 @@ namespace DormitoryServer.Controllers
         {
             _context = context;
         }
+        //[Authorize]
 
-        [Authorize(Policy = "Manager")]
+        [Authorize]
         [HttpGet("getallannouncement")]
         public IActionResult GetAllAnnouncement()
         {
@@ -44,7 +46,8 @@ namespace DormitoryServer.Controllers
             return Ok(announcementDTOs);
         }
 
-        [Authorize(Policy ="Manager")]
+
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost("createannouncement")]
         public async Task<IActionResult> CreateAnnouncementAsync([FromBody] AnnouncementDTO announcementDTO)
         {
@@ -66,7 +69,8 @@ namespace DormitoryServer.Controllers
             return Ok();
         }
 
-        [Authorize(Policy = "Manager")]
+
+        [Authorize(Roles = "Admin,Manager")]
         [HttpDelete("deleteannouncement")]
         public async Task<IActionResult> DeleteAnnouncementAsync([FromBody] int id)
         {

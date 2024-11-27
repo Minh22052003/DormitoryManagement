@@ -16,6 +16,8 @@ namespace DormitoryServer.Controllers
         {
             _context = context;
         }
+
+        [Authorize(Policy = "Staff,Manager, Admin")]
         [HttpGet("getallsupportrequest")]
         public IActionResult GetAllSupportRequest()
         {
@@ -53,7 +55,7 @@ namespace DormitoryServer.Controllers
         }
 
 
-        [Authorize(Policy = "Student")]
+        [Authorize(Roles = "Student")]
         [HttpGet("getsupportrequestbystudent")]
         public async Task<IActionResult> GetSupportRequestByStudentAsync()
         {
@@ -97,6 +99,7 @@ namespace DormitoryServer.Controllers
             return Ok(requestDTOs);
         }
 
+        [Authorize(Roles = "Student")]
         [HttpPost("createsupportrequest")]
         public async Task<IActionResult> CreateSupportRequestAsync(RequestDTO requestDTO)
         {
@@ -122,9 +125,7 @@ namespace DormitoryServer.Controllers
         }
 
 
-
-
-        [Authorize(Policy = "Manager")]
+        [Authorize(Policy = "Staff,Manager, Admin")]
         [HttpPut("processrequest")]
         public async Task<IActionResult> ProcessRequestAsync(RequestDTO requestDTO)
         {
@@ -145,7 +146,7 @@ namespace DormitoryServer.Controllers
             return Ok("Xử lý yêu cầu thành công");
         }
 
-
+        [Authorize]
         [HttpGet("getrequesttype")]
         public IActionResult GetRequestType()
         {

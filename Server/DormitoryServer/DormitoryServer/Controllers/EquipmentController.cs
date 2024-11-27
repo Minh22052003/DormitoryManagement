@@ -1,5 +1,6 @@
 ﻿using DormitoryServer.DTOs;
 using DormitoryServer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpGet("getallequipment")]
         public IActionResult GetAllEquipment()
         {
@@ -34,6 +36,7 @@ namespace DormitoryServer.Controllers
             return Ok(equipment);
         }
 
+        [Authorize]
         [HttpGet("getequipmentbyid")]
         public IActionResult GetEquipment(int id)
         {
@@ -41,6 +44,8 @@ namespace DormitoryServer.Controllers
 
             return Ok(equipment);
         }
+
+        [Authorize]
         [HttpGet("getequipmentbyroom")]
         public IActionResult GetEquipmentbyRoom(string idroom)
         {
@@ -63,6 +68,7 @@ namespace DormitoryServer.Controllers
             return Ok(equipment);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("addequipment")]
         public IActionResult AddEquipment([FromBody] EquipmentDTO equipmentDTO)
         {
@@ -76,7 +82,7 @@ namespace DormitoryServer.Controllers
             return Ok();
         }
 
-
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPut("addequipmenttoroom")]
         public IActionResult AddEquipmentToRoom(EquipmentDTO equipmentDTO)
         {

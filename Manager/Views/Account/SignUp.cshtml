@@ -17,8 +17,9 @@
                 <form method="post" asp-action="SignUp" asp-controller="Account">
                     <!-- Tài khoản -->
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingText" placeholder="jhondoe" name="UserName" required>
-                        <label for="floatingText">Tài khoản</label>
+                        <input type="email" class="form-control" id="floatingEmail" placeholder="mtminh@gmail.com" name="UserName" required pattern="[a-zA-Z0-9._%+-]+&#64;a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Vui lòng nhập email hợp lệ (ví dụ: mtminh@gmail.com)">
+                        <label for="floatingEmail">Tài khoản (Email)</label>
+                        <small class="text-muted">Email cá nhân hợp lệ</small>
                     </div>
 
                     <!-- Email -->
@@ -29,7 +30,7 @@
 
                     <!-- Mật khẩu -->
                     <div class="form-floating mb-4">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="Password" required>
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="Password" required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[_\-@@])[A-Za-z\d_\-@@]{8,30}$" title="Mật khẩu phải có ít nhất 8 ký tự, tối đa 30 ký tự, bao gồm chữ, số và ký tự đặc biệt (_-@@)">
                         <label for="floatingPassword">Mật khẩu</label>
                     </div>
 
@@ -37,6 +38,7 @@
                     <div class="form-floating mb-4">
                         <input type="password" class="form-control" id="floatingConfirmPassword" placeholder="Nhập lại mật khẩu" name="ConfirmPassword" required>
                         <label for="floatingConfirmPassword">Nhập lại mật khẩu</label>
+                        <small class="text-muted">Mật khẩu phải trùng khớp với mật khẩu đã nhập</small>
                     </div>
 
                     <!-- Nút đăng ký -->
@@ -47,3 +49,28 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Kiểm tra mật khẩu và xác nhận mật khẩu có giống nhau không
+    const passwordField = document.getElementById('floatingPassword');
+    const confirmPasswordField = document.getElementById('floatingConfirmPassword');
+    const signUpButton = document.getElementById('signUpButton');
+    const signUpForm = document.getElementById('signUpForm');
+
+    // Lắng nghe sự kiện nhập liệu vào xác nhận mật khẩu
+    confirmPasswordField.addEventListener('input', function () {
+        if (confirmPasswordField.value !== passwordField.value) {
+            confirmPasswordField.setCustomValidity('Mật khẩu không khớp');
+        } else {
+            confirmPasswordField.setCustomValidity('');
+        }
+    });
+
+    // Ngăn gửi form nếu mật khẩu không khớp
+    signUpForm.addEventListener('submit', function (event) {
+        if (confirmPasswordField.value !== passwordField.value) {
+            event.preventDefault(); // Ngừng gửi form
+            alert('Mật khẩu và xác nhận mật khẩu không khớp!');
+        }
+    });
+</script>

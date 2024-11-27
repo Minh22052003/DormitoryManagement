@@ -27,7 +27,7 @@ namespace Manager.Controllers
         {
             try
             {
-                List<Student> students = _studentData.GetAllStudentAsyn().Result;
+                var students = _studentData.GetAllStudentAsyn().Result;
                 List<RegistrationVM> registrations = _registrationData.GetAllRegistration().Result;
                 List<RegistrationVM> registrations1 = registrations.Where(r=>r.ApplicationStatus != "Approved").ToList();
                 List<Student> filteredStudents = students
@@ -101,7 +101,7 @@ namespace Manager.Controllers
         {
             try
             {
-                List<Student> students = _studentData.GetAllStudentAsyn().Result;
+                var students = _studentData.GetAllStudentAsyn().Result;
                 var student = students.Find(s => s.StudentID == id);
                 Console.WriteLine(student.Gender);
                 return View(student);
@@ -280,8 +280,8 @@ namespace Manager.Controllers
 
         public IActionResult Error(string message)
         {
-            ViewData["Message"] = message; // Truyền thông điệp lỗi vào ViewData
-            return View("Error"); // Trả về View lỗi
+            ViewData["Message"] = message;
+            return View("Error");
         }  
 
 

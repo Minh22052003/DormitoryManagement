@@ -20,8 +20,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
-        [Authorize(Policy = "Manager")]
-        // GET: api/Student
+        [Authorize(Roles = "Admin, Manager, Staff")]
         [HttpGet("getallstudent")]
         public ActionResult<List<StudentDTO>> GetStudents()
         {
@@ -95,7 +94,7 @@ namespace DormitoryServer.Controllers
             return _context.Relatives.Where(r => r.StudentId == studentId).FirstOrDefault();
         }
 
-        [Authorize(Policy = "Student")]
+        [Authorize(Roles = "Student")]
         [HttpGet("getprofilestudent")]
         public async Task<ActionResult<StudentDTO>> GetStudent()
         {
@@ -166,7 +165,7 @@ namespace DormitoryServer.Controllers
         }
 
 
-        [Authorize(Policy = "Manager")]
+        [Authorize(Roles = "Admin, Manager, Staff")]
         [HttpGet("getallstudentbyroom")]
         public ActionResult<List<StudentDTO>> GetStudentbyRoom(string idRoom)
         {
@@ -239,7 +238,7 @@ namespace DormitoryServer.Controllers
         }
 
 
-        //[Authorize(Policy = "Student")]
+        [Authorize(Roles = "Student")]
         [HttpGet("getroommate")]
         public ActionResult<List<StudentDTO>> GetRoomMate()
         {
@@ -313,7 +312,7 @@ namespace DormitoryServer.Controllers
             return studentDTOs;
         }
 
-        [Authorize(Policy = "Manager")]
+        [Authorize(Roles = "Staff,Manager, Admin")]
         [HttpPut("editstudent")]
         public async Task<IActionResult> EditStudent(StudentDTO studentdto)
         {
@@ -359,7 +358,7 @@ namespace DormitoryServer.Controllers
             return NoContent();
         }
 
-        [Authorize(Policy = "Manager")]
+        [Authorize(Roles = "Staff,Manager, Admin")]
         [HttpPut("editstudentwithroom")]
         public async Task<IActionResult> EditStudentWithRoom(StudentDTO studentdto)
         {
@@ -404,7 +403,7 @@ namespace DormitoryServer.Controllers
             return NoContent();
         }
 
-        [Authorize(Policy ="Manager")]
+        [Authorize(Roles = "Staff,Manager, Admin")]
         [HttpPut("editstudenleader")]
         public async Task<IActionResult> EditStudenLeader(StudentDTO studentdto)
         {
@@ -432,7 +431,7 @@ namespace DormitoryServer.Controllers
         }
 
 
-        [Authorize(Policy = "Manager")]
+        [Authorize(Roles = "Staff,Manager, Admin")]
         [HttpPut("addstudentwithroom")]
         public async Task<IActionResult> AddStudentWithRoom(StudentDTO studentdto)
         {
@@ -468,7 +467,7 @@ namespace DormitoryServer.Controllers
             return NoContent();
         }
 
-        [Authorize(Policy = "Manager")]
+        [Authorize(Roles = "Staff,Manager, Admin")]
         [HttpPut("deletestudentwithroom")]
         public async Task<IActionResult> DeleteStudentWithRoom(StudentDTO studentdto)
         {
@@ -495,35 +494,6 @@ namespace DormitoryServer.Controllers
             return NoContent();
         }
 
-        //// POST: api/Student
-        //[HttpPost]
-        //public async Task<ActionResult<Student>> PostStudent(Student student)
-        //{
-        //    _context.Students.Add(student);
-        //    await _context.SaveChangesAsync();
-
-        //    return CreatedAtAction("GetStudent", new { id = student.StudentId }, student);
-        //}
-
-        //// DELETE: api/Student/5
-        //[HttpDelete("{id}")]
-        //public async Task<ActionResult<Student>> DeleteStudent(int id)
-        //{
-        //    var student = await _context.Students.FindAsync(id);
-        //    if (student == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.Students.Remove(student);
-        //    await _context.SaveChangesAsync();
-
-        //    return student;
-        //}
-
-        //private bool StudentExists(int id)
-        //{
-        //    return _context.Students.Any(e => e.StudentId == id);
-        //}
+        
     }
 }

@@ -114,7 +114,16 @@ namespace Manager.Controllers
         public async Task<IActionResult> ApproveInvoices()
         {
             await _roominvoiceData.Approveroominvoicenew();
-            return View("RoomInvoice");
+            List<RoomInvoice> roomInvoices = _invoiceData.GetAllRoomInvoice().Result;
+
+            var pendingInvoices = roomInvoices.Where(ri => ri.Status == "Pending Approval").ToList();
+
+            if (pendingInvoices.Count == 0)
+            {
+                List<RoomInvoice> roomInvoicescd = _roominvoiceData.CreateRoomInvoice().Result;
+                return View(roomInvoicescd);
+            }
+            return View("RoomInvoice", pendingInvoices);
         }
 
 

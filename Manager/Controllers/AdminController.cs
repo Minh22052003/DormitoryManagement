@@ -38,8 +38,15 @@ namespace Manager.Controllers
         {
             if (building != null)
             {
-                await _buildingData.AddBuilding(building);
-                return RedirectToAction("ListBuilding");
+                try
+                {
+                    await _buildingData.AddBuilding(building);
+                    return RedirectToAction("ListBuilding");
+                }catch (Exception e)
+                {
+                    return RedirectToAction("Error401");
+                }
+
             }
             return RedirectToAction("ListBuilding");
         }
@@ -203,5 +210,16 @@ namespace Manager.Controllers
         {
             return View();
         }
+
+
+        public IActionResult Error401()
+        {
+            ViewBag.Error = "Bạn không có quyền sử dụng chức năng này";
+            return View("Error401");
+        }
+
+
+
+
     }
 }

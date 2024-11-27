@@ -60,7 +60,6 @@ namespace DormitoryUser.Controllers
         [HttpGet]
         public IActionResult Registration()
         {
-            ViewBag.RoomTypes = _roomData.GetAllRoomType().Result;
             return View();
         }
         [HttpPost]
@@ -79,12 +78,6 @@ namespace DormitoryUser.Controllers
             HttpContext.Session.Remove("MSV");
             return RedirectToAction("Index", "News");
         }
-
-
-
-
-
-
 
 
         public static string HashPassword(string username, string password)

@@ -21,18 +21,6 @@
                             <form class="p-5 bg-light" asp-controller="Account" asp-action="Registration" method="post">
                                 <div class="row g-5">
                                     <div class="col-md-12 col-lg-6 col-xl-4">
-                                        <label for="RoomTypeID">Chọn loại phòng</label>
-                                        <select name="RoomTypeID" id="RoomTypeID" class="form-select">
-                                            <option value="">Chọn loại phòng</option>
-                                            @foreach (var item in ViewBag.RoomTypes)
-                                            {
-                                                <option value="@item.RoomTypeID">@item.RoomTypeName</option>
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row g-5">
-                                    <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">
                                             <label class="form-label my-3 fw-bold">Số CMND/Thẻ căn cước</label>
                                             <input class="form-control" asp-for="@Model.IDCard">

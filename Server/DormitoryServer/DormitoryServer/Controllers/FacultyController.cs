@@ -1,5 +1,6 @@
 ﻿using DormitoryServer.DTOs;
 using DormitoryServer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,13 +17,15 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
-        //Lấy danh sách các khoa
+        [Authorize]
         [HttpGet("getlistfaculty")]
         public async Task<IActionResult> GetListFaculty()
         {
             var listFaculty = await _context.Faculties.ToListAsync();
             return Ok(listFaculty);
         }
+
+        [Authorize(Roles = "Admin")]
         [HttpPost("addfaculty")]
         public async Task<IActionResult> AddFaculty(FacultyDTO facultyDTO)
         {
@@ -35,6 +38,8 @@ namespace DormitoryServer.Controllers
             return Ok();
         }
 
+
+        [Authorize(Roles = "Admin")]
         [HttpPut("updatefaculty")]
         public async Task<IActionResult> UpdateFaculty([FromBody] Faculty faculty)
         {
@@ -43,6 +48,7 @@ namespace DormitoryServer.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("deletefaculty/{id}")]
         public async Task<IActionResult> DeleteFaculty(int id)
         {

@@ -1,5 +1,6 @@
 ﻿using DormitoryServer.DTOs;
 using DormitoryServer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
+        [Authorize(Policy = "Staff,Manager, Admin")]
         [HttpGet("getallutilitymeter")]
         public ActionResult<List<UtilityMeterDTO>> GetAllUtilityMeter()
         {
@@ -43,7 +45,9 @@ namespace DormitoryServer.Controllers
             }
             return result;
         }
-        
+
+
+        [Authorize(Policy = "Staff,Manager, Admin")]
         [HttpPost("addutilitymeter")]
         public ActionResult AddUtilityMeter(UtilityMeterDTO utilityMeterDTO)
         {
@@ -61,6 +65,8 @@ namespace DormitoryServer.Controllers
             return Ok();
         }
 
+
+        [Authorize(Policy = "Staff,Manager, Admin")]
         [HttpPut("updateutilitymeter")]
         public ActionResult EditUtilityMeter(UtilityMeterDTO utilityMeterDTO)
         {

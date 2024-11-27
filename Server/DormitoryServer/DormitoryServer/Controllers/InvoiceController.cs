@@ -17,6 +17,7 @@ namespace DormitoryServer.Controllers
             _context = new DataDormitoryContext();
         }
 
+        [Authorize(Roles = "Admin, Accountant")]
         [HttpGet("getalldorminvoice")]
         public ActionResult GetAllDormInvoice()
         {
@@ -45,6 +46,7 @@ namespace DormitoryServer.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin, Accountant")]
         [HttpGet("getallroominvoice")]
         public ActionResult GetAllRoomInvoice()
         {
@@ -97,7 +99,7 @@ namespace DormitoryServer.Controllers
             return Ok(result);
         }
 
-        [Authorize(Policy = "Manager")]
+        [Authorize(Roles = "Admin, Accountant")]
         [HttpGet("getallroominvoicenew")]
         public ActionResult GetAllRoomInvoiceNew()
         {
@@ -219,7 +221,7 @@ namespace DormitoryServer.Controllers
             return Ok(result);
         }
 
-        [Authorize(Policy = "Manager")]
+        [Authorize(Roles = "Admin, Accountant")]
         [HttpGet("approveroominvoicenew")]
         public ActionResult ApproveRoomInvoiceNew()
         {
