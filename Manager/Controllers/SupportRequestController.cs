@@ -13,15 +13,29 @@ namespace Manager.Controllers
         }
         public IActionResult List()
         {
-            List<Request> requests = _requestData.GetAllRequest().Result;
-            return View(requests);
+            try
+            {
+                List<Request> requests = _requestData.GetAllRequest().Result;
+                return View(requests);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error401");
+            }
         }
         [HttpGet]
         public IActionResult Detail(int id)
         {
-            List<Request> requests = _requestData.GetAllRequest().Result;
-            var rq = requests.Find(r => r.RequestID == id);
-            return View(rq);
+            try
+            {
+                List<Request> requests = _requestData.GetAllRequest().Result;
+                var rq = requests.Find(r => r.RequestID == id);
+                return View(rq);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error401");
+            }
         }
         public async Task<IActionResult> Method(string? searchString, string? filterStatus, string? sortOrder)
         {
@@ -56,9 +70,21 @@ namespace Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> ResponseAsync(Request request)
         {
-            request.Status = "Đã xử lý";
-            await _requestData.Response(request);
-            return RedirectToAction("List");
+            try
+            {
+                request.Status = "Đã xử lý";
+                await _requestData.Response(request);
+                return RedirectToAction("List");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error401");
+            }
+        }
+        public IActionResult Error401()
+        {
+            ViewBag.Error = "Bạn không có quyền sử dụng chức năng này";
+            return View("Error401");
         }
     }
 }

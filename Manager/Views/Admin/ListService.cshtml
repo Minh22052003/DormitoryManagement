@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Manager.Models.Service>
+﻿@using Manager.Helpers
+@model IEnumerable<Manager.Models.Service>
 
 @{
     ViewData["Title"] = "Danh sách dịch vụ";
@@ -58,7 +59,7 @@
                                         <td>@s.ServiceID</td>
                                         <td>@s.ServiceName</td>
                                         <td>@s.Unit</td>
-                                        <td>@s.Price</td>
+                                        <td>@PriceHelper.FormatPrice(s.Price ?? 0) VND</td>
                                     </tr>
                                     i = i + 1;
                                 }

@@ -3,7 +3,12 @@
 @{
     ViewData["Title"] = "Danh sách thông báo";
 }
-
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        alert('@Html.Raw(TempData["SuccessMessage"])');
+    </script>
+}
 <div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
         <div class="row">

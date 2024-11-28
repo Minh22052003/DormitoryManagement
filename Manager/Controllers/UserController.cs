@@ -35,15 +35,9 @@ namespace Manager.Controllers
                 .ToList();
                 return View(filteredStudents);
             }
-            catch (UnauthorizedAccessException ex)
-            {
-                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
-                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách sinh viên." });
-            }
             catch (Exception ex)
             {
-                // Xử lý các lỗi khác
-                return RedirectToAction("Error", new { message = ex });
+                return RedirectToAction("Error401");
             }
         }
         public IActionResult SearchStudents(string searchText, string searchType)
@@ -69,8 +63,6 @@ namespace Manager.Controllers
 
             return View("Student", students); // Trả về view "Student" với kết quả tìm kiếm
         }
-
-
         public IActionResult SortStudents(int sortOption)
         {
             List<Student> students = _studentData.GetAllStudentAsyn().Result;
@@ -106,22 +98,13 @@ namespace Manager.Controllers
                 Console.WriteLine(student.Gender);
                 return View(student);
             }
-            catch (UnauthorizedAccessException ex)
-            {
-                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
-                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào thông tin sinh viên." });
-            }
             catch (Exception ex)
             {
                 // Xử lý các lỗi khác
-                return RedirectToAction("Error", new { message = "Có lỗi xảy ra, vui lòng thử lại sau." });
+                return View("Error401");
             }
             
         }
-
-
-
-
         [HttpGet]
         public IActionResult Staff()
         {
@@ -130,15 +113,9 @@ namespace Manager.Controllers
                 List<Staff> staffs = _staffData.GetAllStaffAsync().Result;
                 return View(staffs);
             }
-            catch (UnauthorizedAccessException ex)
-            {
-                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
-                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách nhân viên." });
-            }
             catch (Exception ex)
             {
-                // Xử lý các lỗi khác
-                return RedirectToAction("Error", new { message = "Có lỗi xảy ra, vui lòng thử lại sau." });
+                return RedirectToAction("Error401");
             }
             
         }
@@ -193,7 +170,6 @@ namespace Manager.Controllers
             }
             return View("Staff", staff); // Trả về view "Staff" với danh sách đã được lọc
         }
-
         [HttpGet]
         public IActionResult StaffDetail(string id)
         {
@@ -205,20 +181,13 @@ namespace Manager.Controllers
                 var staff = staffs.Find(s => s.StaffID == id);
                 return View(staff);
             }
-            catch (UnauthorizedAccessException ex)
-            {
-                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
-                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách nhân viên." });
-            }
             catch (Exception ex)
             {
                 // Xử lý các lỗi khác
-                return RedirectToAction("Error", new { message = "Có lỗi xảy ra, vui lòng thử lại sau." });
+                return RedirectToAction("Error401");
             }
             
         }
-
-
         [HttpPost]
         public async Task<IActionResult> UpdateStudentAsync(Student updatedStudent)
         {
@@ -230,9 +199,6 @@ namespace Manager.Controllers
 
             return RedirectToAction("TTCN", "User");
         }
-
-
-
         [HttpPost]
         public async Task<IActionResult> UpdateStaffAsync(Staff updatedStaff)
         {
@@ -244,7 +210,6 @@ namespace Manager.Controllers
 
             return RedirectToAction("TTCN", "User");
         }
-
         [HttpPost]
         public async Task<IActionResult> UpdateProfileAsync(Staff updatedStaff)
         {
@@ -256,8 +221,6 @@ namespace Manager.Controllers
 
             return RedirectToAction("TTCN", "User");
         }
-
-
         [HttpGet]
         public IActionResult TTCN()
         {
@@ -269,21 +232,10 @@ namespace Manager.Controllers
             var staff = _staffData.GetStaffAsync().Result;
             return View(staff);
         }
-
-        
-
-
-
-
-
-
-
-        public IActionResult Error(string message)
+        public IActionResult Error401()
         {
-            ViewData["Message"] = message;
-            return View("Error");
-        }  
-
-
+            ViewBag.Error = "Bạn không có quyền sử dụng chức năng này";
+            return View("Error401");
+        }
     }
 }

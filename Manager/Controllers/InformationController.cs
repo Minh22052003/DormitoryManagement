@@ -19,8 +19,15 @@ namespace Manager.Controllers
         }
         public IActionResult Announcement()
         {
-            List<AnnouncementRQ> announcementrqs = _announcementData.GetAllAnnouncement().Result;
-            return View(announcementrqs);
+            try
+            {
+                List<AnnouncementRQ> announcementrqs = _announcementData.GetAllAnnouncement().Result;
+                return View(announcementrqs);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error401");
+            }
         }
 
         [HttpGet]
@@ -72,29 +79,42 @@ namespace Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> Create_Announcement(Announcement announcementrq)
         {
-            if(announcementrq == null)
+            try
             {
-                return RedirectToAction("Create_Announcement");
+                Console.WriteLine("Test");
+                var announcement = new AnnouncementRQ
+                {
+                    Title = announcementrq.Title,
+                    Content = announcementrq.Content,
+                    Target = announcementrq.Target,
+                    //Image = await ViewImage.ConvertFormFileToBase64Async(announcementrq.Image),
+                };
+                Console.WriteLine(announcement.Image);
+                await _announcementData.CreateAnnouncement(announcement);
+                // Gửi thông báo thành công
+                TempData["SuccessMessage"] = "Thông báo đã được tạo thành công!";
+                return RedirectToAction("Announcement"); // Chuyển hướng đến trang danh sách thông báo hoặc trang khác
             }
-            Console.WriteLine("Test");
-            var announcement = new AnnouncementRQ
+            catch (Exception ex)
             {
-                Title = announcementrq.Title,
-                Content = announcementrq.Content,
-                Target = announcementrq.Target,
-                //Image = await ViewImage.ConvertFormFileToBase64Async(announcementrq.Image),
-            };
-            Console.WriteLine(announcement.Image);
-            await _announcementData.CreateAnnouncement(announcement);
-            return View();
+                return RedirectToAction("Error401");
+            } 
         }
 
 
 
         public async Task<IActionResult> DeleteAnnouncement(int id)
         {
-            await _announcementData.DeleteAnnouncement(id);
-            return RedirectToAction("Announcement");
+            try
+            {
+                await _announcementData.DeleteAnnouncement(id);
+                return RedirectToAction("Announcement");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error401");
+            }
+            
         }
 
 
@@ -105,15 +125,10 @@ namespace Manager.Controllers
                 List<News> newsList = _newData.GetAllNews().Result;
                 return View(newsList);
             }
-            catch (UnauthorizedAccessException ex)
-            {
-                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
-                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách sinh viên." });
-            }
             catch (Exception ex)
             {
                 // Xử lý các lỗi khác
-                return RedirectToAction("Error", new { message = ex });
+                return RedirectToAction("Error401");
             }
         }
         [HttpGet]
@@ -163,23 +178,31 @@ namespace Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> Create_NewsAsync(News @new)
         {
-            var staffid = HttpContext.Session.GetString("staffid");
-            if (@new == null)
+            try
             {
-                return RedirectToAction("Create_News");
+                var staffid = HttpContext.Session.GetString("staffid");
+                if (@new == null)
+                {
+                    return RedirectToAction("Create_News");
+                }
+                var news = new News
+                {
+                    Title = @new.Title,
+                    Content = @new.Content,
+                    StaffID = staffid,
+                    StaffName = HttpContext.Session.GetString("fullname"),
+                    Status = "Active",
+                    CreationDate = DateTime.Now,
+                };
+                await _newData.CreateNews(news);
+                List<News> newsList = _newData.GetAllNews().Result;
+                return View("News", newsList);
             }
-            var news = new News
+            catch (Exception ex)
             {
-                Title = @new.Title,
-                Content = @new.Content,
-                StaffID = staffid,
-                StaffName = HttpContext.Session.GetString("fullname"),
-                Status = "Active",
-                CreationDate = DateTime.Now,
-            };
-            await _newData.CreateNews(news);
-            List<News> newsList = _newData.GetAllNews().Result;
-            return View("News", newsList);
+                return RedirectToAction("Error401");
+            }
+            
         }
 
 
@@ -189,6 +212,10 @@ namespace Manager.Controllers
             sampleAnnouncements = sampleAnnouncements.Where(sa => sa.Target == "NhanVien" || sa.Target == "TatCa").ToList();
             return View(sampleAnnouncements);
         }
-
+        public IActionResult Error401()
+        {
+            ViewBag.Error = "Bạn không có quyền sử dụng chức năng này";
+            return View("Error401");
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Manager.Data;
 using Manager.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace Manager.Controllers
 {
@@ -50,10 +51,6 @@ namespace Manager.Controllers
             }
             return RedirectToAction("ListBuilding");
         }
-
-
-
-
         [HttpGet]
         public IActionResult ListRoomType()
         {
@@ -67,17 +64,16 @@ namespace Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> AddRoomType(RoomType roomType)
         {
-            if(roomType == null)
+            try
             {
+                await _roomTypeData.AddRoomtype(roomType);
                 return RedirectToAction("ListRoomType");
             }
-            await _roomTypeData.AddRoomtype(roomType);
-            return RedirectToAction("ListRoomType");
+            catch (Exception e)
+            {
+                return RedirectToAction("Error401", e);
+            }
         }
-
-
-
-
         [HttpGet]
         public IActionResult ListRole()
         {
@@ -91,18 +87,16 @@ namespace Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> AddRole(Role role)
         {
-            if (role == null)
+            try
             {
+                await _roleData.AddRole(role);
                 return RedirectToAction("ListRole");
             }
-            await _roleData.AddRole(role);
-            return RedirectToAction("ListRole");
+            catch (Exception e)
+            {
+                return RedirectToAction("Error401", e);
+            }
         }
-
-
-
-
-
         [HttpGet]
         public IActionResult ListEquipment()
         {
@@ -117,18 +111,16 @@ namespace Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> AddEquipment(Equipment equipment)
         {
-            if (equipment == null)
+            try
             {
+                await _equipmentData.AddEquipment(equipment);
                 return RedirectToAction("ListEquipment");
             }
-            await _equipmentData.AddEquipment(equipment);
-            return RedirectToAction("ListEquipment");
+            catch (Exception e)
+            {
+                return RedirectToAction("Error401", e);
+            }
         }
-
-
-
-
-
         [HttpGet]
         public IActionResult ListService()
         {
@@ -143,18 +135,16 @@ namespace Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> AddService(Service service)
         {
-            if (service == null)
+            try
             {
+                await _serviceData.AddService(service);
                 return RedirectToAction("ListService");
             }
-            await _serviceData.AddService(service);
-            return RedirectToAction("ListService");
+            catch (Exception e)
+            {
+                return RedirectToAction("Error401", e);
+            }
         }
-
-
-
-
-
         [HttpGet]
         public IActionResult AddRoom()
         {
@@ -169,17 +159,16 @@ namespace Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> AddRoom(Room room)
         {
-            if(room == null)
+            try
             {
-                return View();
+                await _roomData.AddRoom(room);
+                return RedirectToAction("ListBuilding");
             }
-            await _roomData.AddRoom(room);
-            return RedirectToAction("ListBuilding");
+            catch (Exception e)
+            {
+                return RedirectToAction("Error401", e);
+            }
         }
-
-
-        
-        
         [HttpGet]
         public IActionResult StaffRegistration()
         {

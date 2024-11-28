@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Manager.Models.RoomType>
+﻿@using Manager.Helpers
+@model IEnumerable<Manager.Models.RoomType>
 
 @{
     ViewData["Title"] = "Danh sách loại phòng";
@@ -57,7 +58,7 @@
                                     <td>@rt.RoomTypeID</td>
                                     <td>@rt.RoomTypeName</td>
                                     <td>@rt.Capacity</td>
-                                    <td>@rt.RoomPrice VND</td>
+                                    <td>@PriceHelper.FormatPrice(@rt.RoomPrice ?? 0) VND</td>
                                 </tr>
                                 i = i + 1;
                             }

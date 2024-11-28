@@ -15,8 +15,15 @@ namespace Manager.Controllers
         }
         public IActionResult DormInvoice()
         {
-            List<DormInvoice> dormInvoices = _invoiceData.GetAllDormInvoice().Result;
-            return View(dormInvoices);
+            try
+            {
+                List<DormInvoice> dormInvoices = _invoiceData.GetAllDormInvoice().Result;
+                return View(dormInvoices);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error401");
+            }
         }
 
         [HttpGet]
@@ -32,9 +39,17 @@ namespace Manager.Controllers
         }
         public IActionResult RoomInvoice()
         {
-            List<RoomInvoice> roomInvoices = _invoiceData.GetAllRoomInvoice().Result;
-            var notpendingInvoices = roomInvoices.Where(ri => ri.Status != "Pending Approval").ToList();
-            return View(notpendingInvoices);
+            try
+            {
+                List<RoomInvoice> roomInvoices = _invoiceData.GetAllRoomInvoice().Result;
+                var notpendingInvoices = roomInvoices.Where(ri => ri.Status != "Pending Approval").ToList();
+                return View(notpendingInvoices);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error401");
+            }
+            
         }
 
         public IActionResult AddRoomInvoice()
@@ -126,6 +141,10 @@ namespace Manager.Controllers
             return View("RoomInvoice", pendingInvoices);
         }
 
-
+        public IActionResult Error401()
+        {
+            ViewBag.Error = "Bạn không có quyền sử dụng chức năng này";
+            return View("Error401");
+        }
     }
 }
