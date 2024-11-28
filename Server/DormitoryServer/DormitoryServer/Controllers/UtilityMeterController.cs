@@ -17,7 +17,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
-        [Authorize(Policy = "Staff,Manager, Admin")]
+        [Authorize(Roles = "Staff,Manager, Admin")]
         [HttpGet("getallutilitymeter")]
         public ActionResult<List<UtilityMeterDTO>> GetAllUtilityMeter()
         {
@@ -47,7 +47,7 @@ namespace DormitoryServer.Controllers
         }
 
 
-        [Authorize(Policy = "Staff,Manager, Admin")]
+        [Authorize(Roles = "Staff,Manager, Admin")]
         [HttpPost("addutilitymeter")]
         public ActionResult AddUtilityMeter(UtilityMeterDTO utilityMeterDTO)
         {

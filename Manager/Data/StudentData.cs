@@ -13,6 +13,7 @@ namespace Manager.Data
         private readonly Hosting _hosting = new Hosting();
         private string nameURL;
         string keygetAllStudent = "/api/Student/getallstudent";
+        string keygetStudentByID = "/api/Student/getstudentbyid";
         string keygetAllStudentbyRoom = "/api/Student/getallstudentbyroom";
         string keyEditStudent = "/api/Student/editstudent";
         string keyAddStudentWithRoom = "/api/Student/addstudentwithroom";
@@ -47,6 +48,29 @@ namespace Manager.Data
             return students;
         }
 
+        public async Task<Student> GetStudentByIDAsyn(string id)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            if (string.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Token không tồn tại trong session.");
+            }
+
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var url = $"{nameURL}{keygetAllStudent}?id={id}";
+
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(response.StatusCode);
+                throw new HttpRequestException($"Yêu cầu thất bại với mã trạng thái: {response.StatusCode}");
+            }
+
+            string responseData = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<Student>(responseData);
+        }
 
 
 

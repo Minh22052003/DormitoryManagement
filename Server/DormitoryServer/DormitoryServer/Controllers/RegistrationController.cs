@@ -20,7 +20,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "Admin, Manager")]
+        [Authorize(Roles = "Admin, Manager, Staff")]
         [HttpGet("getallregistration")]
         public ActionResult<List<RegistrationDTO>> GetAllRegistration()
         {
@@ -102,7 +102,7 @@ namespace DormitoryServer.Controllers
 
 
 
-        [Authorize(Roles = "Admin,Manager")]
+        [Authorize(Roles = "Admin,Manager,Staff")]
         [HttpPut("updatestatus")]
         public IActionResult UpdateStatus([FromBody] RegistrationDTO registrationDTO)
         {
@@ -111,6 +111,16 @@ namespace DormitoryServer.Controllers
             if(registrationDTO.ApplicationStatus == "Approved")
             {
                 Student student = _context.Students.Find(registration.StudentId);
+                var rooms = _context.Rooms.Include(r => r.RoomType).ToList();
+                foreach (var item in rooms)
+                {
+                    if (item.NumberOfStudent < item.RoomType.Capacity)
+                    {
+                        item.NumberOfStudent++;
+                        student.RoomId = item.RoomId;
+                        break;
+                    }
+                }
                 DateTime birthday;
                 string pass;
                 if (student.BirthDate.HasValue)

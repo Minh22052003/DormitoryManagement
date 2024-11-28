@@ -30,15 +30,10 @@ namespace Manager.Controllers
                 List<Room> rooms = _roomData.GetAllRoom().Result;
                 return View(rooms);
             }
-            catch (UnauthorizedAccessException ex)
-            {
-                // Nếu người dùng không có quyền truy cập, chuyển hướng đến trang lỗi
-                return RedirectToAction("Error", new { message = "Bạn không có quyền truy cập vào danh sách sinh viên." });
-            }
             catch (Exception ex)
             {
                 // Xử lý các lỗi khác
-                return RedirectToAction("Error", new { message = ex });
+                return RedirectToAction("Error401");
             }
         }
         [HttpGet]
@@ -402,6 +397,11 @@ namespace Manager.Controllers
                 roomName = r.RoomName
             }).ToList();
             return Json(rooms1);
+        }
+        public IActionResult Error401()
+        {
+            ViewBag.Error = "Bạn không có quyền sử dụng chức năng này";
+            return View("Error401");
         }
     }
 }

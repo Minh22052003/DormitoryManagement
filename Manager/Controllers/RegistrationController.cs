@@ -14,9 +14,17 @@ namespace Manager.Controllers
         }
         public IActionResult Registrations()
         {
-            List<RegistrationVM> registrations = _registrationData.GetAllRegistration().Result;
-            var registrationT = registrations.Where(r => r.ApplicationStatus == "Approved" || r.ApplicationStatus == "Refuse");
-            return View(registrationT);
+            try
+            {
+                List<RegistrationVM> registrations = _registrationData.GetAllRegistration().Result;
+                var registrationT = registrations.Where(r => r.ApplicationStatus == "Approved" || r.ApplicationStatus == "Refuse");
+                return View(registrationT);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error401");
+            }
+            
         }
         [HttpGet]
         public IActionResult Search(string searchTerm)
@@ -41,9 +49,16 @@ namespace Manager.Controllers
 
         public IActionResult nRegistrations()
         {
-            List<RegistrationVM> registrations = _registrationData.GetAllRegistration().Result;
-            var registrationF = registrations.Where(r => r.ApplicationStatus == "Pending");
-            return View(registrationF);
+            try
+            {
+                List<RegistrationVM> registrations = _registrationData.GetAllRegistration().Result;
+                var registrationF = registrations.Where(r => r.ApplicationStatus == "Pending");
+                return View(registrationF);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error401");
+            }
         }
         [HttpGet]
         public IActionResult RegistrationDetail(string id)
@@ -65,7 +80,7 @@ namespace Manager.Controllers
             RegistrationVM registrationVM = new RegistrationVM();
             registrationVM.RegistrationID = id;
             registrationVM.ApplicationStatus = "Approved";
-            _registrationData.UpdateRegistration(registrationVM);
+            var x = _registrationData.UpdateRegistration(registrationVM);
             return RedirectToAction("Registrations");
         }
         [HttpPost]
@@ -74,8 +89,13 @@ namespace Manager.Controllers
             RegistrationVM registrationVM = new RegistrationVM();
             registrationVM.RegistrationID = id;
             registrationVM.ApplicationStatus = "Refuse";
-            _registrationData.UpdateRegistration(registrationVM);
-            return View("Registrations");
+            var x = _registrationData.UpdateRegistration(registrationVM);
+            return RedirectToAction("Registrations");
+        }
+        public IActionResult Error401()
+        {
+            ViewBag.Error = "Bạn không có quyền sử dụng chức năng này";
+            return View("Error401");
         }
     }
 }

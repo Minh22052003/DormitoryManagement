@@ -2,6 +2,7 @@
 
 @{
     var Name = HttpContextAccessor.HttpContext.Session.GetString("fullname");
+    var Role = HttpContextAccessor.HttpContext.Session.GetString("role");
 }
 
 <!DOCTYPE html>
@@ -33,6 +34,7 @@
 
     <!-- Template Stylesheet -->
     <link href="~/css/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 </head>
 
@@ -55,10 +57,24 @@
                 <div class="navbar-nav w-100">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-people me-2"></i>Quản lý người dùng</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a asp-controller="User" asp-action="Student" class="dropdown-item ms-3"><i class="bi bi-person-circle me-2"></i> Sinh viên</a>
-                            <a asp-controller="User" asp-action="Staff" class="dropdown-item ms-3"><i class="bi bi-person-circle me-2"></i> Nhân viên</a>
-                        </div>
+                        @if(Role == "Staff")
+                        {
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a asp-controller="User" asp-action="Student" class="dropdown-item ms-3"><i class="bi bi-person-circle me-2"></i> Sinh viên</a>
+                            </div>
+                        }
+                        else if(Role == "Accountant")
+                        {
+                            
+                        }
+                        else
+                        {
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a asp-controller="User" asp-action="Student" class="dropdown-item ms-3"><i class="bi bi-person-circle me-2"></i> Sinh viên</a>
+                                <a asp-controller="User" asp-action="Staff" class="dropdown-item ms-3"><i class="bi bi-person-circle me-2"></i> Nhân viên</a>
+                            </div>
+                        }
+                        
                     </div>
                     <a asp-controller="Information" asp-action="News" class="nav-item nav-link"><i class="fa bi bi-newspaper"></i>Bảng tin KTX</a>
                     <a asp-controller="Information" asp-action="Announcement" class="nav-item nav-link"><i class="bi bi-megaphone-fill me-2"></i>Thông báo</a>
@@ -70,28 +86,41 @@
                         </div>
                     </div>
                     <a asp-controller="UtilityMeter" asp-action="List" class="nav-item nav-link"><i class="bi bi-droplet-half me-2"></i>Số điện, nước</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-receipt-cutoff me-2"></i>Hóa đơn/ Biên lai</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a asp-controller="Invoice" asp-action="RoomInvoice" class="dropdown-item ms-3"><i class="bi bi-house-fill me-2"></i> Phòng</a>
-                            <a asp-controller="Invoice" asp-action="DormInvoice" class="dropdown-item ms-3"><i class="fa fa-solid fa-building me-2"></i> KTX</a>
+                    @if (Role == "Admin" || Role == "Manager" || Role == "Accountant")
+                    {
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-receipt-cutoff me-2"></i>Hóa đơn/ Biên lai</a>
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a asp-controller="Invoice" asp-action="RoomInvoice" class="dropdown-item ms-3"><i class="bi bi-house-fill me-2"></i> Phòng</a>
+                                <a asp-controller="Invoice" asp-action="DormInvoice" class="dropdown-item ms-3"><i class="fa fa-solid fa-building me-2"></i> KTX</a>
+                            </div>
                         </div>
-                    </div>
-                    <a asp-controller="Room" asp-action="Room" class="nav-item nav-link"><i class="bi bi-house-fill me-2"></i>Quản lý phòng</a>
+                    }
+                    @if (Role == "Admin" || Role == "Manager" || Role == "Staff")
+                    {
+                        <a asp-controller="Room" asp-action="Room" class="nav-item nav-link"><i class="bi bi-house-fill me-2"></i>Quản lý phòng</a>
+                    }
+                    
                     <a asp-controller="SupportRequest" asp-action="List" class="nav-item nav-link"><i class="bi bi-question-square-fill me-2"></i>Yêu cầu hỗ trợ</a>
-                    <a asp-controller="BaoCaoThongKe" asp-action="Index" class="nav-item nav-link"><i class="bi bi-bar-chart-fill me-2"></i>Báo cáo và thống kê</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-solid fa-user-lock me-2"></i></i>Admin</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a asp-controller="Admin" asp-action="ListBuilding" class="dropdown-item ms-3"><i class="fa fa-solid fa-building me-2"></i> Thêm tòa nhà</a>
-                            <a asp-controller="Admin" asp-action="ListRoomType" class="dropdown-item ms-3"><i class="bi bi-house-fill me-2"></i> Thêm loại phòng</a>
-                            <a asp-controller="Admin" asp-action="AddRoom" class="dropdown-item ms-3"><i class="bi bi-house-fill me-2"></i> Thêm phòng</a>
-                            <a asp-controller="Admin" asp-action="ListRole" class="dropdown-item ms-3"><i class="bi bi-people me-2"></i> Thêm vai trò</a>
-                            <a asp-controller="Admin" asp-action="ListEquipment" class="dropdown-item ms-3"><i class="bi bi-plus-square-fill me-2"></i> Thêm thiết bị</a>
-                            <a asp-controller="Admin" asp-action="ListService" class="dropdown-item ms-3"><i class="fa fa-solid fa-receipt me-2"></i> Thêm dịch vụ</a>
-                            <a asp-controller="Admin" asp-action="StaffRegistration" class="dropdown-item ms-3"><i class="bi bi-person me-2"></i> Duyệt tài khoản</a>
+                    @if (Role == "Admin" || Role == "Manager" || Role == "Accountant")
+                    {
+                        <a asp-controller="BaoCaoThongKe" asp-action="Index" class="nav-item nav-link"><i class="bi bi-bar-chart-fill me-2"></i>Báo cáo và thống kê</a>
+                    }
+                    @if(Role == "Admin")
+                    {
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-solid fa-user-lock me-2"></i>Admin</a>
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a asp-controller="Admin" asp-action="ListBuilding" class="dropdown-item ms-3"><i class="fa fa-solid fa-building me-2"></i> Thêm tòa nhà</a>
+                                <a asp-controller="Admin" asp-action="ListRoomType" class="dropdown-item ms-3"><i class="bi bi-house-fill me-2"></i> Thêm loại phòng</a>
+                                <a asp-controller="Admin" asp-action="AddRoom" class="dropdown-item ms-3"><i class="bi bi-house-fill me-2"></i> Thêm phòng</a>
+                                <a asp-controller="Admin" asp-action="ListRole" class="dropdown-item ms-3"><i class="bi bi-people me-2"></i> Thêm vai trò</a>
+                                <a asp-controller="Admin" asp-action="ListEquipment" class="dropdown-item ms-3"><i class="bi bi-plus-square-fill me-2"></i> Thêm thiết bị</a>
+                                <a asp-controller="Admin" asp-action="ListService" class="dropdown-item ms-3"><i class="fa fa-solid fa-receipt me-2"></i> Thêm dịch vụ</a>
+                                <a asp-controller="Admin" asp-action="StaffRegistration" class="dropdown-item ms-3"><i class="bi bi-person me-2"></i> Duyệt tài khoản</a>
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
             </nav>
         </div>

@@ -54,8 +54,15 @@ namespace Manager.Controllers
 
         public IActionResult List()
         {
-            List<UtilityMeter> utilityMeters = _utilityMeterData.GetAllUtilityMeter().Result;
-            return View(utilityMeters);
+            try
+            {
+                List<UtilityMeter> utilityMeters = _utilityMeterData.GetAllUtilityMeter().Result;
+                return View(utilityMeters);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error401");
+            }
         }
         public IActionResult SearchOrSort(string searchBy, string searchValue, string sortOrder)
         {
@@ -103,6 +110,11 @@ namespace Manager.Controllers
         {
             _utilityMeterData.CreateUtilityMeter(utilityMeter);
             return RedirectToAction("List");
+        }
+        public IActionResult Error401()
+        {
+            ViewBag.Error = "Bạn không có quyền sử dụng chức năng này";
+            return View("Error401");
         }
     }
 }

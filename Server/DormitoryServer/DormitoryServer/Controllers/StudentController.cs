@@ -164,6 +164,77 @@ namespace DormitoryServer.Controllers
             return Ok(studentDTO);
         }
 
+        [Authorize(Roles = "Admin, Manager, Staff")]
+        [HttpGet("getstudentbyid")]
+        public async Task<ActionResult<StudentDTO>> GetStudentByID(string id)
+        {
+            var studenId = id;
+            var student = await _context.Students
+                .Include(s => s.Class)
+                    .ThenInclude(c => c.Faculty)
+                .Include(s => s.Class)
+                    .ThenInclude(c => c.Course)
+                .Include(s => s.Room)
+                    .ThenInclude(r => r.Building)
+                .Include(s => s.Province)
+                .FirstOrDefaultAsync(s => s.StudentId == studenId);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+            var studentDTO = new StudentDTO
+            {
+                StudentID = student.StudentId,
+                ClassID = student.ClassId,
+                ClassName = student.Class?.ClassName,
+                CourseID = student.Class?.CourseId,
+                CourseName = student.Class?.Course?.CourseName,
+                FacultyID = student.Class?.FacultyId,
+                FacultyName = student.Class?.Faculty?.FacultyName,
+                RoomID = student.RoomId,
+                RoomName = student.Room?.RoomName,
+                BuildingID = student.Room?.BuildingId,
+                BuildingName = student.Room?.Building?.BuildingName,
+                FullName = student?.FullName,
+                BirthDate = student.BirthDate,
+                Gender = student.Gender,
+                PhoneNumber = student.PhoneNumber,
+                Email = student.Email,
+                ProvinceID = student.ProvinceId,
+                ProvinceName = student.Province?.ProvinceName,
+                District = student.District,
+                Ward = student.Ward,
+                Street = student.Street,
+                IDCard = student.Idcard,
+                IsLeader = student.IsLeader,
+                Ethnicity = student.Ethnicity,
+                Religion = student.Religion,
+                Nationality = student.Nationality,
+                DateOfIssueOfIDCard = student.DateOfIssueOfIdcard,
+                PlaceOfIssueOfIDCard = student.PlaceOfIssueOfIdcard,
+                PolicyCoverage = student.PolicyCoverage,
+                InsuranceNumber = student.InsuranceNumber,
+                NgayCapBHXH = student.NgayCapBhxh,
+                GiaTriSuDungTuNgay = student.GiaTriSuDungTuNgay,
+                ThoiDiem5NamLienTuc = student.ThoiDiem5NamLienTuc,
+                IDTinhCapBHXH = student.IdtinhCapBhxh,
+                TenTinhCapBHXH = "Unknown",
+                KhamBenhBanDau = student.KhamBenhBanDau,
+                AnhThe4x6 = student.AnhThe4x6,
+                AnhCMNDMatTruoc = student.AnhCmndmatTruoc,
+                AnhCMNDMatSau = student.AnhCmndmatSau,
+                AnhBHYTMatTruoc = student.AnhBhytmatTruoc,
+                RelativeID = GetRelative(student.StudentId).RelativeId,
+                RelativeName = GetRelative(student.StudentId).FullName,
+                RelativePhoneNumber = GetRelative(student.StudentId).PhoneNumber,
+                RelativeAddress = GetRelative(student.StudentId).Address,
+            };
+
+            return Ok(studentDTO);
+        }
+
+
 
         [Authorize(Roles = "Admin, Manager, Staff")]
         [HttpGet("getallstudentbyroom")]

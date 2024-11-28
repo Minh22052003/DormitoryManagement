@@ -1,4 +1,5 @@
-﻿@model Manager.Models.Room
+﻿@using Manager.Helpers
+@model Manager.Models.Room
 
 @{
     var i = 1;
@@ -130,7 +131,7 @@
                                 <tr>
                                     <td>@j</td>
                                     <td>@e.EquipmentName</td>
-                                    <td>@e.Price VND</td>
+                                    <td>@PriceHelper.FormatPrice(e.Price ?? 0) VND</td>
                                     <td>@e.Quantity</td>
                                     <td>@e.Condition</td>
                                      @* <td><a asp-controller="Room" asp-action="EditEquipment" asp-route-id="@e.EquipmentID" class="btn btn-danger">Sửa trạng thái</a></td> *@

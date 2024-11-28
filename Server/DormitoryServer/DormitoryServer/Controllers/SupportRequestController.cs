@@ -17,7 +17,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
-        [Authorize(Policy = "Staff,Manager, Admin")]
+        [Authorize(Roles = "Staff,Manager, Admin")]
         [HttpGet("getallsupportrequest")]
         public IActionResult GetAllSupportRequest()
         {
@@ -125,7 +125,7 @@ namespace DormitoryServer.Controllers
         }
 
 
-        [Authorize(Policy = "Staff,Manager, Admin")]
+        [Authorize(Roles = "Staff,Manager, Admin")]
         [HttpPut("processrequest")]
         public async Task<IActionResult> ProcessRequestAsync(RequestDTO requestDTO)
         {
