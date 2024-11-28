@@ -121,7 +121,7 @@ namespace DormitoryServer.Controllers
                 .FirstOrDefaultAsync();
             if(accountStafftmp != null)
             {
-                return BadRequest("Tài khoản đã tồn tại");
+                return BadRequest("Tài khoản hoặc email đã tồn tại");
             }
             var accountStaff = new AccountStaff
             {
@@ -135,8 +135,7 @@ namespace DormitoryServer.Controllers
             
         }
 
-        //Chấp nhận tài khoản nhân viên
-        [Authorize(Roles = "Admin,Manager")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("acceptaccount")]
         public async Task<IActionResult> AcceptAccount([FromBody] AccountStaffDTO accountStaffDTO)
         {
@@ -160,7 +159,23 @@ namespace DormitoryServer.Controllers
             return Ok("Chấp nhận tài khoản thành công");
         }
 
-        //Đổi mật khẩu nhân viên
+        [Authorize(Roles = "Admin")]
+        [HttpPost("rejectaccount")]
+        public async Task<IActionResult> RejectAccount([FromBody] StaffRegistration staffRegistration)
+        {
+            var accountStaff = await _context.AccountStaffs
+                .Where(a => a.Email == staffRegistration.Email)
+                .FirstOrDefaultAsync();
+            if (accountStaff == null)
+            {
+                return NotFound("Tài khoản không tồn tại");
+            }
+            _context.AccountStaffs.Remove(accountStaff);
+            await _context.SaveChangesAsync();
+            return Ok("Không chấp nhận tài khoản thành công");
+        }
+
+        //Đổi mật khẩu nhân viên 
         [Authorize]
         [HttpPost("changepassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordDTO changePasswordDTO)

@@ -194,10 +194,15 @@ namespace Manager.Controllers
             await _accountData.AcceptAccount(accountStaff);
             return RedirectToAction("StaffRegistration");
         }
-        [HttpGet]
-        public IActionResult RejectStaff(int id)
+        [HttpPost]
+        public async Task<IActionResult> RejectStaffAsync([FromForm] StaffRegistration staffRegistration)
         {
-            return View();
+            var accountStaff = new AccountStaff()
+            {
+                Email = staffRegistration.Email,
+            };
+            await _accountData.RejectAccount(accountStaff);
+            return RedirectToAction("StaffRegistration");
         }
 
 

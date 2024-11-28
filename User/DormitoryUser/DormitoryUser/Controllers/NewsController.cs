@@ -15,9 +15,7 @@ namespace DormitoryUser.Controllers
         }
         public IActionResult Index()
         {
-            // Tạo dữ liệu mẫu
             var newsList = _newsdata.GetAllNews().Result;
-            // Truyền dữ liệu mẫu vào view
             return View(newsList);
         }
     }

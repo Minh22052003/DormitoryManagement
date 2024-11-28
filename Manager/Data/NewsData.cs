@@ -13,6 +13,7 @@ namespace Manager.Data
         private string nameURL;
         string keygetallnews = "/api/News/getallnews";
         string keyaddnews = "/api/News/addnews";
+        string keyupdatenews = "/api/News/updatestatusnews";
 
         public NewsData(IHttpContextAccessor httpContextAccessor)
         {
@@ -47,6 +48,21 @@ namespace Manager.Data
             var json = JsonConvert.SerializeObject(news);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await _httpClient.PostAsync(url, data);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.StatusCode.ToString());
+            }
+        }
+
+        public async Task UpdateNews(News news)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var url = nameURL + keyupdatenews;
+            var json = JsonConvert.SerializeObject(news);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PutAsync(url, data);
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception(response.StatusCode.ToString());

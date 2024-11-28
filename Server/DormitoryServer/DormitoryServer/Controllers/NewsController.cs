@@ -38,6 +38,28 @@ namespace DormitoryServer.Controllers
             return Ok(newsDTOs);
         }
 
+
+        [HttpGet("getallnewsforstudent")]
+        public IActionResult GetAllNewsForStudent()
+        {
+            var news = _context.News.Include("Staff").Where(n=>n.Status== "Active").ToList();
+            List<NewsDTO> newsDTOs = new List<NewsDTO>();
+            foreach (var item in news)
+            {
+                NewsDTO newsDTO = new NewsDTO();
+                newsDTO.NewsID = item.NewsId;
+                newsDTO.StaffID = item.StaffId;
+                newsDTO.StaffName = item.Staff?.FullName;
+                newsDTO.Title = item.Title;
+                newsDTO.Content = item.Content;
+                newsDTO.Status = item.Status;
+                newsDTO.CreationDate = item.CreationDate;
+                newsDTOs.Add(newsDTO);
+            }
+            return Ok(newsDTOs);
+        }
+
+
         [Authorize(Roles = "Admin, Staff")]
         [HttpPost("addnews")]
         public IActionResult AddNews([FromBody] NewsDTO newsDTO)
@@ -49,6 +71,21 @@ namespace DormitoryServer.Controllers
             news.Status = newsDTO.Status;
             news.CreationDate = newsDTO.CreationDate;
             _context.News.Add(news);
+            _context.SaveChanges();
+            return Ok();
+        }
+
+        //Update news
+        [Authorize(Roles = "Admin, Staff")]
+        [HttpPut("updatestatusnews")]
+        public IActionResult UpdateNews([FromBody] NewsDTO newsDTO)
+        {
+            var news = _context.News.Where(n => n.NewsId == newsDTO.NewsID).SingleOrDefault();
+            if (news == null)
+            {
+                return NotFound();
+            }
+            news.Status = newsDTO.Status;
             _context.SaveChanges();
             return Ok();
         }

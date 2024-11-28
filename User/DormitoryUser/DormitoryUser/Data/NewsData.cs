@@ -11,7 +11,7 @@ namespace DormitoryUser.Data
         private readonly Hosting _hosting = new Hosting();
         private readonly IHttpContextAccessor _httpContextAccessor;
         private string nameURL;
-        string keygetallnews = "/api/News/getallnews";
+        string keygetallnews = "/api/News/getallnewsforstudent";
 
         public NewsData(IHttpContextAccessor httpContextAccessor)
         {

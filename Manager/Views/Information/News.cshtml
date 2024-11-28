@@ -67,12 +67,12 @@
                                         if (n.Status == "Active")
 
                                         {
-                                            <td><a class="btn btn-danger m-2">Ẩn tin tức</a></td>
+                                            <td><a class="btn btn-danger m-2" asp-controller="Information" asp-action="UpdateNews" asp-route-id="@n.NewsID" asp-route-status="Hidden">Ẩn tin tức</a></td>
                                         }
 
                                         else
                                         {
-                                            <td><a class="btn btn-success m-2">Hiện tin tức</a></td>
+                                            <td><a class="btn btn-success m-2" asp-controller="Information" asp-action="UpdateNews" asp-route-id="@n.NewsID" asp-route-status="Active">Hiện tin tức</a></td>
                                         }
                                     }
                                 </tr>

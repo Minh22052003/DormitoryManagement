@@ -32,5 +32,6 @@ namespace DormitoryServer.Controllers
             }
             return Ok(registrations);
         }
+
     }
 }

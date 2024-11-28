@@ -18,6 +18,7 @@ namespace Manager.Data
         string keysignout = "/api/Auth/logout";
         string keygetallregistration = "/api/StaffRegistration/getalllregistration";
         string keyacceptregistration = "/api/Auth/acceptaccount";
+        string keyrejectregistration = "/api/Auth/rejectaccount";
         string keychangepassword = "/api/Auth/changepassword";
 
         public AccountData(IHttpContextAccessor httpContextAccessor)
@@ -90,6 +91,25 @@ namespace Manager.Data
             {
                 string responseData = await response.Content.ReadAsStringAsync();
 
+            }
+            else
+            {
+                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+            }
+        }
+
+        public async Task RejectAccount(AccountStaff accountStaff)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameURL + keyrejectregistration;
+            string json = JsonConvert.SerializeObject(accountStaff);
+            StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PostAsync(url, data);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseData = await response.Content.ReadAsStringAsync();
             }
             else
             {

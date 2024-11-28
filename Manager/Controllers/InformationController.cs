@@ -147,6 +147,24 @@ namespace Manager.Controllers
             }
         }
 
+        public async Task<IActionResult> UpdateNewsAsync(int id, string status)
+        {
+            try
+            {
+                News news = new News();
+                news.NewsID = id;
+                news.Status = status;
+                await _newData.UpdateNews(news);
+                return RedirectToAction("News");
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các lỗi khác
+                return RedirectToAction("Error401");
+            }
+        }
+
+
 
 
         [HttpGet]
