@@ -1,9 +1,4 @@
-﻿@model IEnumerable<DormitoryUser.Models.RoomInvoice>
-
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<!-- Main Content -->
+﻿<!-- Main Content -->
 <div class="main-content">
     <section class="section">
 
@@ -27,9 +22,9 @@
                             <h4>Thông tin phòng trọ</h4>
                         </div>
                         <div class="card-body">
-                            <p><strong>Phòng trọ: </strong>@ViewBag.RoomInvoiceF.RoomName</p>
+                            <p><strong>Phòng trọ: </strong>@ViewBag.RoomInvoiceF?.RoomName</p>
                             <p><strong>Tiền trọ: </strong>@ViewBag.RoomPrice đ / 1 kỳ học</p>
-                            <p><strong>Trạng thái: </strong>@ViewBag.RoomInvoiceF.Status</p>
+                            <p><strong>Trạng thái: </strong>@ViewBag.RoomInvoiceF?.Status</p>
                         </div>
                     </div>
                 </div>
@@ -41,14 +36,20 @@
                             <h4>Các khoản phí hàng tháng</h4>
                         </div>
                         <div class="card-body">
-                            @foreach (var t in ViewBag.RoomInvoiceF.Services)
+                            @if (ViewBag.RoomInvoiceF?.Services != null)
 
                             {
-                                <p><strong>- @t?.ServiceName:</strong> @t.Price đ (Số lượng: @t.Quantity)</p>
+
+                                foreach (var t in ViewBag.RoomInvoiceF.Services)
+
+                                {
+                                    <p><strong>- @t?.ServiceName :</strong> @t?.Price đ (Số lượng: @t?.Quantity )</p>
+                                }
+
                             }
                             <hr>
-                            <h5>Tổng: <span id="tong-phi">@ViewBag?.RoomInvoiceF?.TotalAmount</span> đ</h5>
-                            @if (ViewBag?.Profile?.IsLeader)
+                            <h5>Tổng: <span id="tong-phi">@ViewBag.RoomInvoiceF?.TotalAmount </span> đ</h5>
+                            @if (ViewBag.Profile?.IsLeader == true)
 
                             {
                                 <a href="~/Track_Rent/Index" class="btn btn-primary mt-3">Thanh toán</a>
@@ -78,16 +79,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var history in Model)
+                                    @foreach (var history in Model ?? Enumerable.Empty<DormitoryUser.Models.RoomInvoice>())
 
                                     {
                                         <tr>
-                                            <td>@history?.InvoiceID</td>
-                                            <td>@history?.RoomID</td>
-                                            <td>@history?.PayerName</td>
-                                            <td>@history?.PaymentDate?.ToString("dd/MM/yyyy")</td>
-                                            <td>@history?.TotalAmount</td>
-                                            <td>@history?.Note</td>
+                                            <td>@history?.InvoiceID </td>
+                                            <td>@history?.RoomID </td>
+                                            <td>@history?.PayerName </td>
+                                            <td>@history?.PaymentDate?.ToString("dd/MM/yyyy") </td>
+                                            <td>@history?.TotalAmount </td>
+                                            <td>@history?.Note </td>
                                         </tr>
                                     }
                                 </tbody>

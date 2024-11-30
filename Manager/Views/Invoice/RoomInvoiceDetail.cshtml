@@ -9,12 +9,12 @@
 <div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
         <div class="card bg-light rounded h-100 p-4">
-            <form>
+            <form id="roomInvoiceForm" asp-action="UpdateRoomInvoice" asp-controller="Invoice" method="post">
                 <div class="row g-5">
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Mã hóa đơn</label>
-                            <input class="form-control" value="@Model.InvoiceID" disabled>
+                            <input class="form-control" value="@Model.InvoiceID" readonly name="InvoiceID">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
@@ -34,13 +34,13 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Người thanh toán</label>
-                            <input class="form-control" value="@Model.PayerName">
+                            <input asp-for="PayerName" class="form-control" value="@Model.PayerName">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Ngày thanh toán</label>
-                            <input type="date" class="form-control" value="@Model.PaymentDate?.ToString("yyyy-MM-dd")">
+                            <input asp-for="PaymentDate" type="date" class="form-control" value="@Model.PaymentDate?.ToString("yyyy-MM-dd")">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
@@ -66,7 +66,7 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Tình trạng</label>
-                            <input class="form-control" value="@Model.Status" disabled>
+                            <input asp-for="Status" class="form-control" value="@Model.Status" readonly>
                         </div>
                     </div>
                 </div>
@@ -102,13 +102,14 @@
                 </div>
                 <div class="row m-5">
                     @if (Model.Status != "Paid")
+
                     {
                         <div class="col-2">
-                            <a asp-controller="Invoice" asp-action="QR" asp-for="@Model.InvoiceID" class="btn btn-success m-2">Thanh toán </a>
+                            <button type="button" class="btn btn-primary" onclick="submitToConfirm()">Xác nhận thanh toán</button>
                         </div>
                     }
                     <div class="col-2">
-                        <a class="btn btn-success">Lưu thay đổi</a>
+                        <button type="submit" class="btn btn-success" onclick="submitToUpdate()">Lưu thay đổi</button>
                     </div>
                     <div class="col-4"></div>
                 </div>
@@ -116,3 +117,18 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    function submitToUpdate() {
+        const form = document.getElementById('roomInvoiceForm');
+        form.action = '/Invoice/UpdateRoomInvoice';
+        form.submit();
+    }
+
+    function submitToConfirm() {
+        const form = document.getElementById('roomInvoiceForm');
+        form.action = '/Invoice/ConfirmPayment';
+        form.submit();
+    }
+</script>

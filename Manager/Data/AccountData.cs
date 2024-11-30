@@ -44,21 +44,19 @@ namespace Manager.Data
                 return null;
             }
         }
-        public async Task<HttpResponseMessage> Post_SignUpUserAsync(StaffRegistration staffRegistration)
+        public async Task<string> Post_SignUpUserAsync(StaffRegistration staffRegistration)
         {
-            try
+            string json = JsonConvert.SerializeObject(staffRegistration);
+            var url = nameURL + keysignup;
+            StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PostAsync(url, data);
+            if (!response.IsSuccessStatusCode)
             {
-                string json = JsonConvert.SerializeObject(staffRegistration);
-                var url = nameURL + keysignup;
-                StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await _httpClient.PostAsync(url, data);
-                return response;
+                string errorMessage = await response.Content.ReadAsStringAsync();
+                return errorMessage;
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return null;
-            }
+
+            return null;
         }
 
         public async Task<List<StaffRegistration>> GetAllStaffRegistration()

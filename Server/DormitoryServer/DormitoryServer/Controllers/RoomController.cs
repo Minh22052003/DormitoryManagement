@@ -19,7 +19,7 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "Admin,Staff")]
+        [Authorize(Roles = "Admin,Manager,Staff")]
         [HttpGet("getallroom")]
         public async Task<ActionResult<List<RoomDTO>>> GetRooms()
         {
@@ -47,6 +47,31 @@ namespace DormitoryServer.Controllers
             return roomDTOs;
         }
 
+        //[Authorize(Roles = "Admin,Manager,Staff")]
+        [HttpGet("getroombyid")]
+        public async Task<ActionResult<RoomDTO>> GetRoomByID(string idRoom)
+        {
+            var room = await _context.Rooms.Include("Building").Include("RoomType").Include("RoomStatus").Where(r=>r.RoomId == idRoom).FirstOrDefaultAsync();
+            RoomDTO roomDTO= new RoomDTO
+            {
+                RoomID = room.RoomId,
+                RoomTypeID = room.RoomTypeId,
+                BuildingID = room.BuildingId,
+                BuildingName = room.Building?.BuildingName,
+                LeaderID = getLeader(room.RoomId)?.StudentId ?? "Unknown",
+                LeaderName = getLeader(room.RoomId)?.FullName ?? "Unknown",
+                RoomName = room.RoomName,
+                RoomPrice = room.RoomType?.RoomPrice,
+                NumberOfStudent = room.NumberOfStudent,
+                Capacity = room.RoomType?.Capacity,
+                RoomStatusID = room.RoomStatusId,
+                RoomStatusName = room.RoomStatus?.RoomStatusName,
+                RoomNote = room.RoomNote
+            };
+            return roomDTO;
+        }
+
+
         [Authorize]
         [HttpGet("getallroomtype")]
         public async Task<ActionResult<List<RoomTypeDTO>>> GetRoomTypes()
@@ -63,6 +88,21 @@ namespace DormitoryServer.Controllers
                     RoomPrice = roomType.RoomPrice
                 });
             }
+            return roomTypeDTOs;
+        }
+
+        [Authorize]
+        [HttpGet("getroomtypebyid")]
+        public async Task<ActionResult<RoomTypeDTO>> GetRoomTypeByID(int id)
+        {
+            var roomType = await _context.RoomTypes.Where(rt=>rt.RoomTypeId == id).FirstOrDefaultAsync();
+            RoomTypeDTO roomTypeDTOs = new RoomTypeDTO
+            {
+                RoomTypeID = roomType.RoomTypeId,
+                RoomTypeName = roomType.RoomTypeName,
+                Capacity = roomType.Capacity,
+                RoomPrice = roomType.RoomPrice
+            };
             return roomTypeDTOs;
         }
 
@@ -182,6 +222,39 @@ namespace DormitoryServer.Controllers
             _context.SaveChanges();
             return NoContent();
         }
+
+        [Authorize(Roles = "Staff,Manager, Admin")]
+        [HttpPut("donphong")]
+        public async Task<IActionResult> DonPhong(List<StudentDTO> studentdto)
+        {
+            if (studentdto == null)
+            {
+                return BadRequest();
+            }
+            foreach (var studentsau in studentdto)
+            {
+                var studenttrc = await _context.Students.FindAsync(studentsau.StudentID);
+                if (studenttrc == null)
+                {
+                    return NotFound();
+                }
+                var roomtrc = await _context.Rooms.FindAsync(studenttrc.RoomId);
+                if (roomtrc == null)
+                {
+                    return NotFound();
+                }
+                roomtrc.NumberOfStudent -= 1;
+                studenttrc.IsLeader = false;
+                var roomsau = await _context.Rooms.FindAsync(studentsau.RoomID);
+                roomsau.NumberOfStudent += 1;
+                studenttrc.RoomId = studentsau.RoomID;
+            }
+
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+
 
 
         private Student getLeader(string idroom)

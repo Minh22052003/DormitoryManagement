@@ -1,6 +1,7 @@
 ﻿using Manager.Models;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace Manager.Data
 {
@@ -12,6 +13,8 @@ namespace Manager.Data
         private string nameurl;
         string apiKeygetallroominvoicenew = "/api/Invoice/getallroominvoicenew";
         string apiKeyapproveroominvoicenew = "/api/Invoice/approveroominvoicenew";
+        string apiKeyupdateroominvoice = "/api/Invoice/updateroominvoice";
+        string apiKeyupdatestatusroominvoice = "/api/Invoice/updatestatusroominvoice";
 
         public RoomInvoiceData(IHttpContextAccessor httpContextAccessor)//Thêm thằng này
         {
@@ -59,6 +62,33 @@ namespace Manager.Data
 
             string reponseData = await response.Content.ReadAsStringAsync();
             
+        }
+
+        public async Task UpdateRoomInvoice(RoomInvoice roomInvoice)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameurl + apiKeyupdateroominvoice;
+            var json = JsonConvert.SerializeObject(roomInvoice);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PutAsync(url, data);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.StatusCode.ToString());
+            }
+        }
+        public async Task UpdateStatusRoomInvoice(RoomInvoice roomInvoice)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameurl + apiKeyupdatestatusroominvoice;
+            var json = JsonConvert.SerializeObject(roomInvoice);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PutAsync(url, data);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.StatusCode.ToString());
+            }
         }
     }
 }

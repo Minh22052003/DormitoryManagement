@@ -8,10 +8,12 @@ namespace Manager.Controllers
     {
         private readonly InvoiceData _invoiceData;
         private readonly RoomInvoiceData _roominvoiceData;
+        private readonly StudentData _studentData;
         public InvoiceController(IHttpContextAccessor httpContextAccessor)
         {
             _invoiceData = new InvoiceData(httpContextAccessor);
             _roominvoiceData = new RoomInvoiceData(httpContextAccessor);
+            _studentData = new StudentData(httpContextAccessor);
         }
         public IActionResult DormInvoice()
         {
@@ -113,9 +115,13 @@ namespace Manager.Controllers
         {
             List<RoomInvoice> roomInvoices = _invoiceData.GetAllRoomInvoice().Result;
             RoomInvoice roomInvoice = roomInvoices.Find(r => r.InvoiceID == int.Parse(id));
+            List<Student> students = _studentData.GetStudentByRoomAsyn(roomInvoice.RoomID).Result;
+            ViewBag.listStudent = students;
             ViewBag.listService = roomInvoice?.Services;
             return View(roomInvoice);
         }
+
+
         [HttpGet]
         public IActionResult RoomInvoicePendingApprovalDetail(string id)
         {
@@ -140,6 +146,26 @@ namespace Manager.Controllers
             }
             return View("RoomInvoice", pendingInvoices);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateRoomInvoiceAsync(RoomInvoice roomInvoice)
+        {
+            await _roominvoiceData.UpdateRoomInvoice(roomInvoice);
+            Console.WriteLine(roomInvoice.InvoiceID);
+            return RedirectToAction("RoomInvoice");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ConfirmPayment(RoomInvoice roomInvoice)
+        {
+            roomInvoice.Status = "Paid";
+            roomInvoice.PaymentDate = DateTime.Now;
+            await _roominvoiceData.UpdateRoomInvoice(roomInvoice);
+            Console.WriteLine(roomInvoice.InvoiceID);
+            return RedirectToAction("RoomInvoice");
+        }
+
+
 
         public IActionResult Error401()
         {

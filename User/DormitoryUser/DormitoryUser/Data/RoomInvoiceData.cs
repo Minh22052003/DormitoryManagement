@@ -10,7 +10,7 @@ namespace DormitoryUser.Data
         private readonly Hosting _hosting = new Hosting();//Thêm thằng này
         private readonly IHttpContextAccessor _httpContextAccessor;//Thêm thằng này
         private string nameurl;//Thêm thằng này
-        string apiKey = "/api/Invoice/getallroominvoice";//Loại bỏ đường dẫn cứng
+        string apiKey = "/api/Invoice/getallroominvoicebystudent";//Loại bỏ đường dẫn cứng
 
         public RoomInvoiceData(IHttpContextAccessor httpContextAccessor)//Thêm thằng này
         {
@@ -21,19 +21,19 @@ namespace DormitoryUser.Data
 
         public async Task<List<RoomInvoice>> GetAllRoomInvoice()
         {
-            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt1");//Thêm thằng này
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);//Thêm thằng này
-            var url = nameurl + apiKey;//Thêm thằng này
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt1");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameurl + apiKey;
 
 
             List<RoomInvoice> roomInvoices;
-            HttpResponseMessage response = await _httpClient.GetAsync(url);//thay key
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
 
 
-            if (!response.IsSuccessStatusCode)//Thêm thằng này
-            {//Thêm thằng này
-                throw new Exception(response.StatusCode.ToString());//Thêm thằng này
-            }//Thêm thằng này
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.StatusCode.ToString());
+            }
 
             string reponseData = await response.Content.ReadAsStringAsync();
             roomInvoices = JsonConvert.DeserializeObject<List<RoomInvoice>>(reponseData);

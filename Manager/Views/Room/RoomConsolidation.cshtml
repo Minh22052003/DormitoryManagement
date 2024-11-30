@@ -11,10 +11,7 @@
                 <div class="card border-0">
                     <div class="bg-light rounded p-4 mb-3" style="height: 150px; overflow-y: auto;">
                         <h6 class="mb-4">Chức năng</h6>
-                        <form class="d-none d-md-flex ms-4">
-                            <button type="button" class="btn btn-secondary m-2">Xem danh sách dồn phòng</button>
-                            <button type="button" class="btn btn-secondary m-2">Áp dụng dồn phòng</button>
-                        </form>
+                        <a asp-action="RoomConsolidationC" asp-controller="Room" class="btn btn-secondary m-2">Áp dụng dồn phòng</a>
                         <a asp-action="ExportToExcel" asp-controller="Room" class="btn btn-success my-2">Xuất Excel</a>
                     </div>
                 </div>

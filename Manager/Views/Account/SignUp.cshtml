@@ -18,14 +18,7 @@
                     <!-- Tài khoản -->
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control" id="floatingEmail" placeholder="mtminh@gmail.com" name="UserName" required pattern="[a-zA-Z0-9._%+-]+&#64;a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Vui lòng nhập email hợp lệ (ví dụ: mtminh@gmail.com)">
-                        <label for="floatingEmail">Tài khoản (Email)</label>
-                        <small class="text-muted">Email cá nhân hợp lệ</small>
-                    </div>
-
-                    <!-- Email -->
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="Email" required>
-                        <label for="floatingInput">Email</label>
+                        <label for="floatingEmail">Tài khoản</label>
                     </div>
 
                     <!-- Mật khẩu -->
@@ -40,6 +33,12 @@
                         <label for="floatingConfirmPassword">Nhập lại mật khẩu</label>
                         <small class="text-muted">Mật khẩu phải trùng khớp với mật khẩu đã nhập</small>
                     </div>
+                    @if (ViewBag.ErrorMessage != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @ViewBag.ErrorMessage
+                        </div>
+                    }
 
                     <!-- Nút đăng ký -->
                     <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Đăng ký</button>

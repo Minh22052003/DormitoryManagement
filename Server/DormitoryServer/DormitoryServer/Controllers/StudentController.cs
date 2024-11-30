@@ -429,6 +429,7 @@ namespace DormitoryServer.Controllers
             return NoContent();
         }
 
+        
         [Authorize(Roles = "Staff,Manager, Admin")]
         [HttpPut("editstudentwithroom")]
         public async Task<IActionResult> EditStudentWithRoom(StudentDTO studentdto)
@@ -515,13 +516,14 @@ namespace DormitoryServer.Controllers
             {
                 return NotFound();
             }
-            var room = await _context.Rooms.FindAsync(studentdto.RoomID);
+            var room = await _context.Rooms.Include("RoomType").Where(r=>r.RoomId==studentdto.RoomID).FirstOrDefaultAsync();
             if (room == null)
             {
                 return NotFound();
             }
             if (room.NumberOfStudent == room?.RoomType?.Capacity)
             {
+                Console.WriteLine("--------------"+room.NumberOfStudent + room?.RoomType?.Capacity);
                 return BadRequest("Phòng đã đầy");
             }
             else

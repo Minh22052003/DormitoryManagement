@@ -104,7 +104,6 @@ namespace Manager.Data
             if (response.IsSuccessStatusCode)
             {
                 string responseData = await response.Content.ReadAsStringAsync();
-
             }
             else
             {

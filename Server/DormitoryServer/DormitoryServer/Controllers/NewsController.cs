@@ -60,7 +60,7 @@ namespace DormitoryServer.Controllers
         }
 
 
-        [Authorize(Roles = "Admin, Staff")]
+        [Authorize(Roles = "Admin, Manager , Staff")]
         [HttpPost("addnews")]
         public IActionResult AddNews([FromBody] NewsDTO newsDTO)
         {
@@ -76,7 +76,7 @@ namespace DormitoryServer.Controllers
         }
 
         //Update news
-        [Authorize(Roles = "Admin, Staff")]
+        [Authorize(Roles = "Admin, Manager, Staff")]
         [HttpPut("updatestatusnews")]
         public IActionResult UpdateNews([FromBody] NewsDTO newsDTO)
         {

@@ -99,6 +99,63 @@ namespace DormitoryServer.Controllers
             return Ok(result);
         }
 
+
+        [Authorize(Roles = "Student")]
+        [HttpGet("getallroominvoicebystudent")]
+        public ActionResult GetAllRoomInvoiceByStudent()
+        {
+            var studenId = User.FindFirst("UserId")?.Value;
+            var student = _context.Students.Find(studenId);
+            var invoices = _context.Invoices
+                .Include(i => i.Room)
+                    .ThenInclude(r => r.Building)
+                .Where(i => i.RoomId == student.RoomId)
+                .ToList();
+            List<RoomInvoiceDTO> result = new List<RoomInvoiceDTO>();
+            foreach (var invoice in invoices)
+            {
+
+                var dsdv = _context.InvoiceDetails.Include(i => i.Service).Where(i => i.InvoiceId == invoice.InvoiceId).ToList();
+                List<ServiceDTO> service = new List<ServiceDTO>();
+
+
+
+                decimal totalAmount = 0;
+                foreach (var dv in dsdv)
+                {
+                    totalAmount += dv.Quantity.Value * dv.Service.Price.Value;
+                    service.Add(new ServiceDTO
+                    {
+                        ServiceID = dv.ServiceId,
+                        ServiceName = dv.Service.ServiceName,
+                        Price = dv.Service.Price,
+                        Unit = dv.Service.Unit,
+                        Quantity = dv.Quantity,
+                    });
+                }
+                result.Add(new RoomInvoiceDTO
+                {
+                    InvoiceID = invoice.InvoiceId,
+                    StaffID = invoice.StaffId,
+                    RoomID = invoice.RoomId,
+                    RoomName = invoice.Room?.RoomName,
+                    BuildingID = invoice.Room?.BuildingId,
+                    BuildingName = invoice.Room?.Building?.BuildingName,
+                    PayerID = invoice.Payer,
+                    PayerName = invoice.Payer,
+                    IssueDate = invoice.IssueDate,
+                    Description = invoice.Description,
+                    PaymentDate = invoice.PaymentDate,
+                    Status = invoice.Status,
+                    Note = invoice.Note,
+                    TotalAmount = totalAmount,
+                    Services = service
+                });
+            }
+
+            return Ok(result);
+        }
+
         [Authorize(Roles = "Admin, Manager, Accountant")]
         [HttpGet("getallroominvoicenew")]
         public ActionResult GetAllRoomInvoiceNew()
@@ -220,6 +277,43 @@ namespace DormitoryServer.Controllers
 
             return Ok(result);
         }
+
+
+        [Authorize(Roles = "Admin, Manager, Staff")]
+        [HttpPut("updateroominvoice")]
+        public ActionResult UpdateRoomInvoice(RoomInvoiceDTO roomInvoiceDTO)
+        {
+            var invoice = _context.Invoices.Find(roomInvoiceDTO.InvoiceID);
+            if (invoice == null)
+            {
+                return NotFound("Không tìm thấy hóa đơn");
+            }
+            invoice.Payer = roomInvoiceDTO.PayerName;
+            invoice.Description = roomInvoiceDTO.Description;
+            invoice.PaymentDate = roomInvoiceDTO.PaymentDate;
+            invoice.Status = roomInvoiceDTO.Status;
+            invoice.Note = roomInvoiceDTO.Note;
+            _context.SaveChanges();
+            return Ok("Success");
+        }
+
+        [Authorize(Roles = "Admin, Manager, Staff")]
+        [HttpPut("updatestatusroominvoice")]
+        public ActionResult UpdateStatusRoomInvoice(RoomInvoiceDTO roomInvoiceDTO)
+        {
+            var invoice = _context.Invoices.Find(roomInvoiceDTO.InvoiceID);
+            if (invoice == null)
+            {
+                return NotFound("Không tìm thấy hóa đơn");
+            }
+            invoice.Payer = roomInvoiceDTO.PayerName;
+            invoice.PaymentDate = roomInvoiceDTO.PaymentDate;
+            invoice.Status = roomInvoiceDTO.Status;
+            _context.SaveChanges();
+            return Ok("Success");
+        }
+
+
 
         [Authorize(Roles = "Admin, Manager, Accountant")]
         [HttpGet("approveroominvoicenew")]

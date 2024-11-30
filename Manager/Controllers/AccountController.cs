@@ -118,7 +118,7 @@ namespace Manager.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult SignUp(StaffRegistration staffRegistration)
+        public async Task<IActionResult> SignUpAsync(StaffRegistration staffRegistration)
         {
             if(staffRegistration == null)
             {
@@ -129,8 +129,15 @@ namespace Manager.Controllers
                 ViewBag.ErrorMessage = "Password and Confirm Password do not match";
                 return View();
             }
+            staffRegistration.Email = staffRegistration.UserName;
             staffRegistration.Password = HashPassword(staffRegistration.UserName, staffRegistration.Password);
-            _accountData.Post_SignUpUserAsync(staffRegistration);
+
+            string errorMessage = await _accountData.Post_SignUpUserAsync(staffRegistration);
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                ViewBag.ErrorMessage = errorMessage;
+                return View();
+            }
             return RedirectToAction("SignIn");
         }
 

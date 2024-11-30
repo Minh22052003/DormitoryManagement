@@ -17,9 +17,10 @@ namespace DormitoryUser.Controllers
         public IActionResult Index(int id)
         {
             List<Announcement> notifications = announcementData.GetAllAnnouncement().Result;
+            List<Announcement> announcementsforstudent = notifications.FindAll(a => a.Target == "SinhVien" || a.Target == "TatCa");
             var notification1 = notifications.Where(n => n.AnnouncementID == id).FirstOrDefault();
             ViewBag.notifications = notification1;
-            return View(notifications);
+            return View(announcementsforstudent);
         }
     }
 }

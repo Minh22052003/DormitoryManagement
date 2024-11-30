@@ -12,6 +12,7 @@ namespace Manager.Data
         private readonly IHttpContextAccessor _httpContextAccessor;
         private string nameURL;
         string Keygetallroomtype = "/api/Room/getallroomtype";
+        string Keygetroomtypebyid = "/api/Room/getroomtypebyid";
         string Keyaddroomtype = "/api/Room/addroomtype";
 
         public RoomTypeData(IHttpContextAccessor httpContextAccessor)
@@ -36,6 +37,24 @@ namespace Manager.Data
             string reponseData = await response.Content.ReadAsStringAsync();
             roomTypes = JsonConvert.DeserializeObject<List<RoomType>>(reponseData);
             return roomTypes;
+        }
+
+        public async Task<RoomType> GetRoomTypeByID(int? id)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var url = nameURL + Keygetroomtypebyid;
+            RoomType roomType;
+            string urll = $"{url}?id={id}";
+            HttpResponseMessage response = await _httpClient.GetAsync(urll);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.StatusCode.ToString());
+            }
+            string reponseData = await response.Content.ReadAsStringAsync();
+            roomType = JsonConvert.DeserializeObject<RoomType>(reponseData);
+            return roomType;
         }
 
         public async Task AddRoomtype(RoomType roomType)

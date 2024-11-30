@@ -69,7 +69,7 @@
                                 <th scope="col">Phòng</th>
                                 <th scope="col">Tòa</th>
                                 <th scope="col">Trưởng phòng</th>
-                                <th scope="col">#</th>
+                                <th scope="col">Trạng thái</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,9 +90,17 @@
                                     <td>@h.PayerName</td>
                                     @if (h.Status != "Paid")
                                     {
-                                        <td>
-                                            <a asp-controller="Invoice" asp-action="QR" asp-for="@h.InvoiceID" class="btn btn-success m-2">Thanh toán </a>
+                                        <td style="background-color: orange; text-align: center; color:white;">
+                                            Chưa thanh toán
                                         </td>
+
+                                    }
+                                    else
+                                    {
+                                        <td style="background-color: green; text-align: center; color:white;">
+                                            Đã thanh toán
+                                        </td>
+
                                     }
                                 </tr>
                                 i = i + 1;

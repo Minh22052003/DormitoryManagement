@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Xml.Linq;
 
 namespace Manager.Data
 {
@@ -13,9 +12,11 @@ namespace Manager.Data
         private readonly IHttpContextAccessor _httpContextAccessor;
         private string nameURL;
         string keygetallroom = "/api/Room/getallroom";
+        string keygetroombyid = "/api/Room/getroombyid";
         string keygetallroomstatus = "/api/Room/getallroomstatus";
         string keyeditroom = "/api/Room/editroom";
         string keyaddroom = "/api/Room/addroom";
+        string keydonphong = "/api/Room/donphong";
 
 
         public RoomData(IHttpContextAccessor httpContextAccessor)
@@ -40,6 +41,25 @@ namespace Manager.Data
             string reponseData = await response.Content.ReadAsStringAsync();
             rooms = JsonConvert.DeserializeObject<List<Room>>(reponseData);
             return rooms;
+        }
+
+
+        public async Task<Room> GetRoomByID(string idRoom)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var url = nameURL + keygetroombyid;
+            Room room;
+            string urll = $"{url}?idRoom={idRoom}";
+            HttpResponseMessage response = await _httpClient.GetAsync(urll);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.StatusCode.ToString());
+            }
+            string reponseData = await response.Content.ReadAsStringAsync();
+            room = JsonConvert.DeserializeObject<Room>(reponseData);
+            return room;
         }
 
         public async Task<List<RoomStatus>> GetAllRoomStatus()
@@ -99,9 +119,25 @@ namespace Manager.Data
                 Console.WriteLine($"Error: {response.StatusCode}, Details: {errorDetail}");
                 throw new Exception("Không cập nhật thành công: " + response.StatusCode);
             }
+        }
 
+        public async Task DonPhong(List<Student> students)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var url = nameURL + keydonphong;
+            string json = JsonConvert.SerializeObject(students);
+            StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PutAsync(url, data);
 
-
+            if (response.IsSuccessStatusCode)
+            {
+                string responseData = await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+            }
         }
     }
 }

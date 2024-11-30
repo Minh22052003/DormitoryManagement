@@ -144,10 +144,10 @@
                 <div class="row m-5">
                     <div class="col-3"></div>
                     <div class="col-2">
-                        <a asp-controller="Room" asp-action="AddStudentToRoom" asp-route-id="@Model.RoomID" class="btn btn-danger">Thêm sinh viên</a>
+                        <a asp-controller="Room" asp-action="AddStudentToRoom" asp-route-id="@Model.RoomID" class="btn btn-primary">Thêm sinh viên</a>
                     </div>
                     <div class="col-2">
-                        <a asp-controller="Room" asp-action="AddEquipmentToRoom" asp-route-id="@Model.RoomID" class="btn btn-success m-2 w-75">Thêm thiết bị</a>
+                        <a asp-controller="Room" asp-action="AddEquipmentToRoom" asp-route-id="@Model.RoomID" class="btn btn-primary m-2 w-75">Thêm thiết bị</a>
                     </div>
                     <div class="col-2">
                         <button type="submit" class="btn btn-success m-2 w-75">Lưu thay đổi</button>
@@ -162,6 +162,19 @@
         </div>
     </div>
 </div>
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    @if (TempData.ContainsKey("ErrorMessage"))
+    {
+        <text>
+                toastr.error('@TempData["ErrorMessage"]');
+        </text>
+    }
+</script>
+
 
 
 

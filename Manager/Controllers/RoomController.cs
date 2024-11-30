@@ -1,6 +1,7 @@
 ﻿using Manager.Data;
 using Manager.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using OfficeOpenXml;
 using System.Collections.Generic;
 using System.Reflection;
@@ -82,8 +83,7 @@ namespace Manager.Controllers
         [HttpGet]
         public IActionResult RoomDetail(string id)
         {
-            List<Room> rooms = _roomData.GetAllRoom().Result;
-            Room room = rooms.Find(r => r.RoomID == id);
+            Room room = _roomData.GetRoomByID(id).Result;
 
             List<Student> students = _studentData.GetStudentByRoomAsyn(id).Result;
             ViewBag.listStudent = students;
@@ -162,8 +162,13 @@ namespace Manager.Controllers
         [HttpGet]
         public IActionResult AddStudentToRoom(string id)
         {
-            List<Room> rooms = _roomData.GetAllRoom().Result;
-            Room room = rooms.Find(r => r.RoomID == id);
+            Room room = _roomData.GetRoomByID(id).Result;
+            RoomType roomType = _roomtypeData.GetRoomTypeByID(room.RoomTypeID).Result;
+            if(room.NumberOfStudent >= roomType.Capacity)
+            {
+                TempData["ErrorMessage"] = "Phòng đã đầy";
+                return RedirectToAction("RoomDetail", new { id = id });
+            }
             ViewBag.Room = room;
             List<Student> students = _studentData.GetAllStudentAsyn().Result;
             var student = students.Where(s => s.RoomID == null).ToList();
@@ -174,7 +179,7 @@ namespace Manager.Controllers
             List<Student> students = _studentData.GetAllStudentAsyn().Result;
             var student = students.Find(s => s.StudentID == idstudent);
             student.RoomID = idroom;
-            await _studentData.AddStudentWithRoom(student);
+            var error =  await _studentData.AddStudentWithRoom(student);
             return RedirectToAction("RoomDetail", new { id = idroom });
         }
 
@@ -208,6 +213,33 @@ namespace Manager.Controllers
             await _roomData.UpdateRoom(room);
             return RedirectToAction("RoomDetail", new { id = room.RoomID });
         }
+
+        public async Task<IActionResult> RoomConsolidationC()
+        {
+            var rooms = new List<RoomConsolidation>();
+            if (TempData["roomConsolidationList"] != null)
+            {
+                rooms = JsonConvert.DeserializeObject<List<RoomConsolidation>>(TempData["roomConsolidationList"].ToString());
+                var students = new List<Student>();
+                if (rooms != null)
+                {
+                    foreach (var room in rooms)
+                    {
+                        var student = new Student
+                        {
+                            StudentID = room.StudentID,
+                            RoomID = room.NewRoomID,
+                        };
+                        students.Add(student);
+                    }
+                }
+                await _roomData.DonPhong(students);
+            }
+            return RedirectToAction("Room");
+        }
+
+
+
         public IActionResult RoomConsolidation()
         {
             var roomConsolidationList = new List<RoomConsolidation>();
@@ -220,7 +252,7 @@ namespace Manager.Controllers
              {
                  if (int.TryParse(r.RoomName.Substring(r.RoomName.Length - 3), out int roomNumber))
                      return roomNumber;
-                 return int.MaxValue; // Nếu không parse được, đưa về cuối danh sách
+                 return int.MaxValue;
              })
              .ToList();
 
@@ -271,7 +303,7 @@ namespace Manager.Controllers
                         break;
                 }
             }
-
+            TempData["roomConsolidationList"] = JsonConvert.SerializeObject(roomConsolidationList); ;
             return View(roomConsolidationList);
         }
 

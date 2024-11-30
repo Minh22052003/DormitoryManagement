@@ -74,25 +74,6 @@ namespace Manager.Data
 
 
 
-
-        public async Task<Student> GetStudentByIDAsyn()
-        {
-            Student student;
-            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var url = nameURL + keygetAllStudentbyRoom;
-            HttpResponseMessage response = await _httpClient.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                string responsData = await response.Content.ReadAsStringAsync();
-                student = JsonConvert.DeserializeObject<Student>(responsData);
-            }
-            else
-            {
-                throw new Exception(response.StatusCode.ToString());
-            }
-            return student;
-        }
         public async Task<List<Student>> GetStudentByRoomAsyn(string id)
         {
             var urll = nameURL + keygetAllStudentbyRoom;
@@ -157,7 +138,7 @@ namespace Manager.Data
         }
 
 
-        public async Task AddStudentWithRoom(Student student)
+        public async Task<string> AddStudentWithRoom(Student student)
         {
             string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -166,15 +147,13 @@ namespace Manager.Data
             StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await _httpClient.PutAsync(url, data);
 
-            if (response.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode)
             {
-                string responseData = await response.Content.ReadAsStringAsync();
+                string errorMessage = await response.Content.ReadAsStringAsync();
+                return errorMessage;
+            }
 
-            }
-            else
-            {
-                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
-            }
+            return null;
         }
 
         public async Task UpdateStudentWithRoom(Student student)

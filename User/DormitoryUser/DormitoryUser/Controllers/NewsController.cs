@@ -13,9 +13,16 @@ namespace DormitoryUser.Controllers
         {
             _newsdata = new NewsData(httpContextAccessor);
         }
-        public IActionResult Index()
+        public IActionResult Index(int? id =1)
         {
+            var news = _newsdata.GetAllNews().Result.FirstOrDefault(n => n.NewsID == id);
+            if (news == null)
+            {
+                return NotFound();
+            }
+
             var newsList = _newsdata.GetAllNews().Result;
+            ViewBag.SelectedNews = news;
             return View(newsList);
         }
     }

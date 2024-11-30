@@ -202,6 +202,7 @@ namespace Manager.Controllers
         {
             if (updatedStaff != null)
             {
+                Console.WriteLine(updatedStaff.StaffID);
                 await _staffData.UpdateStaff(updatedStaff);
                 return RedirectToAction("Staff", "User");
             }
