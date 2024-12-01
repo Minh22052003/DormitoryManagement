@@ -56,10 +56,15 @@
                                 {
                                     <tr>
                                         <td>@i</td>
-                                        <td>@s.ServiceID</td>
+                                        <td>
+                                            <a asp-action="ServiceDetail" asp-controller="Admin" asp-route-id="@s.ServiceID">
+                                                @s.ServiceID
+                                            </a>
+                                        </td>
                                         <td>@s.ServiceName</td>
                                         <td>@s.Unit</td>
                                         <td>@PriceHelper.FormatPrice(s.Price ?? 0) VND</td>
+                                        
                                     </tr>
                                     i = i + 1;
                                 }

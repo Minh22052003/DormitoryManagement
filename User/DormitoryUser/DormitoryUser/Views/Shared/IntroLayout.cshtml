@@ -3,7 +3,7 @@
 <!-- divinectorweb.com -->
 <head>
     <meta charset="UTF-8">
-    <title>Bootstrap 5 Responsibe Website Layout design</title>
+    <title>Kí túc xá UTC</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
@@ -14,39 +14,56 @@
 
     <script src='~/assets/js/page/fullcalendar/core/main.js'></script>
     <script src='~/assets/js/page/fullcalendar/daygrid/main.js'></script>
+    <style>
+        /* Giữ navbar cố định phía trên */
+        .navbar-fixed-top {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: top 0.3s ease;
+        }
+
+        /* Ẩn navbar khi cuộn xuống */
+        .navbar-hidden {
+            top: -120px; /* Di chuyển navbar ra khỏi màn hình */
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-bg bg-primary text-center pt-4 pb-4 px-5">
+    <nav class="navbar navbar-expand-lg navbar-bg bg-primary navbar-fixed-top text-center pt-3 pb-3 px-5" id="navbar">
         <div class="container">
-            <img src="~/img/LogoUTC.png" alt="Logo Trường" class="img-fluid" style="max-width: 100px; border:none; border-radius: 50%; background: transparent; margin-right: 30px;">
-            <a class="navbar-brand text-white" href="#" style="font-size:35px;">KTX GTVT</a>
+            <img src="~/img/LogoUTC.png" alt="Logo Trường" class="img-fluid" style="max-width: 85px; border:none; border-radius: 50%; background: transparent; margin-right: 30px;">
+            <a class="navbar-brand text-white" href="#" style="font-size:35px;">Kí túc xá UTC</a>
             <button class="navbar-toggler btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="nav-icon navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="~/Introduce/Index">Giới thiệu</a>
+                        <a class="nav-link text-white me-3" style="font-size: 20px;" href="~/Introduce/Index">Giới thiệu</a>
                     </li>
                     <li>
-                        <a class="nav-link text-white" href="~/News/Index">Tin tức</a>
+                        <a class="nav-link text-white me-3" style="font-size: 20px;" href="~/News/Index">Tin tức</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="~/Accommodation/Index">Phòng ở</a>
+                        <a class="nav-link text-white me-3" style="font-size: 20px;" href="~/Accommodation/Index">Phòng ở</a>
                     </li>
-                    <li class="nav-item me-4">
-                        <a class="nav-link text-white" href="~/Instruct/Index">Hướng dẫn đăng kí</a>
+                    <li class="nav-item">
+                        <a class="nav-link text-white me-4" style="font-size: 20px;" href="~/Instruct/Index">Hướng dẫn</a>
                     </li>
-                    <li class="nav-item me-4">
-                        <a id="submit-yeu-cau" href="~/Account/Login" class="btn btn-light text-primary" tabindex="4">Đăng nhập</a>
+                    <li class="nav-item">
+                        <a id="submit-yeu-cau" href="~/Account/Login" style="font-size: 15px;" class="btn btn-light text-primary me-4" tabindex="4">Đăng nhập</a>
                     </li>
                     <li>
-                        <a id="submit-yeu-cau" href="~/Account/Registration" class="btn btn-light text-primary" tabindex="4">Đăng ký</a>
+                        <a id="submit-yeu-cau" href="~/Account/Registration" style="font-size: 15px;" class="btn btn-light text-primary" tabindex="4">Đăng ký</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
 
     <!-- Main Content -->
     @RenderBody()
@@ -70,12 +87,30 @@
                     <p>Thứ 7 - Chủ nhật: 9h00 - 15h00</p>
                 </div>
             </div>
-           
+
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let lastScrollTop = 0; // Vị trí cuộn trước đó
+        const navbar = document.getElementById('navbar'); // Chọn navbar
+
+        window.addEventListener('scroll', function () {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScroll > lastScrollTop) {
+                // Khi cuộn xuống
+                navbar.classList.add('navbar-hidden');
+            } else {
+                // Khi cuộn lên
+                navbar.classList.remove('navbar-hidden');
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Đảm bảo vị trí cuộn không bị âm
+        });
+    </script>
+
+
 </body>
 </html>
-
-

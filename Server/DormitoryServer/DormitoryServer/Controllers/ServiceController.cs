@@ -35,6 +35,43 @@ namespace DormitoryServer.Controllers
             return Ok(service);
         }
 
+        [Authorize(Roles ="Admin")]
+        [HttpGet("getservicebyid/{id}")]
+        public IActionResult GetServiceById(int id)
+        {
+            var service = _context.Services.Find(id);
+            if (service == null)
+            {
+                return NotFound();
+            }
+            var serviceDTO = new ServiceDTO
+            {
+                ServiceID = service.ServiceId,
+                ServiceName = service.ServiceName,
+                Unit = service.Unit,
+                Price = service.Price
+            };
+            return Ok(serviceDTO);
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpPut("updateservice")]
+        public IActionResult UpdateService(ServiceDTO serviceDTO)
+        {
+            var service = _context.Services.Find(serviceDTO.ServiceID);
+            if (service == null)
+            {
+                return NotFound();
+            }
+            service.Unit = serviceDTO.Unit;
+            service.Price = serviceDTO.Price;
+            _context.SaveChanges();
+            return Ok();
+        }
+
+
+
         [Authorize(Roles = "Admin,Staff")]
         [HttpPost("addservice")]
         public IActionResult AddService(ServiceDTO serviceDTO)

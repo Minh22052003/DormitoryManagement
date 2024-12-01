@@ -16,7 +16,7 @@ namespace DormitoryUser.Controllers
                     Title = "Phòng đơn",
                     Description = "Phòng đơn dành cho một người, được trang bị giường, bàn học và tủ cá nhân.",
                     Price = 2000000,
-                    ImageUrl = "path-to-room-image1.jpg",
+                    ImageUrl = "~/img/KTX-10.jpg",
                     CampusDescription = "Khuôn viên rộng rãi với nhiều cây xanh, có khu vực thể thao và sinh hoạt ngoài trời.",
                     CampusImageUrls = new List<string>
                     {
@@ -31,7 +31,7 @@ namespace DormitoryUser.Controllers
                     Title = "Phòng đơn",
                     Description = "Phòng đơn dành cho một người, được trang bị giường, bàn học và tủ cá nhân.",
                     Price = 2000000,
-                    ImageUrl = "path-to-room-image1.jpg",
+                    ImageUrl = "~/img/KTX-8.jpg",
                     CampusDescription = "Khuôn viên rộng rãi với nhiều cây xanh, có khu vực thể thao và sinh hoạt ngoài trời.",
                     CampusImageUrls = new List<string>
                     {
@@ -45,7 +45,7 @@ namespace DormitoryUser.Controllers
                     Title = "Phòng đơn",
                     Description = "Phòng đơn dành cho một người, được trang bị giường, bàn học và tủ cá nhân.",
                     Price = 2000000,
-                    ImageUrl = "path-to-room-image1.jpg",
+                    ImageUrl = "~/img/DSC_6126-1024x684.jpg",
                     CampusDescription = "Khuôn viên rộng rãi với nhiều cây xanh, có khu vực thể thao và sinh hoạt ngoài trời.",
                     CampusImageUrls = new List<string>
                     {

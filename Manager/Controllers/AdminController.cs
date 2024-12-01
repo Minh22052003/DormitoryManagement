@@ -180,19 +180,26 @@ namespace Manager.Controllers
         [HttpPost]
         public async Task<IActionResult> AcceptStaffAsync(string Email, int RoleId)
         {
-            Console.WriteLine(Email);
-            Console.WriteLine(RoleId);
-            List<StaffRegistration> staffRegistrations = _accountData.GetAllStaffRegistration().Result;
-            StaffRegistration staffRegistration = staffRegistrations.Find(x => x.Email == Email);
-            var accountStaff = new AccountStaff()
+            try
             {
-                AccountStaff1 = staffRegistration?.AccountStaffId,
-                Username = staffRegistration.UserName,
-                RoleId = RoleId,
-                Email = staffRegistration.Email,
-            };
-            await _accountData.AcceptAccount(accountStaff);
-            return RedirectToAction("StaffRegistration");
+                Console.WriteLine(Email);
+                Console.WriteLine(RoleId);
+                List<StaffRegistration> staffRegistrations = _accountData.GetAllStaffRegistration().Result;
+                StaffRegistration staffRegistration = staffRegistrations.Find(x => x.Email == Email);
+                var accountStaff = new AccountStaff()
+                {
+                    AccountStaff1 = staffRegistration?.AccountStaffId,
+                    Username = staffRegistration.UserName,
+                    RoleId = RoleId,
+                    Email = staffRegistration.Email,
+                };
+                await _accountData.AcceptAccount(accountStaff);
+                return RedirectToAction("StaffRegistration");
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Fail", e);
+            }
         }
         [HttpPost]
         public async Task<IActionResult> RejectStaffAsync([FromForm] StaffRegistration staffRegistration)
@@ -204,6 +211,30 @@ namespace Manager.Controllers
             await _accountData.RejectAccount(accountStaff);
             return RedirectToAction("StaffRegistration");
         }
+
+        public IActionResult Fail()
+        {
+            return View();
+        }
+
+        public IActionResult ServiceDetail(int id)
+        {
+            Service service = _serviceData.GetServiceById(id).Result;
+            return View(service);
+        }
+
+        public async Task<IActionResult> UpdateServiceAsync([FromForm] Service service)
+        {
+            if (service == null) {
+                Console.WriteLine("Service is null");
+                return RedirectToAction("ListService");
+            }
+            await _serviceData.UpdateService(service);
+            return RedirectToAction("ListService");
+        }
+
+
+
 
 
         public IActionResult Error401()

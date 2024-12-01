@@ -54,6 +54,7 @@ namespace DormitoryUser.Controllers
                     FullName = item.FullName,
                     BirthDate = (DateTime)item.BirthDate,
                     Gender = item.Gender,
+                    IsLeader = item.IsLeader,
                     PhoneNumber = item.PhoneNumber,
                     Hometown = item.ProvinceName
                 };

@@ -7,45 +7,49 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Danh sách cán vụ KTX</h1>
+            <h1>Danh sách cán bộ KTX</h1>
         </div>
         <div class="section-body">
             <div class="row">
-                <div class="col-12 ">
+                <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <h4>Lãnh đạo đơn vị</h4>
                         </div>
-                        @foreach(var item in Model)
-                        {
-                            <div class="card-body row">
-                                <div class="card author-box card-primary col-sm-12 col-md-12 col-lg-6 col-xl-4">
-                                    <div class="card-body">
-                                        <div class="author-box-left">
-                                            <img alt="image" src="~/img/avatar/avatar-1.png" class="rounded-circle author-box-picture">
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="author-box-details">
-                                            <div class="author-box-name">
-                                                <a href="#">@item.FullName</a> 
-                                            </div>
-                                            <div class="author-box-job">@item.RoleName</div>
-                                            <div class="author-box-description">
-                                                <span><strong>Phòng: </strong>@item.Office</span>
-                                                <br>
-                                                <span><strong>Email: </strong>@item.Email</span>
-                                                <br>
-                                                <span><strong>SĐT: </strong>@item.PhoneNumber</span>
+                        <div class="card-body">
+                            <div class="row">
+                                @foreach (var item in Model)
+
+                                {
+                                    <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+                                        <div class="card author-box card-primary">
+                                            <div class="card-body">
+                                                <div class="author-box-left">
+                                                    <img alt="image" src="~/img/avatar/avatar-1.png" class="rounded-circle author-box-picture">
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="author-box-details">
+                                                    <div class="author-box-name">
+                                                        <a href="#">@item.FullName</a>
+                                                    </div>
+                                                    <div class="author-box-job">@item.RoleName</div>
+                                                    <div class="author-box-description">
+                                                        <span><strong>Phòng: </strong>@item.Office</span>
+                                                        <br>
+                                                        <span><strong>Email: </strong>@item.Email</span>
+                                                        <br>
+                                                        <span><strong>SĐT: </strong>@item.PhoneNumber</span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
                             </div>
-                        }
+                        </div>
                     </div>
                 </div>
             </div>
-                        
         </div>
     </section>
 </div>

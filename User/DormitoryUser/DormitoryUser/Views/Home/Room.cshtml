@@ -45,7 +45,7 @@
                                             <th>Ngày sinh</th>
                                             <th>Giới tính</th>
                                             <th>Số điện thoại</th>
-                                            <th>Quê quán</th>
+                                            <th>Vai trò</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -58,7 +58,9 @@
                                                 <td>@Model.Roommates[i].BirthDate.ToString("yyyy-MM-dd")</td>
                                                 <td>@(Model.Roommates[i].Gender.HasValue ? (Model.Roommates[i].Gender.Value ? "Nam" : "Nữ") : "Không xác định")</td>
                                                 <td>@Model.Roommates[i].PhoneNumber</td>
-                                                <td>@Model.Roommates[i].Hometown</td>
+                                                <td>
+                                                    @(Model.Roommates[i].IsLeader.HasValue && Model.Roommates[i].IsLeader.Value ? "Trưởng phòng" : "Thành viên")
+                                                </td>
                                             </tr>
                                         }
                                     </tbody>

@@ -2,11 +2,12 @@
 {
     public class RoomMate
     {
-        public string Id { get; set; }                // ID thành viên
-        public string? FullName { get; set; }       // Họ và tên
-        public DateTime BirthDate { get; set; }    // Ngày sinh
-        public bool? Gender { get; set; }         // Giới tính
-        public string? PhoneNumber { get; set; }    // Số điện thoại
-        public string? Hometown { get; set; }       // Quê quán
+        public string Id { get; set; }             
+        public string? FullName { get; set; }      
+        public DateTime BirthDate { get; set; }    
+        public bool? Gender { get; set; }         
+        public string? PhoneNumber { get; set; }
+        public bool? IsLeader { get; set; }
+        public string? Hometown { get; set; }      
     }
 }

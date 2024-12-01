@@ -1,0 +1,50 @@
+﻿@model Manager.Models.Service
+
+@{
+    ViewData["Title"] = "Chi tiết dịch vụ";
+}
+
+<div class="container-fluid position-relative d-flex p-0">
+    <div class="col m-5">
+        <div class="card bg-light rounded h-100 p-4">
+            <form asp-action="UpdateService" asp-controller="Admin" method="post">           
+                <div class="row g-5">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Mã dịch vụ</label>
+                            <input class="form-control" name="ServiceID" value="@Model.ServiceID" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Tên dịch vụ</label>
+                            <input class="form-control" value="@Model.ServiceName" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="form-item">
+                            <label class="form-label my-3 fw-bold">Đơn vị tính</label>
+                            <input class="form-control" name="Unit" value="@Model.Unit">
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="form-item">
+                        <label class="form-label my-3 fw-bold">Giá</label>
+                        <input class="form-control" name="Price" value="@Model.Price">
+                    </div>
+                </div>
+                <div class="row m-5">
+                    <div class="col-4"></div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-success m-2 w-75">Cập nhật</button>
+                    </div>
+                    <div class="col-2">
+                        <a asp-controller="Admin" asp-action="ListService" class="btn btn-success m-2 w-75">Trở lại</a>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
