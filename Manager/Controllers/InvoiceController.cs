@@ -9,6 +9,7 @@ namespace Manager.Controllers
         private readonly InvoiceData _invoiceData;
         private readonly RoomInvoiceData _roominvoiceData;
         private readonly StudentData _studentData;
+        private readonly StaffData _staffData;
         private object _httpContextAccessor;
 
         public InvoiceController(IHttpContextAccessor httpContextAccessor)
@@ -16,6 +17,7 @@ namespace Manager.Controllers
             _invoiceData = new InvoiceData(httpContextAccessor);
             _roominvoiceData = new RoomInvoiceData(httpContextAccessor);
             _studentData = new StudentData(httpContextAccessor);
+            _staffData = new StaffData(httpContextAccessor);
         }
         public IActionResult DormInvoice()
         {
@@ -48,6 +50,8 @@ namespace Manager.Controllers
 
         public IActionResult AddDormInvoice()
         {
+            var listStaff = _staffData.GetAllStaffAsync().Result;
+            ViewBag.Staff = listStaff;
             return View();
         }
         [HttpPost]
