@@ -326,5 +326,50 @@ namespace DormitoryServer.Controllers
             _context.SaveChanges();
             return Ok("Success");
         }
+
+
+        [Authorize(Roles = "Admin, Manager, Accountant")]
+        [HttpPut("updatedorminvoice")]
+        public ActionResult UpdateDormInvoice(DormInvoiceDTO dormInvoiceDTO)
+        {
+            var invoice = _context.DormInvoices.Find(dormInvoiceDTO.InvoiceID);
+            if (invoice == null)
+            {
+                return NotFound("Không tìm thấy hóa đơn");
+            }
+            invoice.StaffIdPay = dormInvoiceDTO.StaffID_Pay;
+            invoice.InvoiceType = dormInvoiceDTO.InvoiceTypeName;
+            invoice.Description = dormInvoiceDTO.Description;
+            invoice.Note = dormInvoiceDTO.Note;
+            invoice.TotalAmount = dormInvoiceDTO.TotalAmount;
+            invoice.IssueDate = dormInvoiceDTO.IssueDate;
+            invoice.PayDate = dormInvoiceDTO.PayDate;
+            invoice.Status = dormInvoiceDTO.Status;
+            _context.SaveChanges();
+            return Ok("Success");
+        }
+
+
+        [Authorize(Roles = "Admin, Manager, Accountant")]
+        [HttpPost("adddorminvoice")]
+        public ActionResult AddDormInvoice(DormInvoiceDTO dormInvoiceDTO)
+        {
+            var invoice = new DormInvoice
+            {
+                StaffIdCreate = dormInvoiceDTO.StaffID_Create,
+                StaffIdPay = dormInvoiceDTO.StaffID_Pay,
+                InvoiceType = dormInvoiceDTO.InvoiceTypeName,
+                Description = dormInvoiceDTO.Description,
+                Note = dormInvoiceDTO.Note,
+                TotalAmount = dormInvoiceDTO.TotalAmount,
+                IssueDate = dormInvoiceDTO.IssueDate,
+                PayDate = dormInvoiceDTO.PayDate,
+                Status = dormInvoiceDTO.Status
+            };
+            _context.DormInvoices.Add(invoice);
+            _context.SaveChanges();
+            return Ok("Success");
+        }
+
     }
 }

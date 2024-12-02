@@ -65,8 +65,17 @@ namespace DormitoryUser.Controllers
         [HttpPost]
         public async Task<IActionResult> RegistrationAsync(RegistrationVM profile)
         {
-            await _registrationdata.CreateRequest(profile);
-            return RedirectToAction("Index", "Introduce");
+            var error = await _registrationdata.CreateRequest(profile);
+            if(error == null)
+            {
+                return RedirectToAction("Index", "Introduce");
+            }
+            else
+            {
+                ViewBag.ErrorMessage = error;
+                return View();
+            }
+            
         }
 
 

@@ -66,7 +66,7 @@ namespace DormitoryServer.Controllers
         }
 
 
-        [Authorize(Policy = "Staff,Manager, Admin")]
+        [Authorize(Roles = "Staff,Manager, Admin")]
         [HttpPut("updateutilitymeter")]
         public ActionResult EditUtilityMeter(UtilityMeterDTO utilityMeterDTO)
         {

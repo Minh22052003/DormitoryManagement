@@ -3,24 +3,24 @@
 <div class="container-fluid position-relative d-flex p-0">
     <div class="col m-5">
         <div class="card bg-light rounded h-100 p-4">
-            <form asp-action="StudentDetail" asp-controller="User">
+            <form asp-action="UpdateDormInvoice" asp-controller="Invoice" method="post">
                 <div class="row g-5">
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Mã hóa đơn</label>
-                            <input class="form-control" value="@Model.InvoiceID" disabled>
+                            <input class="form-control" value="@Model.InvoiceID" readonly name="InvoiceID">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Người tạo hóa đơn</label>
-                            <input class="form-control" value="@Model.StaffName_Create" disabled>
+                            <input class="form-control" value="@Model.StaffName_Create" readonly name="StaffName_Create">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Ngày tạo hóa đơn</label>
-                            <input type="date" class="form-control" value="@Model.IssueDate?.ToString("yyyy-MM-dd")" disabled>
+                            <input type="date" class="form-control" value="@Model.IssueDate?.ToString("yyyy-MM-dd")" readonly>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Trạng thái</label>
-                            <input class="form-control" value="@Model.Status" disabled>
+                            <input class="form-control" value="@Model.Status" readonly name="Status">
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6 col-xl-4">
@@ -60,7 +60,7 @@
                     <div class="col-md-12 col-lg-6 col-xl-4">
                         <div class="form-item">
                             <label class="form-label my-3 fw-bold">Ngày thanh toán</label>
-                            <input type="date" class="form-control" value="@Model.PayDate?.ToString("yyyy-MM-dd")">
+                            <input type="date" class="form-control" value="@Model.PayDate?.ToString("yyyy-MM-dd")" name="PayDate">
                         </div>
                     </div>
                 </div>
@@ -70,10 +70,10 @@
                 <div class="row m-5">
                     <div class="col-4"></div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-success m-2 w-75">Thanh toán</button>
+                        <button type="submit" class="btn btn-success m-2 w-75">Lưu thay đổi</button>
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-danger m-2 w-75">Xóa hóa đơn</button>
+                        <a type="button" class="btn btn-success m-2 w-75" asp-action="DormInvoice" asp-controller="Invoice">Trở lại</a>
                     </div>
                     <div class="col-4"></div>
                 </div>

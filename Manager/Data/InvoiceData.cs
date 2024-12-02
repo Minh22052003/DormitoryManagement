@@ -1,6 +1,7 @@
 ﻿using Manager.Models;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace Manager.Data
 {
@@ -11,7 +12,9 @@ namespace Manager.Data
         private readonly IHttpContextAccessor _httpContextAccessor;
         private string nameURL;
         string keygetalldorminvoice = "/api/Invoice/getalldorminvoice";
+        string keyupdatedorminvoice = "/api/Invoice/updatedorminvoice";
         string keygetallroominvoice = "/api/Invoice/getallroominvoice";
+        string keyadddorminvoice = "/api/Invoice/adddorminvoice";
 
         public InvoiceData(IHttpContextAccessor httpContextAccessor)
         {
@@ -36,6 +39,40 @@ namespace Manager.Data
             dorminvoice = JsonConvert.DeserializeObject<List<DormInvoice>>(reponseData);
             return dorminvoice;
         }
+
+        public async Task<bool> AddDormInvoice(DormInvoice dormInvoice)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var url = nameURL + keyadddorminvoice;
+            var json = JsonConvert.SerializeObject(dormInvoice);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PostAsync(url, data);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.StatusCode.ToString());
+            }
+            return true;
+        }
+
+        public async Task<bool> UpdateDormInvoice(DormInvoice dormInvoice)
+        {
+            string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var url = nameURL + keyupdatedorminvoice;
+            var json = JsonConvert.SerializeObject(dormInvoice);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PutAsync(url, data);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception(response.StatusCode.ToString());
+            }
+            return true;
+        }
+
+
         public async Task<List<RoomInvoice>> GetAllRoomInvoice()
         {
             string token = _httpContextAccessor.HttpContext.Session.GetString("jwt");
@@ -52,5 +89,6 @@ namespace Manager.Data
             roominvoice = JsonConvert.DeserializeObject<List<RoomInvoice>>(reponseData);
             return roominvoice;
         }
+
     }
 }

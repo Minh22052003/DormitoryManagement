@@ -18,7 +18,7 @@ namespace DormitoryUser.Data
             _httpContextAccessor = httpContextAccessor;
             NameUrl = _serverURL.nameurl;
         }
-        public async Task CreateRequest(RegistrationVM registration)
+        public async Task<string> CreateRequest(RegistrationVM registration)
         {
             string token = _httpContextAccessor.HttpContext.Session.GetString("jwt1");
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -30,13 +30,12 @@ namespace DormitoryUser.Data
             if (response.IsSuccessStatusCode)
             {
                 string responseData = await response.Content.ReadAsStringAsync();
-
+                return null;
             }
             else
             {
                 string errorDetail = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"Error: {response.StatusCode}, Details: {errorDetail}");
-                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
+                return errorDetail;
             }
         }
     }

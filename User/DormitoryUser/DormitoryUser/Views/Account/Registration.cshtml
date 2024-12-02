@@ -19,6 +19,13 @@
                     <div class="card bg-light rounded h-auto w-100 p-4 border-0">
                         <div class="col">
                             <form class="p-5 bg-light" asp-controller="Account" asp-action="Registration" method="post">
+                                @if (ViewBag.ErrorMessage != null)
+
+                                {
+                                    <div class="alert alert-danger" role="alert">
+                                        @ViewBag.ErrorMessage
+                                    </div>
+                                }
                                 <div class="row g-5">
                                     <div class="col-md-12 col-lg-6 col-xl-4">
                                         <div class="form-item">

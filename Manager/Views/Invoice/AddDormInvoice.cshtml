@@ -10,15 +10,11 @@
             <div class="card bg-light">
                 <div class="bg-light rounded h-100 p-4">
                     <h2 class="mb-4">Tạo mới hóa đơn</h2>
-                    <form asp-controller="Invoice" asp-action="CreateDormInvoice">
+                    <form asp-controller="Invoice" asp-action="AddDormInvoice" method="post">
+                        
                         <div class="form-floating mb-3">
-                            <select class="form-select" id="floatingSelect"
-                                    aria-label="Floating label select example">
-                                <option selected>Điện</option>
-                                <option value="1">Nước</option>
-                                <option value="2">Chỉ sinh viên</option>
-                            </select>
-                            <label for="floatingSelect">Loại hóa đơn</label>
+                            <input asp-for="@Model.InvoiceTypeName" type="text" class="form-control" id="floatingInput" placeholder="">
+                            <label for="floatingInput">Loại hóa đơn</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input asp-for="@Model.Description" type="text" class="form-control" id="floatingInput" placeholder="">

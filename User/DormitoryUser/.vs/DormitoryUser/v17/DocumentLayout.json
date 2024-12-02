@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\Project1\\User\\DormitoryUser\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\views\\account\\registration.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\views\\account\\registration.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\data\\registrationdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\data\\registrationdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|d:\\project1\\user\\dormitoryuser\\dormitoryuser\\views\\home\\room.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{E14A94C6-48D3-46BE-9F05-8B087845146E}|DormitoryUser\\DormitoryUser.csproj|solutionrelative:dormitoryuser\\views\\home\\room.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -18,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,7 +46,46 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RegistrationData.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Data\\RegistrationData.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Data\\RegistrationData.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Data\\RegistrationData.cs",
+              "RelativeToolTip": "DormitoryUser\\Data\\RegistrationData.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAASwCUAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T13:50:30.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Registration.cshtml",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Views\\Account\\Registration.cshtml",
+              "RelativeDocumentMoniker": "DormitoryUser\\Views\\Account\\Registration.cshtml",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Views\\Account\\Registration.cshtml",
+              "RelativeToolTip": "DormitoryUser\\Views\\Account\\Registration.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-02T13:52:34.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "DormitoryUser\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "DormitoryUser\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAYwD0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T13:49:38.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Room.cshtml",
               "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Views\\Home\\Room.cshtml",
               "RelativeDocumentMoniker": "DormitoryUser\\Views\\Home\\Room.cshtml",
@@ -47,7 +98,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\Project1\\User\\DormitoryUser\\DormitoryUser\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "DormitoryUser\\Controllers\\HomeController.cs",
@@ -55,8 +106,7 @@
               "RelativeToolTip": "DormitoryUser\\Controllers\\HomeController.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAAgwDMAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T09:10:35.106Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-01T09:10:35.106Z"
             }
           ]
         }

@@ -144,9 +144,16 @@ namespace DormitoryServer.Controllers
             return Ok();
         }
 
+
         [HttpPost("addregistration")]
         public IActionResult AddRegistration([FromBody] RegistrationDTO registrationDTO)
         {
+            var studenttmp = _context.Students.Find(registrationDTO.StudentID);
+            if (studenttmp != null)
+            {
+                return BadRequest("Sinh viên đã đăng ký");
+            }
+
             string semester="1";
             DateTime currentDate = DateTime.Now;
 

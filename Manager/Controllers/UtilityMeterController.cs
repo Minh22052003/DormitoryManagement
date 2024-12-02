@@ -30,9 +30,12 @@ namespace Manager.Controllers
         }
 
         [HttpPost]
-        public IActionResult ChangeRecord(UtilityMeter utilityMeter)
+        public async Task<IActionResult> ChangeRecordAsync(UtilityMeter utilityMeter)
         {
-            _utilityMeterData.UpdateUtilityMeter(utilityMeter);
+            Console.WriteLine(utilityMeter.UtilityMeterID);
+            Console.WriteLine(utilityMeter.Electricity);
+            Console.WriteLine(utilityMeter.Water);
+            await _utilityMeterData.UpdateUtilityMeter(utilityMeter);
             return RedirectToAction("List");
         }
 

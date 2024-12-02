@@ -9,6 +9,8 @@ namespace Manager.Controllers
         private readonly InvoiceData _invoiceData;
         private readonly RoomInvoiceData _roominvoiceData;
         private readonly StudentData _studentData;
+        private object _httpContextAccessor;
+
         public InvoiceController(IHttpContextAccessor httpContextAccessor)
         {
             _invoiceData = new InvoiceData(httpContextAccessor);
@@ -35,10 +37,32 @@ namespace Manager.Controllers
             DormInvoice dormInvoice = dormInvoices.Find(d => d.InvoiceID == int.Parse(id));
             return View(dormInvoice);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateDormInvoice(DormInvoice dormInvoice)
+        {
+            await _invoiceData.UpdateDormInvoice(dormInvoice);
+            return RedirectToAction("DormInvoice");
+        }
+
+
         public IActionResult AddDormInvoice()
         {
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> AddDormInvoiceAsync([FromForm] DormInvoice dormInvoice)
+        {
+            var staffid = HttpContext.Session.GetString("staffid");
+            dormInvoice.PayDate = DateTime.Now;
+            dormInvoice.IssueDate = DateTime.Now;
+            dormInvoice.Status = "Paid";
+            dormInvoice.StaffID_Create = staffid;
+            await _invoiceData.AddDormInvoice(dormInvoice);
+            return RedirectToAction("DormInvoice");
+        }
+
+
         public IActionResult RoomInvoice()
         {
             try
@@ -135,16 +159,7 @@ namespace Manager.Controllers
         public async Task<IActionResult> ApproveInvoices()
         {
             await _roominvoiceData.Approveroominvoicenew();
-            List<RoomInvoice> roomInvoices = _invoiceData.GetAllRoomInvoice().Result;
-
-            var pendingInvoices = roomInvoices.Where(ri => ri.Status == "Pending Approval").ToList();
-
-            if (pendingInvoices.Count == 0)
-            {
-                List<RoomInvoice> roomInvoicescd = _roominvoiceData.CreateRoomInvoice().Result;
-                return View(roomInvoicescd);
-            }
-            return View("RoomInvoice", pendingInvoices);
+            return RedirectToAction("RoomInvoice");
         }
 
         [HttpPost]

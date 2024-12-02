@@ -67,7 +67,9 @@ namespace Manager.Data
             HttpResponseMessage response = await _httpClient.PutAsync(url, data);
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception(response.StatusCode.ToString());
+                string errorDetail = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Error: {response.StatusCode}, Details: {errorDetail}");
+                throw new Exception("Không cập nhật thành công: " + response.StatusCode);
             }
             return true;
         }
