@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics.Metrics;
+using System.Linq;
 
 namespace DormitoryServer.Controllers
 {
@@ -21,14 +22,16 @@ namespace DormitoryServer.Controllers
         [HttpGet("reportsandstatistics")]
         public IActionResult GetReportAndStatistics(DateTime firstTime, DateTime lastTime)
         {
+            var students = _context.Students.ToList();
             var requests = _context.SupportRequests.ToList();
             var revenue = _context.SupportRequests.ToList();
+            var registrations = _context.Registrations.ToList();
 
-
-            var dailyStats = new Dictionary<DateTime, (int TotalRequests, int ProcessedRequests, decimal TotalRevenue)>();
+            var dailyStats = new Dictionary<DateTime, (int TotalRequests, int ProcessedRequests, decimal TotalRevenue, int StudentRegistrations)>();
 
             for (DateTime date = firstTime; date <= lastTime; date = date.AddDays(1))
             {
+
                 var dailyRequests = requests
                     .Where(r => r.RequestSentDate.HasValue && r.RequestSentDate.Value.Date == date.Date)
                     .ToList();
@@ -40,31 +43,45 @@ namespace DormitoryServer.Controllers
                     invoice => invoice.InvoiceId,
                     invoiceDetail => invoiceDetail.InvoiceId,
                     (invoice, invoiceDetail) => new { invoice, invoiceDetail })
-                    .Where(x => x.invoice.PaymentDate.HasValue && x.invoice.PaymentDate.Value.Date == date.Date)
+                    .Where(x => x.invoice.PaymentDate.HasValue && x.invoice.PaymentDate.Value.Date == date.Date && x.invoice.Status=="Paid")
                     .Join(_context.Services,
                     combined => combined.invoiceDetail.ServiceId,
                     service => service.ServiceId,
                     (combined, service) => new { combined.invoiceDetail.Quantity, service.Price })
-                    .Sum(x => (decimal?)x.Quantity * x.Price) ?? 0; 
+                    .Sum(x => (decimal?)x.Quantity * x.Price) ?? 0;
+                int studentRegistrations = registrations
+           .Where(reg =>
+           {
+               DateTime registrationDate = reg.Semester == "1"
+                   ? new DateTime(int.Parse(reg.AcademicYear), 8, 10)  
+                   : new DateTime(int.Parse(reg.AcademicYear), 1, 10); 
 
-                    dailyStats[date] = (dailyRequests.Count, dailyProcessedRequests.Count, dailyRevenue);
+               return registrationDate == date; 
+           })
+           .Count();
+                dailyStats[date] = (dailyRequests.Count, dailyProcessedRequests.Count, dailyRevenue, studentRegistrations);
+
+
             }
 
             int totalProcessedRequests = dailyStats.Sum(stat => stat.Value.ProcessedRequests);
             int totalRequests = dailyStats.Sum(stat => stat.Value.TotalRequests);
             decimal totalRevenue = dailyStats.Sum(stat => stat.Value.TotalRevenue);
+            int totalStudentRegistrations = dailyStats.Sum(stat => stat.Value.StudentRegistrations);
 
             return Ok(new
             {
                 TotalProcessedRequests = totalProcessedRequests,
                 TotalRequests = totalRequests,
                 TotalRevenue= totalRevenue,
+                StudentRegistrations= totalStudentRegistrations,
                 DailyStatistics = dailyStats.Select(stat => new
                 {
                     Date = stat.Key,
                     TotalRequests = stat.Value.TotalRequests,
                     ProcessedRequests = stat.Value.ProcessedRequests,
-                    Revenue = stat.Value.TotalRevenue
+                    Revenue = stat.Value.TotalRevenue,
+                    StudentRegistrations = stat.Value.StudentRegistrations
                 })
             });
         }
