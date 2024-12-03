@@ -6,7 +6,7 @@
     let currentStudentsData = [];
     let totalStudentsData = [];
     const dataReports = {
-        availableRooms: 0,
+        newStudents: 0,
         totalResidents: 0,
         studentRequests: 0,
         processedRequests: 0,
@@ -15,7 +15,7 @@
     };
 
 
-    let reportLabels = ["Request Processed", "Request Unprocessed"];
+    let reportLabels = ["Yêu cầu đã xử lí", "Yêu cầu chưa xử lí"];
     let requestProcessedData = [];
     let requestUnprocessedData = [];
 
@@ -46,7 +46,13 @@
             window.location.reload();
         });
     }
-
+    function setupDownloadButton() {
+        document.getElementById('download-button').addEventListener('click', function () {
+            /*document.body.innerHTML = document.getElementById("report").innerHTML;*/
+            window.print();
+            window.location.reload();
+        });
+    }
 
     function initializeCharts() {
         // Initialize the DateTimePicker for the start and end date
@@ -102,12 +108,10 @@
     // Populate data into HTML elements
     function populateData() {
         document.getElementById('total-residents').innerText = dataReports.totalResidents;
-        document.getElementById('total-residents').innerText = dataReports.totalResidents;
-        document.getElementById('new-students').innerText = dataReports.availableRooms;
+        document.getElementById('new-students').innerText = dataReports.newStudents;
         document.getElementById('student-requests').innerText = dataReports.studentRequests;
         document.getElementById('processed-requests').innerText = dataReports.processedRequests;
         document.getElementById('total-revenue').innerText = `$${dataReports.totalRevenue}`;
-        document.getElementById('pending-payments').innerText = `$${dataReports.pendingPayments}`;
     }
     function updateChartData() {
         // Check if start and end years are defined
@@ -153,8 +157,8 @@
         selectedDayEnd = endDate.getDate();
         updateChartData();
     }
-    function addDataReports(newStudents = 0, currentResidents = 0, totalStudents = 0, studentRequests = 0, processedRequests = 0, totalRevenue = 0, pendingPayments = 0) {
-        dataReports.availableRooms += newStudents;
+    function addDataReports(newStudents = 0, currentResidents = 0, studentRequests = 0, processedRequests = 0, totalRevenue = 0, pendingPayments = 0) {
+        dataReports.newStudents += newStudents;
         dataReports.totalResidents += currentResidents;
         dataReports.studentRequests += studentRequests;
         dataReports.processedRequests += processedRequests;
@@ -162,34 +166,43 @@
         dataReports.pendingPayments += pendingPayments;
     }
     // Hàm cập nhật dữ liệu theo năm
-    function addYearlyData(year, yearlyProcessedRequests, yearlyTotalRequests, yearlyTotalRevenue) {
+    function addYearlyData(year, yearlyProcessedRequests, yearlyTotalRequests, yearlyTotalRevenue, yearlyStudents) {
         roomOccupancyLabels.push(year);
+        newStudentsData.push(yearlyStudents);
+        currentStudentsData.push(yearlyStudents);
+        totalStudentsData.push(yearlyStudents);
         requestProcessedData.push(yearlyProcessedRequests);
         requestUnprocessedData.push(yearlyTotalRequests - yearlyProcessedRequests);
         revenueLabels.push(year);
         revenueData.push(yearlyTotalRevenue);
-        addDataReports(0, 0, 0, yearlyTotalRequests, yearlyProcessedRequests, yearlyTotalRevenue);
+        addDataReports(yearlyStudents, yearlyStudents, yearlyTotalRequests, yearlyProcessedRequests, yearlyTotalRevenue);
     }
 
     // Hàm cập nhật dữ liệu theo tháng
-    function addMonthlyData(month, monthlyProcessedRequests, monthlyTotalRequests, monthlyTotalRevenue) {
+    function addMonthlyData(month, monthlyProcessedRequests, monthlyTotalRequests, monthlyTotalRevenue, monthlyStudents) {
         roomOccupancyLabels.push(`Tháng ${month}`);
+        newStudentsData.push(monthlyStudents);
+        currentStudentsData.push(monthlyStudents);
+        totalStudentsData.push(monthlyStudents);
         requestProcessedData.push(monthlyProcessedRequests);
         requestUnprocessedData.push(monthlyTotalRequests - monthlyProcessedRequests);
         revenueLabels.push(`Tháng ${month}`);
         revenueData.push(monthlyTotalRevenue);
-        addDataReports(0, 0, 0, monthlyTotalRequests, monthlyProcessedRequests, monthlyTotalRevenue);
+        addDataReports(monthlyStudents, monthlyStudents, monthlyTotalRequests, monthlyProcessedRequests, monthlyTotalRevenue);
 
     }
 
     // Hàm cập nhật dữ liệu theo ngày
-    function addDailyData(day, dailyProcessedRequests, dailyTotalRequests, dailyRevenue) {
+    function addDailyData(day, dailyProcessedRequests, dailyTotalRequests, dailyRevenue, dailyStudents) {
         roomOccupancyLabels.push(`Ngày ${day}`);
+        newStudentsData.push(dailyStudents);
+        currentStudentsData.push(dailyStudents);
+        totalStudentsData.push(dailyStudents);
         requestProcessedData.push(dailyProcessedRequests);
         requestUnprocessedData.push(dailyTotalRequests - dailyProcessedRequests);
         revenueLabels.push(`Ngày ${day}`);
         revenueData.push(dailyRevenue);
-        addDataReports(0, 0, 0, dailyTotalRequests, dailyProcessedRequests, dailyRevenue);
+        addDataReports(dailyStudents, dailyStudents, dailyTotalRequests, dailyProcessedRequests, dailyRevenue);
     }
 
     function fetchData(startDate, endDate) {
@@ -225,7 +238,8 @@
                 const yearlyProcessedRequests = yearlyData.reduce((acc, item) => acc + item.processedRequests, 0);
                 const yearlyTotalRequests = yearlyData.reduce((acc, item) => acc + item.totalRequests, 0);
                 const yearlyRevenue = yearlyData.reduce((acc, item) => acc + item.revenue, 0);
-                addYearlyData(year, yearlyProcessedRequests, yearlyTotalRequests, yearlyRevenue);
+                const yearlyStudents = yearlyData.reduce((acc, item) => acc + item.studentRegistrations, 0);
+                addYearlyData(year, yearlyProcessedRequests, yearlyTotalRequests, yearlyRevenue, yearlyStudents);
             }
         } else if (startYear === endYear && endMonth > startMonth) {
             for (let month = startMonth; month <= endMonth; month++) {
@@ -233,13 +247,14 @@
                 const monthlyProcessedRequests = monthlyData.reduce((acc, item) => acc + item.processedRequests, 0);
                 const monthlyTotalRequests = monthlyData.reduce((acc, item) => acc + item.totalRequests, 0);
                 const monthlyRevenue = monthlyData.reduce((acc, item) => acc + item.revenue, 0);
-                addMonthlyData(month, monthlyProcessedRequests, monthlyTotalRequests, monthlyRevenue);
+                const monthlyStudents = monthlyData.reduce((acc, item) => acc + item.studentRegistrations, 0);
+                addMonthlyData(month, monthlyProcessedRequests, monthlyTotalRequests, monthlyRevenue, monthlyStudents);
             }
         } else {
             for (let day = start.getDate(); day <= end.getDate(); day++) {
                 const dailyData = dailyStatistics.find(item => new Date(item.date).getDate() === day);
                 if (dailyData) {
-                    addDailyData(day, dailyData.processedRequests, dailyData.totalRequests, dailyData.revenue);
+                    addDailyData(day, dailyData.processedRequests, dailyData.totalRequests, dailyData.revenue, dailyData.studentRegistrations);
                 }
             }
         }
@@ -278,24 +293,30 @@
             labels: roomOccupancyLabels,
             datasets: [
                 {
-                    label: "New Students",
+                    label: "Sinh viên mới",
                     data: newStudentsData,
                     backgroundColor: "rgba(255, 99, 132, 0.7)"
                 },
                 {
-                    label: "Current Students",
+                    label: "Sinh viên hiện tại",
                     data: currentStudentsData,
                     backgroundColor: "rgba(54, 162, 235, 0.5)"
                 },
                 {
-                    label: "Total Students",
+                    label: "Tổng số sinh viên",
                     data: totalStudentsData,
                     backgroundColor: "rgba(75, 192, 192, 0.3)"
                 }
             ]
         },
         options: {
-            responsive: true
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Tình trạng sinh viên ký túc xá"
+                }
+            }
         }
     });
 
@@ -306,8 +327,10 @@
             labels: reportLabels,
             datasets: [
                 {
-                    data: [requestProcessedData.reduce((a, b) => a + b, 0),
-                    requestUnprocessedData.reduce((a, b) => a + b, 0)],
+                    data: [
+                        requestProcessedData.reduce((a, b) => a + b, 0),
+                        requestUnprocessedData.reduce((a, b) => a + b, 0)
+                    ],
                     backgroundColor: [
                         "rgba(75, 192, 192, 0.7)",
                         "rgba(255, 99, 132, 0.7)"
@@ -321,6 +344,10 @@
                 legend: {
                     display: true,
                     position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: "Tình trạng xử lý yêu cầu"
                 }
             }
         }
@@ -333,20 +360,27 @@
         data: {
             labels: revenueLabels,
             datasets: [{
-                label: "Revenue",
+                label: "Doanh thu",
                 fill: false,
                 backgroundColor: "rgba(255, 159, 64, 0.3)",
                 data: revenueData
             }]
         },
         options: {
-            responsive: true
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Doanh thu ký túc xá"
+                }
+            }
         }
     });
 
     // Document ready function
     $(document).ready(function () {
         setupPrintButton();
+        setupDownloadButton();
         initializeCharts();
         setDefaultDate();
     });

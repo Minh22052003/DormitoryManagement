@@ -16,7 +16,7 @@ namespace DormitoryServer.Controllers
         {
             _context = context;
         }
-        [Authorize(Roles = "Admin, Manager, Staff")]
+        [Authorize(Roles = "Admin, Manager")]
         [HttpGet("getalllregistration")]
         public IActionResult GetAllRegistration()
         {

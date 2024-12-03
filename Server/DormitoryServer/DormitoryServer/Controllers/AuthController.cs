@@ -135,7 +135,7 @@ namespace DormitoryServer.Controllers
             
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost("acceptaccount")]
         public async Task<IActionResult> AcceptAccount([FromBody] AccountStaffDTO accountStaffDTO)
         {

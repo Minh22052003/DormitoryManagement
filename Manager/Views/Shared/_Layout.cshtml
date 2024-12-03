@@ -106,6 +106,10 @@
                     {
                         <a asp-controller="BaoCaoThongKe" asp-action="Index" class="nav-item nav-link"><i class="bi bi-bar-chart-fill me-2"></i>Báo cáo và thống kê</a>
                     }
+                    @if (Role == "Admin" || Role == "Manager")
+                    {
+                        <a asp-controller="Admin" asp-action="StaffRegistration" class="dropdown-item ms-3"><i class="bi bi-person me-2"></i> Duyệt tài khoản</a>
+                    }
                     @if(Role == "Admin")
                     {
                         <div class="nav-item dropdown">
@@ -117,7 +121,6 @@
                                 <a asp-controller="Admin" asp-action="ListRole" class="dropdown-item ms-3"><i class="bi bi-people me-2"></i> Thêm vai trò</a>
                                 <a asp-controller="Admin" asp-action="ListEquipment" class="dropdown-item ms-3"><i class="bi bi-plus-square-fill me-2"></i> Thêm thiết bị</a>
                                 <a asp-controller="Admin" asp-action="ListService" class="dropdown-item ms-3"><i class="fa fa-solid fa-receipt me-2"></i> Thêm dịch vụ</a>
-                                <a asp-controller="Admin" asp-action="StaffRegistration" class="dropdown-item ms-3"><i class="bi bi-person me-2"></i> Duyệt tài khoản</a>
                             </div>
                         </div>
                     }
