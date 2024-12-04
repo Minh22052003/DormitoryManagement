@@ -212,7 +212,10 @@ namespace DormitoryServer.Controllers
                         {
                             invoiceDetail.Quantity = latestUtility.Electricity;
                         }
-                        invoiceDetail.Quantity = 0;
+                        else
+                        {
+                            invoiceDetail.Quantity = 0;
+                        }
                     }
                     else if (service.ServiceName == "Nước" && latestUtility != null)
                     {
@@ -220,7 +223,11 @@ namespace DormitoryServer.Controllers
                         {
                             invoiceDetail.Quantity = latestUtility.Water;
                         }
-                        invoiceDetail.Quantity = 0;
+                        else
+                        {
+                            invoiceDetail.Quantity = 0;
+                        }
+                        
                     }
                     else
                     {

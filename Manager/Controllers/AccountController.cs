@@ -43,11 +43,14 @@ namespace Manager.Controllers
                 var token = await response.Content.ReadAsStringAsync();
                 HttpContext.Session.SetString("jwt", token);
                 var staff = _staffData.GetStaffAsync().Result;
-                if(staff.FullName == "")
+                if(staff.FullName == null)
                 {
                     HttpContext.Session.SetString("fullname", "Chưa cập nhật");
                 }
-                HttpContext.Session.SetString("fullname", staff.FullName);
+                else
+                {
+                    HttpContext.Session.SetString("fullname", staff.FullName);
+                }
                 HttpContext.Session.SetString("staffid", staff.StaffID);
                 HttpContext.Session.SetString("role", staff.RoleName);
                 return RedirectToAction("TTCN", "User");

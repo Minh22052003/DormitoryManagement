@@ -111,7 +111,7 @@
         document.getElementById('new-students').innerText = dataReports.newStudents;
         document.getElementById('student-requests').innerText = dataReports.studentRequests;
         document.getElementById('processed-requests').innerText = dataReports.processedRequests;
-        document.getElementById('total-revenue').innerText = `$${dataReports.totalRevenue}`;
+        document.getElementById('total-revenue').innerText = `${dataReports.totalRevenue}đ`;
     }
     function updateChartData() {
         // Check if start and end years are defined
@@ -206,6 +206,7 @@
     }
 
     function fetchData(startDate, endDate) {
+
         $.ajax({
             url: `https://localhost:7249/api/ReportsAndStatistics/reportsandstatistics?firstTime=${startDate}&lastTime=${endDate}`,
             method: 'GET',

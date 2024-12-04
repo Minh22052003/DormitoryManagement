@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DormitoryUser.Models.RoomInvoice
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="main-content">
@@ -24,7 +25,7 @@
                                         </div>
                                         <div class="author-box-details ml-3">
                                             <div class="author-box-name">
-                                                <span class="fs-5 text-dark">Nguyễn Văn A</span>
+                                                <span class="fs-5 text-dark">@ViewBag.Profile.FullName</span>
                                             </div>
                                         </div>
                                     </div>
@@ -38,7 +39,7 @@
                                         </div>
                                         <div class="author-box-details ml-3">
                                             <div class="author-box-name">
-                                                <span class="fs-5 text-dark">211211845</span>
+                                                <span class="fs-5 text-dark">@ViewBag.Profile.StudentID</span>
                                             </div>
                                         </div>
                                     </div>
@@ -52,7 +53,7 @@
                                         </div>
                                         <div class="author-box-details ml-3">
                                             <div class="author-box-name">
-                                                <span class="fs-5 text-dark">02/11/2003</span>
+                                                <span class="fs-5 text-dark">@ViewBag.Profile.BirthDate.ToString("yyyy-MM-dd")</span>
                                             </div>
                                         </div>
                                     </div>
@@ -123,22 +124,32 @@
                             <table class="table table-bordered">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th scope="col">STT</th>
                                         <th scope="col">Nội dung</th>
                                         <th scope="col">Số tiền</th>
                                         <th scope="col">Ghi chú</th>
-                                        <th scope="col">Chọn</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Thanh toán điện</td>
-                                        <td>1,000,000 VND</td>
-                                        <td></td>
-                                        <td>
-                                            <input class="align-items-center" type="checkbox" class="form-check-input" id="payment1">
-                                        </td>
+                                        @if (ViewBag.RoomInvoiceF?.Services != null)
+
+
+
+                                        {
+
+
+
+                                            foreach (var t in ViewBag.RoomInvoiceF.Services)
+
+
+
+                                            {
+                                                <p><strong>- @t?.ServiceName :</strong> @t?.Price đ (Số lượng: @t?.Quantity )</p>
+                                            }
+
+
+
+                                        }
                                     </tr>
                                 </tbody>
                             </table>
@@ -146,7 +157,7 @@
                         </div>
                         <div class="d-flex ml-3 mb-3">
                             <p class="ml-3"><h5>Tổng:</h5></p>
-                            <p class="ml-5"><h5>600,000</h5></p>
+                            <p class="ml-5"><h5>@Model.TotalAmount</h5></p>
                         </div>
                     </div>
                 </div>

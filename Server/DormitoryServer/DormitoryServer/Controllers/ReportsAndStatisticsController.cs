@@ -20,7 +20,6 @@ namespace DormitoryServer.Controllers
             _context = context;
         }
 
-        [Authorize(Roles = "Admin, Staff, Accountant")]
         [HttpGet("reportsandstatistics")]
         public IActionResult GetReportAndStatistics(DateTime firstTime, DateTime lastTime)
         {

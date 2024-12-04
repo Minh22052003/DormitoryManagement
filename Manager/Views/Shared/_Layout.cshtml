@@ -72,19 +72,27 @@
                             <div class="dropdown-menu bg-transparent border-0">
                                 <a asp-controller="User" asp-action="Student" class="dropdown-item ms-3"><i class="bi bi-person-circle me-2"></i> Sinh viên</a>
                                 <a asp-controller="User" asp-action="Staff" class="dropdown-item ms-3"><i class="bi bi-person-circle me-2"></i> Nhân viên</a>
+                                <a asp-controller="Admin" asp-action="StaffRegistration" class="dropdown-item ms-3"><i class="bi bi-person me-2"></i> Duyệt tài khoản</a>
                             </div>
                         }
                         
                     </div>
-                    <a asp-controller="Information" asp-action="News" class="nav-item nav-link"><i class="fa bi bi-newspaper"></i>Bảng tin KTX</a>
-                    <a asp-controller="Information" asp-action="Announcement" class="nav-item nav-link"><i class="bi bi-megaphone-fill me-2"></i>Thông báo</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa far fa-file-alt me-2"></i>Đơn đăng ký</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a asp-controller="Registration" asp-action="Registrations" class="dropdown-item ms-3"><i class="bi bi-journal-check me-2"></i> Đơn đã duyệt</a>
-                            <a asp-controller="Registration" asp-action="nRegistrations" class="dropdown-item ms-3"><i class="bi bi-file-text-fill me-2"></i> Đơn chưa duyệt</a>
+                    @if(Role == "Accountant")
+                    {
+
+                    }else
+                    {
+                        <a asp-controller="Information" asp-action="News" class="nav-item nav-link"><i class="fa bi bi-newspaper"></i>Bảng tin KTX</a>
+                        <a asp-controller="Information" asp-action="Announcement" class="nav-item nav-link"><i class="bi bi-megaphone-fill me-2"></i>Thông báo</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa far fa-file-alt me-2"></i>Đơn đăng ký</a>
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a asp-controller="Registration" asp-action="Registrations" class="dropdown-item ms-3"><i class="bi bi-journal-check me-2"></i> Đơn đã duyệt</a>
+                                <a asp-controller="Registration" asp-action="nRegistrations" class="dropdown-item ms-3"><i class="bi bi-file-text-fill me-2"></i> Đơn chưa duyệt</a>
+                            </div>
                         </div>
-                    </div>
+                    }
+                    
                     <a asp-controller="UtilityMeter" asp-action="List" class="nav-item nav-link"><i class="bi bi-droplet-half me-2"></i>Số điện, nước</a>
                     @if (Role == "Admin" || Role == "Manager" || Role == "Accountant")
                     {
@@ -106,10 +114,7 @@
                     {
                         <a asp-controller="BaoCaoThongKe" asp-action="Index" class="nav-item nav-link"><i class="bi bi-bar-chart-fill me-2"></i>Báo cáo và thống kê</a>
                     }
-                    @if (Role == "Admin" || Role == "Manager")
-                    {
-                        <a asp-controller="Admin" asp-action="StaffRegistration" class="dropdown-item ms-3"><i class="bi bi-person me-2"></i> Duyệt tài khoản</a>
-                    }
+                    
                     @if(Role == "Admin")
                     {
                         <div class="nav-item dropdown">
