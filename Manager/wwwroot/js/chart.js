@@ -211,9 +211,7 @@
             url: `https://localhost:7249/api/ReportsAndStatistics/reportsandstatistics?firstTime=${startDate}&lastTime=${endDate}`,
             method: 'GET',
             success: function (response) {
-                console.log('Data fetched:', response);
                 processData(response.dailyStatistics, startDate, endDate);
-
                 populateData();
                 updateCharts();
             },

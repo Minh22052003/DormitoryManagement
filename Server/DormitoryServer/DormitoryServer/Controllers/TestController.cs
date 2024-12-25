@@ -20,12 +20,13 @@ namespace DormitoryServer.Controllers
             return Ok(image);
         }
 
-        //[HttpPost("postimage")]
-        //public IActionResult PostImage([FromForm] Test t1)
-        //{
-        //    test.image = t1.image;
-        //    test.Name = _formFileHelper.SaveImageAsync(t1.image).Result;
-        //    return Ok(test.Name);
-        //}
+        [HttpPost("postimage")]
+        public IActionResult PostImage([FromForm] FileUploadDto t1)
+        {
+            var rootPath = "D:\\Project1\\Server\\DormitoryServer\\DormitoryServer\\Uploads";
+            var subFolder = "images";
+            string Name = _formFileHelper.SaveImageAsync(t1,rootPath,subFolder);
+            return Ok(Name);
+        }
     }
 }

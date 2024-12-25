@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DormitoryServer.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DormitoryServer.Helpers
 {
@@ -12,32 +13,26 @@ namespace DormitoryServer.Helpers
             return base64String; 
         }
 
-        // Lưu ảnh vào thư mục
-        public async Task<string> SaveImageAsync(string base64File)
+        public string SaveImageAsync(FileUploadDto fileUploadDto, string rootPath, string subFolder)
         {
-            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", "images");
-
-            var uniqueFileName = Guid.NewGuid().ToString() + ".jpg";
-            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-            if (!Directory.Exists(uploadsFolder))
+            var targetPath = Path.Combine(rootPath, subFolder);
+            if(!Directory.Exists(targetPath))
             {
-                Directory.CreateDirectory(uploadsFolder);
+                Directory.CreateDirectory(targetPath);
             }
-
-            var base64Data = base64File;
-            if (base64File.Contains(","))
+            if(fileUploadDto.FileName== null) {
+                fileUploadDto.FileName = fileUploadDto.File.FileName;   
+            }
+            var fullPath = Path.Combine(targetPath, fileUploadDto.FileName);
+            using (var stream = new FileStream(fullPath, FileMode.Create))
             {
-                base64Data = base64File.Substring(base64File.IndexOf(",") + 1);
+                fileUploadDto.File.CopyTo(stream);
             }
-
-            byte[] imageBytes = Convert.FromBase64String(base64Data);
-
-            await System.IO.File.WriteAllBytesAsync(filePath, imageBytes);
-
-            var relativePath = uniqueFileName;
-            return relativePath;
+            return Path.Combine(subFolder, fileUploadDto.FileName);
         }
 
+
+
     }
+
 }
