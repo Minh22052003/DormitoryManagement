@@ -1,4 +1,6 @@
-﻿using DormitoryServer.Models;
+﻿using DormitoryServer.Helpers;
+using DormitoryServer.Models;
+using DormitoryServer.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.DataProtection;
@@ -32,6 +34,7 @@ builder.Services.AddDbContext<DataDormitoryContext>(options =>
 
 
 builder.Services.AddScoped<RoleService>();
+builder.Services.AddSingleton<FormFileHelperServices, FormFileHelper>();
 
 builder.Services.AddAuthentication(options =>
 {
